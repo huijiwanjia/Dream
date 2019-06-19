@@ -1,0 +1,50 @@
+version: '3'
+services:
+  pcs_web_1:
+    image: 'pcs-web-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8044:80"
+    volumes:
+      - /qin/SiteLogs/PCS/App/Web/8044:/app/logs
+    logging:
+      options:
+        max-size: 50m 
+  pcs_web_2:
+    image: 'pcs-web-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8045:80"
+    volumes:
+      - /qin/SiteLogs/PCS/App/Web/8045:/app/logs
+    logging:
+      options:
+        max-size: 50m
+  pcs_web_3:
+    image: 'pcs-web-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8046:80"
+    volumes:
+      - /qin/SiteLogs/PCS/App/Web/8046:/app/logs
+    logging:
+      options:
+        max-size: 50m

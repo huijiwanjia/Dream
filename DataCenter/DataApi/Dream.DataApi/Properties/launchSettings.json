@@ -1,0 +1,29 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:55605/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "pcs/patent/pscdataapi",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Dream.DataApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "pcs/patent/pscdataapi",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:55606/"
+    }
+  }
+}

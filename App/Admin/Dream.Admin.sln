@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.Admin", "Dream.Admin\Dream.Admin.csproj", "{E6718C8C-8A56-498B-96B5-F66BD1EBE580}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.ExceptionHandler", "..\..\Components\Dream.ExceptionHandler\Dream.ExceptionHandler.csproj", "{C0DCD484-B189-458E-A50B-7544A9DB7D24}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.Logger", "..\..\Components\Dream.Logger\Dream.Logger.csproj", "{C437DCFB-26A8-41B7-AFE5-DFE6C5574914}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.Model", "..\..\Components\Dream.Model\Dream.Model.csproj", "{A7896337-D13C-4BB5-B44A-57F3C89B4972}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.Security", "..\..\Components\Dream.Security\Dream.Security.csproj", "{CEAC7A87-695F-4BAE-9768-D3579DA8B733}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.Util", "..\..\Components\Dream.Util\Dream.Util.csproj", "{1BD1EA3E-C7E9-4A8B-945A-A49A2FB8541D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6718C8C-8A56-498B-96B5-F66BD1EBE580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6718C8C-8A56-498B-96B5-F66BD1EBE580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6718C8C-8A56-498B-96B5-F66BD1EBE580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6718C8C-8A56-498B-96B5-F66BD1EBE580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DCD484-B189-458E-A50B-7544A9DB7D24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DCD484-B189-458E-A50B-7544A9DB7D24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DCD484-B189-458E-A50B-7544A9DB7D24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DCD484-B189-458E-A50B-7544A9DB7D24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C437DCFB-26A8-41B7-AFE5-DFE6C5574914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C437DCFB-26A8-41B7-AFE5-DFE6C5574914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C437DCFB-26A8-41B7-AFE5-DFE6C5574914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C437DCFB-26A8-41B7-AFE5-DFE6C5574914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7896337-D13C-4BB5-B44A-57F3C89B4972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7896337-D13C-4BB5-B44A-57F3C89B4972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7896337-D13C-4BB5-B44A-57F3C89B4972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7896337-D13C-4BB5-B44A-57F3C89B4972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEAC7A87-695F-4BAE-9768-D3579DA8B733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEAC7A87-695F-4BAE-9768-D3579DA8B733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEAC7A87-695F-4BAE-9768-D3579DA8B733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEAC7A87-695F-4BAE-9768-D3579DA8B733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD1EA3E-C7E9-4A8B-945A-A49A2FB8541D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD1EA3E-C7E9-4A8B-945A-A49A2FB8541D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD1EA3E-C7E9-4A8B-945A-A49A2FB8541D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD1EA3E-C7E9-4A8B-945A-A49A2FB8541D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF2103A2-2C7C-4C51-8DCB-3061DFD58628}
+	EndGlobalSection
+EndGlobal

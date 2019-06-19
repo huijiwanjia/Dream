@@ -1,0 +1,53 @@
+version: '3'
+services:
+  pcs_filesv_1:
+    image: 'pcs-filesv-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8047:80"
+    volumes:
+      - /qin/SiteLogs/PCS/FileSv/8047:/app/logs
+      - /qin/website_publish/PCS/filedatas:/qin/website_publish/PCS/filedatas
+    logging:
+      options:
+        max-size: 50m 
+  pcs_filesv_2:
+    image: 'pcs-filesv-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8048:80"
+    volumes:
+      - /qin/SiteLogs/PCS/FileSv/8048:/app/logs
+      - /qin/website_publish/PCS/filedatas:/qin/website_publish/PCS/filedatas
+    logging:
+      options:
+        max-size: 50m
+  pcs_filesv_3:
+    image: 'pcs-filesv-latest'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8049:80"
+    volumes:
+      - /qin/SiteLogs/PCS/FileSv/8049:/app/logs
+      - /qin/website_publish/PCS/filedatas:/qin/website_publish/PCS/filedatas
+    logging:
+      options:
+        max-size: 50m
