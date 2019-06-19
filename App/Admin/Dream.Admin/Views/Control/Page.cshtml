@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script type="text/javascript">
+    //Load content via ajax
+    jQuery(function ($) {
+        if ('enable_ajax_content' in ace) {
+            var options = {
+                content_url: function (url) {
+                    switch (url) {
+                        case "page":
+                        case "home":
+                            return '/control/home';
+                        case "redpacket":
+                            return '/redpacket/index';
+                        case "withdrawapply":
+                            return '/withdrawapply/index';
+                        case "export":
+                            return '/withdrawapply/export';
+                        case "import":
+                            return '/withdrawapply/import';
+                        case "user":
+                            return '/user/index';
+                        default:
+
+                    }
+                },
+                loading_icon: 'fa-spinner fa-2x blue',
+                loading_text: '',
+                default_url: '#home'//default url
+            }
+            ace.enable_ajax_content($, options)
+        }
+    })
+</script>

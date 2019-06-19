@@ -7,7 +7,7 @@ using Dream.Security.Auth;
 
 namespace Dream.Admin.Controllers
 {
-    [PCSWebAuthorize]
+    [DreamAuthorize]
     public class AuthController : Controller
     {
        

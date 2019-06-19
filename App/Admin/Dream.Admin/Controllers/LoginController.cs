@@ -25,11 +25,12 @@ namespace Dream.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string account, string password)
         {
-            if (string.IsNullOrWhiteSpace(account)) return Ok("用户名不能为空");
-            if (string.IsNullOrWhiteSpace(password)) return Ok("密码不能为空");
-            var userInfo = await _authenticationService.Login(account, password);
-            if (userInfo != null) return Ok("success");
-            return Ok("用户名密码不匹配");
+            //if (string.IsNullOrWhiteSpace(account)) return Ok("用户名不能为空");
+            //if (string.IsNullOrWhiteSpace(password)) return Ok("密码不能为空");
+            //var userInfo = await _authenticationService.Login(account, password);
+            //if (userInfo != null) return Ok("success");
+            //return Redirect("/login");
+            return Redirect("/control/page");
         }
 
         public IActionResult LoginOut()

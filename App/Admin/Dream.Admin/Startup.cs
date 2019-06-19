@@ -67,7 +67,7 @@ namespace Dream.Admin
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=search}/{action=Index}/{id?}");
+                    template: "{controller=login}/{action=index}/{id?}");
             });
         }
     }
