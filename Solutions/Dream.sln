@@ -37,6 +37,48 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.DataApi", "..\DataCen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dream.FileServer", "..\FileServer\Dream.FileServer\Dream.FileServer.csproj", "{14252B40-B09B-45D1-9F25-6C61EB077923}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Android", "..\App\Android\", "{083D6819-F428-4FB8-AF07-0152E66B5083}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50775"
+		Debug.AspNetCompiler.PhysicalPath = "..\App\Android\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50775\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50775"
+		Release.AspNetCompiler.PhysicalPath = "..\App\Android\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50775\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50775"
+		SlnRelativePath = "..\App\Android\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IOS", "..\App\IOS\", "{2848833A-96EC-4505-9586-3732821323F7}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50810"
+		Debug.AspNetCompiler.PhysicalPath = "..\App\IOS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50810\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50810"
+		Release.AspNetCompiler.PhysicalPath = "..\App\IOS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50810\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50810"
+		SlnRelativePath = "..\App\IOS\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +125,14 @@ Global
 		{14252B40-B09B-45D1-9F25-6C61EB077923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14252B40-B09B-45D1-9F25-6C61EB077923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14252B40-B09B-45D1-9F25-6C61EB077923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083D6819-F428-4FB8-AF07-0152E66B5083}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083D6819-F428-4FB8-AF07-0152E66B5083}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083D6819-F428-4FB8-AF07-0152E66B5083}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{083D6819-F428-4FB8-AF07-0152E66B5083}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{2848833A-96EC-4505-9586-3732821323F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2848833A-96EC-4505-9586-3732821323F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2848833A-96EC-4505-9586-3732821323F7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{2848833A-96EC-4505-9586-3732821323F7}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +151,8 @@ Global
 		{A66D1369-B9A5-4146-87CC-9E50A8F979E1} = {6BDDCC4A-2330-4DE2-80DC-6979910BAEBA}
 		{781CEEFA-6AA7-49A5-B9E6-40B795F45A7A} = {6BDDCC4A-2330-4DE2-80DC-6979910BAEBA}
 		{14252B40-B09B-45D1-9F25-6C61EB077923} = {0FF935CA-CEC9-49F4-91A4-841CE99192C3}
+		{083D6819-F428-4FB8-AF07-0152E66B5083} = {AD72D3E1-DF26-4F5F-84A3-D88ACFC7B691}
+		{2848833A-96EC-4505-9586-3732821323F7} = {81408D3B-D0FE-4AB0-B4B8-8C057C6EB8D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AE2D867-8C73-49BC-A586-847BACDC86C6}
