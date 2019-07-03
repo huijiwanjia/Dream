@@ -54,7 +54,7 @@
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
-    <name>共享人脉</name>
+    <name>惠及万家</name>
     <description>
     现金红包随手领，畅享人脉资源。
   </description>

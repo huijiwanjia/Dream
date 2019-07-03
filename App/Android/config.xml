@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sharedcontacts.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>共享人脉</name>
+<widget id="com.huijiwanjia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>惠及万家</name>
     <description>
-    现金红包随手领，畅享人脉资源。
+  
   </description>
     <author email="248243224@qq.com" href="">
     Jane Qin

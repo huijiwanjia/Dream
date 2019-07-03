@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sharedcontacts.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>共享人脉</name>
+<widget id="com.huijiwanjia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>惠及万家</name>
   <description>
-    现金红包随手领，畅享人脉资源。
+    work for yourself。
   </description>
   <author email="248243224@qq.com" href="">
-    Jane Qin
+    qin
   </author>
   <content src="index.html" />
   <preference name="DisallowOverscroll" value="true" />
@@ -17,6 +17,7 @@
   <preference name="FadeSplashScreenDuration" value="750"/>
 
   <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+  <preference name="phonegap-version" value="cli-7.0.1" />
   <feature name="CDVWKWebViewEngine">
     <param name="ios-package" value="CDVWKWebViewEngine" />
   </feature>
@@ -47,14 +48,15 @@
   <plugin name="cordova-plugin-spinner" source="npm" spec="~1.1.0" />
   <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
   <plugin name="cordova-plugin-disable-ios11-statusbar" />
-  <plugin name="cordova-plugin-wechat" source="npm" spec="~1.2.0">
-    <param name="WECHATAPPID" value="wx4722ea6aded42ab7" />
+  <plugin name="cordova-plugin-wechat" source="npm" spec="~2.8.0">
+    <param name="WECHATAPPID" value="wxcf1c3c250e5e4d91" />
   </plugin>
   <plugin name="cordova-plugin-actionsheet" spec="~2.3.3" />
   <plugin name="cordova-plugin-ios-camera-permissions" spec="~1.2.0" />
-  <plugin name="cordova-plugin-alipay-v2" spec="0.0.4">
+  <!--<plugin name="cordova-plugin-alipay-v2" spec="0.0.4">
     <variable name="APP_ID" value="2018020902171382" />
-  </plugin>
+  </plugin>-->
+  
 
   <platform name="android">
     <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
@@ -94,7 +96,7 @@
     <icon height="29" platform="ios" src="www/res/icon/ios/icon-small.png" width="29" />
     <icon height="58" platform="ios" src="www/res/icon/ios/icon-small@2x.png" width="58" />
     <icon height="87" platform="ios" src="www/res/icon/ios/icon-small@3x.png" width="87" />
-    <splash height="1136" platform="ios" src="www/res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+    <!--<splash height="1136" platform="ios" src="www/res/screen/ios/Default-568h@2x~iphone.png" width="640" />
     <splash height="1334" platform="ios" src="www/res/screen/ios/Default-667h.png" width="750" />
     <splash height="2208" platform="ios" src="www/res/screen/ios/Default-736h.png" width="1242" />
     <splash height="1242" platform="ios" src="www/res/screen/ios/Default-Landscape-736h.png" width="2208" />
@@ -104,19 +106,23 @@
     <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
     <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
     <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
+    <splash height="2436" platform="ios" src="www/res/screen/ios/Default-Portrait~iphoneX.png" width="1125" />-->
+
+    <splash src="www/res/screen/ios/Default@2x~universal~anyany.png" />
+    <engine name="ios" spec="latest" />
   </platform>
   
   <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-    <string>共享人脉需要您的同意,才能访问相机</string>
+    <string>惠及万家需要您的同意,才能访问相机</string>
   </edit-config>
   <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
-    <string>共享人脉需要您的同意,才能访问相册</string>
+    <string>惠及万家需要您的同意,才能访问相册</string>
   </edit-config>
   <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-    <string>共享人脉需要您的同意,才能获得您当前位置</string>
+    <string>惠及万家需要您的同意,才能获得您当前位置</string>
   </edit-config>
   <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
-    <string>共享人脉需要您的同意,才能写入相册</string>
+    <string>惠及万家需要您的同意,才能写入相册</string>
   </edit-config>
   
   <access origin="*" />

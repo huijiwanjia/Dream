@@ -1,7 +1,7 @@
 version: '3'
 services:
   pcs_web_1:
-    image: 'pcs-datasv-latest'
+    image: 'dream-datacenter-latest'
     build:
       context: .
       dockerfile: dockerfile   
@@ -10,14 +10,14 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8041:80"
+      - "8021:80"
     volumes:
-      - /qin/SiteLogs/PCS/DataSv/8041:/app/logs
+      - /qin/SiteLogs/dream/datacenter/8021:/app/logs
     logging:
       options:
         max-size: 50m 
   pcs_web_2:
-    image: 'pcs-datasv-latest'
+    image: 'dream-datacenter-latest'
     build:
       context: .
       dockerfile: dockerfile   
@@ -26,14 +26,14 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8042:80"
+      - "8022:80"
     volumes:
-      - /qin/SiteLogs/PCS/DataSv/8042:/app/logs
+      - /qin/SiteLogs/dream/datacenter/8022:/app/logs
     logging:
       options:
         max-size: 50m
   pcs_web_3:
-    image: 'pcs-datasv-latest'
+    image: 'dream-datacenter-latest'
     build:
       context: .
       dockerfile: dockerfile   
@@ -42,9 +42,9 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8043:80"
+      - "8023:80"
     volumes:
-      - /qin/SiteLogs/PCS/DataSv/8043:/app/logs
+      - /qin/SiteLogs/dream/datacenter/8023:/app/logs
     logging:
       options:
         max-size: 50m

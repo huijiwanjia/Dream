@@ -13,7 +13,7 @@
         msgHtml += "所属权：<span class='red lighter'>" + centerInfo.companyName + "&copy; 2016-2017</span>";
 
         bootbox.dialog({
-            title: "<i class='fa fa-leaf'></i>&nbsp&nbsp&nbsp&nbsp共享人脉后台管理平台",
+            title: "<i class='fa fa-leaf'></i>&nbsp&nbsp&nbsp&nbsp惠及万家后台管理平台",
             message: msgHtml
         });
     });

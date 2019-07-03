@@ -333,55 +333,56 @@ var app = {
                     }
                 };
                 this.ValidateLogin = function () {
-                    var userId = ls.getObject('userInfo').UserId;
-                    if (typeof (userId) == "undefined") $state.go('login');
+                    //var userId = ls.getObject('userInfo').UserId;
+                    //if (typeof (userId) == "undefined") $state.go('login');
                 };
                 this.Login = function () {
-                    $state.go('map');
                     //get from tencent
-                    //try {
-                    //    Wechat.isInstalled(function (installed) {
-                    //        var scope = "snsapi_userinfo",
-                    //            state = "_" + (+new Date());
-                    //        Wechat.auth(scope, state, function (response) {
-                    //            // you may use response.code to get the access token.
-                    //            //get access_token
-                    //            $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + scConfig.appId + "&secret=" + scConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
-                    //                var rerturnData = JSON.parse(data);
-                    //                //get userinfo
-                    //                $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
-                    //                    var user_info = JSON.parse(userInfo);
-                    //                    var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
-                    //                    //check user 
-                    //                    $http({
-                    //                        method: "post",
-                    //                        url: scConfig.accountUrl,
-                    //                        data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
-                    //                        timeout: 30000,
-                    //                    }).success(function (d, textStatu, xhr) {
-                    //                        ls.setObject('userInfo', d);
-                    //                        ls.set('loginTime', new Date());
-                    //                        DeviceEvent.SpinnerHide();
-                    //                        $state.go('map');
-                    //                    }).error(function (error, textStatu, xhr) {
-                    //                        DeviceEvent.SpinnerHide();
-                    //                        DeviceEvent.Toast("网络异常");
-                    //                    });
-                    //                });
-                    //            });
-                    //        }, function (reason) {
-                    //            DeviceEvent.SpinnerHide();
-                    //            DeviceEvent.Toast("Failed: " + reason);
-                    //        });
-                    //    }, function (reason) {
-                    //        DeviceEvent.SpinnerHide();
-                    //        DeviceEvent.Toast("Failed: " + reason);
-                    //    });
-                    //}
-                    //catch (e) {
-                    //    DeviceEvent.SpinnerHide();
-                    //    DeviceEvent.Toast("网络错误");
-                    //}
+                    try {
+                        Wechat.isInstalled(function (installed) {
+                            var scope = "snsapi_userinfo",
+                                state = "_" + (+new Date());
+                            Wechat.auth(scope, state, function (response) {
+                                // you may use response.code to get the access token.
+                                //get access_token
+                                $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + scConfig.appId + "&secret=" + scConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
+                                    var rerturnData = JSON.parse(data);
+                                    //get userinfo
+                                    $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
+                                        var user_info = JSON.parse(userInfo);
+                                        var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
+                                        $state.go('map');
+
+                                        //check user
+                                        //$http({
+                                        //    method: "post",
+                                        //    url: scConfig.accountUrl,
+                                        //    data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
+                                        //    timeout: 30000,
+                                        //}).success(function (d, textStatu, xhr) {
+                                        //    ls.setObject('userInfo', d);
+                                        //    ls.set('loginTime', new Date());
+                                        //    DeviceEvent.SpinnerHide();
+                                        //    $state.go('map');
+                                        //}).error(function (error, textStatu, xhr) {
+                                        //    DeviceEvent.SpinnerHide();
+                                        //    DeviceEvent.Toast("网络异常");
+                                        //});
+                                    });
+                                });
+                            }, function (reason) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("Failed: " + reason);
+                            });
+                        }, function (reason) {
+                            DeviceEvent.SpinnerHide();
+                            DeviceEvent.Toast("Failed: " + reason);
+                        });
+                    }
+                    catch (e) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络错误");
+                    }
 
                     //var userInfo = { openId: "17623852228", avatarUrl: "http://119.28.54.31:8055/user_2.jpg", unionId: "10191656", name: "蜡笔小新", sex: 0 };
                     //try {
@@ -989,7 +990,7 @@ var app = {
             })
             .controller('MapController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "map";
-                sc.ValidateLogin();
+                //sc.ValidateLogin();
 
                 $scope.openRedPacket = function ($event) {
                     $event.stopPropagation();
@@ -1001,41 +1002,41 @@ var app = {
                 };
 
                 try {
-                    var translateCallback = function (data) {
-                        if (data.status === 0) {
-                            var distanceBetweenLast = 0;
-                            var isInited = typeof rpMapApi._currentLocationPoint !== "undefined";
-                            if (isInited) {
-                                distanceBetweenLast = rpMapApi._map.getDistance(rpMapApi._currentLocationPoint, data.points[0]).toFixed(0);//获取二点间距离保留到整数,单位米
-                                console.log("distance: " + distanceBetweenLast + " 米");
-                            }
-                            //大于50米才刷新
-                            if (!isInited || distanceBetweenLast > 50) {
-                                rpMapApi._map.clearOverlays();
-                                //refresh location
-                                rpMapApi._currentLocationPoint = data.points[0];
-                                curLocation = data.points[0];
-                                //refresh center and zoom
-                                if (ls.getObject("userInfo").AgencyType == agencyType.City) rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 9);
-                                else rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 17);
-                                if (ls.getObject("userInfo").AgencyType == agencyType.NotAgency) {
-                                    //rewrite visible circle
-                                    rpMapApi.RefreshVisibleCircle();
-                                    //reset visible map bounds
-                                    rpMapApi.ResetMapBounds();
-                                }
-                                //mark point
-                                rpMapApi.MarkCurrentLocation();
-                                //mark red packets
-                                rpMapApi.RefreshRedPackets(ls.getObject("userInfo").UserId, ls.getObject("userInfo").AgencyType);
+                    //var translateCallback = function (data) {
+                    //    if (data.status === 0) {
+                    //        var distanceBetweenLast = 0;
+                    //        var isInited = typeof rpMapApi._currentLocationPoint !== "undefined";
+                    //        if (isInited) {
+                    //            distanceBetweenLast = rpMapApi._map.getDistance(rpMapApi._currentLocationPoint, data.points[0]).toFixed(0);//获取二点间距离保留到整数,单位米
+                    //            console.log("distance: " + distanceBetweenLast + " 米");
+                    //        }
+                    //        //大于50米才刷新
+                    //        if (!isInited || distanceBetweenLast > 50) {
+                    //            rpMapApi._map.clearOverlays();
+                    //            //refresh location
+                    //            rpMapApi._currentLocationPoint = data.points[0];
+                    //            curLocation = data.points[0];
+                    //            //refresh center and zoom
+                    //            if (ls.getObject("userInfo").AgencyType == agencyType.City) rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 9);
+                    //            else rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 17);
+                    //            if (ls.getObject("userInfo").AgencyType == agencyType.NotAgency) {
+                    //                //rewrite visible circle
+                    //                rpMapApi.RefreshVisibleCircle();
+                    //                //reset visible map bounds
+                    //                rpMapApi.ResetMapBounds();
+                    //            }
+                    //            //mark point
+                    //            rpMapApi.MarkCurrentLocation();
+                    //            //mark red packets
+                    //            rpMapApi.RefreshRedPackets(ls.getObject("userInfo").UserId, ls.getObject("userInfo").AgencyType);
 
-                                rpMapApi._map.setCenter(data.points[0]);
-                            }
-                            DeviceEvent.SpinnerHide();
-                        }
-                    };
-                    var rpMapApi = new RedPackets(translateCallback);
-                    rpMapApi.MapInit(ls.getObject("userInfo").AgencyType);
+                    //            rpMapApi._map.setCenter(data.points[0]);
+                    //        }
+                    //        DeviceEvent.SpinnerHide();
+                    //    }
+                    //};
+                    //var rpMapApi = new RedPackets(translateCallback);
+                    //rpMapApi.MapInit(ls.getObject("userInfo").AgencyType);
                 }
                 catch (e) {
                     console.log(e);
