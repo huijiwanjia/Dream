@@ -12,19 +12,15 @@ using System.Linq;
 
 namespace Dream.DataAccess.Service
 {
-    public class UserService : IUserService
+    public class RecommentService : IRecommentService
     {
-        public async Task<IEnumerable<UserInfo>> QueryAsync(UserQuery user)
-        {
-            return null;
-        }
-        public async Task<UserInfo> QueryAsync(string unionId)
+        public async Task<Recomment> QueryAsync(string unionId)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUnionId, unionId, null, null, CommandType.StoredProcedure);
-                return user;
+                var recoment = await conn.QueryFirstOrDefaultAsync<Recomment>(Procedure.GetRecommentByUnionId, unionId, null, null, CommandType.StoredProcedure);
+                return recoment;
             }
         }
     }

@@ -9,6 +9,6 @@ namespace Dream.Model.Api
     /// </summary>
     public class DataApiAppSettings
     {
-        public string PCSConnectionString { get; set; }
+        public string DreamConnectionString { get; set; }
     }
 }

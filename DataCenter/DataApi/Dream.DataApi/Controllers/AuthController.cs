@@ -12,29 +12,31 @@ using Dream.Security;
 
 namespace Dream.DataApi.Controllers
 {
-    [Route("pcs/[controller]")]
-    public class UserController : BaseController
+    [Route("dream/[controller]")]
+    public class AuthController : BaseController
     {
         private ILog _log;
-        private IUserService _UserService;
+        private IAccountService _accountService;
 
-        public UserController(ILog log, IUserService u)
+        public AuthController(ILog log, IAccountService a)
         {
             _log = log;
-            _UserService = u;
+            _accountService = a;
         }
 
         [HttpGet]
         //[ApiAuthorize]
-        public async Task<IActionResult> Get(UserQuery userQuery)
+        public void Get(UserInfo user)
         {
-            var ret = await _UserService.Query(userQuery);
-            return Json(ret);
+
         }
 
         [HttpPost]
-        public void Post([FromBody]UserInfo userInfo)
+        //[ApiAuthorize]
+        public async Task<IActionResult> Post([FromBody]UserInfo user)
         {
+            var authedUser = await _accountService.Login(user);
+            return Ok(authedUser);
         }
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)

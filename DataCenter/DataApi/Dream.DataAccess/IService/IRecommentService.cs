@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Dream.DataAccess.IService
 {
-    public interface IUserService
+    public interface IRecommentService
     {
-        Task<IEnumerable<UserInfo>> QueryAsync(UserQuery query);
-        Task<UserInfo> QueryAsync(string unionId);
+        Task<Recomment> QueryAsync(string unionId);
     }
 }
