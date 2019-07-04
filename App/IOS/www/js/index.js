@@ -352,22 +352,21 @@ var app = {
                                         var user_info = JSON.parse(userInfo);
                                         var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
                                         $state.go('map');
-
                                         //check user
-                                        //$http({
-                                        //    method: "post",
-                                        //    url: scConfig.accountUrl,
-                                        //    data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
-                                        //    timeout: 30000,
-                                        //}).success(function (d, textStatu, xhr) {
-                                        //    ls.setObject('userInfo', d);
-                                        //    ls.set('loginTime', new Date());
-                                        //    DeviceEvent.SpinnerHide();
-                                        //    $state.go('map');
-                                        //}).error(function (error, textStatu, xhr) {
-                                        //    DeviceEvent.SpinnerHide();
-                                        //    DeviceEvent.Toast("网络异常");
-                                        //});
+                                        $http({
+                                            method: "post",
+                                            url: scConfig.accountUrl,
+                                            data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
+                                            timeout: 30000,
+                                        }).success(function (d, textStatu, xhr) {
+                                            ls.setObject('userInfo', d);
+                                            ls.set('loginTime', new Date());
+                                            DeviceEvent.SpinnerHide();
+                                            $state.go('map');
+                                        }).error(function (error, textStatu, xhr) {
+                                            DeviceEvent.SpinnerHide();
+                                            DeviceEvent.Toast("网络异常");
+                                        });
                                     });
                                 });
                             }, function (reason) {

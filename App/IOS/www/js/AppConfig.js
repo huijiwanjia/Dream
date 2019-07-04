@@ -8,7 +8,7 @@ var mapRefreshInterval = null;
 var scConfig = {
     iMServer: SCServer.concat("signalr"),
     redPacketsUrl: SCServer.concat("api/redpacket/"),
-    accountUrl: SCServer.concat("api/account/"),
+    accountUrl: SCServer.concat("api/dream/auth/"),
     mapRefreshInterval: 6000 * 10 * 2, //2 min
     tokenExpireTime: 7,//days
     attachmentUrl: SCServer.concat("api/attachment?url="),

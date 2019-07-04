@@ -9,6 +9,7 @@ using Dream.Model;
 using Dream.Model.Api;
 using Dream.Model.Admin;
 using Dream.Security;
+using Newtonsoft.Json;
 
 namespace Dream.DataApi.Controllers
 {
@@ -35,8 +36,17 @@ namespace Dream.DataApi.Controllers
         //[ApiAuthorize]
         public async Task<IActionResult> Post([FromBody]UserInfo user)
         {
-            var authedUser = await _accountService.Login(user);
-            return Ok(authedUser);
+            try
+            {
+                _log.Info($"[AuthController]登陆用户信息：{JsonConvert.SerializeObject(user)}");
+                var authedUser = await _accountService.Login(user);
+                return Ok(authedUser);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"[AuthController]登陆失败，错误信息：{ex.Message}");
+                return BadRequest("登陆失败");
+            }
         }
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
