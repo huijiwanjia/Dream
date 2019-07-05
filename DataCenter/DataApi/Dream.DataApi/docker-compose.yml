@@ -1,7 +1,7 @@
 version: '3'
 services:
   pcs_web_1:
-    image: 'dream-datacenter-latest'
+    image: 'dream-datacenter-pro'
     build:
       context: .
       dockerfile: dockerfile   
@@ -17,7 +17,7 @@ services:
       options:
         max-size: 50m 
   pcs_web_2:
-    image: 'dream-datacenter-latest'
+    image: 'dream-datacenter-pro'
     build:
       context: .
       dockerfile: dockerfile   
@@ -33,7 +33,7 @@ services:
       options:
         max-size: 50m
   pcs_web_3:
-    image: 'dream-datacenter-latest'
+    image: 'dream-datacenter-pro'
     build:
       context: .
       dockerfile: dockerfile   

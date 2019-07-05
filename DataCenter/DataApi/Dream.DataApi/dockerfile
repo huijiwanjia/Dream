@@ -1,7 +1,22 @@
-# Build runtime image
-FROM microsoft/aspnetcore   
+FROM microsoft/aspnetcore-build AS build
 WORKDIR /app
-COPY . ./
-EXPOSE 8080
+
+# 拷贝.csproj到工作目录/app，然后执行dotnet restore恢复所有安装的NuGet包。
+COPY . /app
+WORKDIR /app
+RUN dotnet publish -c Release -v q -o /app
+
+
+# 编译Docker镜像
+FROM microsoft/aspnetcore
+EXPOSE 80 443
+COPY --from=build /app . 
+
+#设置时区
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' >/etc/timezone 
+
 ENTRYPOINT ["dotnet", "./Dream.DataApi.dll"]
+ 
+
 
