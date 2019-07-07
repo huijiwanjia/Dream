@@ -26,7 +26,7 @@ namespace Dream.DataAccess.IService
         }
         public async Task<UserInfo> Login(UserInfo user)
         {
-            var userFound = await _userService.QueryAsync(user.OpenId);
+            var userFound = await _userService.QueryAsync(user.UnionId);
             return userFound == null ? await Regist(user) : userFound;
 
         }
@@ -37,7 +37,7 @@ namespace Dream.DataAccess.IService
             {
                 conn.Open();
                 var recoment = await _recommentService.QueryAsync(user.UnionId);
-                user.PId = recoment.PId;
+                user.PId = recoment?.PId;
                 user.AccountStatus = 0;
                 user.AgencyType = AgencyType.NotAgency;
                 user.CreateTime = DateTime.Now;

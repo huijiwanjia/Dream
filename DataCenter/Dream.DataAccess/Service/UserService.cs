@@ -9,6 +9,7 @@ using System.Data;
 using Dream.DataAccess.IService;
 using Dream.Model;
 using System.Linq;
+using Dapper.Contrib.Extensions;
 
 namespace Dream.DataAccess.Service
 {
@@ -23,7 +24,7 @@ namespace Dream.DataAccess.Service
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUnionId, unionId, null, null, CommandType.StoredProcedure);
+                var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUnionId, new { unionId }, null, null, CommandType.StoredProcedure);
                 return user;
             }
         }

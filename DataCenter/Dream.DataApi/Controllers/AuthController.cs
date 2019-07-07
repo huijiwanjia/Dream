@@ -27,9 +27,9 @@ namespace Dream.DataApi.Controllers
 
         [HttpGet]
         //[ApiAuthorize]
-        public void Get(UserInfo user)
+        public string Get()
         {
-
+            return "1";
         }
 
         [HttpPost]

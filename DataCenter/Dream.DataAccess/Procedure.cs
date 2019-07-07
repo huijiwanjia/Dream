@@ -8,6 +8,5 @@ namespace Dream.DataAccess
     {
         public static string GetUserByUnionId => "GetUserByUnionId";
         public static string GetRecommentByUnionId => "GetRecommentByUnionId";
-        public static string GetRecomentByUnionId => "GetRecomentByUnionId"; 
     }
 }

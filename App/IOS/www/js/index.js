@@ -356,6 +356,7 @@ var app = {
                                         $http({
                                             method: "post",
                                             url: scConfig.accountUrl,
+                                            contentType:"application/json",
                                             data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
                                             timeout: 30000,
                                         }).success(function (d, textStatu, xhr) {

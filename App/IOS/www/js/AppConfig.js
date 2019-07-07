@@ -1,14 +1,14 @@
 ﻿var curPage = "";
 var curLocation = null;
 var curCity = "";
-//var SCServer = "http://192.168.48.1:8084/";
-var SCServer = "http://sc.handsave.com/";
+//var SCServer = "http://localhost:55605/";
+var SCServer = "http://huijiwanjia.com/";
 var mapRefreshInterval = null;
 
 var scConfig = {
     iMServer: SCServer.concat("signalr"),
     redPacketsUrl: SCServer.concat("api/redpacket/"),
-    accountUrl: SCServer.concat("api/dream/auth/"),
+    accountUrl: SCServer.concat("/dream/auth/"),
     mapRefreshInterval: 6000 * 10 * 2, //2 min
     tokenExpireTime: 7,//days
     attachmentUrl: SCServer.concat("api/attachment?url="),

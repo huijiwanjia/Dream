@@ -1,12 +1,15 @@
 ﻿using Dream.Model.Enums;
 using System;
 using System.Collections.Generic;
+using Dapper.Contrib.Extensions;
 using System.Text;
 
 namespace Dream.Model
 {
+    [Table("UserInfo")]
     public class UserInfo
     {
+        [Key]
         public int UserId { get; set; }
         public string OpenId { get; set; }
         public string UnionId { get; set; }

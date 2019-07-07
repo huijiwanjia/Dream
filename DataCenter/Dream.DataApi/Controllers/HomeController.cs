@@ -13,7 +13,16 @@ namespace Dream.DataApi.Controllers
 {
     public class HomeController : BaseController
     {
-       
+        private ILog _log;
+        private IAccountService _accountService;
+
+        public HomeController(ILog log, IAccountService a)
+        {
+            _log = log;
+            _accountService = a;
+        }
+
+
         [HttpGet]
         public string Index()
         {
