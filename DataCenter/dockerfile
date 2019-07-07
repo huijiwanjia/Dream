@@ -7,7 +7,7 @@ COPY Dream.DataApi/*.csproj ./Dream.DataApi/
 RUN dotnet restore
 
 # copy everything else and build app
-COPY Dream.DataApi/. ./Dream.DataApi/
+COPY . /app
 WORKDIR /app/Dream.DataApi
 RUN dotnet publish -c Release -o out
 
