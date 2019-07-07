@@ -17,7 +17,7 @@ namespace Dream.DataApi.Controllers
         [HttpGet]
         public string Index()
         {
-            return "psc data api";
+            return "dream!!!";
         }
     }
 }

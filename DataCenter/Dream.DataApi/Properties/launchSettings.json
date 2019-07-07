@@ -19,7 +19,7 @@
     "Dream.DataApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "pcs/patent/pscdataapi",
+      "launchUrl": "home",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
