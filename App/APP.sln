@@ -23,6 +23,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IOS", "IOS\", "{2848833A-96
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50810"
+		SlnRelativePath = "IOS\"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Andriod", "Andriod", "{F1DFF1BC-66D1-4CAE-9CBF-CEBE6C516D51}"
@@ -45,6 +46,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Android", "Android\", "{083
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "50775"
+		SlnRelativePath = "Android\"
 	EndProjectSection
 EndProject
 Global
