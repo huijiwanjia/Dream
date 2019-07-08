@@ -8,6 +8,7 @@ using Dream.ExceptionHandler.Filter;
 namespace Dream.DataApi.Controllers
 {
     [ErrorHanlder]
+    [Route("dream/[controller]")]
     public class BaseController : Controller
     {
     }

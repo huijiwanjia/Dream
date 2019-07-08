@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Alipay.AopSdk.Core" Version="2.4.2" />
     <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
   </ItemGroup>

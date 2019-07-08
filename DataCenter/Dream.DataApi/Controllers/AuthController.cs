@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 
 namespace Dream.DataApi.Controllers
 {
-    [Route("dream/[controller]")]
     public class AuthController : BaseController
     {
         private ILog _log;

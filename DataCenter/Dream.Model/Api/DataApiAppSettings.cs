@@ -10,5 +10,10 @@ namespace Dream.Model.Api
     public class DataApiAppSettings
     {
         public string DreamConnectionString { get; set; }
+        public string AlipayServer { get; set; }
+        public string AlipayAppId { get; set; }
+        public string AlipayPrivateKey { get; set; }
+        public string AlipayPublicKey { get; set; }
+        public string AlipayNotifyUrl { get; set; }
     }
 }
