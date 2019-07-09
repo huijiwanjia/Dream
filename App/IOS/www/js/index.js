@@ -318,7 +318,6 @@ var app = {
             .service('sc', function ($state, ls, $http, $rootScope, $window) {
                 this.checkTicketStillActive = function () {
                     var loginTime = ls.get('loginTime');
-
                     if (loginTime) {
                         var curTime = new Date();
                         var diff = curTime.getTime() - new Date(loginTime).getTime();
@@ -333,8 +332,8 @@ var app = {
                     }
                 };
                 this.ValidateLogin = function () {
-                    //var userId = ls.getObject('userInfo').UserId;
-                    //if (typeof (userId) == "undefined") $state.go('login');
+                    var userId = ls.getObject('userInfo').userId;
+                    if (typeof (userId) == "undefined") $state.go('login');
                 };
                 this.Login = function () {
                     //get from tencent
@@ -384,7 +383,7 @@ var app = {
                     //    DeviceEvent.Toast("网络错误");
                     //}
 
-                    var userInfo = { openId: "17623852228", avatarUrl: "http://119.28.54.31:8055/user_2.jpg", unionId: "10191656", name: "蜡笔小新", sex: 0 };
+                    var userInfo = { openId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", avatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", unionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", name: "蜡笔小新", sex: 0 };
                     try {
                         $http({
                             method: "post",
@@ -1046,7 +1045,7 @@ var app = {
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 //connect im server
-                ImClient.Init(ls.getObject("userInfo").UserId);
+              //  ImClient.Init(ls.getObject("userInfo").UserId);
                 switch (curPage) {
                     case "map":
                         $(".item-box.map").addClass("active");
@@ -1129,7 +1128,7 @@ var app = {
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
                 $scope.goUserpage = function () {
-                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" })
+                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" });
                 }
                 $scope.goWithdraw = function () {
                     if ($scope.userInfo.AliPay == null || $scope.userInfo.AliPayName == null) {
