@@ -11,18 +11,8 @@ using Dream.Security;
 
 namespace Dream.DataApi.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
-        private ILog _log;
-        private IAccountService _accountService;
-
-        public HomeController(ILog log, IAccountService a)
-        {
-            _log = log;
-            _accountService = a;
-        }
-
-
         [HttpGet]
         public string Index()
         {

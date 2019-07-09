@@ -70,7 +70,7 @@ namespace Dream.DataApi
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "dream/{controller=home}/{action=index}/{id?}");
+                    template: "{controller=home}/{action=index}/{id?}");
             });
         }
     }
