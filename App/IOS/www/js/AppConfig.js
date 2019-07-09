@@ -15,7 +15,7 @@ var scConfig = {
     packetRecordsUrl: SCServer.concat("api/packetrecord/"),
     userInfoUrl: SCServer.concat("api/user/"),
     withdrawUrl: SCServer.concat("api/withdrawapply/"),
-    alipayUrl: SCServer.concat("api/alipay/"),
+    alipayUrl: SCServer.concat("dream/alipay/"),
     appId: "wxcf1c3c250e5e4d91",
     appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
     profitsUrl: SCServer.concat("api/profit/"),
