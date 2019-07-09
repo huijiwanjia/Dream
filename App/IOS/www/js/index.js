@@ -898,6 +898,28 @@ var app = {
                         amount = 0.01;
                     }
                     // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
+                    $http({
+                        method: "post",
+                        url: scConfig.alipayUrl,
+                        contentType: "application/json",
+                        data: { subject: subject, totalAmount: amount},
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        payInfo = d;
+                        // 第二步：调用支付插件            
+                        cordova.plugins.alipay.payment(payInfo, function success(e) {
+                            DeviceEvent.SpinnerHide();
+                            $state.go('success', { obj: { header: "购买成功", title: title, details: "您已完成本次交易", amount: amount } });
+                        }, function error(e) {
+                            DeviceEvent.SpinnerHide();
+                            DeviceEvent.Toast("支付失败");
+                        });
+                    }).error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
+
+
                     $.post(scConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
                         payInfo = data;
                         // 第二步：调用支付插件            
