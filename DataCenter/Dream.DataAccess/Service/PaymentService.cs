@@ -30,7 +30,7 @@ namespace Dream.DataAccess.Service
             AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
             //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
             AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
-            model.Body = "共享人脉支付";
+            model.Body = "惠及万家支付";
             model.Subject = subject;
             model.TotalAmount = totalAmount;
             model.ProductCode = "QUICK_MSECURITY_PAY";
