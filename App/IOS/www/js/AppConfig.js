@@ -2,7 +2,7 @@
 var curLocation = null;
 var curCity = "";
 //var SCServer = "http://localhost:55605/";
-var SCServer = "https://huijiwanjia.com/datacenter/";
+var SCServer = "http://huijiwanjia.com/datacenter/";
 var mapRefreshInterval = null;
 
 var scConfig = {

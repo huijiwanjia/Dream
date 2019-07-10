@@ -864,7 +864,7 @@ var app = {
                     }
                 });
             })
-            .controller('AgencyController', function ($scope, $state, sc, ls) {
+            .controller('AgencyController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('my');
@@ -906,6 +906,7 @@ var app = {
                         timeout: 30000,
                     }).success(function (d, textStatu, xhr) {
                         payInfo = d;
+                        DeviceEvent.Toast(payInfo);
                         // 第二步：调用支付插件            
                         cordova.plugins.alipay.payment(payInfo, function success(e) {
                             DeviceEvent.SpinnerHide();
