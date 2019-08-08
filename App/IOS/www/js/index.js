@@ -1017,57 +1017,27 @@ var app = {
             .controller('MapController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "map";
                 //sc.ValidateLogin();
-
-                $scope.openRedPacket = function ($event) {
-                    $event.stopPropagation();
-                    DeviceEvent.SpinnerShow();
-                    $.post(scConfig.redPacketsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&packetId=" + $(".hot-box").data("packetid")), function (packetInfo) {
+                $scope.QueryText = "";
+                $scope.Query = function () {
+                    $http({
+                        method: "post",
+                        url: scConfig.tbkQuery,
+                        contentType: "application/json",
+                        data: { q: $scope.QueryText, pagesize:5 },
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        d = JSON.parse(d);
+                        var ret = d.tbk_dg_material_optional_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        }
+                        $scope.QueryResult = d;
+                        console.log($scope.QueryResult);
+                    }).error(function (error, textStatu, xhr) {
                         DeviceEvent.SpinnerHide();
-                        $state.go('packetInfo', { obj: packetInfo, returnUrl: "map" });
+                        DeviceEvent.Toast("网络异常");
                     });
                 };
-
-                try {
-                    //var translateCallback = function (data) {
-                    //    if (data.status === 0) {
-                    //        var distanceBetweenLast = 0;
-                    //        var isInited = typeof rpMapApi._currentLocationPoint !== "undefined";
-                    //        if (isInited) {
-                    //            distanceBetweenLast = rpMapApi._map.getDistance(rpMapApi._currentLocationPoint, data.points[0]).toFixed(0);//获取二点间距离保留到整数,单位米
-                    //            console.log("distance: " + distanceBetweenLast + " 米");
-                    //        }
-                    //        //大于50米才刷新
-                    //        if (!isInited || distanceBetweenLast > 50) {
-                    //            rpMapApi._map.clearOverlays();
-                    //            //refresh location
-                    //            rpMapApi._currentLocationPoint = data.points[0];
-                    //            curLocation = data.points[0];
-                    //            //refresh center and zoom
-                    //            if (ls.getObject("userInfo").AgencyType == agencyType.City) rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 9);
-                    //            else rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 17);
-                    //            if (ls.getObject("userInfo").AgencyType == agencyType.NotAgency) {
-                    //                //rewrite visible circle
-                    //                rpMapApi.RefreshVisibleCircle();
-                    //                //reset visible map bounds
-                    //                rpMapApi.ResetMapBounds();
-                    //            }
-                    //            //mark point
-                    //            rpMapApi.MarkCurrentLocation();
-                    //            //mark red packets
-                    //            rpMapApi.RefreshRedPackets(ls.getObject("userInfo").UserId, ls.getObject("userInfo").AgencyType);
-
-                    //            rpMapApi._map.setCenter(data.points[0]);
-                    //        }
-                    //        DeviceEvent.SpinnerHide();
-                    //    }
-                    //};
-                    //var rpMapApi = new RedPackets(translateCallback);
-                    //rpMapApi.MapInit(ls.getObject("userInfo").AgencyType);
-                }
-                catch (e) {
-                    console.log(e);
-                    DeviceEvent.Toast("网络异常");
-                }
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 //connect im server

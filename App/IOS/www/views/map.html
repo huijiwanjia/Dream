@@ -13,50 +13,21 @@
             </h3>
         </div>
         <div>
-            <input type="text" /><input type="button" value="搜索" />
+            <input type="text" ng-model="QueryText"/><input type="button" value="搜索" ng-click="Query()"/>
         </div>
         <div>
             搜索结果：
             <ul>
-                <li>
-                    <div>标题：儿童长筒袜夏季薄款纯棉宝宝半高筒夏天防蚊女童中筒过膝盖长袜子</div>
-                    <div>店铺：趣多宝旗舰店</div>
-                    <div>售价：37.8</div>
-                    <div>折扣价：13.9</div>
-                    <div>销售量：3655</div>
-                    <div>商品ID：588525870388</div>
-                    <img src="https://img.alicdn.com/bao/uploaded/i1/2200638468734/O1CN01uswdN82EODlimaMfH_!!0-item_pic.jpg" /><br />
-                    <a href="https://t.asczwa.com/taobao?backurl=https%3A%2F%2Fuland.taobao.com%2Fcoupon%2Fedetail%3Fe%3D8aO1EU5eb%252BsNfLV8niU3RwXoB%252BDaBK5LQS0Flu%252FfbSp4QsdWMikAalrisGmre1Id0BFAqRODu11ZPdu0ToGapM%252F%252FJ6xKqJX0lz1smA2OygeveO8Lgo8zLu0qjKDrQ%252FRXp%252FP6B%252BJXqc23GXpSbfs48m4HhELamgd5J4WKC1xI%252FM5Pvxo7djitC%252F5Jg70BVVeR59WqflzEvOXNa4fuEICbKUwNBUbTsArs%26%26app_pvid%3D59590_11.1.219.40_846_1565243320255%26ptl%3DfloorId%3A2836%3Bapp_pvid%3A59590_11.1.219.40_846_1565243320255%3Btpp_pvid%3A100_11.8.223.179_67284_1181565243320259627%26xId%3Di2TrMZwYtS5jQ0Wt8isExhHt4RQ9vfj11JgrlqmuUx2MHtgZQGS14s9oyKuhATkOHQ6xpnrie33Eo6ALroXTcA%26union_lens%3DlensId%3A0b01db28_0c66_16c6fc5a846_85c9">购买</a>
-                </li>
-                <li>
-                    <div>标题：儿童长筒袜夏季薄款纯棉宝宝半高筒夏天防蚊女童中筒过膝盖长袜子</div>
-                    <div>店铺：趣多宝旗舰店</div>
-                    <div>售价：37.8</div>
-                    <div>折扣价：13.9</div>
-                    <div>销售量：3655</div>
-                    <div>商品ID：588525870388</div>
-                    <img src="https://img.alicdn.com/bao/uploaded/i1/2200638468734/O1CN01uswdN82EODlimaMfH_!!0-item_pic.jpg" /><br />
-                    <a href="https://t.asczwa.com/taobao?backurl=https%3A%2F%2Fuland.taobao.com%2Fcoupon%2Fedetail%3Fe%3D8aO1EU5eb%252BsNfLV8niU3RwXoB%252BDaBK5LQS0Flu%252FfbSp4QsdWMikAalrisGmre1Id0BFAqRODu11ZPdu0ToGapM%252F%252FJ6xKqJX0lz1smA2OygeveO8Lgo8zLu0qjKDrQ%252FRXp%252FP6B%252BJXqc23GXpSbfs48m4HhELamgd5J4WKC1xI%252FM5Pvxo7djitC%252F5Jg70BVVeR59WqflzEvOXNa4fuEICbKUwNBUbTsArs%26%26app_pvid%3D59590_11.1.219.40_846_1565243320255%26ptl%3DfloorId%3A2836%3Bapp_pvid%3A59590_11.1.219.40_846_1565243320255%3Btpp_pvid%3A100_11.8.223.179_67284_1181565243320259627%26xId%3Di2TrMZwYtS5jQ0Wt8isExhHt4RQ9vfj11JgrlqmuUx2MHtgZQGS14s9oyKuhATkOHQ6xpnrie33Eo6ALroXTcA%26union_lens%3DlensId%3A0b01db28_0c66_16c6fc5a846_85c9">购买</a>
-                </li>
-                <li>
-                    <div>标题：儿童长筒袜夏季薄款纯棉宝宝半高筒夏天防蚊女童中筒过膝盖长袜子</div>
-                    <div>店铺：趣多宝旗舰店</div>
-                    <div>售价：37.8</div>
-                    <div>折扣价：13.9</div>
-                    <div>销售量：3655</div>
-                    <div>商品ID：588525870388</div>
-                    <img src="https://img.alicdn.com/bao/uploaded/i1/2200638468734/O1CN01uswdN82EODlimaMfH_!!0-item_pic.jpg" /><br />
-                    <a href="https://t.asczwa.com/taobao?backurl=https%3A%2F%2Fuland.taobao.com%2Fcoupon%2Fedetail%3Fe%3D8aO1EU5eb%252BsNfLV8niU3RwXoB%252BDaBK5LQS0Flu%252FfbSp4QsdWMikAalrisGmre1Id0BFAqRODu11ZPdu0ToGapM%252F%252FJ6xKqJX0lz1smA2OygeveO8Lgo8zLu0qjKDrQ%252FRXp%252FP6B%252BJXqc23GXpSbfs48m4HhELamgd5J4WKC1xI%252FM5Pvxo7djitC%252F5Jg70BVVeR59WqflzEvOXNa4fuEICbKUwNBUbTsArs%26%26app_pvid%3D59590_11.1.219.40_846_1565243320255%26ptl%3DfloorId%3A2836%3Bapp_pvid%3A59590_11.1.219.40_846_1565243320255%3Btpp_pvid%3A100_11.8.223.179_67284_1181565243320259627%26xId%3Di2TrMZwYtS5jQ0Wt8isExhHt4RQ9vfj11JgrlqmuUx2MHtgZQGS14s9oyKuhATkOHQ6xpnrie33Eo6ALroXTcA%26union_lens%3DlensId%3A0b01db28_0c66_16c6fc5a846_85c9">购买</a>
-                </li>
-                <li>
-                    <div>标题：儿童长筒袜夏季薄款纯棉宝宝半高筒夏天防蚊女童中筒过膝盖长袜子</div>
-                    <div>店铺：趣多宝旗舰店</div>
-                    <div>售价：37.8</div>
-                    <div>折扣价：13.9</div>
-                    <div>销售量：3655</div>
-                    <div>商品ID：588525870388</div>
-                    <img src="https://img.alicdn.com/bao/uploaded/i1/2200638468734/O1CN01uswdN82EODlimaMfH_!!0-item_pic.jpg" /><br />
-                    <a href="https://t.asczwa.com/taobao?backurl=https%3A%2F%2Fuland.taobao.com%2Fcoupon%2Fedetail%3Fe%3D8aO1EU5eb%252BsNfLV8niU3RwXoB%252BDaBK5LQS0Flu%252FfbSp4QsdWMikAalrisGmre1Id0BFAqRODu11ZPdu0ToGapM%252F%252FJ6xKqJX0lz1smA2OygeveO8Lgo8zLu0qjKDrQ%252FRXp%252FP6B%252BJXqc23GXpSbfs48m4HhELamgd5J4WKC1xI%252FM5Pvxo7djitC%252F5Jg70BVVeR59WqflzEvOXNa4fuEICbKUwNBUbTsArs%26%26app_pvid%3D59590_11.1.219.40_846_1565243320255%26ptl%3DfloorId%3A2836%3Bapp_pvid%3A59590_11.1.219.40_846_1565243320255%3Btpp_pvid%3A100_11.8.223.179_67284_1181565243320259627%26xId%3Di2TrMZwYtS5jQ0Wt8isExhHt4RQ9vfj11JgrlqmuUx2MHtgZQGS14s9oyKuhATkOHQ6xpnrie33Eo6ALroXTcA%26union_lens%3DlensId%3A0b01db28_0c66_16c6fc5a846_85c9">购买</a>
+
+                <li ng-repeat="item in QueryResult.tbk_dg_material_optional_response.result_list.map_data">
+                    <div>标题：{{item.title}}</div>
+                    <div>店铺：{{item.shop_title}}</div>
+                    <div>售价：{{item.reserve_price}}</div>
+                    <div>折扣价：{{item.zk_final_price}}</div>
+                    <div>销售量：{{item.tk_total_sales}}</div>
+                    <div>商品ID：{{item.item_id}}</div>
+                    <img src="{{item.pict_url}}" /><br />
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}">购买</a>
                 </li>
             </ul>
         </div>
