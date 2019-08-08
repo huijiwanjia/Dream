@@ -72,7 +72,7 @@ public class NTbkItemDomain : TopObject
 	        public string ItemUrl { get; set; }
 	
 	        /// <summary>
-	        /// 商品库类型，支持多库类型输出，以英文逗号分隔“,”分隔，1:营销商品主推库，2. 内容商品库
+	        /// 商品库类型，支持多库类型输出，以英文逗号分隔“,”分隔，1:营销商品主推库，2. 内容商品库，如果值为空则不属于1，2这两种商品类型
 	        /// </summary>
 	        [XmlElement("material_lib_type")]
 	        public string MaterialLibType { get; set; }
