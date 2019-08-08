@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBKAPI", "TBKAPI\TBKAPI.csproj", "{B320E2BD-76D5-46FB-AF9E-01F2F7FEA1C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopSdk", "TBKSDK\TopSdk.csproj", "{9C11CAE5-5188-4E71-825B-68FC3135728A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B320E2BD-76D5-46FB-AF9E-01F2F7FEA1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B320E2BD-76D5-46FB-AF9E-01F2F7FEA1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B320E2BD-76D5-46FB-AF9E-01F2F7FEA1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B320E2BD-76D5-46FB-AF9E-01F2F7FEA1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C11CAE5-5188-4E71-825B-68FC3135728A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5AEE189-6677-479F-9812-26B4E65E9617}
+	EndGlobalSection
+EndGlobal
