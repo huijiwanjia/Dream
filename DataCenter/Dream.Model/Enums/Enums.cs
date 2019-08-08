@@ -22,4 +22,11 @@ namespace Dream.Model.Enums
         Normal,
         Disabled
     }
+    /// <summary>
+    /// 订单录入类型
+    /// </summary>
+    public enum OrderType {
+        Import,
+        Manual
+    }
 }

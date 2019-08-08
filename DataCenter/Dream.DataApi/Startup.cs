@@ -41,6 +41,8 @@ namespace Dream.DataApi
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IPaymentService, PaymentService>();
             services.AddSingleton<IRecommentService, RecommentService>();
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IClickLogService, ClickLogService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("any", builder =>
