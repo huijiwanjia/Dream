@@ -17,6 +17,7 @@ using Dream.DataAccess.IService;
 using Dream.DataAccess.Service;
 using Dream.DataApi.Extensions;
 using Dream.Logger;
+using Newtonsoft.Json.Serialization;
 
 namespace Dream.DataApi
 {
@@ -33,13 +34,15 @@ namespace Dream.DataApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
-            services.AddMvc();
+            //services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ContractResolver = new DefaultContractResolver(); });
             services.AddSingleton<ILog, Log>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IPaymentService, PaymentService>();
             services.AddSingleton<IRecommentService, RecommentService>();
-            
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IClickLogService, ClickLogService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("any", builder =>
@@ -70,7 +73,7 @@ namespace Dream.DataApi
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=home}/{action=index}/{id?}");
             });
         }
     }

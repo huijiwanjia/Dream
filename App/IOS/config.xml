@@ -25,37 +25,37 @@
     <param name="ios-package" onload="true" value="CDVStatusBar" />
   </feature>
 
-  <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
+  <plugin name="cordova-plugin-battery-status" source="npm" spec="~2.0.3" />
   <plugin name="cordova-plugin-camera" source="npm" spec="~4.0.2" />
   <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
   <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
   <plugin name="cordova-plugin-contacts" source="npm" spec="~2.0.1" />
-  <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
-  <plugin name="cordova-plugin-device-motion" source="npm" spec="~1.2.0" />
-  <plugin name="cordova-plugin-device-orientation" source="npm" spec="~1.0.2" />
-  <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
+  <plugin name="cordova-plugin-device" source="npm" spec="~2.0.3" />
+  <plugin name="cordova-plugin-device-motion" source="npm" spec="~2.0.1" />
+  <plugin name="cordova-plugin-device-orientation" source="npm" spec="~2.0.1" />
+  <plugin name="cordova-plugin-dialogs" source="npm" spec="~2.0.2" />
   <plugin name="cordova-plugin-file" source="npm" spec="~4.1.1" />
   <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
-  <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
-  <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
-  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
+  <plugin name="cordova-plugin-geolocation" source="npm" spec="~4.0.1" />
+  <plugin name="cordova-plugin-globalization" source="npm" spec="~1.11.0" />
+  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~3.0.0" />
   <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
-  <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
-  <plugin name="cordova-plugin-splashscreen" source="npm" spec="~5.0.1" />
-  <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.4.1" />
-  <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
-  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+  <plugin name="cordova-plugin-network-information" source="npm" spec="~2.0.2" />
+  <plugin name="cordova-plugin-splashscreen" source="npm" spec="~5.0.3" />
+  <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.4.3" />
+  <plugin name="cordova-plugin-vibration" source="npm" spec="~3.1.1" />
+  <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.3.4" />
   <plugin name="cordova-plugin-spinner" source="npm" spec="~1.1.0" />
-  <plugin name="cordova-plugin-x-toast" spec="~2.6.0" />
+  <plugin name="cordova-plugin-x-toast" spec="~2.7.2" />
   <plugin name="cordova-plugin-disable-ios11-statusbar" />
   <plugin name="cordova-plugin-wechat" source="npm" spec="~2.8.0">
     <param name="WECHATAPPID" value="wxcf1c3c250e5e4d91" />
   </plugin>
   <plugin name="cordova-plugin-actionsheet" spec="~2.3.3" />
   <plugin name="cordova-plugin-ios-camera-permissions" spec="~1.2.0" />
-  <!--<plugin name="cordova-plugin-alipay-v2" spec="0.0.4">
-    <variable name="APP_ID" value="2018020902171382" />
-  </plugin>-->
+  <plugin name="cordova-plugin-alipay-v2" spec="1.0.0">
+    <variable name="APP_ID" value="2019070465742601" />
+  </plugin>
   
 
   <platform name="android">

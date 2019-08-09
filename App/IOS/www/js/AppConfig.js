@@ -1,8 +1,9 @@
 ﻿var curPage = "";
 var curLocation = null;
 var curCity = "";
-var SCServer = "http://localhost:55605/";
-//var SCServer = "http://huijiwanjia.com/datacenter/";
+//var SCServer = "http://localhost:55605/";
+var SCServer = "http://huijiwanjia.com/datacenter/";
+var TBKServer = "http://tbkapi.huijiwanjia.com/";
 var mapRefreshInterval = null;
 
 var scConfig = {
@@ -15,7 +16,8 @@ var scConfig = {
     packetRecordsUrl: SCServer.concat("api/packetrecord/"),
     userInfoUrl: SCServer.concat("api/user/"),
     withdrawUrl: SCServer.concat("api/withdrawapply/"),
-    alipayUrl: SCServer.concat("api/alipay/"),
+    tbkQuery: TBKServer.concat("api/tbk"),
+    alipayUrl: SCServer.concat("dream/alipay/"),
     appId: "wxcf1c3c250e5e4d91",
     appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
     profitsUrl: SCServer.concat("api/profit/"),

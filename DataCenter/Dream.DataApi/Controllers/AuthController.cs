@@ -39,7 +39,7 @@ namespace Dream.DataApi.Controllers
             {
                 _log.Info($"[AuthController]登陆用户信息：{JsonConvert.SerializeObject(user)}");
                 var authedUser = await _accountService.Login(user);
-                return Ok(authedUser);
+                return Json(authedUser);
             }
             catch (Exception ex)
             {

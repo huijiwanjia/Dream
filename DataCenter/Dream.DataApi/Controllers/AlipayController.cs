@@ -31,11 +31,11 @@ namespace Dream.DataApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(string subject, string totalAmount)
+        public IActionResult Post([FromBody]PayInfo payInfo)
         {
             try
             {
-                return Ok(_paymentService.GeneratePayInfo(subject, totalAmount));
+                return Ok(_paymentService.GeneratePayInfo(payInfo.Subject, payInfo.TotalAmount));
             }
             catch (Exception ex)
             {

@@ -318,7 +318,6 @@ var app = {
             .service('sc', function ($state, ls, $http, $rootScope, $window) {
                 this.checkTicketStillActive = function () {
                     var loginTime = ls.get('loginTime');
-
                     if (loginTime) {
                         var curTime = new Date();
                         var diff = curTime.getTime() - new Date(loginTime).getTime();
@@ -333,8 +332,8 @@ var app = {
                     }
                 };
                 this.ValidateLogin = function () {
-                    //var userId = ls.getObject('userInfo').UserId;
-                    //if (typeof (userId) == "undefined") $state.go('login');
+                    var userId = ls.getObject('userInfo').userId;
+                    if (typeof (userId) == "undefined") $state.go('login');
                 };
                 this.Login = function () {
                     //get from tencent
@@ -384,28 +383,31 @@ var app = {
                     //    DeviceEvent.Toast("网络错误");
                     //}
 
-                    var userInfo = { openId: "17623852228", avatarUrl: "http://119.28.54.31:8055/user_2.jpg", unionId: "10191656", name: "蜡笔小新", sex: 0 };
-                    try {
-                        $http({
-                            method: "post",
-                            url: scConfig.accountUrl,
-                            contentType: "application/json",
-                            data: { openId: userInfo.openId, avatarUrl: userInfo.avatarUrl, name: userInfo.name, sex: userInfo.sex, unionId: userInfo.unionId },
-                            timeout: 30000,
-                        }).success(function (d, textStatu, xhr) {
-                            ls.setObject('userInfo', d);
-                            ls.set('loginTime', new Date());
-                            DeviceEvent.SpinnerHide();
-                            $state.go('map');
-                        }).error(function (error, textStatu, xhr) {
-                            DeviceEvent.SpinnerHide();
-                            DeviceEvent.Toast("网络异常");
-                        });
-                    }
-                    catch (e) {
-                        console.log(e);
-                        DeviceEvent.Toast("网络错误");
-                    }
+                    var userInfo = { openId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", avatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", unionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", name: "蜡笔小新", sex: 0 };
+                    ls.setObject('userInfo', userInfo);
+                    ls.set('loginTime', new Date());
+                    $state.go('map');
+                    //try {
+                    //    $http({
+                    //        method: "post",
+                    //        url: scConfig.accountUrl,
+                    //        contentType: "application/json",
+                    //        data: { openId: userInfo.openId, avatarUrl: userInfo.avatarUrl, name: userInfo.name, sex: userInfo.sex, unionId: userInfo.unionId },
+                    //        timeout: 30000,
+                    //    }).success(function (d, textStatu, xhr) {
+                    //        ls.setObject('userInfo', d);
+                    //        ls.set('loginTime', new Date());
+                    //        DeviceEvent.SpinnerHide();
+                    //        $state.go('map');
+                    //    }).error(function (error, textStatu, xhr) {
+                    //        DeviceEvent.SpinnerHide();
+                    //        DeviceEvent.Toast("网络异常");
+                    //    });
+                    //}
+                    //catch (e) {
+                    //    console.log(e);
+                    //    DeviceEvent.Toast("网络错误");
+                    //}
                 };
                 this.logOut = function () {
                     DeviceEvent.Confirm("退出之后需要重新登陆",
@@ -865,7 +867,7 @@ var app = {
                     }
                 });
             })
-            .controller('AgencyController', function ($scope, $state, sc, ls) {
+            .controller('AgencyController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('my');
@@ -899,6 +901,29 @@ var app = {
                         amount = 0.01;
                     }
                     // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
+                    $http({
+                        method: "post",
+                        url: scConfig.alipayUrl,
+                        contentType: "application/json",
+                        data: { subject: subject, totalAmount: amount},
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        payInfo = d;
+                        DeviceEvent.Toast(payInfo);
+                        // 第二步：调用支付插件            
+                        cordova.plugins.alipay.payment(payInfo, function success(e) {
+                            DeviceEvent.SpinnerHide();
+                            $state.go('success', { obj: { header: "购买成功", title: title, details: "您已完成本次交易", amount: amount } });
+                        }, function error(e) {
+                            DeviceEvent.SpinnerHide();
+                            DeviceEvent.Toast("支付失败");
+                        });
+                    }).error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
+
+
                     $.post(scConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
                         payInfo = data;
                         // 第二步：调用支付插件            
@@ -992,61 +1017,31 @@ var app = {
             .controller('MapController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "map";
                 //sc.ValidateLogin();
-
-                $scope.openRedPacket = function ($event) {
-                    $event.stopPropagation();
-                    DeviceEvent.SpinnerShow();
-                    $.post(scConfig.redPacketsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&packetId=" + $(".hot-box").data("packetid")), function (packetInfo) {
+                $scope.QueryText = "";
+                $scope.Query = function () {
+                    $http({
+                        method: "post",
+                        url: scConfig.tbkQuery,
+                        contentType: "application/json",
+                        data: { q: $scope.QueryText, pagesize:5 },
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        d = JSON.parse(d);
+                        var ret = d.tbk_dg_material_optional_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        }
+                        $scope.QueryResult = d;
+                        console.log($scope.QueryResult);
+                    }).error(function (error, textStatu, xhr) {
                         DeviceEvent.SpinnerHide();
-                        $state.go('packetInfo', { obj: packetInfo, returnUrl: "map" });
+                        DeviceEvent.Toast("网络异常");
                     });
                 };
-
-                try {
-                    //var translateCallback = function (data) {
-                    //    if (data.status === 0) {
-                    //        var distanceBetweenLast = 0;
-                    //        var isInited = typeof rpMapApi._currentLocationPoint !== "undefined";
-                    //        if (isInited) {
-                    //            distanceBetweenLast = rpMapApi._map.getDistance(rpMapApi._currentLocationPoint, data.points[0]).toFixed(0);//获取二点间距离保留到整数,单位米
-                    //            console.log("distance: " + distanceBetweenLast + " 米");
-                    //        }
-                    //        //大于50米才刷新
-                    //        if (!isInited || distanceBetweenLast > 50) {
-                    //            rpMapApi._map.clearOverlays();
-                    //            //refresh location
-                    //            rpMapApi._currentLocationPoint = data.points[0];
-                    //            curLocation = data.points[0];
-                    //            //refresh center and zoom
-                    //            if (ls.getObject("userInfo").AgencyType == agencyType.City) rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 9);
-                    //            else rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 17);
-                    //            if (ls.getObject("userInfo").AgencyType == agencyType.NotAgency) {
-                    //                //rewrite visible circle
-                    //                rpMapApi.RefreshVisibleCircle();
-                    //                //reset visible map bounds
-                    //                rpMapApi.ResetMapBounds();
-                    //            }
-                    //            //mark point
-                    //            rpMapApi.MarkCurrentLocation();
-                    //            //mark red packets
-                    //            rpMapApi.RefreshRedPackets(ls.getObject("userInfo").UserId, ls.getObject("userInfo").AgencyType);
-
-                    //            rpMapApi._map.setCenter(data.points[0]);
-                    //        }
-                    //        DeviceEvent.SpinnerHide();
-                    //    }
-                    //};
-                    //var rpMapApi = new RedPackets(translateCallback);
-                    //rpMapApi.MapInit(ls.getObject("userInfo").AgencyType);
-                }
-                catch (e) {
-                    console.log(e);
-                    DeviceEvent.Toast("网络异常");
-                }
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 //connect im server
-                ImClient.Init(ls.getObject("userInfo").UserId);
+              //  ImClient.Init(ls.getObject("userInfo").UserId);
                 switch (curPage) {
                     case "map":
                         $(".item-box.map").addClass("active");
@@ -1066,7 +1061,7 @@ var app = {
                 if (!ls.get('guideIsChecked')) $state.go('guide');
                 sc.checkTicketStillActive();
                 $scope.login = function () {
-                   // DeviceEvent.SpinnerShow();
+                    DeviceEvent.SpinnerShow();
                     sc.Login();
                 };
             })
@@ -1129,7 +1124,7 @@ var app = {
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
                 $scope.goUserpage = function () {
-                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" })
+                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" });
                 }
                 $scope.goWithdraw = function () {
                     if ($scope.userInfo.AliPay == null || $scope.userInfo.AliPayName == null) {
