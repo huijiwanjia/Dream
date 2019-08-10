@@ -1,6 +1,6 @@
 ﻿var curPage = "";
 var DreamServer = "http://localhost:55605/";
-//var DreamServer = "http://huijiwanjia.com/datacenter/";
+//var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbkapi.huijiwanjia.com/";
 
 var DreamConfig = {
