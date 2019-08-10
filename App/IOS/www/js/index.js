@@ -323,7 +323,7 @@ var app = {
                         var diff = curTime.getTime() - new Date(loginTime).getTime();
                         var diffDays = diff / (24 * 3600 * 1000);//相差天数
                         //判断凭证是否过期
-                        if (diffDays < scConfig.tokenExpireTime) {
+                        if (diffDays < DreamConfig.tokenExpireTime) {
                             $state.go('map');
                         }
                         else {
@@ -332,7 +332,7 @@ var app = {
                     }
                 };
                 this.ValidateLogin = function () {
-                    var userId = ls.getObject('userInfo').userId;
+                    var userId = ls.getObject('userInfo').UserId;
                     if (typeof (userId) == "undefined") $state.go('login');
                 };
                 this.Login = function () {
@@ -344,7 +344,7 @@ var app = {
                     //        Wechat.auth(scope, state, function (response) {
                     //            // you may use response.code to get the access token.
                     //            //get access_token
-                    //            $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + scConfig.appId + "&secret=" + scConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
+                    //            $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
                     //                var rerturnData = JSON.parse(data);
                     //                //get userinfo
                     //                $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
@@ -354,7 +354,7 @@ var app = {
                     //                    //check user
                     //                    $http({
                     //                        method: "post",
-                    //                        url: scConfig.accountUrl,
+                    //                        url: DreamConfig.accountUrl,
                     //                        contentType:"application/json",
                     //                        data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
                     //                        timeout: 30000,
@@ -383,14 +383,14 @@ var app = {
                     //    DeviceEvent.Toast("网络错误");
                     //}
 
-                    var userInfo = { openId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", avatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", unionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", name: "蜡笔小新", sex: 0 };
+                    var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0,UserId:1 };
                     ls.setObject('userInfo', userInfo);
                     ls.set('loginTime', new Date());
                     $state.go('map');
                     //try {
                     //    $http({
                     //        method: "post",
-                    //        url: scConfig.accountUrl,
+                    //        url: DreamConfig.accountUrl,
                     //        contentType: "application/json",
                     //        data: { openId: userInfo.openId, avatarUrl: userInfo.avatarUrl, name: userInfo.name, sex: userInfo.sex, unionId: userInfo.unionId },
                     //        timeout: 30000,
@@ -447,12 +447,12 @@ var app = {
                         DeviceEvent.Toast("不能关注自己");
                         return;
                     }
-                    $.post(scConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&friendId=" + $scope.packetInfo.UserId + "&profits=" + $scope.packetInfo.Amount), function (ret) {
+                    $.post(DreamConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&friendId=" + $scope.packetInfo.UserId + "&profits=" + $scope.packetInfo.Amount), function (ret) {
                         if (ret == 0) DeviceEvent.Toast("已经关注过该用户了");
                         else if (ret == 1) DeviceEvent.Toast("关注成功");
                     });
                 }
-                $scope.attchmentRootUrl = scConfig.attachmentUrl;
+                $scope.attchmentRootUrl = DreamConfig.attachmentUrl;
                 if ($stateParams.returnUrl == "map")
                     $scope.packetInfo = $stateParams.obj.Result;
                 else
@@ -578,7 +578,7 @@ var app = {
                             DeviceEvent.SpinnerShow();
 
                             // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
-                            $.post(scConfig.alipayUrl + "?subject=红包&totalAmount=" + $scope.packetInfo.Amount, function (data) {
+                            $.post(DreamConfig.alipayUrl + "?subject=红包&totalAmount=" + $scope.packetInfo.Amount, function (data) {
                                 payInfo = data;
                                 // 第二步：调用支付插件            
                                 cordova.plugins.alipay.payment(payInfo, function success(e) {
@@ -590,7 +590,7 @@ var app = {
                                         fd.append('files', resizedImage);
                                     });
                                     $.ajax({
-                                        url: scConfig.redPacketsUrl,
+                                        url: DreamConfig.redPacketsUrl,
                                         type: 'POST',
                                         contentType: false,
                                         data: fd,
@@ -707,7 +707,7 @@ var app = {
                     if (enableSend) {
                         var msgHtml = "<div class='item-box clearfix oneself'><div class='img-box'><img src='" + ls.getObject("userInfo").AvatarUrl + "'></div> <div class='txt-box'>" + $scope.content + "</div></div>"
                         $(".chat-box").append(msgHtml);
-                        $.post(scConfig.chatUrl.concat('?userId=' + ls.getObject("userInfo").UserId + '&friendId=' + $stateParams.userId + '&content=' + $scope.content + '&avatar=' + ls.getObject("userInfo").AvatarUrl + '&name=' + ls.getObject("userInfo").Name), function () {
+                        $.post(DreamConfig.chatUrl.concat('?userId=' + ls.getObject("userInfo").UserId + '&friendId=' + $stateParams.userId + '&content=' + $scope.content + '&avatar=' + ls.getObject("userInfo").AvatarUrl + '&name=' + ls.getObject("userInfo").Name), function () {
                         });
                         var lastMsg = $scope.content;
                         $scope.content = "";
@@ -726,7 +726,7 @@ var app = {
                 $scope.back = function () {
                     $state.go($stateParams.returnUrl);
                 };
-                $.get(scConfig.userInfoUrl + "?userId=" + $stateParams.userId, function (userInfo) {
+                $.get(DreamConfig.userInfoUrl + "?userId=" + $stateParams.userId, function (userInfo) {
                     $scope.$apply(function () {
                         $scope.userInfo = userInfo;
                     });
@@ -754,7 +754,7 @@ var app = {
                                 userInfo = { UserId: ls.getObject("userInfo").UserId, AliPayName: $scope.updateInfo.value };
                                 break;
                         }
-                        $.post(scConfig.userInfoUrl, userInfo, function (user) {
+                        $.post(DreamConfig.userInfoUrl, userInfo, function (user) {
                             //update userInfo
                             ls.setObject("userInfo", user);
                             DeviceEvent.SpinnerHide();
@@ -806,7 +806,7 @@ var app = {
                     $state.go('userpage', { userId: userId, returnUrl: "team" })
                 }
                 DeviceEvent.SpinnerShow();
-                $.get(scConfig.teamUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (members) {
+                $.get(DreamConfig.teamUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (members) {
                     $scope.$apply(function () {
                         $scope.teamInfo = members;
                         DeviceEvent.SpinnerHide();
@@ -825,7 +825,7 @@ var app = {
                 };
                 DeviceEvent.SpinnerShow();
                 $scope.withdrawInfo = { totalAmount: null, withdrawAmount: null };
-                $.get(scConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function (totalAmount) {
+                $.get(DreamConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function (totalAmount) {
                     $scope.$apply(function () {
                         $scope.withdrawInfo = { totalAmount: totalAmount, withdrawAmount: totalAmount };
                     });
@@ -839,7 +839,7 @@ var app = {
                 $scope.submit = function () {
                     if (enableSubmit) {
                         DeviceEvent.SpinnerShow();
-                        $.post(scConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function () {
+                        $.post(DreamConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function () {
                             DeviceEvent.SpinnerHide();
                             $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
                         });
@@ -903,7 +903,7 @@ var app = {
                     // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
                     $http({
                         method: "post",
-                        url: scConfig.alipayUrl,
+                        url: DreamConfig.alipayUrl,
                         contentType: "application/json",
                         data: { subject: subject, totalAmount: amount},
                         timeout: 30000,
@@ -924,12 +924,12 @@ var app = {
                     });
 
 
-                    $.post(scConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
+                    $.post(DreamConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
                         payInfo = data;
                         // 第二步：调用支付插件            
                         cordova.plugins.alipay.payment(payInfo, function success(e) {
                             var userInfo = { UserId: ls.getObject("userInfo").UserId, AgencyType: type };
-                            $.post(scConfig.userInfoUrl, userInfo, function (user) {
+                            $.post(DreamConfig.userInfoUrl, userInfo, function (user) {
                                 DeviceEvent.SpinnerHide();
                                 //update user info
                                 ls.setObject("userInfo", user);
@@ -951,7 +951,7 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
-                $.get(scConfig.profitsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
+                $.get(DreamConfig.profitsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
                     $scope.$apply(function () {
                         $scope.profits = data;
                     });
@@ -983,11 +983,11 @@ var app = {
                     else packetInfo = JSON.stringify($scope.Records.Send.PacketList[index]);
                     $state.go('packetInfo', { obj: packetInfo, returnUrl: "records" });
                 }
-                $scope.attchmentRootUrl = scConfig.attachmentUrl;
+                $scope.attchmentRootUrl = DreamConfig.attachmentUrl;
                 $scope.Records = {};
                 DeviceEvent.SpinnerShow();
                 try {
-                    $.get(scConfig.packetRecordsUrl + "?userId=" + ls.getObject("userInfo").UserId, function (records) {
+                    $.get(DreamConfig.packetRecordsUrl + "?userId=" + ls.getObject("userInfo").UserId, function (records) {
                         $scope.$apply(function () {
                             $scope.Records = records;
                         });
@@ -1021,7 +1021,7 @@ var app = {
                 $scope.Query = function () {
                     $http({
                         method: "post",
-                        url: scConfig.tbkQuery,
+                        url: DreamConfig.tbkQuery,
                         contentType: "application/json",
                         data: { q: $scope.QueryText, pagesize:5 },
                         timeout: 30000,
@@ -1033,6 +1033,20 @@ var app = {
                         }
                         $scope.QueryResult = d;
                         console.log($scope.QueryResult);
+                    }).error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
+                };
+                $scope.ClickLog = function (itemId) {
+                    console.log(DreamConfig.clickLog);
+                    $http({
+                        method: "post",
+                        url: DreamConfig.clickLog,
+                        contentType: "application/json",
+                        data: { UserId: ls.getObject("userInfo").UserId, ItemId: itemId },
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
                     }).error(function (error, textStatu, xhr) {
                         DeviceEvent.SpinnerHide();
                         DeviceEvent.Toast("网络异常");
@@ -1067,57 +1081,11 @@ var app = {
             })
             .controller('ContactsController', function ($scope, sc, ls, $state) {
                 curPage = "contacts";
-                $scope.goChat = function (friendId, friendName, friendAvatar) {
-                    $state.go('chat', { userId: friendId, title: friendName, records: "", avatar: friendAvatar });
-                }
-                $.get(scConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
-                    $scope.$apply(function () {
-                        $scope.Contacts = data;
-                    });
-                });
-                sc.ValidateLogin();
+               // sc.ValidateLogin();
             })
             .controller('MessageController', function ($scope, sc, $state) {
                 curPage = "message";
-                sc.ValidateLogin();
-
-                var messageArrived = function (from, name, avatar, content) {
-                    $("#footer-msg").addClass("remind");
-                    var msgHtml = "<div class='item-box clearfix'><div class='img-box'><img src='" + avatar + "'></div> <div class='txt-box'>" + content + "</div></div>"
-                    $(".chat-box").append(msgHtml);
-
-                    var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + from));
-                    var curTime = getNowFormatDate();
-                    var unReadNumber = 0;
-                    if (preChatInfo != null)
-                        unReadNumber = preChatInfo.unReadNumber;
-                    var chatInfo = { friendId: from, avatar: avatar, name: name, lastMsg: content, unReadNumber: unReadNumber + 1, time: curTime };
-                    localStorage.setItem("recentChats_" + from, JSON.stringify(chatInfo));
-                    var msgRecords = [];
-                    for (var i = localStorage.length - 1; i >= 0; i--) {
-                        if (localStorage.key(i).indexOf("recentChats_") != -1)
-                            msgRecords.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                    }
-
-                    $scope.$apply(function () {
-                        $scope.msgRecords = msgRecords;
-                    });
-                }
-                imConnection.setFunctions(messageArrived, null);
-
-                $scope.goChat = function (friendId, friendName) {
-                    var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + friendId));
-                    preChatInfo.unReadNumber = 0;
-                    localStorage.setItem("recentChats_" + friendId, JSON.stringify(preChatInfo));
-                    $state.go('chat', { userId: friendId, title: friendName, records: "", avatar: preChatInfo.avatar });
-                }
-
-                var msgRecords = [];
-                for (var i = localStorage.length - 1; i >= 0; i--) {
-                    if (localStorage.key(i).indexOf("recentChats_") != -1)
-                        msgRecords.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-                $scope.msgRecords = msgRecords;
+               // sc.ValidateLogin();
             })
             .controller('MyController', function ($scope, $state, sc, ls) {
                 curPage = "my";

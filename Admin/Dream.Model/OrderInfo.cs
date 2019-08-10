@@ -1,15 +1,13 @@
 ﻿using Dream.Model.Enums;
 using System;
 using System.Collections.Generic;
-using Dapper.Contrib.Extensions;
+using System.Data;
 using System.Text;
 
 namespace Dream.Model
 {
-    [Table("OrderInfo")]
     public class OrderInfo
     {
-        [Key]
         public int Id { get; set; }
         /// <summary>
         /// 商品店铺名称
@@ -79,5 +77,52 @@ namespace Dream.Model
         /// 淘宝订单编号
         /// </summary>
         public string Code { get; set; }
+
+        public static List<OrderInfo> FromDataTable(DataTable dtBackData) {
+            var orderList = new List<OrderInfo>();
+            dtBackData.DefaultView.Sort = "创建时间 asc"; //按日期升序排序
+            DataTable dtSort = dtBackData.DefaultView.ToTable();
+            //查询出想要的订单
+            DataRow[] rows = dtSort.Select("订单状态 = '已付款' or 订单状态 = '已收货' or 订单状态 = '已结算' or 订单状态='已失效'");
+            foreach (DataRow dr in rows)
+            {
+                OrderInfo order = new OrderInfo();
+                order.Code = dr["淘宝订单编号"].ToString();
+                order.BackPrice = Convert.ToDouble(dr["付款预估收入"]);
+                order.BackRate = dr["佣金比率"].ToString();
+                order.BuyDate = Convert.ToDateTime(dr["付款时间"]);
+                order.ClickTime = Convert.ToDateTime(dr["点击时间"]);
+                order.ItemCount = Convert.ToInt16(dr["商品数量"]);
+                order.ItemName = dr["商品标题"].ToString();
+                order.ItemPrice = Convert.ToDouble(dr["商品单价"]);
+                order.ItemId = dr["商品ID"].ToString();
+                order.PayPrice = Convert.ToDouble(dr["付款金额"]);
+                order.ShopName = dr["店铺名称"].ToString();
+                Enum.TryParse(dr["订单状态"].ToString(), out OrderState state);
+                order.State = state;
+                order.Type = OrderType.Import;
+                order.CheckDate = DateTime.Now;
+
+                orderList.Add(order);           
+            }
+            return orderList;
+        }
+    }
+
+    /// <summary>
+    /// 订单录入类型
+    /// </summary>
+    public enum OrderType
+    {
+        Import,
+        Manual
+    }
+
+    public enum OrderState
+    {
+        已付款,
+        已收货,
+        已结算,
+        已失效
     }
 }

@@ -25,7 +25,7 @@ namespace Dream.DataApi.Controllers
 
         [HttpPost]
         //[ApiAuthorize]
-        public async Task<IActionResult> Post([FromBody]Order order)
+        public async Task<IActionResult> Post([FromBody]OrderInfo order)
         {
             try
             {
