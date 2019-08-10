@@ -20,7 +20,7 @@ namespace Dream.Model.Admin
         /// <summary>
         /// 版本号
         /// </summary>
-        public string PCSVersion { get; set; }
+        public string Version { get; set; }
         /// <summary>
         /// 数据服务器
         /// </summary>
