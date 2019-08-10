@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Dream.Model.Api;
 using System.Linq;
 using System.Threading.Tasks;
 using Dream.Model;

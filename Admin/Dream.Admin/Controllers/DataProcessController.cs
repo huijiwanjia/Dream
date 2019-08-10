@@ -12,7 +12,7 @@ using Dream.Util;
 using System.Data;
 using Dream.Model;
 using Newtonsoft.Json;
-using Dream.Model.Api;
+using Dream.Model.Admin;
 
 namespace Dream.Admin.Controllers
 {
@@ -20,7 +20,7 @@ namespace Dream.Admin.Controllers
     {
 
         private ILog _logger;
-        private string _processApiUrl = $"{ConfigUtil.GetConfig<AppSettings>("AppSettings").DataServer}/dream/order";
+        private string _processApiUrl = $"{ConfigUtil.GetConfig<AdminAppSettings>("AppSettings").DataServer}/dream/order";
         public DataProcessController(ILog l)
         {
             _logger = l;
