@@ -21,7 +21,7 @@ namespace Dream.DataAccess.Service
         {
             _clickLogService = c;
         }
-        public async Task UserOrderCheckAndMappingAsync(Order order) {
+        public async Task UserOrderCheckAndMappingAsync(OrderInfo order) {
             if (order != null)
             {
                 using (IDbConnection conn = DBConnection.CreateConnection())
@@ -30,7 +30,8 @@ namespace Dream.DataAccess.Service
                     var clickLog= await _clickLogService.QueryAsync(order.ClickTime, order.ItemId);
                     order.UserId = clickLog?.UserId;
                     order.Type = OrderType.Import;
-                    await conn.InsertAsync<Order>(order);
+                    order.CreateTime = DateTime.Now;
+                    await conn.InsertAsync<OrderInfo>(order);
                 }
             }
         }

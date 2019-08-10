@@ -11,6 +11,6 @@ namespace Dream.DataAccess.IService
 {
     public interface IOrderService
     {
-        Task UserOrderCheckAndMappingAsync(Order order);
+        Task UserOrderCheckAndMappingAsync(OrderInfo order);
     }
 }

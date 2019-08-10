@@ -30,4 +30,4 @@
     };
 
 })();
-var imConnection = new ImHubConnection(scConfig.iMServer, ImClient.MessageArrived, ImClient.ConnectionEstablishedFunction);
+var imConnection = new ImHubConnection(DreamConfig.iMServer, ImClient.MessageArrived, ImClient.ConnectionEstablishedFunction);

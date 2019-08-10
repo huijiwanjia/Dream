@@ -29,4 +29,11 @@ namespace Dream.Model.Enums
         Import,
         Manual
     }
+    public enum OrderState
+    {
+        已付款,
+        已收货,
+        已结算,
+        已失效
+    }
 }

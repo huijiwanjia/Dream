@@ -4,9 +4,7 @@
         msgHtml += "<br />";
         msgHtml += "最新更新日期：<span class='red lighter'>" + centerInfo.latestUpdateTime + "</span>";
         msgHtml += "<br />";
-        msgHtml += "邮箱：<span class='red lighter'>" + centerInfo.email + "</span>";
-        msgHtml += "<br />";
-        msgHtml += "联系电话：<span class='red lighter'>" + centerInfo.companyTel + "</span>";
+        msgHtml += "网址：<span class='red lighter'>" + centerInfo.site + "</span>";
         msgHtml += "<br />";
         msgHtml += "联系地址：<span class='red lighter'>" + centerInfo.address + "</span>";
         msgHtml += "<br />";
@@ -22,10 +20,9 @@
 var centerInfo = {
     version: "1.1",
     latestUpdateTime: "2018-01-18",
-    companyName: "福州搜索互动有限公司",
-    companyTel: "0592-2970280 ",
-    email: "fzss@contact.com",
-    address: "福州市鼓楼区"
+    companyName: "惠及万家科技（重庆）有限公司",
+    site: "huijiwanjia.com",
+    address: "重庆市"
 }
 
 var WaitDialog = {
@@ -48,7 +45,7 @@ var config = {
     withdrawApplyApiUrl: "http://sc.handsave.com/api/WithdrawApply",
     userManageUrl: "http://sc.handsave.com/api/UserManage",
     withdrawApplyStatusUrl:"http://sc.handsave.com/api/withdrawApplyStatus",
-    dataProcessUrl:"http://sc.handsave.com/api/DataProcess",
+    dataProcessUrl:"/DataProcess/import",
     redpacketApiUrl: "http://sc.handsave.com/api/RedPacket",
     accountUrl: "http://sc.handsave.com/api/Account",
     userUrl: "http://sc.handsave.com/api/User",

@@ -7,8 +7,8 @@ namespace Dream.Model.Api
     /// <summary>
     /// 配置文件
     /// </summary>
-    public class FileServerAppSettings
+    public class AppSettings
     {
-        public string FileRootPath { get; set; }
+        public string DataServer { get; set; }
     }
 }

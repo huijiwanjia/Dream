@@ -1,7 +1,7 @@
 version: '3'
 services:
-  pcs_web_1:
-    image: 'pcs-web-latest'
+  dream_dataapi_1:
+    image: 'dream-admin-pro'
     build:
       context: .
       dockerfile: dockerfile   
@@ -10,14 +10,14 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8044:80"
+      - "8031:80"
     volumes:
-      - /qin/SiteLogs/PCS/App/Web/8044:/app/logs
+      - /qin/SiteLogs/dream/admin/8031:/app/logs
     logging:
       options:
         max-size: 50m 
-  pcs_web_2:
-    image: 'pcs-web-latest'
+  dream_dataapi_2:
+    image: 'dream-admin-pro'
     build:
       context: .
       dockerfile: dockerfile   
@@ -26,25 +26,9 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8045:80"
+      - "8032:80"
     volumes:
-      - /qin/SiteLogs/PCS/App/Web/8045:/app/logs
-    logging:
-      options:
-        max-size: 50m
-  pcs_web_3:
-    image: 'pcs-web-latest'
-    build:
-      context: .
-      dockerfile: dockerfile   
-    restart: always
-    expose:
-      - "80"
-      - "443"  
-    ports:
-      - "8046:80"
-    volumes:
-      - /qin/SiteLogs/PCS/App/Web/8046:/app/logs
+      - /qin/SiteLogs/dream/admin/8032:/app/logs
     logging:
       options:
         max-size: 50m

@@ -141,7 +141,7 @@ namespace Dream.Util
                    // request.Headers.Add("pcssecurity", Dream.Security.Provider.Encrypt(Provider.PCSKEY));
                     request.Timeout = responseTimeout;
 
-                    if (request.Method == "POST")
+                    if (request.Method.ToUpper() == "POST")
                     {
                         if (postData != null)
                         {
