@@ -11,11 +11,11 @@
             </h3>
         </div>
         <div class="all-item">
-            <div class="item-box clearfix">
+            <div class="item-box clearfix" ng-repeat="order in userOrders">
                 <div class="txt-box">
-                    <p class="name">标题：夏日小短裙短裙</p>
-                    <p class="time">编号：214343534535</p>
-                    <span class="monery">预计返利：+10 元</span>
+                    <p class="name">{{order.ItemName}}</p>
+                    <p class="time">{{order.Code}}</p>
+                    <span class="monery">预计返利：+{{order.BackPrice}} 元</span>
                 </div>
             </div>
         </div>

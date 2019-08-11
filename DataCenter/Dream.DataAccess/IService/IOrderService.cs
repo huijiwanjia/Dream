@@ -12,5 +12,7 @@ namespace Dream.DataAccess.IService
     public interface IOrderService
     {
         Task UserOrderCheckAndMappingAsync(OrderInfo order);
+        Task<OrderInfo> GetOrderByOrderByCode(string code);
+        Task<IEnumerable<OrderInfo>> GetUserOrders(int userId);
     }
 }

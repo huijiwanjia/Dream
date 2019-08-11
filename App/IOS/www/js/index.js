@@ -1079,13 +1079,25 @@ var app = {
                     sc.Login();
                 };
             })
-            .controller('ContactsController', function ($scope, sc, ls, $state) {
+            .controller('ContactsController', function ($scope, sc, ls, $state, $http) {
                 curPage = "contacts";
-               // sc.ValidateLogin();
+                sc.ValidateLogin();
+                $http({
+                    method: "GET",
+                    url: DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId,                   
+                    timeout: 30000,
+                }).success(function (d, textStatu, xhr) {
+                    $scope.userOrders = d;
+                    console.log(d);
+                }).error(function (error, textStatu, xhr) {
+                    DeviceEvent.SpinnerHide();
+                    DeviceEvent.Toast("网络异常");
+                });
+
             })
             .controller('MessageController', function ($scope, sc, $state) {
                 curPage = "message";
-               // sc.ValidateLogin();
+                sc.ValidateLogin();
             })
             .controller('MyController', function ($scope, $state, sc, ls) {
                 curPage = "my";

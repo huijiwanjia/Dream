@@ -9,5 +9,7 @@ namespace Dream.DataAccess
         public static string GetUserByUnionId => "GetUserByUnionId";
         public static string GetRecommentByUnionId => "GetRecommentByUnionId";
         public static string GetClickLogByItemIdAndClickTime => "GetClickLogByItemIdAndClickTime";
+        public static string GetOrderByOrderByCode => "GetOrderByOrderByCode";
+        public static string GetUserOrders => "GetUserOrders";
     }
 }
