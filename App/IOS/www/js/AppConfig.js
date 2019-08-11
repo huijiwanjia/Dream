@@ -1,6 +1,6 @@
 ﻿var curPage = "";
-var DreamServer = "http://localhost:55605/";
-//var DreamServer = "http://api.huijiwanjia.com/";
+//var DreamServer = "http://localhost:55605/";
+var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbkapi.huijiwanjia.com/";
 
 var DreamConfig = {
@@ -16,6 +16,7 @@ var DreamConfig = {
     appId: "wxcf1c3c250e5e4d91",
     appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
     clickLog: DreamServer.concat("dream/clicklog/"),
+    userOrders: DreamServer.concat("dream/order")
 }
 var agencyType = {
     NotAgency: 0,
