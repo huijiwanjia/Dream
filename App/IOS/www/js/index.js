@@ -383,31 +383,11 @@ var app = {
                     //    DeviceEvent.Toast("网络错误");
                     //}
 
-                    var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0,UserId:1 };
+                    var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0,UserId:999 };
                     ls.setObject('userInfo', userInfo);
                     ls.set('loginTime', new Date());
                     $state.go('map');
-                    //try {
-                    //    $http({
-                    //        method: "post",
-                    //        url: DreamConfig.accountUrl,
-                    //        contentType: "application/json",
-                    //        data: { openId: userInfo.openId, avatarUrl: userInfo.avatarUrl, name: userInfo.name, sex: userInfo.sex, unionId: userInfo.unionId },
-                    //        timeout: 30000,
-                    //    }).success(function (d, textStatu, xhr) {
-                    //        ls.setObject('userInfo', d);
-                    //        ls.set('loginTime', new Date());
-                    //        DeviceEvent.SpinnerHide();
-                    //        $state.go('map');
-                    //    }).error(function (error, textStatu, xhr) {
-                    //        DeviceEvent.SpinnerHide();
-                    //        DeviceEvent.Toast("网络异常");
-                    //    });
-                    //}
-                    //catch (e) {
-                    //    console.log(e);
-                    //    DeviceEvent.Toast("网络错误");
-                    //}
+
                 };
                 this.logOut = function () {
                     DeviceEvent.Confirm("退出之后需要重新登陆",
@@ -1029,7 +1009,8 @@ var app = {
                         d = JSON.parse(d);
                         var ret = d.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
-                            ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.QueryResult = d;
                         console.log($scope.QueryResult);
