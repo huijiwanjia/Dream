@@ -32,7 +32,7 @@ namespace Dream.DataAccess.Service
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                int diff = 60 * 1; // 1分钟
+                int diff = 60 * 5; // 5分钟
                 var clickLog = await conn.QueryFirstOrDefaultAsync<ClickLog>(Procedure.GetClickLogByItemIdAndClickTime, new { itemId, clickTime, diff }, null, null, CommandType.StoredProcedure);
                 return clickLog;
             }
