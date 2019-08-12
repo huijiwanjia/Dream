@@ -26,7 +26,7 @@ namespace SC.Admin.Controllers
         [HttpGet]
         public ActionResult AuthCallback(string signature, string timestamp, string nonce, string echostr)
         {
-            return Ok(true);
+            return Content(echostr);
         }
 
         public string GetInfo(string Url)
