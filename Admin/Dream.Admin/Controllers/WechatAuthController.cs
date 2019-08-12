@@ -31,7 +31,7 @@ namespace SC.Admin.Controllers
         //    return Content(echostr);
         //}
 
-        public string GetInfo(string Url)
+        private string GetInfo(string Url)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
             request.Proxy = null;
