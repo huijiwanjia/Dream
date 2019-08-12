@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AuthCallback</title>
+    <script src="/Content/assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var pid = parseInt('@ViewBag.State');
+        var token = '@ViewBag.Token';
+        var info = JSON.parse(token.replace(/\&quot;/g, "\""));
+        var unionid = info.unionid;
+
+        $.ajax({
+            method: "post",
+            url: 'http://api.huijiwanjia.com/dream/recomment',
+            data: { PId: pid, Unionid: unionid },
+            timeout: 30000,
+        }).success(function (d, textStatu, xhr) {
+            window.location.href = "https://www.pgyer.com/PvT1";
+            }).error(function (error, textStatu, xhr) {
+                alert("网络异常");
+            });
+    </script>
+</head>
+<body>
+    <div>
+        请稍等...
+    </div>
+</body>
+</html>

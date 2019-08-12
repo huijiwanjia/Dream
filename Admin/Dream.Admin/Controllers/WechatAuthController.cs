@@ -16,18 +16,20 @@ namespace SC.Admin.Controllers
     public class WechatAuthController : Controller
     {
         // GET: WechatAuth
-        //public ActionResult AuthCallback(string code, string state)
-        //{
-        //    ViewBag.State = state;
-        //    string apiUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx457087c6f3e2d3be&secret=fae0a7e5a5c6e480f7e50c7cca4988b2&code=" + code + "&grant_type=authorization_code";
-        //    ViewBag.Token = GetInfo(apiUrl);
-        //    return View();
-        //}
-        [HttpGet]
-        public ActionResult AuthCallback(string signature, string timestamp, string nonce, string echostr)
+        public ActionResult AuthCallback(string code, string state)
         {
-            return Content(echostr);
+            ViewBag.State = state;
+            string apiUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx457087c6f3e2d3be&secret=fae0a7e5a5c6e480f7e50c7cca4988b2&code=" + code + "&grant_type=authorization_code";
+            ViewBag.Token = GetInfo(apiUrl);
+            return View();
         }
+
+        //用作验证接入
+        //[HttpGet]
+        //public ActionResult AuthCallback(string signature, string timestamp, string nonce, string echostr)
+        //{
+        //    return Content(echostr);
+        //}
 
         public string GetInfo(string Url)
         {
