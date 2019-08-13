@@ -14,5 +14,6 @@ namespace Dream.Security.LoginUtil
         void LoginOut();
         UserInfo GetUserInfo();
         UserInfo User { get; }
+        List<UserInfo> GetUsers();
     }
 }

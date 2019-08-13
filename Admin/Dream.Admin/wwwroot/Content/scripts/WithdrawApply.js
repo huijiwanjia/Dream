@@ -8,7 +8,7 @@
                     "bAutoWidth": false,
                     "language": { "url": "/Content/scripts/JqTableChinese.json" },
                     "bServerSide": true,
-                    "sAjaxSource": config.withdrawApplyApiUrl,//数据接口。
+                    "sAjaxSource": config.userUrl,//数据接口。
                     'bPaginate': true,                      //是否分页。
                     "bProcessing": true,                    //当datatable获取数据时候是否显示正在处理提示信息。
                     'bFilter': true,                       //是否使用内置的过滤功能。
@@ -58,41 +58,20 @@
                         return nRow;
                     },
                     "columns": [
-                        { "data": "ApplyId" },
-                        { "data": "SCUser.Name" },
-                        { "data": "SCUser.AliPayName" },
-                        { "data": "Amount" },
-                        { "data": "ApplyTime" }
-                    ],
-                    "columnDefs": [
-                        //项目状态
-                        {
-                            "targets": [5],
-                            "data": "Statu",
-                            "render": function (data, type, full) {
-                                var rowHtml = "";
-                                switch (data) {
-                                    case WithdrawApplyStatu.Completed:
-                                        rowHtml = "<span class='label label-sm label-success arrowed-in'>已处理</span>";
-                                        break;
-                                    case WithdrawApplyStatu.NotCompleted:
-                                        rowHtml = "<span class='label label-sm label-danger arrowed-in'>待处理</span>";
-                                        break;
-                                }
-                                return rowHtml;
-                            }
-                        },
-                        //状态切换
-                        {
-                            "targets": [6],
-                            "data": "ApplyId",
-                            "render": function (data, type, full) {
-                                return "<div class='hidden-sm hidden-xs btn-group'>" +
-                                    "<span data-id='" + data + "' class='btn btn-xs btn-success'><i class='ace-icon fa fa-check'></i>标记已处理</span>" +
-                                    "<span data-id='" + data + "' class='btn btn-xs btn-danger'><i class='ace-icon fa fa-undo'></i>取消已处理</span>" +
-                                    "</div>";
-                            }
-                        }]
+                        { "data": "UserId" },
+                        //{ "data": "OpenId" },
+                        //{ "data": "UnionId" },
+                        { "data": "Name" },
+                        { "data": "AliPay" },
+                        { "data": "AliPayName" },
+                        { "data": "CreateTime" },
+                        { "data": "Sex" },
+                        //{ "data": "AvatarUrl" },
+                        //{ "data": "PId" },
+                        //{ "data": "AgencyType" },
+                        //{ "data": "AgencyBeginTime" },
+                        //{ "data": "AccountStatus" }
+                    ]
                 });
         },
 
@@ -110,10 +89,7 @@
             var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
             return currentdate;
         },
-        /**
-         * 表格加载渲染完毕后执行的方法
-         * @param data
-         */
+
         InitComplete: function (data) {
             var dataPlugin =
                 '<div id="reportrange" style="cursor:pointer;margin-top:3px" class="dateRange pull-left"> ' +
