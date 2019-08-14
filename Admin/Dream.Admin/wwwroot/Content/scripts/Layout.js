@@ -23,7 +23,7 @@ var centerInfo = {
     companyName: "惠及万家科技（重庆）有限公司",
     site: "huijiwanjia.com",
     address: "重庆市"
-}
+};
 
 var WaitDialog = {
     show: function () {
@@ -36,23 +36,29 @@ var WaitDialog = {
     }
 };
 
-var WithdrawApplyStatu = {
+var OrderStatu = {
     NotCompleted: 0,
     Completed: 1
-}
+};
+
+var UserStatu = {
+    NotCompleted: 0,
+    Completed: 1
+};
 
 var config = {
     withdrawApplyApiUrl: "http://sc.handsave.com/api/WithdrawApply",
     userManageUrl: "http://sc.handsave.com/api/UserManage",
-    withdrawApplyStatusUrl:"http://sc.handsave.com/api/withdrawApplyStatus",
-    dataProcessUrl:"/DataProcess/import",
+    withdrawApplyStatusUrl: "http://sc.handsave.com/api/withdrawApplyStatus",
+    dataProcessUrl: "/DataProcess/import",
     redpacketApiUrl: "http://sc.handsave.com/api/RedPacket",
     accountUrl: "http://sc.handsave.com/api/Account",
-    userUrl: "http://sc.handsave.com/api/User",
+    userUrl: "http://api.huijiwanjia.com/dream/User",
+    orderUrl: "http://api.huijiwanjia.com/dream/Order",
     teamUrl: "http://sc.handsave.com/api/Team",
     profitsUrl: "http://sc.handsave.com/api/Profit",
     recommentUrl: "http://sc.handsave.com/api/Recomment",
-    userRelationUrl:"http://sc.handsave.com/api/UserRelation",
+    userRelationUrl: "http://sc.handsave.com/api/UserRelation",
     wechatAppid: "wx457087c6f3e2d3be",
-    wechatAppSecret:"fae0a7e5a5c6e480f7e50c7cca4988b2",
-}
+    wechatAppSecret: "fae0a7e5a5c6e480f7e50c7cca4988b2"
+};

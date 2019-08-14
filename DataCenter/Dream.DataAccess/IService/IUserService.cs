@@ -11,7 +11,7 @@ namespace Dream.DataAccess.IService
 {
     public interface IUserService
     {
-        Task<IEnumerable<UserInfo>> QueryAsync(UserQuery query);
+        Task<JqTableData<UserInfo>> QueryPaginationData(JqTableParams param);
         Task<UserInfo> QueryAsync(string unionId);
     }
 }
