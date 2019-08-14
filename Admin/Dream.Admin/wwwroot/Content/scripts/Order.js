@@ -1,14 +1,14 @@
-﻿var WithdrawApplyScript = (function () {
+﻿var OrderScript = (function () {
     var table;
     return {
 
         Init: function () {
-            table = $('#withdrawTable')
+            table = $('#orderTable')
                 .dataTable({
                     "bAutoWidth": false,
                     "language": { "url": "/Content/scripts/JqTableChinese.json" },
                     "bServerSide": true,
-                    "sAjaxSource": config.userUrl,//数据接口。
+                    "sAjaxSource": config.orderUrl,//数据接口。
                     'bPaginate': true,                      //是否分页。
                     "bProcessing": true,                    //当datatable获取数据时候是否显示正在处理提示信息。
                     'bFilter': true,                       //是否使用内置的过滤功能。
@@ -23,19 +23,19 @@
                         );
                     },
                     "dom":
-                    "<'row'<'col-sm-5'l<'#refresh'>><'col-sm-7'<'#mytoolbox'>f>r>" +
-                    "t" +
-                    "<'row'<'col-sm-6'i><'col-sm-6'p>>",
-                    "initComplete": WithdrawApplyScript.InitComplete,
+                        "<'row'<'col-sm-5'l<'#refresh'>><'col-sm-7'<'#mytoolbox'>f>r>" +
+                        "t" +
+                        "<'row'<'col-sm-6'i><'col-sm-6'p>>",
+                    "initComplete": OrderScript.InitComplete,
                     "fnDrawCallback": function (oSettings) { //重新加载回调
 
                     },
                     "fnRowCallback": function (nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格 
                         var applyTime = $('td:eq(4)', nRow).html();
                         $('td:eq(4)', nRow).html(applyTime.substring(0, 10));
-                        if (aData.Statu == WithdrawApplyStatu.Completed) {
+                        if (aData.Statu == OrderStatu.Completed) {
                             $('td:eq(6) span:eq(1)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + WithdrawApplyStatu.NotCompleted), function () {
+                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.NotCompleted), function () {
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
@@ -44,9 +44,9 @@
                             $('td:eq(6) span:eq(1)', nRow).show();
                             $('td:eq(6) span:eq(0)', nRow).hide();
                         }
-                        else if (aData.Statu == WithdrawApplyStatu.NotCompleted) {
+                        else if (aData.Statu == OrderStatu.NotCompleted) {
                             $('td:eq(6) span:eq(0)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + WithdrawApplyStatu.Completed), function () {
+                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.Completed), function () {
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
@@ -58,19 +58,12 @@
                         return nRow;
                     },
                     "columns": [
-                        { "data": "UserId" },
-                        //{ "data": "OpenId" },
-                        //{ "data": "UnionId" },
-                        { "data": "Name" },
-                        { "data": "AliPay" },
-                        { "data": "AliPayName" },
-                        { "data": "CreateTime" },
-                        { "data": "Sex" },
-                        //{ "data": "AvatarUrl" },
-                        //{ "data": "PId" },
-                        //{ "data": "AgencyType" },
-                        //{ "data": "AgencyBeginTime" },
-                        //{ "data": "AccountStatus" }
+                        { "data": "Id" },
+                        { "data": "ShopName" },
+                        { "data": "ItemId" },
+                        { "data": "BuyDate" },
+                        { "data": "CheckDate" },
+                        { "data": "BackDate" }
                     ]
                 });
         },

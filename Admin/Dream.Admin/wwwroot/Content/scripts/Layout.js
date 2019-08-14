@@ -36,10 +36,15 @@ var WaitDialog = {
     }
 };
 
-var WithdrawApplyStatu = {
+var OrderStatu = {
     NotCompleted: 0,
     Completed: 1
-}
+};
+
+var UserStatu = {
+    NotCompleted: 0,
+    Completed: 1
+};
 
 var config = {
     withdrawApplyApiUrl: "http://sc.handsave.com/api/WithdrawApply",
@@ -49,6 +54,7 @@ var config = {
     redpacketApiUrl: "http://sc.handsave.com/api/RedPacket",
     accountUrl: "http://sc.handsave.com/api/Account",
     userUrl: "http://api.huijiwanjia.com/dream/User",
+    orderUrl: "http://api.huijiwanjia.com/dream/Order",
     teamUrl: "http://sc.handsave.com/api/Team",
     profitsUrl: "http://sc.handsave.com/api/Profit",
     recommentUrl: "http://sc.handsave.com/api/Recomment",

@@ -28,48 +28,33 @@
                     "<'row'<'col-sm-6'i><'col-sm-6'p>>",
                     "initComplete": UserScript.InitComplete,
                     "fnDrawCallback": function (oSettings) { //重新加载回调
-                        $(".userInfoEdit").on(ace.click_event, function () {
 
-                            $("#UserId").attr("readonly", true);
-                            $("#UserId").val($(this).data("userid"));
-                            $("#Name").val($(this).data("name"));
-                            $("#AliPayName").val($(this).data("alipayname"));
-                            $("#AliPay").val($(this).data("alipay"));
-                        });
                     },
                     "fnRowCallback": function (nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格 
-                        var createTime = $('td:eq(8)', nRow).html();
-                        $('td:eq(8)', nRow).html(createTime.substring(0, 10));
-                        $('td:eq(9)', nRow).find(".userInfoEdit")
-                            .attr("data-name", aData.Name)
-                            .attr("data-userid", aData.UserId)
-                            .attr("data-alipay", aData.AliPay)
-                            .attr("data-alipayname", aData.AliPayName);
-                        $('td:eq(9)', nRow).find(".team").on('click', function () {
-                            $.get(config.teamUrl + "?userId=" + aData.UserId, function (userList) {
-                                var teamHtml = "";
-                                $.each(userList, function (i, val) {
-                                    var agencyName = "非代理用户";
-                                    if (val.AgencyType == 1) agencyName = "市区代理";
-                                    if (val.AgencyType == 2) agencyName = "全国代理";
-                                    teamHtml += "<tr><td>" + val.AliPayName + "</td ><td>" + val.Name + "</td><td>" + agencyName + "" + "</td><td>" + val.CreateTime + "</td></tr>";
-                                });
-                                $("#TeamInfo").html(teamHtml);
-                            })
-                        })
-                        $('td:eq(9)', nRow).find(".profits").on('click', function () {
-                            $.get(config.profitsUrl + "?userId=" + aData.UserId, function (profitsList) {
-                                var profitHtml = "";
-                                $.each(profitsList, function (i, val) {
-                                    var details = val.Remark;
-                                    if (val.Type == 0) details += "的红包";
-                                    if (val.Type == 1) details += "的市区代理";
-                                    if (val.Type == 2) details += "的全国代理";
-                                    profitHtml += "<tr><td>" + val.Amount + "</td><td>" + details + "</td><td>" + val.CreateTime + "</td></tr>";
-                                });
-                                $("#ProfitsInfo").html(profitHtml);
-                            })
-                        });
+                        var applyTime = $('td:eq(4)', nRow).html();
+                        $('td:eq(4)', nRow).html(applyTime.substring(0, 10));
+                        if (aData.Statu == UserStatu.Completed) {
+                            $('td:eq(6) span:eq(1)', nRow).on('click', function () {
+                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + UserStatu.NotCompleted), function () {
+                                    //重新加载
+                                    table.fnDraw();
+                                    alert("操作成功");
+                                })
+                            });
+                            $('td:eq(6) span:eq(1)', nRow).show();
+                            $('td:eq(6) span:eq(0)', nRow).hide();
+                        }
+                        else if (aData.Statu == UserStatu.NotCompleted) {
+                            $('td:eq(6) span:eq(0)', nRow).on('click', function () {
+                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + UserStatu.Completed), function () {
+                                    //重新加载
+                                    table.fnDraw();
+                                    alert("操作成功");
+                                })
+                            });
+                            $('td:eq(6) span:eq(1)', nRow).hide();
+                            $('td:eq(6) span:eq(0)', nRow).show();
+                        }
                         return nRow;
                     },
                     "columns": [
@@ -88,31 +73,6 @@
                         //{ "data": "AccountStatus" }
                     ]
                 });
-
-            $("#btnSave").on('click', function () {
-                if ($.trim($("#UserId").val()) == "" || $.trim($("#Name").val()) == "" || $.trim($("#AliPay").val()) == "" || $.trim($("#AliPayName").val()) == "") {
-                    alert("数据不能为空");
-                    return;
-                }
-                var userInfo = { UserId: $("#UserId").val(), Name: $("#Name").val(), AliPay: $("#AliPay").val(), AliPayName: $("#AliPayName").val() };
-                $.post(config.userUrl, userInfo, function (user) {
-                    table.fnDraw();
-                    $("#modal-userInfo").modal("hide");
-                });
-            });
-            $("#btnQuery").on("click", function () {
-                var userA = $("#userA").val();
-                var userB = $("#userB").val();
-                if ($.trim(userA) != "" && $.trim(userB) != "") {
-                    $.get(config.userRelationUrl + "?userA=" + userA + "&userB=" + userB, function (relation) {
-                        $("#result").text("");
-                        $("#result").text(relation);
-                    });
-                }
-                else {
-                    alert("用户不能为空");
-                }
-            })
         },
 
         GetNowFormatDate: function () {
@@ -129,10 +89,7 @@
             var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
             return currentdate;
         },
-        /**
-         * 表格加载渲染完毕后执行的方法
-         * @param data
-         */
+
         InitComplete: function (data) {
             var dataPlugin =
                 '<div id="reportrange" style="cursor:pointer;margin-top:3px" class="dateRange pull-left"> ' +
@@ -236,6 +193,14 @@
                 }
                 return param;
             }
+        },
+        Export: function () {
+            WaitDialog.show();
+            alert(config.dataProcessUrl);
+            $.get(config.dataProcessUrl).done(WaitDialog.hide);
+        },
+        Import: function () {
+
         }
     };
 })();

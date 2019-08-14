@@ -52,10 +52,5 @@ namespace Dream.Security.LoginUtil
             LoginProvider.IsAuthed(authKey, out UserInfo userInfo);
             return userInfo;
         }
-        public List<UserInfo> GetUsers() {
-            List<UserInfo> list = new List<UserInfo>();
-
-            return list;
-        }
     }
 }
