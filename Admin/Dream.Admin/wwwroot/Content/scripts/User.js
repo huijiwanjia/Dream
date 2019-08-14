@@ -8,7 +8,7 @@
                     "bAutoWidth": false,
                     "language": { "url": "/Content/scripts/JqTableChinese.json" },
                     "bServerSide": true,
-                    "sAjaxSource": config.userManageUrl,//数据接口。
+                    "sAjaxSource": config.userUrl,//数据接口。
                     'bPaginate': true,                      //是否分页。
                     "bProcessing": true,                    //当datatable获取数据时候是否显示正在处理提示信息。
                     'bFilter': true,                       //是否使用内置的过滤功能。
@@ -74,27 +74,19 @@
                     },
                     "columns": [
                         { "data": "UserId" },
+                        //{ "data": "OpenId" },
+                        //{ "data": "UnionId" },
                         { "data": "Name" },
-                        { "data": "AliPayName" },
                         { "data": "AliPay" },
-                        { "data": "SendAmount" },
-                        { "data": "WithdrawedProfit" },
-                        { "data": "NotWithdrawProfit" },
-                        { "data": "TeamNumber" },
-                        { "data": "CreateTime" }
-                    ],
-                    "columnDefs": [
-                        {
-                            "targets": [9],
-                            "data": "ApplyId",
-                            "render": function (data, type, full) {
-                                return "<div class='hidden-sm hidden-xs btn-group'>" +
-                                    "<span href='#modal-userInfo' data-toggle='modal' data-id='" + data + "' class='btn btn-xs btn-success userInfoEdit'><i class='ace-icon fa fa-pencil-square-o'></i>编辑</span>" +
-                                    "<span  href='#modal-team' data-toggle='modal' data-id='" + data + "' class='btn btn-xs btn-warning team'><i class='ace-icon fa fa-users'></i>团队</span>" +
-                                    "<span  href='#modal-profits' data-toggle='modal' data-id='" + data + "' class='btn btn-xs btn-danger profits'><i class='ace-icon fa fa-money'></i>收益</span>" +
-                                    "</div>";
-                            }
-                        }]
+                        { "data": "AliPayName" },
+                        { "data": "CreateTime" },
+                        { "data": "Sex" },
+                        //{ "data": "AvatarUrl" },
+                        //{ "data": "PId" },
+                        //{ "data": "AgencyType" },
+                        //{ "data": "AgencyBeginTime" },
+                        //{ "data": "AccountStatus" }
+                    ]
                 });
 
             $("#btnSave").on('click', function () {
