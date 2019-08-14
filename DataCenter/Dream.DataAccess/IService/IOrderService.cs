@@ -14,5 +14,6 @@ namespace Dream.DataAccess.IService
         Task UserOrderCheckAndMappingAsync(OrderInfo order);
         Task<OrderInfo> GetOrderByOrderByCode(string code);
         Task<IEnumerable<OrderInfo>> GetUserOrders(int userId);
+        Task<JqTableData<OrderInfo>> QueryPaginationData(JqTableParams param);
     }
 }

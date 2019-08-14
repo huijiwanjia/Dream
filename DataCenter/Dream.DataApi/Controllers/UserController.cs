@@ -7,20 +7,21 @@ using Dream.DataAccess.IService;
 using Dream.Logger;
 using Dream.Model;
 using Dream.Model.Api;
+using Dream.Model.Admin;
 using Dream.Security;
 using Newtonsoft.Json;
+using Dream.DataAccess.Service;
 
 namespace Dream.DataApi.Controllers
 {
-    public class OrderController: BaseController
+    public class UserController : BaseController
     {
+        private IUserService _userService;
         private ILog _log;
-        private IOrderService _orderService;
-
-        public OrderController(ILog log, IOrderService o)
+        public UserController(IUserService u, ILog l)
         {
-            _log = log;
-            _orderService = o;
+            _userService = u;
+            _log = l;
         }
 
         [HttpGet]
@@ -28,7 +29,7 @@ namespace Dream.DataApi.Controllers
         {
             try
             {
-                var pagedData = await _orderService.QueryPaginationData(param);
+                var pagedData = await _userService.QueryPaginationData(param);
                 return Ok(pagedData);
             }
             catch (Exception ex)
