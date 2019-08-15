@@ -45,19 +45,5 @@ namespace Dream.DataAccess.IService
                 return user;
             }
         }
-        public async Task RecordRecomment(string unionId, int pId)
-        {
-            await Task.FromResult(0);
-            //Recomment recomment = new Recomment();
-            //using (var context = SCContext.NewInstance)
-            //{
-            //    if (context.SCUsers.Where(u => u.UnionId == unionId).FirstOrDefault() != null) return;
-            //    if (context.Recomments.Where(r => r.Unionid == unionId).FirstOrDefault() != null) return;
-            //    recomment.Unionid = unionId;
-            //    recomment.PId = pId;
-            //    context.Recomments.Add(recomment);
-            //    context.SaveChanges();
-            //}
-        }
     }
 }

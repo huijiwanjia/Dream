@@ -13,5 +13,6 @@ namespace Dream.Model
         public int RecommentId { get; set; }
         public string Unionid { get; set; }
         public int PId { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

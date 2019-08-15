@@ -24,5 +24,14 @@ namespace Dream.DataAccess.Service
                 return recoment;
             }
         }
+        public async Task RecordAsync(Recomment recomment)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                recomment.CreateTime = DateTime.Now;
+                await conn.ExecuteAsync(Procedure.RecommentRecord, new { recomment.Unionid,recomment.PId,recomment.CreateTime }, null, null, CommandType.StoredProcedure);
+            }
+        }
     }
 }
