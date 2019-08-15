@@ -16,12 +16,12 @@
         var token = '@ViewBag.Token';
         var info = JSON.parse(token.replace(/\&quot;/g, "\""));
         var unionid = info.unionid;
-        alert("pid:" + pid + "token:" + token + "unionid:" + unionid);
+        alert("unionid:" + unionid);
         $.ajax({
             method: "post",
             url: 'http://api.huijiwanjia.com/dream/recomment',
             contentType:"application/json",
-            data: { PId: pid, Unionid: unionid },
+            data: { PId: pid,  Unionid: unionid },
             timeout: 30000,
         }).success(function (d, textStatu, xhr) {
             window.location.href = "https://www.pgyer.com/PvT1";
