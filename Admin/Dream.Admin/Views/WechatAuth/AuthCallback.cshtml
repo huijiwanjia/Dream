@@ -20,6 +20,7 @@
         $.ajax({
             method: "post",
             url: 'http://api.huijiwanjia.com/dream/recomment',
+            contentType:"application/json",
             data: { PId: pid, Unionid: unionid },
             timeout: 30000,
         }).success(function (d, textStatu, xhr) {
