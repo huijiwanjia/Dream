@@ -29,7 +29,7 @@ namespace Dream.DataApi.Controllers
         {
             try
             {
-                _log.Info($"RecommentController::Recomment info{JsonConvert.SerializeObject(recomment)}");
+                _log.Info($"RecommentController::Recomment info:{JsonConvert.SerializeObject(recomment)}");
                 await _recommentService.RecordAsync(recomment);
                 return Ok();
             }
