@@ -13,7 +13,5 @@ namespace Dream.DataAccess.IService
     {
         Task<UserInfo> Login(UserInfo user);
         Task<UserInfo> Regist(UserInfo user);
-
-        Task RecordRecomment(string unionId, int pId);
     }
 }

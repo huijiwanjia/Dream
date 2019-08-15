@@ -11,5 +11,6 @@ namespace Dream.DataAccess
         public static string GetClickLogByItemIdAndClickTime => "GetClickLogByItemIdAndClickTime";
         public static string GetOrderByOrderByCode => "GetOrderByOrderByCode";
         public static string GetUserOrders => "GetUserOrders";
+        public static string RecommentRecord => "RecommentRecord";
     }
 }

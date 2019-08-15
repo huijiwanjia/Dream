@@ -12,5 +12,6 @@ namespace Dream.DataAccess.IService
     public interface IRecommentService
     {
         Task<Recomment> QueryAsync(string unionId);
+        Task RecordAsync(Recomment recomment);
     }
 }
