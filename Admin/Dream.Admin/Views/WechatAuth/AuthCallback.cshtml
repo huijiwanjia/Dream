@@ -16,7 +16,7 @@
         var token = '@ViewBag.Token';
         var info = JSON.parse(token.replace(/\&quot;/g, "\""));
         var unionid = info.unionid;
-
+        alert("pid:" + pid + "token:" + token + "unionid:" + unionid);
         $.ajax({
             method: "post",
             url: 'http://api.huijiwanjia.com/dream/recomment',
