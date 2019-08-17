@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace Dream.DataApi.Controllers
 {
-    public class OrderController: BaseController
+    public class OrderController : BaseController
     {
         private ILog _log;
         private IOrderService _orderService;
@@ -38,5 +38,24 @@ namespace Dream.DataApi.Controllers
             }
         }
 
+        /// <summary>
+        /// 改变返利状态
+        /// </summary>
+        /// <param name="projectCode">项目编号</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ChangeOrderStatus(int projectId, int currentStatu, string errorBackMsg = null)
+        {
+            try
+            {
+                string returnMsg = _orderService.ChangeOrderStatus(projectId, currentStatu, errorBackMsg);
+                return Json(returnMsg);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"获取分页数据失败：{ex.ToString()}");
+                return BadRequest();
+            }
+        }
     }
 }

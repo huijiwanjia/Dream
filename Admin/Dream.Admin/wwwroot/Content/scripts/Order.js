@@ -28,7 +28,31 @@
                         "<'row'<'col-sm-6'i><'col-sm-6'p>>",
                     "initComplete": OrderScript.InitComplete,
                     "fnDrawCallback": function (oSettings) { //重新加载回调
-
+                        //开始受理
+                        $(".btn-change").on(ace.click_event, function () {
+                            var projectId = $(this).data("id");
+                            var currentStatu = $(this).data("statu");
+                            bootbox.confirm("确定要改变返利状态吗?", function (result) {
+                                if (result) {
+                                    WaitDialog.show();
+                                    $.ajax({
+                                        url: config.orderUrl,
+                                        type: "POST",
+                                        data: { projectId: projectId, currentStatu: currentStatu },
+                                        dataType: 'json'
+                                    })
+                                        .done(function (returnMsg) {
+                                            //刷新列表
+                                            $("#orderTable").dataTable().fnDraw(false);
+                                        })
+                                        .error(function (ajaxContext) {
+                                        })
+                                        .complete(function () {
+                                            WaitDialog.hide();
+                                        });
+                                }
+                            });
+                        });
                     },
                     "fnRowCallback": function (nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格 
                         var applyTime = $('td:eq(4)', nRow).html();
@@ -39,7 +63,7 @@
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
-                                })
+                                });
                             });
                             $('td:eq(6) span:eq(1)', nRow).show();
                             $('td:eq(6) span:eq(0)', nRow).hide();
@@ -50,11 +74,13 @@
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
-                                })
+                                });
                             });
                             $('td:eq(6) span:eq(1)', nRow).hide();
                             $('td:eq(6) span:eq(0)', nRow).show();
                         }
+                        $('td:eq(6) span', nRow).attr("data-id", aData.Id);
+                        $('td:eq(7) span', nRow).attr("data-statu", aData.SettlementStatus);
                         return nRow;
                     },
                     "columns": [
@@ -64,6 +90,23 @@
                         { "data": "BuyDate" },
                         { "data": "CheckDate" },
                         { "data": "BackDate" }
+                    ],
+                    "columnDefs": [
+                        //项目状态
+                        {
+                            "targets": [6],
+                            "data": "SettlementStatus",
+                            "render": function (data, type, full) {
+                                var state = "未返利";
+                                var html = "<span data-statu='" + data + "' class='btn btn-xs btn-danger btn-change'><i class='ace-icon fa fa-undo'></i>" + state + "</span>";
+                                if (data === 1) {
+                                    state = "已返利";
+                                    html = "<span data-statu='" + data + "' class='btn btn-xs btn-success btn-change'><i class='ace-icon fa fa-check'></i>" + state + "</span>";
+                                }
+                                var ret = "<div class='hidden-sm hidden-xs btn-group'>" + html + "</div>";
+                                return ret;
+                            }
+                        }
                     ]
                 });
         },

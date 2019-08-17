@@ -79,5 +79,9 @@ namespace Dream.Model
         /// 淘宝订单编号
         /// </summary>
         public string Code { get; set; }
+        /// <summary>
+        /// 结算状态
+        /// </summary>
+        public int SettlementStatus { get; set; }
     }
 }
