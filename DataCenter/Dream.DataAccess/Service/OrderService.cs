@@ -61,16 +61,8 @@ namespace Dream.DataAccess.Service
         public string ChangeOrderStatus(int projectId, int currentStatu, string errorBackMsg = null)
         {
             string ret = string.Empty;
-            OrderInfo orderInfo = new OrderInfo();
-            string sqlSelect = string.Format("select SettlementStatus from OrderInfo where Id={0}", projectId);
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
-                var tempOrder = conn.QueryFirstOrDefault<OrderInfo>(sqlSelect);
-                //判断传入当前状态是否与数据库当前状态匹配,不匹配则表示已被其他用户更新,要求重新刷新页面
-                if (!tempOrder.SettlementStatus.Equals(currentStatu))
-                {
-                    return "项目状态已被其他用户更新,请刷新重试";
-                }
                 //修改状态
                 currentStatu = currentStatu == 1 ? 0 : 1;
                 string sqlUpdate = string.Format("update OrderInfo set SettlementStatus={1} where Id={0}", projectId, currentStatu);
