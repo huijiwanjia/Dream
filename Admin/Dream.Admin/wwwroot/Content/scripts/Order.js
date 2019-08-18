@@ -44,8 +44,10 @@
                                         .done(function (returnMsg) {
                                             //刷新列表
                                             $("#orderTable").dataTable().fnDraw(false);
+                                            alert(returnMsg);
                                         })
                                         .error(function (ajaxContext) {
+                                            alert("修改失败");
                                         })
                                         .complete(function () {
                                             WaitDialog.hide();
@@ -80,7 +82,7 @@
                             $('td:eq(6) span:eq(0)', nRow).show();
                         }
                         $('td:eq(6) span', nRow).attr("data-id", aData.Id);
-                        $('td:eq(7) span', nRow).attr("data-statu", aData.SettlementStatus);
+                        $('td:eq(7) span', nRow).attr("data-statu", aData.State);
                         return nRow;
                     },
                     "columns": [
@@ -95,11 +97,11 @@
                         //项目状态
                         {
                             "targets": [6],
-                            "data": "SettlementStatus",
+                            "data": "State",
                             "render": function (data, type, full) {
                                 var state = "未返利";
                                 var html = "<span data-statu='" + data + "' class='btn btn-xs btn-danger btn-change'><i class='ace-icon fa fa-undo'></i>" + state + "</span>";
-                                if (data === 1) {
+                                if (data == 3) {
                                     state = "已返利";
                                     html = "<span data-statu='" + data + "' class='btn btn-xs btn-success btn-change'><i class='ace-icon fa fa-check'></i>" + state + "</span>";
                                 }

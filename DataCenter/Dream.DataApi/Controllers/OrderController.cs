@@ -44,11 +44,11 @@ namespace Dream.DataApi.Controllers
         /// <param name="projectCode">项目编号</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ChangeOrderStatus(int projectId, int currentStatu, string errorBackMsg = null)
+        public ActionResult ChangeOrderStatus(int projectId, int currentStatu)
         {
             try
             {
-                string returnMsg = _orderService.ChangeOrderStatus(projectId, currentStatu, errorBackMsg);
+                string returnMsg = _orderService.ChangeOrderStatus(projectId, currentStatu);
                 return Json(returnMsg);
             }
             catch (Exception ex)

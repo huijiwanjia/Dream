@@ -43,7 +43,7 @@ namespace Dream.DataAccess.Service
             {
                 conn.Open();
                 DynamicParameters dynamicParameters = paginationQuery.GenerateParameters();
-                users = await conn.QueryAsync<OrderInfo>("sp_query", dynamicParameters, commandType: CommandType.StoredProcedure);
+                users = await conn.QueryAsync<OrderInfo>(Procedure.GetSpQuery, dynamicParameters, commandType: CommandType.StoredProcedure);
                 if (paginationQuery.NeedTotalCount) jqTableData.iTotalDisplayRecords = dynamicParameters.Get<int>("@recordCount");
             }
             jqTableData.iTotalRecords = users.Count();
@@ -58,16 +58,13 @@ namespace Dream.DataAccess.Service
         /// <param name="currentStatu">状态参数</param>
         /// <param name="errorBackMsg"></param>
         /// <returns></returns>
-        public string ChangeOrderStatus(int projectId, int currentStatu, string errorBackMsg = null)
+        public string ChangeOrderStatus(int id, int state)
         {
-            string ret = string.Empty;
+            string ret = "修改失败";
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
-                //修改状态
-                currentStatu = currentStatu == 1 ? 0 : 1;
-                string sqlUpdate = string.Format("update OrderInfo set SettlementStatus={1} where Id={0}", projectId, currentStatu);
-                var result = conn.Execute(sqlUpdate);
-                if (result > 0)
+                state = state == 3 ? 0 : 3;
+                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0)
                     ret = "修改成功";
             }
             return ret;

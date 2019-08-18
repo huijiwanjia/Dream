@@ -14,7 +14,5 @@ namespace Dream.Admin.Controllers
         {
             return View();
         }
-
-
     }
 }
