@@ -74,5 +74,21 @@ namespace Dream.DataApi.Controllers
                 return BadRequest("order check failed");
             }
         }
+
+        [HttpGet]
+        //[ApiAuthorize]
+        public async Task<IActionResult> Get(int userId)
+        {
+            try
+            {
+                var orders = await _orderService.GetUserOrders(userId);
+                return Json(orders);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"[OrderController]获取用户订单失败，错误信息：{ex.ToString()}");
+                return BadRequest("get order failed");
+            }
+        }
     }
 }

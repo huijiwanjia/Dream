@@ -61,7 +61,7 @@
                         $('td:eq(4)', nRow).html(applyTime.substring(0, 10));
                         if (aData.Statu == OrderStatu.Completed) {
                             $('td:eq(6) span:eq(1)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.NotCompleted), function () {
+                                $.post(config.orderUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.NotCompleted), function () {
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
@@ -72,7 +72,7 @@
                         }
                         else if (aData.Statu == OrderStatu.NotCompleted) {
                             $('td:eq(6) span:eq(0)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.Completed), function () {
+                                $.post(config.orderUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.Completed), function () {
                                     //重新加载
                                     table.fnDraw();
                                     alert("操作成功");
