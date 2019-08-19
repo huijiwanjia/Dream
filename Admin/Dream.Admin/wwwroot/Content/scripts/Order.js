@@ -8,7 +8,7 @@
                     "bAutoWidth": false,
                     "language": { "url": "/Content/scripts/JqTableChinese.json" },
                     "bServerSide": true,
-                    "sAjaxSource": config.orderUrl,//数据接口。
+                    "sAjaxSource": config.orderPaginationUrl,//数据接口。
                     'bPaginate': true,                      //是否分页。
                     "bProcessing": true,                    //当datatable获取数据时候是否显示正在处理提示信息。
                     'bFilter': true,                       //是否使用内置的过滤功能。
@@ -28,33 +28,36 @@
                         "<'row'<'col-sm-6'i><'col-sm-6'p>>",
                     "initComplete": OrderScript.InitComplete,
                     "fnDrawCallback": function (oSettings) { //重新加载回调
-
+                        //开始受理
+                        $(".btn-change").on(ace.click_event, function () {
+                            var id = $(this).data("id");
+                            var state = $(this).data("statu") == OrderState.已返利 ? OrderState.已结算 : OrderState.已返利;
+                            bootbox.confirm("确定要改变返利状态吗?", function (result) {
+                                if (result) {
+                                    WaitDialog.show();
+                                    $.ajax({
+                                        url: config.orderChangeStatusUrl,
+                                        type: "POST",
+                                        data: { id: id, state: state }
+                                    })
+                                        .done(function (returnMsg) {
+                                            //刷新列表
+                                            $("#orderTable").dataTable().fnDraw(false);
+                                            alert(returnMsg);
+                                        })
+                                        .error(function (ajaxContext) {
+                                            alert("修改失败");
+                                        })
+                                        .complete(function () {
+                                            WaitDialog.hide();
+                                        });
+                                }
+                            });
+                        });
                     },
                     "fnRowCallback": function (nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格 
-                        var applyTime = $('td:eq(4)', nRow).html();
-                        $('td:eq(4)', nRow).html(applyTime.substring(0, 10));
-                        if (aData.Statu == OrderStatu.Completed) {
-                            $('td:eq(6) span:eq(1)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.NotCompleted), function () {
-                                    //重新加载
-                                    table.fnDraw();
-                                    alert("操作成功");
-                                })
-                            });
-                            $('td:eq(6) span:eq(1)', nRow).show();
-                            $('td:eq(6) span:eq(0)', nRow).hide();
-                        }
-                        else if (aData.Statu == OrderStatu.NotCompleted) {
-                            $('td:eq(6) span:eq(0)', nRow).on('click', function () {
-                                $.post(config.withdrawApplyStatusUrl.concat("?applyId=" + aData.ApplyId + "&statu=" + OrderStatu.Completed), function () {
-                                    //重新加载
-                                    table.fnDraw();
-                                    alert("操作成功");
-                                })
-                            });
-                            $('td:eq(6) span:eq(1)', nRow).hide();
-                            $('td:eq(6) span:eq(0)', nRow).show();
-                        }
+                        $('td:eq(3)', nRow).html($('td:eq(3)', nRow).html().substring(0, 10));
+                        $('td:eq(6) span', nRow).attr("data-id", aData.Id);
                         return nRow;
                     },
                     "columns": [
@@ -62,8 +65,65 @@
                         { "data": "ShopName" },
                         { "data": "ItemId" },
                         { "data": "BuyDate" },
-                        { "data": "CheckDate" },
-                        { "data": "BackDate" }
+                        { "data": "BackPrice" }
+                    ],
+                    "columnDefs": [
+                        {
+                            "targets": [5],
+                            "data": "State",
+                            "render": function (data, type, full) {
+                                var state;
+                                var color;
+                                switch (data) {
+                                    case 0:
+                                        state = "已付款";
+                                        color = "primary";
+                                        break;
+                                    case 1:
+                                        state = "已收货";
+                                        color = "danger";
+                                        break;
+                                    case 2:
+                                        state = "已结算";
+                                        color = "warning";
+                                        break;
+                                    case 3:
+                                        state = "已失效";
+                                        color = "muted";
+                                        break;
+                                    case 4:
+                                        state = "已返利";
+                                        color = "success";
+                                        break;
+                                }
+                                var html = "<span data-statu='" + data + "' class='label label-sm label-" + color + " arrowed-in'>" + state + "</span>";
+                                return html;
+                            }
+                        },
+                        //项目状态
+                        {
+                            "targets": [6],
+                            "data": "State",
+                            "render": function (data, type, full) {
+                                var state = "当前未结算";
+                                var color = "muted";
+                                var html = "";
+                                switch (data) {
+                                    case 2:
+                                        state = "设成已返利";
+                                        color = "danger";
+                                        html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-check'></i>" + state + "</span>";
+                                        break;
+                                    case 4:
+                                        state = "设成未返利";
+                                        color = "success";
+                                        html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-undo'></i>" + state + "</span>";
+                                        break;
+                                }
+                                var ret = "<div class='hidden-sm hidden-xs btn-group'>" + html + "</div>";
+                                return ret;
+                            }
+                        }
                     ]
                 });
         },
