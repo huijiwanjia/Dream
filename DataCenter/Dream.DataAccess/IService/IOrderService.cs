@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Dream.Model.Enums;
 
 namespace Dream.DataAccess.IService
 {
@@ -15,5 +16,6 @@ namespace Dream.DataAccess.IService
         Task<OrderInfo> GetOrderByOrderByCode(string code);
         Task<IEnumerable<OrderInfo>> GetUserOrders(int userId);
         Task<JqTableData<OrderInfo>> QueryPaginationData(JqTableParams param);
+        bool ChangeOrderStatus(int id, OrderState state);
     }
 }
