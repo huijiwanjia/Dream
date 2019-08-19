@@ -36,29 +36,24 @@ var WaitDialog = {
     }
 };
 
-var OrderStatu = {
-    NotCompleted: 0,
-    Completed: 1
-};
-
 var UserStatu = {
     NotCompleted: 0,
     Completed: 1
 };
 
+var OrderState = {
+    已付款:0,
+    已收货:1,
+    已结算:2,
+    已失效:3,
+    已返利:4
+}
+
 var config = {
-    withdrawApplyApiUrl: "http://sc.handsave.com/api/WithdrawApply",
-    userManageUrl: "http://sc.handsave.com/api/UserManage",
-    withdrawApplyStatusUrl: "http://sc.handsave.com/api/withdrawApplyStatus",
     dataProcessUrl: "/DataProcess/import",
-    redpacketApiUrl: "http://sc.handsave.com/api/RedPacket",
-    accountUrl: "http://sc.handsave.com/api/Account",
     userUrl: "http://api.huijiwanjia.com/dream/User",
-    orderUrl: "http://localhost:55605/dream/Order",
-    teamUrl: "http://sc.handsave.com/api/Team",
-    profitsUrl: "http://sc.handsave.com/api/Profit",
-    recommentUrl: "http://sc.handsave.com/api/Recomment",
-    userRelationUrl: "http://sc.handsave.com/api/UserRelation",
+    orderPaginationUrl: "http://api.huijiwanjia.com/dream/Order/pagination",
+    orderChangeStatusUrl: "http://api.huijiwanjia.com/dream/Order/changestatus",
     wechatAppid: "wx457087c6f3e2d3be",
     wechatAppSecret: "fae0a7e5a5c6e480f7e50c7cca4988b2"
 };

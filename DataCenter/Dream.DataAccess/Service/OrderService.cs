@@ -30,7 +30,7 @@ namespace Dream.DataAccess.Service
                 NeedTotalCount = true,
                 TableName = "OrderInfo",
                 Fields = "*",
-                Orderby = " ORDER BY Id ASC ",
+                Orderby = " ORDER BY BuyDate DESC ",
                 PageIndex = param.iDisplayStart / param.iDisplayLength + 1,
                 PageSize = param.iDisplayLength,
                 SqlWhere = GenerateSqlWhere(param)
@@ -58,18 +58,14 @@ namespace Dream.DataAccess.Service
         /// <param name="currentStatu">状态参数</param>
         /// <param name="errorBackMsg"></param>
         /// <returns></returns>
-        public string ChangeOrderStatus(int id, int state)
+        public bool ChangeOrderStatus(int id, OrderState state)
         {
-            string ret = "修改失败";
-            if (!0.Equals(id))
+            using (IDbConnection conn = DBConnection.CreateConnection())
             {
-                using (IDbConnection conn = DBConnection.CreateConnection())
-                {
-                    if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0)
-                        ret = "修改成功";
-                }
+                var orderState = (int)state;
+                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, orderState }, null, null, CommandType.StoredProcedure) > 0) return true;
+                else return false;
             }
-            return ret;
         }
         public async Task UserOrderCheckAndMappingAsync(OrderInfo order)
         {

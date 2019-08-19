@@ -9,6 +9,7 @@ using Dream.Model;
 using Dream.Model.Api;
 using Dream.Security;
 using Newtonsoft.Json;
+using Dream.Model.Enums;
 
 namespace Dream.DataApi.Controllers
 {
@@ -24,6 +25,7 @@ namespace Dream.DataApi.Controllers
         }
 
         [HttpGet]
+        [Route("pagination")]
         public async Task<IActionResult> GetAsync(JqTableParams param)
         {
             try
@@ -44,12 +46,13 @@ namespace Dream.DataApi.Controllers
         /// <param name="projectCode">项目编号</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ChangeOrderStatus(int projectId, int currentStatu)
+        [Route("changestatus")]
+        public ActionResult ChangeOrderStatus(int id, OrderState state)
         {
             try
             {
-                string returnMsg = _orderService.ChangeOrderStatus(projectId, currentStatu);
-                return Json(returnMsg);
+                if (_orderService.ChangeOrderStatus(id, state)) return Ok("success");
+                else return Ok("failed");
             }
             catch (Exception ex)
             {
@@ -58,37 +61,37 @@ namespace Dream.DataApi.Controllers
             }
         }
 
-        //[HttpPost]
-        ////[ApiAuthorize]
-        //public async Task<IActionResult> Post([FromBody]OrderInfo order)
-        //{
-        //    try
-        //    {
-        //        _log.Info($"[OrderController]订单核对，订单信息：{JsonConvert.SerializeObject(order)}");
-        //        await _orderService.UserOrderCheckAndMappingAsync(order);
-        //        return Ok("order check success");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _log.Error($"[OrderController]订单核对失败，错误信息：{ex.ToString()}");
-        //        return BadRequest("order check failed");
-        //    }
-        //}
+        [HttpPost]
+        //[ApiAuthorize]
+        public async Task<IActionResult> Post([FromBody]OrderInfo order)
+        {
+            try
+            {
+                _log.Info($"[OrderController]订单核对，订单信息：{JsonConvert.SerializeObject(order)}");
+                await _orderService.UserOrderCheckAndMappingAsync(order);
+                return Ok("order check success");
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"[OrderController]订单核对失败，错误信息：{ex.ToString()}");
+                return BadRequest("order check failed");
+            }
+        }
 
-        //[HttpGet]
-        ////[ApiAuthorize]
-        //public async Task<IActionResult> Get(int userId)
-        //{
-        //    try
-        //    {
-        //        var orders = await _orderService.GetUserOrders(userId);
-        //        return Json(orders);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _log.Error($"[OrderController]获取用户订单失败，错误信息：{ex.ToString()}");
-        //        return BadRequest("get order failed");
-        //    }
-        //}
+        [HttpGet]
+        //[ApiAuthorize]
+        public async Task<IActionResult> Get(int userId)
+        {
+            try
+            {
+                var orders = await _orderService.GetUserOrders(userId);
+                return Json(orders);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"[OrderController]获取用户订单失败，错误信息：{ex.ToString()}");
+                return BadRequest("get order failed");
+            }
+        }
     }
 }
