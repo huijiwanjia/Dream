@@ -57,5 +57,22 @@ namespace Dream.DataApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        //[ApiAuthorize]
+        public async Task<IActionResult> Post([FromBody]OrderInfo order)
+        {
+            try
+            {
+                _log.Info($"[OrderController]订单核对，订单信息：{JsonConvert.SerializeObject(order)}");
+                await _orderService.UserOrderCheckAndMappingAsync(order);
+                return Ok("order check success");
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"[OrderController]订单核对失败，错误信息：{ex.ToString()}");
+                return BadRequest("order check failed");
+            }
+        }
     }
 }
