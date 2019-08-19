@@ -34,6 +34,7 @@ namespace Dream.Model.Enums
         已付款,
         已收货,
         已结算,
-        已失效
+        已失效,
+        已返利
     }
 }

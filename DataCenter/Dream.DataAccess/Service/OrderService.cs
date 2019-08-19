@@ -30,7 +30,7 @@ namespace Dream.DataAccess.Service
                 NeedTotalCount = true,
                 TableName = "OrderInfo",
                 Fields = "*",
-                Orderby = " ORDER BY Id ASC ",
+                Orderby = " ORDER BY BuyDate DESC ",
                 PageIndex = param.iDisplayStart / param.iDisplayLength + 1,
                 PageSize = param.iDisplayLength,
                 SqlWhere = GenerateSqlWhere(param)
@@ -43,7 +43,7 @@ namespace Dream.DataAccess.Service
             {
                 conn.Open();
                 DynamicParameters dynamicParameters = paginationQuery.GenerateParameters();
-                users = await conn.QueryAsync<OrderInfo>("sp_query", dynamicParameters, commandType: CommandType.StoredProcedure);
+                users = await conn.QueryAsync<OrderInfo>(Procedure.GetSpQuery, dynamicParameters, commandType: CommandType.StoredProcedure);
                 if (paginationQuery.NeedTotalCount) jqTableData.iTotalDisplayRecords = dynamicParameters.Get<int>("@recordCount");
             }
             jqTableData.iTotalRecords = users.Count();
@@ -51,6 +51,22 @@ namespace Dream.DataAccess.Service
             return jqTableData;
         }
 
+        /// <summary>
+        /// 改变返利状态
+        /// </summary>
+        /// <param name="projectId">Id</param>
+        /// <param name="currentStatu">状态参数</param>
+        /// <param name="errorBackMsg"></param>
+        /// <returns></returns>
+        public bool ChangeOrderStatus(int id, OrderState orderState)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                var state = (int)orderState;
+                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0) return true;
+                else return false;
+            }
+        }
         public async Task UserOrderCheckAndMappingAsync(OrderInfo order)
         {
             if (order != null)
@@ -87,7 +103,8 @@ namespace Dream.DataAccess.Service
             }
         }
 
-        public async Task<IEnumerable<OrderInfo>> GetUserOrders(int userId) {
+        public async Task<IEnumerable<OrderInfo>> GetUserOrders(int userId)
+        {
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
