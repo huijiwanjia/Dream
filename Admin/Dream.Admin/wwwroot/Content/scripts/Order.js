@@ -31,7 +31,7 @@
                         //开始受理
                         $(".btn-change").on(ace.click_event, function () {
                             var projectId = $(this).data("id");
-                            var currentStatu = $(this).data("statu");
+                            var currentStatu = $(this).data("statu") == 4 ? 2 : 4;
                             bootbox.confirm("确定要改变返利状态吗?", function (result) {
                                 if (result) {
                                     WaitDialog.show();
@@ -81,8 +81,7 @@
                             $('td:eq(6) span:eq(1)', nRow).hide();
                             $('td:eq(6) span:eq(0)', nRow).show();
                         }
-                        $('td:eq(6) span', nRow).attr("data-id", aData.Id);
-                        $('td:eq(7) span', nRow).attr("data-statu", aData.State);
+                        $('td:eq(7) span', nRow).attr("data-id", aData.Id);
                         return nRow;
                     },
                     "columns": [
@@ -94,14 +93,46 @@
                         { "data": "BackDate" }
                     ],
                     "columnDefs": [
-                        //项目状态
                         {
                             "targets": [6],
                             "data": "State",
                             "render": function (data, type, full) {
+                                var state;
+                                var color;
+                                switch (data) {
+                                    case 0:
+                                        state = "已付款";
+                                        color = "primary";
+                                        break;
+                                    case 1:
+                                        state = "已收货";
+                                        color = "danger";
+                                        break;
+                                    case 2:
+                                        state = "已结算";
+                                        color = "warning";
+                                        break;
+                                    case 3:
+                                        state = "已失效";
+                                        color = "muted";
+                                        break;
+                                    case 4:
+                                        state = "已返利";
+                                        color = "success";
+                                        break;
+                                }
+                                var html = "<span data-statu='" + data + "' class='label label-sm label-" + color + " arrowed-in'>" + state + "</span>";
+                                return html;
+                            }
+                        },
+                        //项目状态
+                        {
+                            "targets": [7],
+                            "data": "State",
+                            "render": function (data, type, full) {
                                 var state = "未返利";
                                 var html = "<span data-statu='" + data + "' class='btn btn-xs btn-danger btn-change'><i class='ace-icon fa fa-undo'></i>" + state + "</span>";
-                                if (data == 3) {
+                                if (data == 4) {
                                     state = "已返利";
                                     html = "<span data-statu='" + data + "' class='btn btn-xs btn-success btn-change'><i class='ace-icon fa fa-check'></i>" + state + "</span>";
                                 }

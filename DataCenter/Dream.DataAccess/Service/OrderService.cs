@@ -65,7 +65,6 @@ namespace Dream.DataAccess.Service
             {
                 using (IDbConnection conn = DBConnection.CreateConnection())
                 {
-                    state = state == 3 ? 0 : 3;
                     if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0)
                         ret = "修改成功";
                 }
