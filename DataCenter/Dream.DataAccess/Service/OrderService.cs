@@ -61,11 +61,14 @@ namespace Dream.DataAccess.Service
         public string ChangeOrderStatus(int id, int state)
         {
             string ret = "修改失败";
-            using (IDbConnection conn = DBConnection.CreateConnection())
+            if (!0.Equals(id))
             {
-                state = state == 3 ? 0 : 3;
-                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0)
-                    ret = "修改成功";
+                using (IDbConnection conn = DBConnection.CreateConnection())
+                {
+                    state = state == 3 ? 0 : 3;
+                    if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0)
+                        ret = "修改成功";
+                }
             }
             return ret;
         }
