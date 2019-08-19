@@ -13,5 +13,6 @@ namespace Dream.DataAccess
         public static string GetUserOrders => "GetUserOrders";
         public static string UpdateOrderStatus => "UpdateOrderStatus";
         public static string GetSpQuery => "sp_query";
+        public static string RecommentRecord => "RecommentRecord";
     }
 }

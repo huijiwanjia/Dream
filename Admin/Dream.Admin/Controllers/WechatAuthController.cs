@@ -10,16 +10,24 @@ using Dream.Admin.Models;
 using System.Net;
 using System.IO;
 using System.Text;
+using Dream.Logger;
 
 namespace SC.Admin.Controllers
 {
     public class WechatAuthController : Controller
     {
+
+        private ILog _logger;
+        public WechatAuthController(ILog l)
+        {
+            _logger = l;
+        }
         // GET: WechatAuth
         public ActionResult AuthCallback(string code, string state)
         {
+            _logger.Info($"Code: {code}, state: {state}");
             ViewBag.State = state;
-            string apiUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx457087c6f3e2d3be&secret=fae0a7e5a5c6e480f7e50c7cca4988b2&code=" + code + "&grant_type=authorization_code";
+            string apiUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxda337f3186c93879&secret=26fb5076ed7e8317e93b478208f8c045&code=" + code + "&grant_type=authorization_code";
             ViewBag.Token = GetInfo(apiUrl);
             return View();
         }
