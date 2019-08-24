@@ -39,5 +39,35 @@ namespace Dream.DataApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetById")]
+        public async Task<IActionResult> GetAsync(int userId)
+        {
+            try
+            {
+                var user = await _userService.QueryByUserIdAsync(userId);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"UserController::GetAsync: {ex.Message}");
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateUserAsync([FromBody]UserInfo userInfo)
+        {
+            try
+            {
+                var updatedUser = await _userService.UpdateUserAsync(userInfo);
+                return Ok(updatedUser);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"UserController::UpdateUserInfo: {ex.Message}");
+                return BadRequest();
+            }
+        }
     }
 }
