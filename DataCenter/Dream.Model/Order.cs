@@ -79,5 +79,9 @@ namespace Dream.Model
         /// 淘宝订单编号
         /// </summary>
         public string Code { get; set; }
+        /// <summary>
+        /// 对应收益的ID
+        /// </summary>
+        public int? ProfitId { get; set; }
     }
 }

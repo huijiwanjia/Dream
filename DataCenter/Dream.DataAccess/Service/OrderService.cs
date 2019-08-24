@@ -74,31 +74,44 @@ namespace Dream.DataAccess.Service
                 using (IDbConnection conn = DBConnection.CreateConnection())
                 {
                     conn.Open();
-                    var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByOrderByCode, new { order.Code }, null, null, CommandType.StoredProcedure);
-
-                    if (orderInfo != null)
+                    IDbTransaction transaction = conn.BeginTransaction();
+                    try
                     {
-                        orderInfo.State = order.State;
-                        orderInfo.BackPrice = order.BackPrice;
-                        await conn.UpdateAsync<OrderInfo>(orderInfo);
-                        return;
-                    }
+                        var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByCode, new { order.Code }, transaction, null, CommandType.StoredProcedure);
 
-                    var clickLog = await _clickLogService.QueryAsync(order.ClickTime, order.ItemId);
-                    order.UserId = clickLog?.UserId;
-                    order.Type = OrderType.Import;
-                    order.CreateTime = DateTime.Now;
-                    await conn.InsertAsync<OrderInfo>(order);
+                        if (orderInfo != null)
+                        {
+                            orderInfo.State = order.State;
+                            orderInfo.BackPrice = order.BackPrice;
+                            orderInfo.ProfitId = await CheckAndAddOrderProfit(orderInfo, conn, transaction);
+                            await conn.UpdateAsync<OrderInfo>(orderInfo, transaction);
+                        }
+                        else
+                        {
+                            var clickLog = await _clickLogService.QueryAsync(order.ClickTime, order.ItemId);
+                            order.UserId = clickLog?.UserId;
+                            order.Type = OrderType.Import;
+                            order.CreateTime = DateTime.Now;
+                            order.ProfitId = await CheckAndAddOrderProfit(order, conn, transaction);
+                            await conn.InsertAsync<OrderInfo>(order, transaction);
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
                 }
             }
         }
 
-        public async Task<OrderInfo> GetOrderByOrderByCode(string code)
+        public async Task<OrderInfo> GetOrderByCode(string code)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByOrderByCode, new { code }, null, null, CommandType.StoredProcedure);
+                var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByCode, new { code }, null, null, CommandType.StoredProcedure);
                 return orderInfo;
             }
         }
@@ -130,6 +143,22 @@ namespace Dream.DataAccess.Service
             strWhere += string.Format(" and BuyDate > '{0}' and BuyDate < '{1}'", startTime, endTime);
             return strWhere;
         }
+
+        private async Task<int> CheckAndAddOrderProfit(OrderInfo orderInfo, IDbConnection conn, IDbTransaction transaction = null)
+        {
+            var profit = new Profit();
+            if (orderInfo.State == OrderState.已结算 && !orderInfo.ProfitId.HasValue && orderInfo.ProfitId != 0)
+            {
+                profit.CreateTime = DateTime.Now;
+                profit.Status = ProfitStatus.Active;
+                profit.Type = ProfitType.OrderBack;
+                profit.UserId = orderInfo.UserId;
+                profit.Amount = orderInfo.BackPrice;
+                profit.ProfitId = await conn.InsertAsync<Profit>(profit, transaction);
+            }
+            return profit.ProfitId == 0 ? orderInfo.ProfitId ?? 0 : profit.ProfitId;
+        }
+
         #endregion
     }
 }

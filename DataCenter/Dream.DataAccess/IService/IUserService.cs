@@ -13,5 +13,7 @@ namespace Dream.DataAccess.IService
     {
         Task<JqTableData<UserInfo>> QueryPaginationData(JqTableParams param);
         Task<UserInfo> QueryAsync(string unionId);
+        Task<UserInfo> QueryByUserIdAsync(int userId);
+        Task<UserInfo> UpdateUserAsync(UserInfo userInfo);
     }
 }

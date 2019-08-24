@@ -13,7 +13,11 @@
         <div class="all-item">
             <div class="item-box clearfix" ng-repeat="order in userOrders">
                 <div class="txt-box">
-                    <p class="name">{{order.ItemName}}</p>
+                    <p class="name">{{order.ItemName|limitTo:10}}</p>
+                    <p class="name" ng-if="order.State==0">订单状态：已付款</p>
+                    <p class="name" ng-if="order.State==1">订单状态：已收货</p>
+                    <p class="name" ng-if="order.State==2">订单状态：已结算</p>
+                    <p class="name" ng-if="order.State==3">订单状态：已失效</p>
                     <p class="time">{{order.Code}}</p>
                     <span class="monery">预计返利：+{{order.BackPrice}} 元</span>
                 </div>

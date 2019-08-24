@@ -37,4 +37,19 @@ namespace Dream.Model.Enums
         已失效,
         已返利
     }
+    public enum ProfitType
+    {
+       OrderBack
+    }
+    public enum ProfitStatus
+    {
+        Active,
+        InActive
+    }
+
+    public enum WithdrawStatus
+    {
+        NotCompleted,
+        Completed
+    }
 }
