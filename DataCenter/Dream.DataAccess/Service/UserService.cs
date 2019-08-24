@@ -52,6 +52,34 @@ namespace Dream.DataAccess.Service
                 return user;
             }
         }
+
+        public async Task<UserInfo> QueryByUserIdAsync(int userId)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userId }, null, null, CommandType.StoredProcedure);
+                return user;
+            }
+        }
+
+        public async Task<UserInfo> UpdateUserAsync(UserInfo userInfo)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userInfo.UserId }, null, null, CommandType.StoredProcedure);
+                if (userInfo.Sex != null) user.Sex = userInfo.Sex;
+                if (userInfo.PId != null) user.PId = userInfo.PId;
+                if (userInfo.AliPayName != null) user.AliPayName = userInfo.AliPayName;
+                if (userInfo.AccountStatus != null) user.AccountStatus = userInfo.AccountStatus;
+                if (!string.IsNullOrWhiteSpace(userInfo.AliPay)) user.AliPay = userInfo.AliPay;
+                if (!string.IsNullOrWhiteSpace(userInfo.Name)) user.Name = userInfo.Name;
+
+                await conn.UpdateAsync(user);
+                return user;
+            }
+        }
         #region private
         private string GenerateSqlWhere(JqTableParams param) {
             DateTime? startTime = null;//操作日志创建时间

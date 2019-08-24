@@ -84,52 +84,7 @@ var app = {
                             }
                         }
                     })
-                    .state('packetInfo', {
-                        url: "/packetInfo",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/packetInfo.html',
-                                controller: 'PacketInfoController'
-                            }
-                        },
-                        params: {
-                            obj: null,
-                            returnUrl: "map"
-                        }
-                    })
-                    .state('filtration', {
-                        url: "/filtration",
-                        views: {
-                            'content': {
-                                templateUrl: 'views/filtration.html',
-                                controller: 'FiltrationController'
-                            }
-                        }
-                    })
-                    .state('create', {
-                        url: "/create",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/create.html',
-                                controller: 'CreateController'
-                            }
-                        }
-                    })
-                    .state('chat', {
-                        url: "/chat",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/chat.html',
-                                controller: 'ChatController'
-                            }
-                        },
-                        params: {
-                            userId: null,
-                            title: null,
-                            records: null,
-                            avatar: null
-                        }
-                    })
+
                     .state('userpage', {
                         url: "/userpage",
                         views: {
@@ -209,16 +164,6 @@ var app = {
                             }
                         }
                     })
-                    .state('records', {
-                        cache: true,
-                        url: "/records",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/records.html',
-                                controller: 'RecordsController'
-                            }
-                        }
-                    })
                     .state('success', {
                         url: "/success",
                         views: {
@@ -238,20 +183,6 @@ var app = {
                             'content': {
                                 templateUrl: 'views/contacts.html',
                                 controller: 'ContactsController'
-                            },
-                            'footer': {
-                                templateUrl: 'views/footer.html',
-                                controller: 'FooterController'
-                            }
-                        }
-                    })
-                    .state('message', {
-                        url: "/message",
-                        cache: true,
-                        views: {
-                            'content': {
-                                templateUrl: 'views/message.html',
-                                controller: 'MessageController',
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -337,56 +268,56 @@ var app = {
                 };
                 this.Login = function () {
                     //get from tencent
-                    //try {
-                    //    Wechat.isInstalled(function (installed) {
-                    //        var scope = "snsapi_userinfo",
-                    //            state = "_" + (+new Date());
-                    //        Wechat.auth(scope, state, function (response) {
-                    //            // you may use response.code to get the access token.
-                    //            //get access_token
-                    //            $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
-                    //                var rerturnData = JSON.parse(data);
-                    //                //get userinfo
-                    //                $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
-                    //                    var user_info = JSON.parse(userInfo);
-                    //                    var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
-                    //                    $state.go('map');
-                    //                    //check user
-                    //                    $http({
-                    //                        method: "post",
-                    //                        url: DreamConfig.accountUrl,
-                    //                        contentType:"application/json",
-                    //                        data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
-                    //                        timeout: 30000,
-                    //                    }).success(function (d, textStatu, xhr) {
-                    //                        ls.setObject('userInfo', d);
-                    //                        ls.set('loginTime', new Date());
-                    //                        DeviceEvent.SpinnerHide();
-                    //                        $state.go('map');
-                    //                    }).error(function (error, textStatu, xhr) {
-                    //                        DeviceEvent.SpinnerHide();
-                    //                        DeviceEvent.Toast("网络异常");
-                    //                    });
-                    //                });
-                    //            });
-                    //        }, function (reason) {
-                    //            DeviceEvent.SpinnerHide();
-                    //            DeviceEvent.Toast("Failed: " + reason);
-                    //        });
-                    //    }, function (reason) {
-                    //        DeviceEvent.SpinnerHide();
-                    //        DeviceEvent.Toast("Failed: " + reason);
-                    //    });
-                    //}
-                    //catch (e) {
-                    //    DeviceEvent.SpinnerHide();
-                    //    DeviceEvent.Toast("网络错误");
-                    //}
+                    try {
+                        Wechat.isInstalled(function (installed) {
+                            var scope = "snsapi_userinfo",
+                                state = "_" + (+new Date());
+                            Wechat.auth(scope, state, function (response) {
+                                // you may use response.code to get the access token.
+                                //get access_token
+                                $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
+                                    var rerturnData = JSON.parse(data);
+                                    //get userinfo
+                                    $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
+                                        var user_info = JSON.parse(userInfo);
+                                        var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
+                                        $state.go('map');
+                                        //check user
+                                        $http({
+                                            method: "post",
+                                            url: DreamConfig.accountUrl,
+                                            contentType:"application/json",
+                                            data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
+                                            timeout: 30000,
+                                        }).success(function (d, textStatu, xhr) {
+                                            ls.setObject('userInfo', d);
+                                            ls.set('loginTime', new Date());
+                                            DeviceEvent.SpinnerHide();
+                                            $state.go('map');
+                                        }).error(function (error, textStatu, xhr) {
+                                            DeviceEvent.SpinnerHide();
+                                            DeviceEvent.Toast("网络异常");
+                                        });
+                                    });
+                                });
+                            }, function (reason) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("Failed: " + reason);
+                            });
+                        }, function (reason) {
+                            DeviceEvent.SpinnerHide();
+                            DeviceEvent.Toast("Failed: " + reason);
+                        });
+                    }
+                    catch (e) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络错误");
+                    }
 
-                    var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0,UserId:999 };
-                    ls.setObject('userInfo', userInfo);
-                    ls.set('loginTime', new Date());
-                    $state.go('map');
+                    //var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0, UserId: 1005 };
+                    //ls.setObject('userInfo', userInfo);
+                    //ls.set('loginTime', new Date());
+                    //$state.go('map');
 
                 };
                 this.logOut = function () {
@@ -413,306 +344,26 @@ var app = {
                     }
                 });
             })
-            .controller('PacketInfoController', function ($scope, $state, sc, ls, $stateParams) {
+                
+            .controller('UserpageController', function ($scope, $http, $state, sc, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go($stateParams.returnUrl);
                 };
-                $scope.showLink = function (link) {
-                    var inAppBrowserRef = cordova.InAppBrowser.open(link, '_blank', 'location=yes');
-                    inAppBrowserRef.show();
-                }
-                $scope.addFriend = function () {
-                    if (ls.getObject("userInfo").UserId == $scope.packetInfo.UserId) {
-                        DeviceEvent.Toast("不能关注自己");
-                        return;
-                    }
-                    $.post(DreamConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&friendId=" + $scope.packetInfo.UserId + "&profits=" + $scope.packetInfo.Amount), function (ret) {
-                        if (ret == 0) DeviceEvent.Toast("已经关注过该用户了");
-                        else if (ret == 1) DeviceEvent.Toast("关注成功");
-                    });
-                }
-                $scope.attchmentRootUrl = DreamConfig.attachmentUrl;
-                if ($stateParams.returnUrl == "map")
-                    $scope.packetInfo = $stateParams.obj.Result;
-                else
-                    $scope.packetInfo = JSON.parse($stateParams.obj);
-            })
-            .controller('FiltrationController', function ($scope, $state, sc, $stateParams) {
-                sc.ValidateLogin();
-                $scope.close = function () {
-                    $state.go(curPage);
-                };
-            })
-            .controller('CreateController', function ($scope, $state, $http, $stateParams, sc, ls) {
-                sc.ValidateLogin();
-                var enableSubmit = false;
-                $scope.back = function () {
-                    $state.go(curPage);
-                };
-
-                var callback = function (buttonIndex) {
-                    setTimeout(function () {
-                        function onSuccess(imageData) {
-                            if ($('.item-box').length < 2) {
-                                $('.btn-box').css('padding-top', '0.6rem');
-                                $('.btn-box p').hide();
-                            } else {
-                                $('.btn-box p').show();
-                                $('.btn-box').css('padding-top', '0.4rem');
-                            }
-                            if (fileContents.size() >= 8) return;
-                            var fileName = guid();
-                            var imgSrc = 'data:image/jpeg;base64,' + imageData;
-                            fileContents.insert(fileName, imgSrc);
-                            var html = '<div class="item-box">' +
-                                '<img src="' + imgSrc + '">' +
-                                '<div class="iconfont-close" data-filename="' + fileName + '"></div>' +
-                                '</div>';
-                            $('.imgs-box').prepend(html);
-                        }
-                        function onFail(message) {
-                            DeviceEvent.Toast(message);
-                        }
-                        // like other Cordova plugins (prompt, confirm) the buttonIndex is 1-based (first button is index 1) 
-                        if (buttonIndex == 1) {
-                            DeviceEvent.OpenCamera(onSuccess, onFail);
-                        }
-                        if (buttonIndex == 2) {
-                            DeviceEvent.OpenAlbum(onSuccess, onFail);
-                        }
-                    });
-                };
-
-                $scope.getImg = function () {
-                    var options = {
-                        androidTheme: window.plugins.actionsheet.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT, // default is THEME_TRADITIONAL 
-                        title: '选择图片来源',
-                        buttonLabels: ['拍照', '从相册中选择'],
-                        androidEnableCancelButton: true, // default false 
-                        winphoneEnableCancelButton: true, // default false 
-                        addCancelButtonWithLabel: '取消',
-                        position: [20, 40], // for iPad pass in the [x, y] position of the popover 
-                        destructiveButtonLast: true // you can choose where the destructive button is shown 
-                    };
-                    // Depending on the buttonIndex, you can now call shareViaFacebook or shareViaTwitter 
-                    // of the SocialSharing plugin (https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin) 
-                    window.plugins.actionsheet.show(options, callback);
-                };
-
-                var locationChooseMapInit = function () {
-                    $("#locationMap").css("height", document.body.clientHeight / 2);
-                    $("#locationMap").css("width", document.body.clientWidth);
-                    var map = new BMap.Map("locationMap", { minZoom: 8, enableClicking: true });
-                    map.enableScrollWheelZoom(true);
-                    map.centerAndZoom(curLocation, 18);
-
-                    var packetIcon = new BMap.Icon("images/large_packet.png", new BMap.Size(35, 45), { offset: new BMap.Size(10, 25) });
-                    var marker = new BMap.Marker(curLocation, { icon: packetIcon });
-                    map.addOverlay(marker);
-                    map.addEventListener("click", function (e) {
-                        map.clearOverlays();
-                        var mk = new BMap.Marker(e.point, { icon: packetIcon });
-                        map.addOverlay(mk);
-                        map.centerAndZoom(e.point, 18);
-                        $scope.packetInfo.Lng = e.point.lng;
-                        $scope.packetInfo.Lat = e.point.lat;
-                    });
-
-                    $(".yes-btn").hide();
-                    $(".black-btn").show();
-                    $("#locationMap").hide();
-                };
-                locationChooseMapInit();
-
-                $scope.locationChooseShow = function () {
-                    $("#locationMap").show();
-                    $(".yes-btn").show();
-                    $(".black-btn").hide();
-                    $(".content-box").hide();
-                    $(".all-input").hide();
-                    $("#title").text("红包发布位置选择");
-                };
-                $scope.locationChooseHide = function () {
-                    $("#locationMap").hide();
-                    $(".yes-btn").hide();
-                    $(".black-btn").show();
-                    $(".content-box").show();
-                    $(".all-input").show();
-                    $("#title").text("红包信息");
-                };
-
-                $scope.packetInfo = {
-                    TotalNumber: null,
-                    Amount: null,
-                    Lng: curLocation.lng,
-                    Lat: curLocation.lat,
-                    TextContent: null,
-                    Link: null,
-                    City: curCity,
-                    UserId: ls.getObject("userInfo").UserId
-                };
-                $scope.publish = function () {
-                    if (enableSubmit) {
-                        try {
-                            DeviceEvent.SpinnerShow();
-
-                            // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
-                            $.post(DreamConfig.alipayUrl + "?subject=红包&totalAmount=" + $scope.packetInfo.Amount, function (data) {
-                                payInfo = data;
-                                // 第二步：调用支付插件            
-                                cordova.plugins.alipay.payment(payInfo, function success(e) {
-                                    var fd = new FormData();
-                                    $scope.packetInfo.Amount = parseInt($scope.packetInfo.Amount);
-                                    fd.append('packetinfo', JSON.stringify($scope.packetInfo));
-                                    $.each(fileContents._vals, function (i, file) {
-                                        var resizedImage = ResizeImage(file);
-                                        fd.append('files', resizedImage);
-                                    });
-                                    $.ajax({
-                                        url: DreamConfig.redPacketsUrl,
-                                        type: 'POST',
-                                        contentType: false,
-                                        data: fd,
-                                        cache: false,
-                                        processData: false
-                                    }).success(function () {
-                                        DeviceEvent.SpinnerHide();
-                                        $state.go('success', { obj: { header: "发布成功", title: "红包已发布", details: "非常感谢您的支持", amount: $scope.packetInfo.Amount } });
-                                    }).error(function () { DeviceEvent.Toast("发布失败"); });
-                                }, function error(e) {
-                                    DeviceEvent.SpinnerHide();
-                                    DeviceEvent.Toast("支付失败");
-                                });
-                            });
-                        }
-                        catch (e) {
-                            console.log(e);
-                            DeviceEvent.Toast("网络错误");
-                        }
-                    }
-                }
-
-                //validate
-                validateAmount($('#pakectAmount'));
-
-
-                $('#pakectAmount').bind('keyup paste', function () {
-
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (packetAmount < 0.1 * packetNumber) { DeviceEvent.Toast("每个红包金额不能小于0.1元"); }
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                $('#textContent').bind('keyup paste', function () {
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (textContentLength > 200) DeviceEvent.Toast("文字内容不能超过200个字");
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                $('#pakectNumber').bind('keyup paste', function () {
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (packetNumber == 0 || packetNumber > 100) { $("#pakectNumber").val(""); DeviceEvent.Toast("红包个数不能超过100"); }//红包个数最小1个最大100个
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                var fileContents = new _pair_array_t();
-
-                $('.select span').click(function () {
-                    if ($(this).hasClass('active')) {
-                        $('.sift-box').hide();
-                        $(this).removeClass('active');
-                    } else {
-                        $('.sift-box').show();
-                        $(this).addClass('active');
-                    }
+                $http({
+                    method: "GET",
+                    url: DreamConfig.userInfoUrl + "getbyid?userId=" + $stateParams.userId,
+                    timeout: 30000,
                 })
-                $('.imgs-box').on('click', '.iconfont-close', function () {
-                    $(this).parent('.item-box').remove();
-                    fileContents.erase($(this).data("filename"));
-                });
-            })
-            .controller('ChatController', function ($scope, $state, sc, $stateParams, ls) {
-                sc.ValidateLogin();
-                $scope.title = $stateParams.title;
-                $scope.friendId = $stateParams.userId;
-                $scope.avatar = $stateParams.avatar;
-                var enableSend = false;
-                // $scope.msgRecords = $stateParams.records;
-                $scope.back = function () {
-                    $state.go(curPage);
-                };
-                $('#content').bind('keyup paste', function () {
-                    if ($.trim($(this).val()).length > 0) {
-                        $("#btnSend").css("background", "#fe625c");
-                        enableSend = true;
-                    }
-                    else {
-                        $("#btnSend").css("background", "#b3b3b3");
-                        enableSend = false;
-                    }
-                });
-                $scope.content = "";
-                $scope.sendMsg = function () {
-                    if (enableSend) {
-                        var msgHtml = "<div class='item-box clearfix oneself'><div class='img-box'><img src='" + ls.getObject("userInfo").AvatarUrl + "'></div> <div class='txt-box'>" + $scope.content + "</div></div>"
-                        $(".chat-box").append(msgHtml);
-                        $.post(DreamConfig.chatUrl.concat('?userId=' + ls.getObject("userInfo").UserId + '&friendId=' + $stateParams.userId + '&content=' + $scope.content + '&avatar=' + ls.getObject("userInfo").AvatarUrl + '&name=' + ls.getObject("userInfo").Name), function () {
-                        });
-                        var lastMsg = $scope.content;
-                        $scope.content = "";
-
-                        var from = $stateParams.userId;
-                        var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + from));
-                        var curTime = getNowFormatDate();
-
-                        var chatInfo = { friendId: from, avatar: $stateParams.avatar, name: $stateParams.title, lastMsg: lastMsg, unReadNumber: 0, time: curTime };
-                        localStorage.setItem("recentChats_" + from, JSON.stringify(chatInfo));
-                    }
-                }
-            })
-            .controller('UserpageController', function ($scope, $state, sc, $stateParams) {
-                sc.ValidateLogin();
-                $scope.back = function () {
-                    $state.go($stateParams.returnUrl);
-                };
-                $.get(DreamConfig.userInfoUrl + "?userId=" + $stateParams.userId, function (userInfo) {
-                    $scope.$apply(function () {
+                    .success(function (userInfo, textStatu, xhr) {
                         $scope.userInfo = userInfo;
+                    })
+                    .error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
                     });
-                });
             })
-            .controller('UpdateController', function ($scope, $state, sc, ls, $stateParams) {
+            .controller('UpdateController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('userinfo');
@@ -734,12 +385,22 @@ var app = {
                                 userInfo = { UserId: ls.getObject("userInfo").UserId, AliPayName: $scope.updateInfo.value };
                                 break;
                         }
-                        $.post(DreamConfig.userInfoUrl, userInfo, function (user) {
-                            //update userInfo
-                            ls.setObject("userInfo", user);
-                            DeviceEvent.SpinnerHide();
-                            $state.go('userinfo');
-                        });
+                        $http({
+                            method: "POST",
+                            url: DreamConfig.userInfoUrl,
+                            contentType: "application/json",
+                            data: userInfo,
+                            timeout: 30000,
+                        })
+                            .success(function (user, textStatu, xhr) {
+                                ls.setObject("userInfo", user);
+                                DeviceEvent.SpinnerHide();
+                                $state.go('userinfo');
+                            })
+                            .error(function (error, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("网络异常");
+                            });
                     }
                 };
 
@@ -793,7 +454,7 @@ var app = {
                     });
                 });
             })
-            .controller('WithdrawController', function ($scope, $state, sc, ls) {
+            .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
                 var enableSubmit = false;
                 $scope.userInfo = ls.getObject("userInfo");
@@ -805,26 +466,44 @@ var app = {
                 };
                 DeviceEvent.SpinnerShow();
                 $scope.withdrawInfo = { totalAmount: null, withdrawAmount: null };
-                $.get(DreamConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function (totalAmount) {
-                    $scope.$apply(function () {
+                $http({
+                    method: "GET",
+                    url: DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId),
+                    timeout: 30000,
+                })
+                    .success(function (totalAmount, textStatu, xhr) {
                         $scope.withdrawInfo = { totalAmount: totalAmount, withdrawAmount: totalAmount };
+                        if (totalAmount >= 0.1) {
+                            enableSubmit = true;
+                            $(".btn").css("background", "#ff8569");
+                        }
+                        DeviceEvent.SpinnerHide();
+                    })
+                    .error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
                     });
-                    if (totalAmount >= 10) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                    DeviceEvent.SpinnerHide();
-                });
 
                 $scope.submit = function () {
                     if (enableSubmit) {
                         DeviceEvent.SpinnerShow();
-                        $.post(DreamConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function () {
-                            DeviceEvent.SpinnerHide();
-                            $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
-                        });
+                        $http({
+                            method: "POST",
+                            url: DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId),
+                            contentType: "application/json",
+                            timeout: 30000
+                        })
+                            .success(function (user, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
+                            })
+                            .error(function (error, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("网络异常");
+                            });
                     }
-                };
+                }
+                    
                 $scope.withdrawAll = function () {
                     $scope.withdrawInfo.withdrawAmount = $scope.withdrawInfo.totalAmount;
                     if ($scope.withdrawInfo.withdrawAmount != null && $scope.withdrawInfo.withdrawAmount >= 0) {
@@ -931,10 +610,8 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
-                $.get(DreamConfig.profitsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
-                    $scope.$apply(function () {
-                        $scope.profits = data;
-                    });
+                $.get(DreamConfig.profitUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
+                    $scope.profits = data;
                 });
             })
             .controller('QrcodeController', function ($scope, $state, sc, ls) {
@@ -949,35 +626,8 @@ var app = {
                     render: "canvas",
                     width: window.innerWidth - 150,
                     height: window.innerHeight / 3,
-                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx457087c6f3e2d3be&redirect_uri=http://scadmin.handsave.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
                 });
-            })
-            .controller('RecordsController', function ($scope, $state, sc, ls) {
-                sc.ValidateLogin();
-                $scope.back = function () {
-                    $state.go('map');
-                };
-                $scope.showDetails = function (type, index) {
-                    var packetInfo = null;
-                    if (type === "recieve") packetInfo = JSON.stringify($scope.Records.Recieved.PacketList[index]);
-                    else packetInfo = JSON.stringify($scope.Records.Send.PacketList[index]);
-                    $state.go('packetInfo', { obj: packetInfo, returnUrl: "records" });
-                }
-                $scope.attchmentRootUrl = DreamConfig.attachmentUrl;
-                $scope.Records = {};
-                DeviceEvent.SpinnerShow();
-                try {
-                    $.get(DreamConfig.packetRecordsUrl + "?userId=" + ls.getObject("userInfo").UserId, function (records) {
-                        $scope.$apply(function () {
-                            $scope.Records = records;
-                        });
-                        DeviceEvent.SpinnerHide();
-                    });
-                }
-                catch (e) {
-                    console.log(e)
-                    DeviceEvent.Toast("网络错误");
-                }
             })
             .controller('SuccessController', function ($scope, $state, sc, $stateParams) {
                 $scope.back = function () {
@@ -996,7 +646,7 @@ var app = {
             })
             .controller('MapController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "map";
-                //sc.ValidateLogin();
+                sc.ValidateLogin();
                 $scope.QueryText = "";
                 $scope.Query = function () {
                     $http({
@@ -1035,8 +685,6 @@ var app = {
                 };
             })
             .controller('FooterController', function ($scope, $state, ls) {
-                //connect im server
-              //  ImClient.Init(ls.getObject("userInfo").UserId);
                 switch (curPage) {
                     case "map":
                         $(".item-box.map").addClass("active");
@@ -1075,10 +723,6 @@ var app = {
                     DeviceEvent.Toast("网络异常");
                 });
 
-            })
-            .controller('MessageController', function ($scope, sc, $state) {
-                curPage = "message";
-                sc.ValidateLogin();
             })
             .controller('MyController', function ($scope, $state, sc, ls) {
                 curPage = "my";

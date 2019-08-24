@@ -5,12 +5,11 @@ var TBKServer = "http://tbk.huijiwanjia.com/";
 
 var DreamConfig = {
     accountUrl: DreamServer.concat("dream/auth/"),
-    mapRefreshInterval: 6000 * 10 * 2, //2 min
     tokenExpireTime: 7,//days
-    attachmentUrl: DreamServer.concat("api/attachment?url="),
-    packetRecordsUrl: DreamServer.concat("api/packetrecord/"),
-    userInfoUrl: DreamServer.concat("api/user/"),
-    withdrawUrl: DreamServer.concat("api/withdrawapply/"),
+    attachmentUrl: DreamServer.concat("dream/attachment?url="),
+    packetRecordsUrl: DreamServer.concat("dream/api/packetrecord/"),
+    userInfoUrl: DreamServer.concat("dream/user/"),
+    profitUrl: DreamServer.concat("dream/profit/"),
     tbkQuery: TBKServer.concat("api/tbk"),
     alipayUrl: DreamServer.concat("dream/alipay/"),
     appId: "wxcf1c3c250e5e4d91",
