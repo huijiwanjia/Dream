@@ -58,12 +58,12 @@ namespace Dream.DataAccess.Service
         /// <param name="currentStatu">状态参数</param>
         /// <param name="errorBackMsg"></param>
         /// <returns></returns>
-        public bool ChangeOrderStatus(int id, OrderState state)
+        public bool ChangeOrderStatus(int id, OrderState orderState)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
-                var orderState = (int)state;
-                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, orderState }, null, null, CommandType.StoredProcedure) > 0) return true;
+                var state = (int)orderState;
+                if (conn.Execute(Procedure.UpdateOrderStatus, new { id, state }, null, null, CommandType.StoredProcedure) > 0) return true;
                 else return false;
             }
         }

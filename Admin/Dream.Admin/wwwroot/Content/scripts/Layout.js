@@ -42,12 +42,12 @@ var UserStatu = {
 };
 
 var OrderState = {
-    已付款:0,
-    已收货:1,
-    已结算:2,
-    已失效:3,
-    已返利:4
-}
+    已付款: 0,
+    已收货: 1,
+    已结算: 2,
+    已失效: 3,
+    已返利: 4
+};
 
 var config = {
     dataProcessUrl: "/DataProcess/import",
