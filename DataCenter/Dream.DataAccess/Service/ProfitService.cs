@@ -33,6 +33,51 @@ namespace Dream.DataAccess.Service
             }
         }
 
+        public async Task<JqTableData<Withdraw>> QueryWithdrawData(JqTableParams param)
+        {
+            IEnumerable<Withdraw> users;
+            var paginationQuery = new PaginationQuery()
+            {
+                NeedTotalCount = true,
+                TableName = "withdraw",
+                Fields = "*",
+                Orderby = " ORDER BY Id ASC ",
+                PageIndex = param.iDisplayStart / param.iDisplayLength + 1,
+                PageSize = param.iDisplayLength,
+                SqlWhere = GenerateSqlWhere(param)
+            };
+            var jqTableData = new JqTableData<Withdraw>()
+            {
+                sEcho = param.sEcho,
+            };
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                DynamicParameters dynamicParameters = paginationQuery.GenerateParameters();
+                users = await conn.QueryAsync<Withdraw>("sp_query", dynamicParameters, commandType: CommandType.StoredProcedure);
+                if (paginationQuery.NeedTotalCount) jqTableData.iTotalDisplayRecords = dynamicParameters.Get<int>("@recordCount");
+            }
+            jqTableData.iTotalRecords = users.Count();
+            jqTableData.aaData = users;
+            return jqTableData;
+        }
+
+        /// <summary>
+        /// 改变状态
+        /// </summary>
+        /// <param name="projectId">Id</param>
+        /// <param name="currentStatu">状态参数</param>
+        /// <param name="errorBackMsg"></param>
+        /// <returns></returns>
+        public bool ChangeWithdrawStatus(int id, WithdrawStatus State)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                var status = (int)State;
+                if (conn.Execute(Procedure.UpdateWithdrawStatus, new { id, status }, null, null, CommandType.StoredProcedure) > 0) return true;
+                else return false;
+            }
+        }
         public async Task<double> GetRemainAmountAsync(int userId)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
@@ -71,5 +116,26 @@ namespace Dream.DataAccess.Service
                 }
             }
         }
+        #region MyRegion
+        #region private
+        private string GenerateSqlWhere(JqTableParams param)
+        {
+            DateTime? startTime = null;//操作日志创建时间
+            DateTime? endTime = null;
+            var strWhere = " 1=1 ";
+            if (!string.IsNullOrEmpty(param.sDateTimeRange))
+            {
+                startTime = Convert.ToDateTime(param.sDateTimeRange.Replace(" - ", ",").Split(',')[0]);
+                endTime = Convert.ToDateTime(param.sDateTimeRange.Replace(" - ", ",").Split(',')[1]);
+            }
+            startTime = startTime ?? Convert.ToDateTime("2016-01-01 00:00:00");//时间区间默认值
+            endTime = endTime ?? Convert.ToDateTime("2099-01-01 00:00:00");//时间区间默认值
+            if (!string.IsNullOrEmpty(param.sSearch))
+                strWhere += string.Format(" and (Id like '%{0}%' or Amount like '%{0}%' or ApplyTime like '%{0}%' or UserId like '%{0}%' or Status like '%{0}%' ) ", param.sSearch);
+            strWhere += string.Format(" and ApplyTime > '{0}' and ApplyTime < '{1}'", startTime, endTime);
+            return strWhere;
+        }
+        #endregion
+        #endregion
     }
 }

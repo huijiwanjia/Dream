@@ -39,6 +39,37 @@ namespace Dream.DataApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetWithdrawApply")]
+        public async Task<IActionResult> GetWithdrawApply(JqTableParams param)
+        {
+            try
+            {
+                var pagedData = await _profitService.QueryWithdrawData(param);
+                return Ok(pagedData);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"获取分页数据失败：{ex.ToString()}");
+                return BadRequest();
+            }
+        }
+        [HttpPost]
+        [Route("ChangeStatus")]
+        public ActionResult ChangeWithdrawStatus(int id, WithdrawStatus state)
+        {
+            try
+            {
+                if (_profitService.ChangeWithdrawStatus(id, state)) return Ok("success");
+                else return Ok("failed");
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"获取分页数据失败：{ex.ToString()}");
+                return BadRequest();
+            }
+        }
+
         #region Withdraw Apply
 
 
