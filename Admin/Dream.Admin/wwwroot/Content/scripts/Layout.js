@@ -57,8 +57,8 @@ var config = {
     userUrl: "http://api.huijiwanjia.com/dream/User",
     orderPaginationUrl: "http://api.huijiwanjia.com/dream/Order/pagination",
     orderChangeStatusUrl: "http://api.huijiwanjia.com/dream/Order/changestatus",
-    withdrawUrl: "http://localhost:55605/dream/Profit/GetWithdrawApply",
-    withdrawChangeStatusUrl: "http://localhost:55605/dream/Profit/ChangeStatus",
+    withdrawUrl: "http://api.huijiwanjia.com/dream/Profit/GetWithdrawApply",
+    withdrawChangeStatusUrl: "http://api.huijiwanjia.com/dream/Profit/ChangeStatus",
     wechatAppid: "wx457087c6f3e2d3be",
     wechatAppSecret: "fae0a7e5a5c6e480f7e50c7cca4988b2"
 };
