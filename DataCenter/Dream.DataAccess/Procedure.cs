@@ -18,5 +18,7 @@ namespace Dream.DataAccess
         public static string GetUserProfits => "GetUserProfits";
         public static string GetRemainAmount => "GetRemainAmount";
         public static string MutiUpdateProfitStatus => "MutiUpdateProfitStatus";
+        public static string UpdateWithdrawStatus => "UpdateWithdrawStatus";
+        public static string GetWithdrawByUserId => "GetWithdrawByUserId";
     }
 }

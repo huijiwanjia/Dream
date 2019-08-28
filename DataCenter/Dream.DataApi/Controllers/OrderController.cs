@@ -56,7 +56,7 @@ namespace Dream.DataApi.Controllers
             }
             catch (Exception ex)
             {
-                _log.Error($"获取分页数据失败：{ex.ToString()}");
+                _log.Error($"修改状态失败：{ex.ToString()}");
                 return BadRequest();
             }
         }

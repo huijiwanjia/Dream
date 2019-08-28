@@ -1,14 +1,14 @@
-﻿var OrderScript = (function () {
+﻿var WithdrawScript = (function () {
     var table;
     return {
 
         Init: function () {
-            table = $('#orderTable')
+            table = $('#withdrawTable')
                 .dataTable({
                     "bAutoWidth": false,
                     "language": { "url": "/Content/scripts/JqTableChinese.json" },
                     "bServerSide": true,
-                    "sAjaxSource": config.orderPaginationUrl,//数据接口。
+                    "sAjaxSource": config.withdrawUrl,//数据接口。
                     'bPaginate': true,                      //是否分页。
                     "bProcessing": true,                    //当datatable获取数据时候是否显示正在处理提示信息。
                     'bFilter': true,                       //是否使用内置的过滤功能。
@@ -26,23 +26,23 @@
                         "<'row'<'col-sm-5'l<'#refresh'>><'col-sm-7'<'#mytoolbox'>f>r>" +
                         "t" +
                         "<'row'<'col-sm-6'i><'col-sm-6'p>>",
-                    "initComplete": OrderScript.InitComplete,
+                    "initComplete": WithdrawScript.InitComplete,
                     "fnDrawCallback": function (oSettings) { //重新加载回调
                         //开始受理
                         $(".btn-change").on(ace.click_event, function () {
                             var id = $(this).data("id");
-                            var state = $(this).data("statu") == OrderState.已返利 ? OrderState.已结算 : OrderState.已返利;
+                            var state = $(this).data("statu") == WithdrawStatu.Completed ? WithdrawStatu.NotCompleted : WithdrawStatu.Completed;
                             bootbox.confirm("确定要改变返利状态吗?", function (result) {
                                 if (result) {
                                     WaitDialog.show();
                                     $.ajax({
-                                        url: config.orderChangeStatusUrl,
+                                        url: config.withdrawChangeStatusUrl,
                                         type: "POST",
                                         data: { id: id, state: state }
                                     })
                                         .done(function (returnMsg) {
                                             //刷新列表
-                                            $("#orderTable").dataTable().fnDraw(false);
+                                            $("#withdrawTable").dataTable().fnDraw(false);
                                             alert(returnMsg);
                                         })
                                         .error(function (ajaxContext) {
@@ -56,71 +56,58 @@
                         });
                     },
                     "fnRowCallback": function (nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格 
-                        $('td:eq(3)', nRow).html($('td:eq(3)', nRow).html().substring(0, 10));
-                        $('td:eq(6) span', nRow).attr("data-id", aData.Id);
+                        $('td:eq(2)', nRow).html($('td:eq(2)', nRow).html().substring(0, 10));
+                        $('td:eq(5) span', nRow).attr("data-id", aData.Id);
                         return nRow;
                     },
                     "columns": [
                         { "data": "Id" },
-                        { "data": "ShopName" },
-                        { "data": "ItemId" },
-                        { "data": "BuyDate" },
-                        { "data": "BackPrice" }
+                        { "data": "Amount" },
+                        { "data": "ApplyTime" },
+                        { "data": "UserId" }
                     ],
                     "columnDefs": [
                         {
-                            "targets": [5],
-                            "data": "State",
+                            "targets": [4],
+                            "data": "Status",
                             "render": function (data, type, full) {
-                                var state;
-                                var color;
+                                var state = "未处理";
+                                var color = "muted";
                                 switch (data) {
-                                    case 0:
-                                        state = "已付款";
-                                        color = "primary";
-                                        break;
                                     case 1:
-                                        state = "已收货";
-                                        color = "danger";
-                                        break;
-                                    case 2:
-                                        state = "已结算";
-                                        color = "warning";
-                                        break;
-                                    case 3:
-                                        state = "已失效";
-                                        color = "muted";
-                                        break;
-                                    case 4:
-                                        state = "已返利";
+                                        state = "已处理";
                                         color = "success";
+                                        break;
+                                    case 0:
+                                        state = "未处理";
+                                        color = "danger";
                                         break;
                                 }
                                 var html = "<span data-statu='" + data + "' class='label label-sm label-" + color + " arrowed-in'>" + state + "</span>";
-                                return html;
+                                var ret = "<div class='hidden-sm hidden-xs btn-group'>" + html + "</div>";
+                                return ret;
                             }
                         },
-                        //项目状态
                         {
-                            "targets": [6],
-                            "data": "State",
+                            "targets": [5],
+                            "data": "Status",
                             "render": function (data, type, full) {
-                                var state = "当前未结算";
-                                var color = "muted";
+                                var state = "当前未处理";
+                                var color = "danger";
                                 var i_fa = "undo";
                                 switch (data) {
-                                    case 2:
-                                        state = "设成已返利";
-                                        color = "danger";
+                                    case 0:
+                                        state = "设成已处理";
+                                        color = "success";
                                         i_fa = "check";
                                         break;
-                                    case 4:
-                                        state = "设成未返利";
-                                        color = "success";
+                                    case 1:
+                                        state = "设成未处理";
+                                        color = "danger";
                                         i_fa = "undo";
                                         break;
                                 }
-                                var html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-"+i_fa+"'></i>" + state + "</span>";
+                                var html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-" + i_fa + "'></i>" + state + "</span>";
                                 var ret = "<div class='hidden-sm hidden-xs btn-group'>" + html + "</div>";
                                 return ret;
                             }
