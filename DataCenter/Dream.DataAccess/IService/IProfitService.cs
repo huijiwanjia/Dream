@@ -17,5 +17,6 @@ namespace Dream.DataAccess.IService
         Task WithdrawApplyAsync(int userId);
         Task<JqTableData<Withdraw>> QueryWithdrawData(JqTableParams param);
         bool ChangeWithdrawStatus(int id, WithdrawStatus state);
+        Task<IEnumerable<Withdraw>> QueryWithdraw(Withdraw withdraw);
     }
 }

@@ -40,6 +40,22 @@ namespace Dream.DataApi.Controllers
         }
 
         [HttpGet]
+        [Route("QueryWithdraw")]
+        public async Task<IActionResult> QueryWithdraw(Withdraw withdraw)
+        {
+            try
+            {
+                var withdrawRet = await _profitService.QueryWithdraw(withdraw);
+                return Json(withdrawRet);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"获取用户【{withdraw.UserId}】提现申请数据失败：{ex.ToString()}");
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
         [Route("GetWithdrawApply")]
         public async Task<IActionResult> GetWithdrawApply(JqTableParams param)
         {

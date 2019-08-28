@@ -24,7 +24,6 @@ namespace Dream.DataAccess.Service
 
         public async Task<IEnumerable<Profit>> GetUserProfits(int userId)
         {
-
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
@@ -32,7 +31,16 @@ namespace Dream.DataAccess.Service
                 return profits;
             }
         }
-
+        public async Task<IEnumerable<Withdraw>> QueryWithdraw(Withdraw withdraw)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var status = (int)withdraw.Status;
+                var withdrawRet = await conn.QueryAsync<Withdraw>(Procedure.GetWithdrawByUserId, new { withdraw.UserId, status = -1 }, null, null, CommandType.StoredProcedure);
+                return withdrawRet;
+            }
+        }
         public async Task<JqTableData<Withdraw>> QueryWithdrawData(JqTableParams param)
         {
             IEnumerable<Withdraw> users;
