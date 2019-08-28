@@ -15,12 +15,13 @@ static int const MAX_THUMBNAIL_SIZE = 320;
 #pragma mark "API"
 - (void)pluginInitialize {
     NSString* appId = [[self.commandDelegate settings] objectForKey:@"wechatappid"];
-    if (appId){
+
+    if (appId && ![appId isEqualToString:self.wechatAppId]) {
         self.wechatAppId = appId;
         [WXApi registerApp: appId];
+        
+        NSLog(@"cordova-plugin-wechat has been initialized. Wechat SDK Version: %@. APP_ID: %@.", [WXApi getApiVersion], appId);
     }
-
-    NSLog(@"cordova-plugin-wechat has been initialized. Wechat SDK Version: %@. APP_ID: %@.", [WXApi getApiVersion], appId);
 }
 
 - (void)isWXAppInstalled:(CDVInvokedUrlCommand *)command
@@ -155,6 +156,13 @@ static int const MAX_THUMBNAIL_SIZE = 320;
     }
 
     PayReq *req = [[PayReq alloc] init];
+
+    // NSString *appId = [params objectForKey:requiredParams[5]];
+    // if (appId && ![appId isEqualToString:self.wechatAppId]) {
+    //     self.wechatAppId = appId;
+    //     [WXApi registerApp: appId];
+    // }
+
     req.partnerId = [params objectForKey:requiredParams[0]];
     req.prepayId = [params objectForKey:requiredParams[1]];
     req.timeStamp = [[params objectForKey:requiredParams[2]] intValue];
@@ -269,7 +277,7 @@ static int const MAX_THUMBNAIL_SIZE = 320;
     NSLog(@"%@", req);
 }
 
-- (void)onResp:(BaseResp *)resp
+- (void)onResp:(WXLaunchMiniProgramResp *)resp
 {
     BOOL success = NO;
     NSString *message = @"Unknown";
@@ -344,6 +352,15 @@ static int const MAX_THUMBNAIL_SIZE = 320;
                     CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:response];
                     [self.commandDelegate sendPluginResult:commandResult callbackId:self.currentCallbackId];
                 }
+        else if ([resp isKindOfClass:[WXLaunchMiniProgramResp class]])
+        {
+            NSString *extMsg = resp.extMsg;
+            response = @{
+                         @"extMsg": extMsg
+                         };
+            CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:response];
+            [self.commandDelegate sendPluginResult:commandResult callbackId:self.currentCallbackId];
+        }
         else
         {
             [self successWithCallbackID:self.currentCallbackId];
@@ -354,6 +371,7 @@ static int const MAX_THUMBNAIL_SIZE = 320;
         [self failWithCallbackID:self.currentCallbackId withMessage:message];
     }
 
+    [self pluginInitialize];
     self.currentCallbackId = nil;
 }
 
@@ -386,8 +404,8 @@ static int const MAX_THUMBNAIL_SIZE = 320;
 
     // media parameters
     id mediaObject = nil;
+    WXMiniProgramObject *object;
     NSDictionary *media = [message objectForKey:@"media"];
-
     // check types
     NSInteger type = [[media objectForKey:@"type"] integerValue];
     switch (type)
@@ -424,7 +442,17 @@ static int const MAX_THUMBNAIL_SIZE = 320;
             mediaObject = [WXVideoObject object];
             ((WXVideoObject*)mediaObject).videoUrl = [media objectForKey:@"videoUrl"];
             break;
-
+        case CDVWXSharingTypeMini:
+            object = [WXMiniProgramObject object];
+            object.webpageUrl = [media objectForKey:@"webpageUrl"];
+            object.userName = [media objectForKey:@"userName"];
+            object.path = [media objectForKey:@"path"]; // pages/inbox/inbox?name1=key1&name=key2
+            object.hdImageData = [self getNSDataFromURL:[media objectForKey:@"hdImageData"]];
+            object.withShareTicket = [[media objectForKey:@"withShareTicket"] boolValue];
+            object.miniProgramType = (int)[[media objectForKey:@"miniProgramType"] integerValue];
+            wxMediaMessage.mediaObject = object;
+            return wxMediaMessage;
+            
         case CDVWXSharingTypeWebPage:
         default:
             mediaObject = [WXWebpageObject object];
@@ -518,6 +546,24 @@ static int const MAX_THUMBNAIL_SIZE = 320;
 {
     CDVPluginResult *commandResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:message];
     [self.commandDelegate sendPluginResult:commandResult callbackId:callbackID];
+}
+
+-  (void)openMiniProgram:(CDVInvokedUrlCommand *)command
+{
+    NSDictionary *params = [command.arguments objectAtIndex:0];
+    WXLaunchMiniProgramReq *launchMiniProgramReq = [WXLaunchMiniProgramReq object];
+    launchMiniProgramReq.userName = [params objectForKey:@"userName"];  //拉起的小程序的username
+    launchMiniProgramReq.path = [params objectForKey:@"path"];    //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+    launchMiniProgramReq.miniProgramType = (int)[[params objectForKey:@"miniprogramType"] integerValue]; //拉起小程序的类型
+    if ([WXApi sendReq:launchMiniProgramReq])
+    {
+        // save th e callback id
+        self.currentCallbackId = command.callbackId;
+    }
+    else
+    {
+        [self failWithCallbackID:command.callbackId withMessage:@"打开请求失败"];
+    }
 }
 
 @end

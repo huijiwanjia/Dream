@@ -54,7 +54,7 @@
   <plugin name="cordova-plugin-actionsheet" spec="~2.3.3" />
   <plugin name="cordova-plugin-ios-camera-permissions" spec="~1.2.0" />
   <plugin name="cordova-plugin-alipay-v2" spec="1.0.0">
-    <variable name="APP_ID" value="2019070465742601" />
+    <param name="APP_ID" value="2019070465742601" />
   </plugin>
   
 

@@ -1,34 +1,32 @@
-﻿
-var curPage = "";
-var curLocation = null;
-var curCity = "";
-//var SCServer = "http://192.168.48.1:8084/";
-var SCServer = "http://sc.handsave.com/";
-var mapRefreshInterval = null;
+﻿var curPage = "";
+//var DreamServer = "http://localhost:55605/";
+var DreamServer = "http://api.huijiwanjia.com/";
+var TBKServer = "http://tbk.huijiwanjia.com/";
 
-var scConfig = {
-    iMServer: SCServer.concat("signalr"),
-    redPacketsUrl: SCServer.concat("api/redpacket/"),
-    accountUrl: SCServer.concat("api/account/"),
-    mapRefreshInterval: 6000 * 10 * 2, //2 min
+var DreamConfig = {
+    accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days
-    attachmentUrl: SCServer.concat("api/attachment?url="),
-    packetRecordsUrl: SCServer.concat("api/packetrecord/"),
-    userInfoUrl: SCServer.concat("api/user/"),
-    withdrawUrl: SCServer.concat("api/withdrawapply/"),
-    alipayUrl: SCServer.concat("api/alipay/"),
-    appId: "wx4722ea6aded42ab7",
-    appSecret: "8a575ff0f4cbc92047ed126d060abf5a",
-    profitsUrl: SCServer.concat("api/profit/"),
-    teamUrl: SCServer.concat("api/team/"),
-    userContactsUrl: SCServer.concat("api/usercontacts/"),
-    chatUrl: SCServer.concat("api/message/"),
+    attachmentUrl: DreamServer.concat("dream/attachment?url="),
+    packetRecordsUrl: DreamServer.concat("dream/api/packetrecord/"),
+    userInfoUrl: DreamServer.concat("dream/user/"),
+    profitUrl: DreamServer.concat("dream/profit/"),
+    tbkQuery: TBKServer.concat("api/tbk"),
+    alipayUrl: DreamServer.concat("dream/alipay/"),
+    appId: "wxcf1c3c250e5e4d91",
+    appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
+    clickLog: DreamServer.concat("dream/clicklog/"),
+    userOrders: DreamServer.concat("dream/order")
 }
 var agencyType = {
     NotAgency: 0,
     City: 1,
     Country: 2,
 }
+
+
+
+
+
 
 
 

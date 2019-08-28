@@ -268,56 +268,56 @@ var app = {
                 };
                 this.Login = function () {
                     //get from tencent
-                    try {
-                        Wechat.isInstalled(function (installed) {
-                            var scope = "snsapi_userinfo",
-                                state = "_" + (+new Date());
-                            Wechat.auth(scope, state, function (response) {
-                                // you may use response.code to get the access token.
-                                //get access_token
-                                $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
-                                    var rerturnData = JSON.parse(data);
-                                    //get userinfo
-                                    $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
-                                        var user_info = JSON.parse(userInfo);
-                                        var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
-                                        $state.go('map');
-                                        //check user
-                                        $http({
-                                            method: "post",
-                                            url: DreamConfig.accountUrl,
-                                            contentType:"application/json",
-                                            data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
-                                            timeout: 30000,
-                                        }).success(function (d, textStatu, xhr) {
-                                            ls.setObject('userInfo', d);
-                                            ls.set('loginTime', new Date());
-                                            DeviceEvent.SpinnerHide();
-                                            $state.go('map');
-                                        }).error(function (error, textStatu, xhr) {
-                                            DeviceEvent.SpinnerHide();
-                                            DeviceEvent.Toast("网络异常");
-                                        });
-                                    });
-                                });
-                            }, function (reason) {
-                                DeviceEvent.SpinnerHide();
-                                DeviceEvent.Toast("Failed: " + reason);
-                            });
-                        }, function (reason) {
-                            DeviceEvent.SpinnerHide();
-                            DeviceEvent.Toast("Failed: " + reason);
-                        });
-                    }
-                    catch (e) {
-                        DeviceEvent.SpinnerHide();
-                        DeviceEvent.Toast("网络错误");
-                    }
+                    //try {
+                    //    Wechat.isInstalled(function (installed) {
+                    //        var scope = "snsapi_userinfo",
+                    //            state = "_" + (+new Date());
+                    //        Wechat.auth(scope, state, function (response) {
+                    //            // you may use response.code to get the access token.
+                    //            //get access_token
+                    //            $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
+                    //                var rerturnData = JSON.parse(data);
+                    //                //get userinfo
+                    //                $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
+                    //                    var user_info = JSON.parse(userInfo);
+                    //                    var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
+                    //                    $state.go('map');
+                    //                    //check user
+                    //                    $http({
+                    //                        method: "post",
+                    //                        url: DreamConfig.accountUrl,
+                    //                        contentType:"application/json",
+                    //                        data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
+                    //                        timeout: 30000,
+                    //                    }).success(function (d, textStatu, xhr) {
+                    //                        ls.setObject('userInfo', d);
+                    //                        ls.set('loginTime', new Date());
+                    //                        DeviceEvent.SpinnerHide();
+                    //                        $state.go('map');
+                    //                    }).error(function (error, textStatu, xhr) {
+                    //                        DeviceEvent.SpinnerHide();
+                    //                        DeviceEvent.Toast("网络异常");
+                    //                    });
+                    //                });
+                    //            });
+                    //        }, function (reason) {
+                    //            DeviceEvent.SpinnerHide();
+                    //            DeviceEvent.Toast("Failed: " + reason);
+                    //        });
+                    //    }, function (reason) {
+                    //        DeviceEvent.SpinnerHide();
+                    //        DeviceEvent.Toast("Failed: " + reason);
+                    //    });
+                    //}
+                    //catch (e) {
+                    //    DeviceEvent.SpinnerHide();
+                    //    DeviceEvent.Toast("网络错误");
+                    //}
 
-                    //var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0, UserId: 3 };
-                    //ls.setObject('userInfo', userInfo);
-                    //ls.set('loginTime', new Date());
-                    //$state.go('map');
+                    var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0, UserId: 3 };
+                    ls.setObject('userInfo', userInfo);
+                    ls.set('loginTime', new Date());
+                    $state.go('map');
 
                 };
                 this.logOut = function () {

@@ -30,7 +30,7 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         // disable back button in andriod
-        document.addEventListener("backbutton", this.BackButtonCallback, false);
+        //document.addEventListener("backbutton", this.BackButtonCallback, false);
     },
     // deviceready Event Handler
     //
@@ -41,6 +41,8 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
+        StatusBar.styleDefault();
+        StatusBar.overlaysWebView(true);
         //init fast click
         FastClick.attach(document.body);
     },
@@ -82,52 +84,7 @@ var app = {
                             }
                         }
                     })
-                    .state('packetInfo', {
-                        url: "/packetInfo",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/packetInfo.html',
-                                controller: 'PacketInfoController'
-                            }
-                        },
-                        params: {
-                            obj: null,
-                            returnUrl: "map"
-                        }
-                    })
-                    .state('filtration', {
-                        url: "/filtration",
-                        views: {
-                            'content': {
-                                templateUrl: 'views/filtration.html',
-                                controller: 'FiltrationController'
-                            }
-                        }
-                    })
-                    .state('create', {
-                        url: "/create",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/create.html',
-                                controller: 'CreateController'
-                            }
-                        }
-                    })
-                    .state('chat', {
-                        url: "/chat",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/chat.html',
-                                controller: 'ChatController'
-                            }
-                        },
-                        params: {
-                            userId: null,
-                            title: null,
-                            records: null,
-                            avatar: null
-                        }
-                    })
+
                     .state('userpage', {
                         url: "/userpage",
                         views: {
@@ -207,16 +164,6 @@ var app = {
                             }
                         }
                     })
-                    .state('records', {
-                        cache: true,
-                        url: "/records",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/records.html',
-                                controller: 'RecordsController'
-                            }
-                        }
-                    })
                     .state('success', {
                         url: "/success",
                         views: {
@@ -236,20 +183,6 @@ var app = {
                             'content': {
                                 templateUrl: 'views/contacts.html',
                                 controller: 'ContactsController'
-                            },
-                            'footer': {
-                                templateUrl: 'views/footer.html',
-                                controller: 'FooterController'
-                            }
-                        }
-                    })
-                    .state('message', {
-                        url: "/message",
-                        cache: true,
-                        views: {
-                            'content': {
-                                templateUrl: 'views/message.html',
-                                controller: 'MessageController',
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -316,13 +249,12 @@ var app = {
             .service('sc', function ($state, ls, $http, $rootScope, $window) {
                 this.checkTicketStillActive = function () {
                     var loginTime = ls.get('loginTime');
-
                     if (loginTime) {
                         var curTime = new Date();
                         var diff = curTime.getTime() - new Date(loginTime).getTime();
                         var diffDays = diff / (24 * 3600 * 1000);//相差天数
                         //判断凭证是否过期
-                        if (diffDays < scConfig.tokenExpireTime) {
+                        if (diffDays < DreamConfig.tokenExpireTime) {
                             $state.go('map');
                         }
                         else {
@@ -341,18 +273,20 @@ var app = {
                             var scope = "snsapi_userinfo",
                                 state = "_" + (+new Date());
                             Wechat.auth(scope, state, function (response) {
-                                //you may use response.code to get the access token.
-                                // get access_token
-                                $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + scConfig.appId + "&secret=" + scConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
+                                // you may use response.code to get the access token.
+                                //get access_token
+                                $.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code", function (data) {
                                     var rerturnData = JSON.parse(data);
                                     //get userinfo
                                     $.get("https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
                                         var user_info = JSON.parse(userInfo);
                                         var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
-                                        //  check user 
+                                        $state.go('map');
+                                        //check user
                                         $http({
                                             method: "post",
-                                            url: scConfig.accountUrl,
+                                            url: DreamConfig.accountUrl,
+                                            contentType:"application/json",
                                             data: { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId },
                                             timeout: 30000,
                                         }).success(function (d, textStatu, xhr) {
@@ -380,27 +314,11 @@ var app = {
                         DeviceEvent.Toast("网络错误");
                     }
 
-                    //var userInfo = { openId: "17623852228", avatarUrl: "http://119.28.54.31:8055/user_2.jpg", unionId: "10191656", name: "蜡笔小新", sex: 0 };
-                    //try {
-                    //    $http({
-                    //        method: "post",
-                    //        url: scConfig.accountUrl,
-                    //        data: { openId: userInfo.openId, avatarUrl: userInfo.avatarUrl, name: userInfo.name, sex: userInfo.sex, unionId: userInfo.unionId },
-                    //        timeout: 30000,
-                    //    }).success(function (d, textStatu, xhr) {
-                    //        ls.setObject('userInfo', d);
-                    //        ls.set('loginTime', new Date());
-                    //        DeviceEvent.SpinnerHide();
-                    //        $state.go('map');
-                    //    }).error(function (error, textStatu, xhr) {
-                    //        DeviceEvent.SpinnerHide();
-                    //        DeviceEvent.Toast("网络异常");
-                    //    });
-                    //}
-                    //catch (e) {
-                    //    console.log(e);
-                    //    DeviceEvent.Toast("网络错误");
-                    //}
+                    //var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 0, UserId: 3 };
+                    //ls.setObject('userInfo', userInfo);
+                    //ls.set('loginTime', new Date());
+                    //$state.go('map');
+
                 };
                 this.logOut = function () {
                     DeviceEvent.Confirm("退出之后需要重新登陆",
@@ -426,306 +344,26 @@ var app = {
                     }
                 });
             })
-            .controller('PacketInfoController', function ($scope, $state, sc, ls, $stateParams) {
+                
+            .controller('UserpageController', function ($scope, $http, $state, sc, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go($stateParams.returnUrl);
                 };
-                $scope.showLink = function (link) {
-                    var inAppBrowserRef = cordova.InAppBrowser.open(link, '_blank', 'location=yes');
-                    inAppBrowserRef.show();
-                }
-                $scope.addFriend = function () {
-                    if (ls.getObject("userInfo").UserId == $scope.packetInfo.UserId) {
-                        DeviceEvent.Toast("不能关注自己");
-                        return;
-                    }
-                    $.post(scConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&friendId=" + $scope.packetInfo.UserId + "&profits=" + $scope.packetInfo.Amount), function (ret) {
-                        if (ret == 0) DeviceEvent.Toast("已经关注过该用户了");
-                        else if (ret == 1) DeviceEvent.Toast("关注成功");
-                    });
-                }
-                $scope.attchmentRootUrl = scConfig.attachmentUrl;
-                if ($stateParams.returnUrl == "map")
-                    $scope.packetInfo = $stateParams.obj.Result;
-                else
-                    $scope.packetInfo = JSON.parse($stateParams.obj);
-            })
-            .controller('FiltrationController', function ($scope, $state, sc, $stateParams) {
-                sc.ValidateLogin();
-                $scope.close = function () {
-                    $state.go(curPage);
-                };
-            })
-            .controller('CreateController', function ($scope, $state, $http, $stateParams, sc, ls) {
-                sc.ValidateLogin();
-                var enableSubmit = false;
-                $scope.back = function () {
-                    $state.go(curPage);
-                };
-
-                var callback = function (buttonIndex) {
-                    setTimeout(function () {
-                        function onSuccess(imageData) {
-                            if ($('.item-box').length < 2) {
-                                $('.btn-box').css('padding-top', '0.6rem');
-                                $('.btn-box p').hide();
-                            } else {
-                                $('.btn-box p').show();
-                                $('.btn-box').css('padding-top', '0.4rem');
-                            }
-                            if (fileContents.size() >= 8) return;
-                            var fileName = guid();
-                            var imgSrc = 'data:image/jpeg;base64,' + imageData;
-                            fileContents.insert(fileName, imgSrc);
-                            var html = '<div class="item-box">' +
-                                '<img src="' + imgSrc + '">' +
-                                '<div class="iconfont-close" data-filename="' + fileName + '"></div>' +
-                                '</div>';
-                            $('.imgs-box').prepend(html);
-                        }
-                        function onFail(message) {
-                            DeviceEvent.Toast(message);
-                        }
-                        // like other Cordova plugins (prompt, confirm) the buttonIndex is 1-based (first button is index 1) 
-                        if (buttonIndex == 1) {
-                            DeviceEvent.OpenCamera(onSuccess, onFail);
-                        }
-                        if (buttonIndex == 2) {
-                            DeviceEvent.OpenAlbum(onSuccess, onFail);
-                        }
-                    });
-                };
-
-                $scope.getImg = function () {
-                    var options = {
-                        androidTheme: window.plugins.actionsheet.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT, // default is THEME_TRADITIONAL 
-                        title: '选择图片来源',
-                        buttonLabels: ['拍照', '从相册中选择'],
-                        androidEnableCancelButton: true, // default false 
-                        winphoneEnableCancelButton: true, // default false 
-                        addCancelButtonWithLabel: '取消',
-                        position: [20, 40], // for iPad pass in the [x, y] position of the popover 
-                        destructiveButtonLast: true // you can choose where the destructive button is shown 
-                    };
-                    // Depending on the buttonIndex, you can now call shareViaFacebook or shareViaTwitter 
-                    // of the SocialSharing plugin (https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin) 
-                    window.plugins.actionsheet.show(options, callback);
-                };
-
-                var locationChooseMapInit = function () {
-                    $("#locationMap").css("height", document.body.clientHeight / 2);
-                    $("#locationMap").css("width", document.body.clientWidth);
-                    var map = new BMap.Map("locationMap", { minZoom: 8, enableClicking: true });
-                    map.enableScrollWheelZoom(true);
-                    map.centerAndZoom(curLocation, 18);
-
-                    var packetIcon = new BMap.Icon("images/large_packet.png", new BMap.Size(35, 45), { offset: new BMap.Size(10, 25) });
-                    var marker = new BMap.Marker(curLocation, { icon: packetIcon });
-                    map.addOverlay(marker);
-                    map.addEventListener("click", function (e) {
-                        map.clearOverlays();
-                        var mk = new BMap.Marker(e.point, { icon: packetIcon });
-                        map.addOverlay(mk);
-                        map.centerAndZoom(e.point, 18);
-                        $scope.packetInfo.Lng = e.point.lng;
-                        $scope.packetInfo.Lat = e.point.lat;
-                    });
-
-                    $(".yes-btn").hide();
-                    $(".black-btn").show();
-                    $("#locationMap").hide();
-                };
-                locationChooseMapInit();
-
-                $scope.locationChooseShow = function () {
-                    $("#locationMap").show();
-                    $(".yes-btn").show();
-                    $(".black-btn").hide();
-                    $(".content-box").hide();
-                    $(".all-input").hide();
-                    $("#title").text("红包发布位置选择");
-                };
-                $scope.locationChooseHide = function () {
-                    $("#locationMap").hide();
-                    $(".yes-btn").hide();
-                    $(".black-btn").show();
-                    $(".content-box").show();
-                    $(".all-input").show();
-                    $("#title").text("红包信息");
-                };
-
-                $scope.packetInfo = {
-                    TotalNumber: null,
-                    Amount: null,
-                    Lng: curLocation.lng,
-                    Lat: curLocation.lat,
-                    TextContent: null,
-                    Link: null,
-                    City: curCity,
-                    UserId: ls.getObject("userInfo").UserId
-                };
-                $scope.publish = function () {
-                    if (enableSubmit) {
-                        try {
-                            DeviceEvent.SpinnerShow();
-
-                            // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
-                            $.post(scConfig.alipayUrl + "?subject=红包&totalAmount=" + $scope.packetInfo.Amount, function (data) {
-                                payInfo = data;
-                                // 第二步：调用支付插件            
-                                cordova.plugins.alipay.payment(payInfo, function success(e) {
-                                    var fd = new FormData();
-                                    $scope.packetInfo.Amount = parseInt($scope.packetInfo.Amount);
-                                    fd.append('packetinfo', JSON.stringify($scope.packetInfo));
-                                    $.each(fileContents._vals, function (i, file) {
-                                        var resizedImage = ResizeImage(file);
-                                        fd.append('files', resizedImage);
-                                    });
-                                    $.ajax({
-                                        url: scConfig.redPacketsUrl,
-                                        type: 'POST',
-                                        contentType: false,
-                                        data: fd,
-                                        cache: false,
-                                        processData: false
-                                    }).success(function () {
-                                        DeviceEvent.SpinnerHide();
-                                        $state.go('success', { obj: { header: "发布成功", title: "红包已发布", details: "非常感谢您的支持", amount: $scope.packetInfo.Amount } });
-                                    }).error(function () { DeviceEvent.Toast("发布失败"); });
-                                }, function error(e) {
-                                    DeviceEvent.SpinnerHide();
-                                    DeviceEvent.Toast("支付失败");
-                                });
-                            });
-                        }
-                        catch (e) {
-                            console.log(e);
-                            DeviceEvent.Toast("网络错误");
-                        }
-                    }
-                }
-
-                //validate
-                validateAmount($('#pakectAmount'));
-
-
-                $('#pakectAmount').bind('keyup paste', function () {
-
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (packetAmount < 0.1 * packetNumber) { DeviceEvent.Toast("每个红包金额不能小于0.1元"); }
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                $('#textContent').bind('keyup paste', function () {
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (textContentLength > 200) DeviceEvent.Toast("文字内容不能超过200个字");
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                $('#pakectNumber').bind('keyup paste', function () {
-                    var packetNumber = parseInt($("#pakectNumber").val());
-                    var packetAmount = parseInt($("#pakectAmount").val());
-                    var textContentLength = $.trim($("#textContent").val()).length;
-
-                    if (packetNumber == 0 || packetNumber > 100) { $("#pakectNumber").val(""); DeviceEvent.Toast("红包个数不能超过100"); }//红包个数最小1个最大100个
-                    if (textContentLength > 0 && textContentLength <= 200 && packetAmount > 0 && packetNumber > 0 && packetNumber <= 100 && packetAmount >= 0.1 * packetNumber) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#fe625c");
-                    }
-                    else {
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
-
-                var fileContents = new _pair_array_t();
-
-                $('.select span').click(function () {
-                    if ($(this).hasClass('active')) {
-                        $('.sift-box').hide();
-                        $(this).removeClass('active');
-                    } else {
-                        $('.sift-box').show();
-                        $(this).addClass('active');
-                    }
+                $http({
+                    method: "GET",
+                    url: DreamConfig.userInfoUrl + "getbyid?userId=" + $stateParams.userId,
+                    timeout: 30000,
                 })
-                $('.imgs-box').on('click', '.iconfont-close', function () {
-                    $(this).parent('.item-box').remove();
-                    fileContents.erase($(this).data("filename"));
-                });
-            })
-            .controller('ChatController', function ($scope, $state, sc, $stateParams, ls) {
-                sc.ValidateLogin();
-                $scope.title = $stateParams.title;
-                $scope.friendId = $stateParams.userId;
-                $scope.avatar = $stateParams.avatar;
-                var enableSend = false;
-                // $scope.msgRecords = $stateParams.records;
-                $scope.back = function () {
-                    $state.go(curPage);
-                };
-                $('#content').bind('keyup paste', function () {
-                    if ($.trim($(this).val()).length > 0) {
-                        $("#btnSend").css("background", "#fe625c");
-                        enableSend = true;
-                    }
-                    else {
-                        $("#btnSend").css("background", "#b3b3b3");
-                        enableSend = false;
-                    }
-                });
-                $scope.content = "";
-                $scope.sendMsg = function () {
-                    if (enableSend) {
-                        var msgHtml = "<div class='item-box clearfix oneself'><div class='img-box'><img src='" + ls.getObject("userInfo").AvatarUrl + "'></div> <div class='txt-box'>" + $scope.content + "</div></div>"
-                        $(".chat-box").append(msgHtml);
-                        $.post(scConfig.chatUrl.concat('?userId=' + ls.getObject("userInfo").UserId + '&friendId=' + $stateParams.userId + '&content=' + $scope.content + '&avatar=' + ls.getObject("userInfo").AvatarUrl + '&name=' + ls.getObject("userInfo").Name), function () {
-                        });
-                        var lastMsg = $scope.content;
-                        $scope.content = "";
-
-                        var from = $stateParams.userId;
-                        var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + from));
-                        var curTime = getNowFormatDate();
-
-                        var chatInfo = { friendId: from, avatar: $stateParams.avatar, name: $stateParams.title, lastMsg: lastMsg, unReadNumber: 0, time: curTime };
-                        localStorage.setItem("recentChats_" + from, JSON.stringify(chatInfo));
-                    }
-                }
-            })
-            .controller('UserpageController', function ($scope, $state, sc, $stateParams) {
-                sc.ValidateLogin();
-                $scope.back = function () {
-                    $state.go($stateParams.returnUrl);
-                };
-                $.get(scConfig.userInfoUrl + "?userId=" + $stateParams.userId, function (userInfo) {
-                    $scope.$apply(function () {
+                    .success(function (userInfo, textStatu, xhr) {
                         $scope.userInfo = userInfo;
+                    })
+                    .error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
                     });
-                });
             })
-            .controller('UpdateController', function ($scope, $state, sc, ls, $stateParams) {
+            .controller('UpdateController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('userinfo');
@@ -747,12 +385,22 @@ var app = {
                                 userInfo = { UserId: ls.getObject("userInfo").UserId, AliPayName: $scope.updateInfo.value };
                                 break;
                         }
-                        $.post(scConfig.userInfoUrl, userInfo, function (user) {
-                            //update userInfo
-                            ls.setObject("userInfo", user);
-                            DeviceEvent.SpinnerHide();
-                            $state.go('userinfo');
-                        });
+                        $http({
+                            method: "POST",
+                            url: DreamConfig.userInfoUrl,
+                            contentType: "application/json",
+                            data: userInfo,
+                            timeout: 30000,
+                        })
+                            .success(function (user, textStatu, xhr) {
+                                ls.setObject("userInfo", user);
+                                DeviceEvent.SpinnerHide();
+                                $state.go('userinfo');
+                            })
+                            .error(function (error, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("网络异常");
+                            });
                     }
                 };
 
@@ -799,14 +447,14 @@ var app = {
                     $state.go('userpage', { userId: userId, returnUrl: "team" })
                 }
                 DeviceEvent.SpinnerShow();
-                $.get(scConfig.teamUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (members) {
+                $.get(DreamConfig.teamUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (members) {
                     $scope.$apply(function () {
                         $scope.teamInfo = members;
                         DeviceEvent.SpinnerHide();
                     });
                 });
             })
-            .controller('WithdrawController', function ($scope, $state, sc, ls) {
+            .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
                 var enableSubmit = false;
                 $scope.userInfo = ls.getObject("userInfo");
@@ -818,29 +466,47 @@ var app = {
                 };
                 DeviceEvent.SpinnerShow();
                 $scope.withdrawInfo = { totalAmount: null, withdrawAmount: null };
-                $.get(scConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function (totalAmount) {
-                    $scope.$apply(function () {
+                $http({
+                    method: "GET",
+                    url: DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId),
+                    timeout: 30000,
+                })
+                    .success(function (totalAmount, textStatu, xhr) {
                         $scope.withdrawInfo = { totalAmount: totalAmount, withdrawAmount: totalAmount };
+                        if (totalAmount >= 0.1) {
+                            enableSubmit = true;
+                            $(".btn").css("background", "#ff8569");
+                        }
+                        DeviceEvent.SpinnerHide();
+                    })
+                    .error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
                     });
-                    if (totalAmount >= 10) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                    DeviceEvent.SpinnerHide();
-                });
 
                 $scope.submit = function () {
                     if (enableSubmit) {
                         DeviceEvent.SpinnerShow();
-                        $.post(scConfig.withdrawUrl.concat("?userId=" + $scope.userInfo.UserId), function () {
-                            DeviceEvent.SpinnerHide();
-                            $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
-                        });
+                        $http({
+                            method: "POST",
+                            url: DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId),
+                            contentType: "application/json",
+                            timeout: 30000
+                        })
+                            .success(function (user, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
+                            })
+                            .error(function (error, textStatu, xhr) {
+                                DeviceEvent.SpinnerHide();
+                                DeviceEvent.Toast("网络异常");
+                            });
                     }
-                };
+                }
+                    
                 $scope.withdrawAll = function () {
                     $scope.withdrawInfo.withdrawAmount = $scope.withdrawInfo.totalAmount;
-                    if ($scope.withdrawInfo.withdrawAmount != null && $scope.withdrawInfo.withdrawAmount >= 10) {
+                    if ($scope.withdrawInfo.withdrawAmount != null && $scope.withdrawInfo.withdrawAmount >= 0) {
                         enableSubmit = true;
                         $(".btn").css("background", "#ff8569");
                     }
@@ -860,7 +526,7 @@ var app = {
                     }
                 });
             })
-            .controller('AgencyController', function ($scope, $state, sc, ls) {
+            .controller('AgencyController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('my');
@@ -894,12 +560,35 @@ var app = {
                         amount = 0.01;
                     }
                     // 第一步：订单在服务端签名生成订单信息，具体请参考官网进行签名处理 https://docs.open.alipay.com/204/105465/
-                    $.post(scConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
+                    $http({
+                        method: "post",
+                        url: DreamConfig.alipayUrl,
+                        contentType: "application/json",
+                        data: { subject: subject, totalAmount: amount},
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        payInfo = d;
+                        DeviceEvent.Toast(payInfo);
+                        // 第二步：调用支付插件            
+                        cordova.plugins.alipay.payment(payInfo, function success(e) {
+                            DeviceEvent.SpinnerHide();
+                            $state.go('success', { obj: { header: "购买成功", title: title, details: "您已完成本次交易", amount: amount } });
+                        }, function error(e) {
+                            DeviceEvent.SpinnerHide();
+                            DeviceEvent.Toast("支付失败");
+                        });
+                    }).error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
+
+
+                    $.post(DreamConfig.alipayUrl + "?subject=" + subject + "&&totalAmount=" + amount, function (data) {
                         payInfo = data;
                         // 第二步：调用支付插件            
                         cordova.plugins.alipay.payment(payInfo, function success(e) {
                             var userInfo = { UserId: ls.getObject("userInfo").UserId, AgencyType: type };
-                            $.post(scConfig.userInfoUrl, userInfo, function (user) {
+                            $.post(DreamConfig.userInfoUrl, userInfo, function (user) {
                                 DeviceEvent.SpinnerHide();
                                 //update user info
                                 ls.setObject("userInfo", user);
@@ -921,10 +610,8 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
-                $.get(scConfig.profitsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
-                    $scope.$apply(function () {
-                        $scope.profits = data;
-                    });
+                $.get(DreamConfig.profitUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
+                    $scope.profits = data;
                 });
             })
             .controller('QrcodeController', function ($scope, $state, sc, ls) {
@@ -939,35 +626,8 @@ var app = {
                     render: "canvas",
                     width: window.innerWidth - 150,
                     height: window.innerHeight / 3,
-                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx457087c6f3e2d3be&redirect_uri=http://scadmin.handsave.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
                 });
-            })
-            .controller('RecordsController', function ($scope, $state, sc, ls) {
-                sc.ValidateLogin();
-                $scope.back = function () {
-                    $state.go('map');
-                };
-                $scope.showDetails = function (type, index) {
-                    var packetInfo = null;
-                    if (type === "recieve") packetInfo = JSON.stringify($scope.Records.Recieved.PacketList[index]);
-                    else packetInfo = JSON.stringify($scope.Records.Send.PacketList[index]);
-                    $state.go('packetInfo', { obj: packetInfo, returnUrl: "records" });
-                }
-                $scope.attchmentRootUrl = scConfig.attachmentUrl;
-                $scope.Records = {};
-                DeviceEvent.SpinnerShow();
-                try {
-                    $.get(scConfig.packetRecordsUrl + "?userId=" + ls.getObject("userInfo").UserId, function (records) {
-                        $scope.$apply(function () {
-                            $scope.Records = records;
-                        });
-                        DeviceEvent.SpinnerHide();
-                    });
-                }
-                catch (e) {
-                    console.log(e)
-                    DeviceEvent.Toast("网络错误");
-                }
             })
             .controller('SuccessController', function ($scope, $state, sc, $stateParams) {
                 $scope.back = function () {
@@ -987,61 +647,44 @@ var app = {
             .controller('MapController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "map";
                 sc.ValidateLogin();
-
-                $scope.openRedPacket = function ($event) {
-                    $event.stopPropagation();
-                    DeviceEvent.SpinnerShow();
-                    $.post(scConfig.redPacketsUrl.concat("?userId=" + ls.getObject("userInfo").UserId + "&packetId=" + $(".hot-box").data("packetid")), function (packetInfo) {
+                $scope.QueryText = "";
+                $scope.Query = function () {
+                    $http({
+                        method: "post",
+                        url: DreamConfig.tbkQuery,
+                        contentType: "application/json",
+                        data: { q: $scope.QueryText, pagesize:5 },
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                        d = JSON.parse(d);
+                        var ret = d.tbk_dg_material_optional_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.QueryResult = d;
+                        console.log($scope.QueryResult);
+                    }).error(function (error, textStatu, xhr) {
                         DeviceEvent.SpinnerHide();
-                        $state.go('packetInfo', { obj: packetInfo, returnUrl: "map" });
+                        DeviceEvent.Toast("网络异常");
                     });
                 };
-
-                try {
-                    var translateCallback = function (data) {
-                        if (data.status === 0) {
-                            var distanceBetweenLast = 0;
-                            var isInited = typeof rpMapApi._currentLocationPoint !== "undefined";
-                            if (isInited) {
-                                distanceBetweenLast = rpMapApi._map.getDistance(rpMapApi._currentLocationPoint, data.points[0]).toFixed(0);//获取二点间距离保留到整数,单位米
-                                console.log("distance: " + distanceBetweenLast + " 米");
-                            }
-                            //大于50米才刷新
-                            if (!isInited || distanceBetweenLast > 50) {
-                                rpMapApi._map.clearOverlays();
-                                //refresh location
-                                rpMapApi._currentLocationPoint = data.points[0];
-                                curLocation = data.points[0];
-                                //refresh center and zoom
-                                if (ls.getObject("userInfo").AgencyType == agencyType.City) rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 9);
-                                else rpMapApi._map.centerAndZoom(rpMapApi._currentLocationPoint, 17);
-                                if (ls.getObject("userInfo").AgencyType == agencyType.NotAgency) {
-                                    //rewrite visible circle
-                                    rpMapApi.RefreshVisibleCircle();
-                                    //reset visible map bounds
-                                    rpMapApi.ResetMapBounds();
-                                }
-                                //mark point
-                                rpMapApi.MarkCurrentLocation();
-                                //mark red packets
-                                rpMapApi.RefreshRedPackets(ls.getObject("userInfo").UserId, ls.getObject("userInfo").AgencyType);
-                                rpMapApi._map.setCenter(data.points[0]);
-                            }
-                            DeviceEvent.SpinnerHide();
-                        }
-                    };
-                    var rpMapApi = new RedPackets(translateCallback);
-                    rpMapApi.MapInit(ls.getObject("userInfo").AgencyType);
-                }
-                catch (e) {
-                    console.log(e);
-                    DeviceEvent.Toast("网络异常");
-                }
+                $scope.ClickLog = function (itemId) {
+                    console.log(DreamConfig.clickLog);
+                    $http({
+                        method: "post",
+                        url: DreamConfig.clickLog,
+                        contentType: "application/json",
+                        data: { UserId: ls.getObject("userInfo").UserId, ItemId: itemId },
+                        timeout: 30000,
+                    }).success(function (d, textStatu, xhr) {
+                    }).error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
+                };
             })
             .controller('FooterController', function ($scope, $state, ls) {
-                //connect im server
-                ImClient.Init(ls.getObject("userInfo").UserId);
-
                 switch (curPage) {
                     case "map":
                         $(".item-box.map").addClass("active");
@@ -1065,66 +708,28 @@ var app = {
                     sc.Login();
                 };
             })
-            .controller('ContactsController', function ($scope, sc, ls, $state) {
+            .controller('ContactsController', function ($scope, sc, ls, $state, $http) {
                 curPage = "contacts";
-                $scope.goChat = function (friendId, friendName, friendAvatar) {
-                    $state.go('chat', { userId: friendId, title: friendName, records: "", avatar: friendAvatar });
-                }
-                $.get(scConfig.userContactsUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
-                    $scope.$apply(function () {
-                        $scope.Contacts = data;
-                    });
+                sc.ValidateLogin();
+                $http({
+                    method: "GET",
+                    url: DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId,                   
+                    timeout: 30000,
+                }).success(function (d, textStatu, xhr) {
+                    $scope.userOrders = d;
+                    console.log(d);
+                }).error(function (error, textStatu, xhr) {
+                    DeviceEvent.SpinnerHide();
+                    DeviceEvent.Toast("网络异常");
                 });
-                sc.ValidateLogin();
-            })
-            .controller('MessageController', function ($scope, sc, $state) {
-                curPage = "message";
-                sc.ValidateLogin();
 
-                var messageArrived = function (from, name, avatar, content) {
-                    $("#footer-msg").addClass("remind");
-                    var msgHtml = "<div class='item-box clearfix'><div class='img-box'><img src='" + avatar + "'></div> <div class='txt-box'>" + content + "</div></div>"
-                    $(".chat-box").append(msgHtml);
-
-                    var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + from));
-                    var curTime = getNowFormatDate();
-                    var unReadNumber = 0;
-                    if (preChatInfo != null)
-                        unReadNumber = preChatInfo.unReadNumber;
-                    var chatInfo = { friendId: from, avatar: avatar, name: name, lastMsg: content, unReadNumber: unReadNumber + 1, time: curTime };
-                    localStorage.setItem("recentChats_" + from, JSON.stringify(chatInfo));
-                    var msgRecords = [];
-                    for (var i = localStorage.length - 1; i >= 0; i--) {
-                        if (localStorage.key(i).indexOf("recentChats_") != -1)
-                            msgRecords.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                    }
-
-                    $scope.$apply(function () {
-                        $scope.msgRecords = msgRecords;
-                    });
-                }
-                imConnection.setFunctions(messageArrived, null);
-
-                $scope.goChat = function (friendId, friendName) {
-                    var preChatInfo = JSON.parse(localStorage.getItem("recentChats_" + friendId));
-                    preChatInfo.unReadNumber = 0;
-                    localStorage.setItem("recentChats_" + friendId, JSON.stringify(preChatInfo));
-                    $state.go('chat', { userId: friendId, title: friendName, records: "", avatar: preChatInfo.avatar });
-                }
-
-                var msgRecords = [];
-                for (var i = localStorage.length - 1; i >= 0; i--) {
-                    if (localStorage.key(i).indexOf("recentChats_") != -1)
-                        msgRecords.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-                $scope.msgRecords = msgRecords;
             })
             .controller('MyController', function ($scope, $state, sc, ls) {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
                 $scope.goUserpage = function () {
-                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" })
+                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" });
                 }
                 $scope.goWithdraw = function () {
                     if ($scope.userInfo.AliPay == null || $scope.userInfo.AliPayName == null) {

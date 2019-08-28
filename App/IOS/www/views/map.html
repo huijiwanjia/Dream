@@ -25,8 +25,11 @@
                 <li ng-repeat="item in QueryResult.tbk_dg_material_optional_response.result_list.map_data">
                     <div>标题：{{item.title}}</div>
                     <div>店铺：{{item.shop_title}}</div>
+                    <div>预计返利：{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.0001)| number:2}}</div>
                     <div>售价：{{item.reserve_price}}</div>
                     <div>折扣价：{{item.zk_final_price}}</div>
+                    <div>优惠券：{{item.coupon_amount}}元</div>
+                    <div>券后价：{{(item.zk_final_price - item.coupon_amount)| number:2}}</div>
                     <div>销售量：{{item.tk_total_sales}}</div>
                     <div>商品ID：{{item.item_id}}</div>
                     <img src="{{item.pict_url}}" /><br />

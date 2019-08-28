@@ -1,26 +1,38 @@
+![Active](https://www.repostatus.org/badges/latest/active.svg)
+![Downloads](https://img.shields.io/npm/dt/cordova-plugin-wechat.svg)
+![version](https://img.shields.io/npm/v/cordova-plugin-wechat/latest.svg)
+
 # cordova-plugin-wechat
 
 A cordova plugin, a JS version of Wechat SDK
 
 # Feature
 
-Share title, description, image, and link to wechat moment(朋友圈)，choose invoice from Wechat list
+* check wechat client is installed;
+* Share text, image, link,music,video,miniprogram to wechat timeline,session or favorite;
+* open wechat auth;
+* send wechat payment request;
+* open wechat miniprogram;
 
-# Example
+# Documentation
 
-See [cordova-plugin-wechat-example](https://github.com/xu-li/cordova-plugin-wechat-example)
+[文档](https://jasonz1987.github.io/cordova-wechat-docs/) · [教程](https://www.jason-z.com/course/3) · [FAQ](https://jasonz1987.github.io/cordova-wechat-docs/docs/faq) · [DEMO](https://jasonz1987.github.io/cordova-wechat-docs/docs/demo)
 
 # Install
 
-1. ```cordova plugin add cordova-plugin-wechat  --variable wechatappid=YOUR_WECHAT_APPID```, or using [plugman](https://npmjs.org/package/plugman), [phonegap](https://npmjs.org/package/phonegap), [ionic](http://ionicframework.com/)
+```shell
+cordova plugin add cordova-plugin-wechat  --variable wechatappid=YOUR_WECHAT_APPID
+```
 
-2. ```cordova build ios``` or ```cordova build android```
+```shell
+cordova build ios
+cordova build android
+```
 
-3. (iOS only) if your cordova version <5.1.1,check the URL Type using XCode
-
-# Usage
+# Usage 
 
 ## Check if wechat is installed
+
 ```Javascript
 Wechat.isInstalled(function (installed) {
     alert("Wechat installed: " + (installed ? "Yes" : "No"));
@@ -80,10 +92,33 @@ Wechat.share({
         ...
         media: {
             type: Wechat.Type.WEBPAGE,
-            webpageUrl: "http://tech.qq.com/zt2012/tmtdecode/252.htm"
+            webpageUrl: "http://www.jason-z.com"
         }
     },
     scene: Wechat.Scene.TIMELINE   // share to Timeline
+}, function () {
+    alert("Success");
+}, function (reason) {
+    alert("Failed: " + reason);
+});
+```
+
+### Share mini program
+```Javascript
+Wechat.share({
+    message: {
+        ...
+        media: {
+            type: Wechat.Type.MINI,
+            webpageUrl: "https://www.jason-z.com", // 兼容低版本的网页链接
+            userName: "wxxxxxxxx", // 小程序原始id
+            path: "user/info", // 小程序的页面路径
+            hdImageData: "http://wwww.xxx.com/xx.jpg", // 程序新版本的预览图二进制数据 不超过128kb 支持 地址 base64 temp
+            withShareTicket: true, // 是否使用带shareTicket的分享
+            miniprogramType: Wechat.Mini.RELEASE 
+        }
+    },
+    scene: Wechat.Scene.SESSION   // 小程序仅支持聊天界面
 }, function () {
     alert("Success");
 }, function (reason) {
@@ -119,28 +154,43 @@ var params = {
     nonceStr: '5598190f-5fb3-4bff-8314-fd189ab4e4b8', // nonce
 };
 
-Wechat.chooseInvoiceFromWX(data,function(data){
+Wechat.chooseInvoiceFromWX(params,function(data){
     console.log(data);
 },function(){
     alert('error');
 })
 ```
 
-# FAQ
+## open wechat mini program 
+```Javascript
+//offical doc https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=21526646437Y6nEC&token=&lang=zh_CN
+var params = {
+    userName: 'gh_d43f693ca31f', // userName
+    path: 'pages/index/index?name1=key1&name2=key2', // open mini program page
+    miniprogramType: Wechat.Mini.RELEASE // Developer version, trial version, and official version are available for selection
+};
 
-See [FAQ](https://github.com/xu-li/cordova-plugin-wechat/wiki/FAQ).
+Wechat.openMiniProgram(params,function(data){
+    console.log(data); // data:{extMsg:""}  extMsg: Corresponds to the app-parameter attribute in the Mini Program component <button open-type="launchApp">
+},function(){
+    alert('error');
+})
+```
 
-# TODO
+more usage  please see [https://jasonz1987.github.io/cordova-wechat-docs/docs/usages](https://jasonz1987.github.io/cordova-wechat-docs/docs/usages)
 
-1. ~~Add android version~~
+# Join us
 
-2. ~~Share to wechat session(聊天) and wechat favorite(收藏)~~
+QQ群：190808518 
+[![cordova-wechat官方交流群](https://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=8279476de172cacb72a51a5630744316c0069620ad8b33be3abee243af2cc001)
 
-3. ~~Add other media types, including music etc.~~
+# Donate
 
-4. ~~Other APIs~~
+we need your support to improve open source software ,if we induce your develop time ,welcome to donate us.
 
-5. ~~Android Version update~~
+[![paypal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/jasonz1987/6.66)
+
+![donate.png](donate.png)
 
 # LICENSE
 

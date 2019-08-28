@@ -27,18 +27,18 @@
             );
         },
         Toast: function (message) {
-            window.plugins.toast.showWithOptions({
-                message: message,
-                duration: "short", // 2000 ms 
-                position: "bottom"
-                //addPixelsY: -40
-            });
+            //window.plugins.toast.showWithOptions({
+            //    message: message,
+            //    duration: "short", // 2000 ms 
+            //    position: "bottom"
+            //    //addPixelsY: -40
+            //});
         },
         SpinnerShow: function () {
-            SpinnerPlugin.activityStart("请稍后...", { dimBackground: true });
+          //  SpinnerPlugin.activityStart("请稍后...", { dimBackground: true });
         },
         SpinnerHide: function () {
-            SpinnerPlugin.activityStop();
+          //  SpinnerPlugin.activityStop();
         },
         OpenCamera: function (onSuccess, onFail) {
             navigator.camera.getPicture(onSuccess, onFail, {
@@ -51,7 +51,7 @@
                 targetHeight: 730,
                 popoverOptions: CameraPopoverOptions,
                 saveToPhotoAlbum: false
-            });        
+            });
         },
         OpenAlbum: function (onSuccess, onFail) {
             navigator.camera.getPicture(onSuccess, onFail,

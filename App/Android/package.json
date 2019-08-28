@@ -1,6 +1,6 @@
 {
-    "name": "helloworld",
-    "displayName": "HelloCordova",
+    "name": "com.huijiwanjia.app",
+    "displayName": "huijiwanjia",
     "version": "1.0.0",
     "description": "A sample Apache Cordova application that responds to the deviceready event.",
     "main": "index.js",
@@ -13,47 +13,32 @@
         "cordova-android": "^6.4.0",
         "cordova-plugin-actionsheet": "^2.3.3",
         "cordova-plugin-alipay-v2": "0.0.4",
-        "cordova-plugin-battery-status": "^2.0.1",
-        "cordova-plugin-camera": "^4.0.2",
-        "cordova-plugin-device": "^2.0.1",
-        "cordova-plugin-device-motion": "^1.2.5",
-        "cordova-plugin-dialogs": "^2.0.1",
-        "cordova-plugin-disable-ios11-statusbar": "^1.0.0",
-        "cordova-plugin-geolocation": "^4.0.1",
-        "cordova-plugin-globalization": "^1.0.9",
-        "cordova-plugin-inappbrowser": "^2.0.2",
-        "cordova-plugin-network-information": "^2.0.1",
+        "cordova-plugin-battery-status": "^2.0.3",
         "cordova-plugin-spinner": "^1.1.0",
-        "cordova-plugin-splashscreen": "^5.0.2",
-        "cordova-plugin-statusbar": "^2.4.1",
-        "cordova-plugin-wechat": "^2.1.0",
-        "cordova-plugin-whitelist": "^1.3.3",
-        "cordova-plugin-x-toast": "^2.6.0"
+        "cordova-plugin-splashscreen": "^5.0.3",
+        "cordova-plugin-statusbar": "^2.4.3",
+        "cordova-plugin-vibration": "^3.1.1",
+        "cordova-plugin-wechat": "^2.9.0",
+        "cordova-plugin-whitelist": "^1.3.4",
+        "cordova-plugin-x-toast": "^2.7.2",
+        "semver": "^6.3.0"
     },
     "cordova": {
         "plugins": {
+            "cordova-plugin-battery-status": {},
             "cordova-plugin-whitelist": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
+            "cordova-plugin-vibration": {},
             "cordova-plugin-spinner": {},
             "cordova-plugin-x-toast": {},
-            "cordova-plugin-disable-ios11-statusbar": {},
             "cordova-plugin-wechat": {
-                "WECHATAPPID": "wx4722ea6aded42ab7"
+                "WECHATAPPID": "wxcf1c3c250e5e4d91"
             },
             "cordova-plugin-actionsheet": {},
-            "cordova-plugin-camera": {},
             "cordova-plugin-alipay-v2": {
-                "APP_ID": "2016091100489072"
-            },
-            "cordova-plugin-device": {},
-            "cordova-plugin-device-motion": {},
-            "cordova-plugin-dialogs": {},
-            "cordova-plugin-geolocation": {},
-            "cordova-plugin-globalization": {},
-            "cordova-plugin-inappbrowser": {},
-            "cordova-plugin-battery-status": {},
-            "cordova-plugin-network-information": {}
+                "APP_ID": "2019070465742601"
+            }
         },
         "platforms": [
             "android"

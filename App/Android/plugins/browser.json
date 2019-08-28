@@ -1,0 +1,44 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-alipay-v2": {
+            "APP_ID": "2019070465742601",
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-spinner": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-wechat": {
+            "WECHATAPPID": "wxcf1c3c250e5e4d91",
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.huijiwanjia.app"
+        }
+    },
+    "dependent_plugins": {}
+}

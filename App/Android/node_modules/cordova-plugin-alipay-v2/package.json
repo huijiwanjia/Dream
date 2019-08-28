@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-alipay-v2",
+  "_from": "cordova-plugin-alipay-v2@0.0.4",
   "_id": "cordova-plugin-alipay-v2@0.0.4",
   "_inBundle": false,
   "_integrity": "sha1-YpPRzpV7+dCL8ePbhpQ/xjpv6LU=",
   "_location": "/cordova-plugin-alipay-v2",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "version",
     "registry": true,
-    "raw": "cordova-plugin-alipay-v2",
+    "raw": "cordova-plugin-alipay-v2@0.0.4",
     "name": "cordova-plugin-alipay-v2",
     "escapedName": "cordova-plugin-alipay-v2",
-    "rawSpec": "",
+    "rawSpec": "0.0.4",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "0.0.4"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-alipay-v2/-/cordova-plugin-alipay-v2-0.0.4.tgz",
   "_shasum": "6293d1ce957bf9d08bf1e3db86943fc63a6fe8b5",
-  "_spec": "cordova-plugin-alipay-v2",
-  "_where": "D:\\Net Projects\\SharedContacts\\SC.WebApp.Android",
+  "_spec": "cordova-plugin-alipay-v2@0.0.4",
+  "_where": "D:\\Net Projects\\DreamSource\\App\\Android2019\\huijiwanjia",
   "author": {
     "name": "hhjjj1010"
   },

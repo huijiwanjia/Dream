@@ -1,33 +1,33 @@
 {
-  "_from": "cordova-plugin-statusbar@2.4.1",
-  "_id": "cordova-plugin-statusbar@2.4.1",
+  "_from": "cordova-plugin-statusbar@^2.4.3",
+  "_id": "cordova-plugin-statusbar@2.4.3",
   "_inBundle": false,
-  "_integrity": "sha1-IiYop4qlTTTUySeZACDQo7rOVUU=",
+  "_integrity": "sha512-ThmXzl6QIKWFXf4wWw7Q/zpB+VKkz3VM958+5A0sXD4jmR++u7KnGttLksXshVwWr6lvGwUebLYtIyXwS4Ovcg==",
   "_location": "/cordova-plugin-statusbar",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-statusbar@2.4.1",
+    "raw": "cordova-plugin-statusbar@^2.4.3",
     "name": "cordova-plugin-statusbar",
     "escapedName": "cordova-plugin-statusbar",
-    "rawSpec": "2.4.1",
+    "rawSpec": "^2.4.3",
     "saveSpec": null,
-    "fetchSpec": "2.4.1"
+    "fetchSpec": "^2.4.3"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.1.tgz",
-  "_shasum": "222628a78aa54d34d4c927990020d0a3bace5545",
-  "_spec": "cordova-plugin-statusbar@2.4.1",
-  "_where": "D:\\Net Projects\\cordova projects\\com.sharedcontacts.app",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.3.tgz",
+  "_shasum": "cc557aef66c27484e0f7f045004040d03321f82d",
+  "_spec": "cordova-plugin-statusbar@^2.4.3",
+  "_where": "D:\\Net Projects\\DreamSource\\App\\Android2019\\huijiwanjia",
   "author": {
     "name": "Apache Software Foundation"
   },
   "bugs": {
-    "url": "https://issues.apache.org/jira/browse/CB"
+    "url": "https://github.com/apache/cordova-plugin-statusbar/issues"
   },
   "bundleDependencies": false,
   "cordova": {
@@ -77,5 +77,5 @@
     "test": "npm run jshint"
   },
   "types": "./types/index.d.ts",
-  "version": "2.4.1"
+  "version": "2.4.3"
 }

@@ -4,26 +4,23 @@
     }
 </style>
 <div class="bgefeff4">
-    <div class="red-wrap">
+    <div class="mingxi-wrap">
         <div class="public-header">
             <h3 class="title">
-                我的好友
+                订单
             </h3>
         </div>
-        <div class="pulic-search-box">
-            <div class="input-box">
-                <input type="text" ng-model="query" name="">
-                <i><img src="images/search.png"></i>
-            </div>
-        </div>
-
         <div class="all-item">
-            <div class="item-box" ng-click="goChat(userInfo.FriendId,userInfo.FriendName,userInfo.FriendAvatar)" ng-repeat="userInfo in Contacts| filter:query">
-                <div class="img-box">
-                    <img src="{{userInfo.FriendAvatar}}" />
+            <div class="item-box clearfix" ng-repeat="order in userOrders">
+                <div class="txt-box">
+                    <p class="name">{{order.ItemName|limitTo:10}}</p>
+                    <p class="name" ng-if="order.State==0">订单状态：已付款</p>
+                    <p class="name" ng-if="order.State==1">订单状态：已收货</p>
+                    <p class="name" ng-if="order.State==2">订单状态：已结算</p>
+                    <p class="name" ng-if="order.State==3">订单状态：已失效</p>
+                    <p class="time">{{order.Code}}</p>
+                    <span class="monery">预计返利：+{{order.BackPrice}} 元</span>
                 </div>
-                <p>{{userInfo.FriendName}}</p>
-                <span class="attention"><img src="images/red.png">已关注</span>
             </div>
         </div>
     </div>

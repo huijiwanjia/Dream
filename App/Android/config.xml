@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.huijiwanjia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>惠及万家</name>
+<widget id="com.huijiwanjia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>huijiwanjia</name>
     <description>
-  
-  </description>
-    <author email="248243224@qq.com" href="">
-    Jane Qin
-  </author>
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
@@ -16,12 +15,6 @@
     <preference name="target-device" value="handset" />
     <preference name="FadeSplashScreenDuration" value="750" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
-    <feature name="CDVWKWebViewEngine">
-        <param name="ios-package" value="CDVWKWebViewEngine" />
-    </feature>
-    <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
-    </feature>
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
@@ -48,27 +41,23 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
-    <plugin name="cordova-plugin-device-motion" spec="^1.2.5" />
-    <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
-    <plugin name="cordova-plugin-globalization" spec="^1.0.9" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
-    <plugin name="cordova-plugin-battery-status" spec="^2.0.1" />
-    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-spinner" spec="^1.1.0" />
-    <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
-    <plugin name="cordova-plugin-disable-ios11-statusbar" spec="^1.0.0" />
-    <plugin name="cordova-plugin-wechat" spec="^2.1.0">
-        <variable name="WECHATAPPID" value="wx4722ea6aded42ab7" />
-    </plugin>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="cordova-plugin-battery-status" spec="^2.0.3" />
+    <plugin name="cordova-plugin-splashscreen" source="npm" spec="^5.0.3" />
+    <plugin name="cordova-plugin-statusbar" source="npm" spec="^2.4.3" />
+    <plugin name="cordova-plugin-vibration" source="npm" spec="^3.1.1" />
+    <plugin name="cordova-plugin-whitelist" source="npm" spec="^1.3.4" />
+    <plugin name="cordova-plugin-spinner" source="npm" spec="^1.1.0" />
+    <plugin name="cordova-plugin-x-toast" spec="^2.7.2" />
     <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
-    <plugin name="cordova-plugin-alipay-v2" spec="0.0.4">
-        <variable name="APP_ID" value="2018020902171382" />
+    <plugin name="cordova-plugin-alipay-v2">
+        <variable name="APP_ID" value="2019070465742601" />
     </plugin>
     <engine name="android" spec="^6.4.0" />
+    <plugin name="cordova-plugin-wechat" spec="^2.9.0">
+        <variable name="WECHATAPPID" value="wxcf1c3c250e5e4d91" />
+    </plugin>
 </widget>

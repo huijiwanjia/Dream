@@ -17,11 +17,11 @@
         //refresh location every 2 minutes
         if (typeof (mapRefreshInterval) != 'undefined') {
             clearInterval(mapRefreshInterval), function () {
-                mapRefreshInterval = setInterval(function () { rp.RefreshCurrentLocation(); }, scConfig.mapRefreshInterval);
+                mapRefreshInterval = setInterval(function () { rp.RefreshCurrentLocation(); }, DreamConfig.mapRefreshInterval);
             }
         }
         else {
-            mapRefreshInterval = setInterval(function () { rp.RefreshCurrentLocation(); }, scConfig.mapRefreshInterval);
+            mapRefreshInterval = setInterval(function () { rp.RefreshCurrentLocation(); }, DreamConfig.mapRefreshInterval);
         }
     };
     RedPackets.prototype.MarkCurrentLocation = function () {
@@ -64,7 +64,8 @@
                     }
                 });
             }
-            $.get(scConfig.redPacketsUrl, { userId: userId, lon: rp._currentLocationPoint.lng, lat: rp._currentLocationPoint.lat, city: details.result.addressComponent.city, agencyType: agencyType }, function (data) {
+
+            $.get(DreamConfig.redPacketsUrl, { userId: userId, lon: rp._currentLocationPoint.lng, lat: rp._currentLocationPoint.lat, city: details.result.addressComponent.city, agencyType: agencyType }, function (data) {
                 $.each(data, function () {
                     if ($(this)[0].UserId == 29) {
                         var point = new BMap.Point(rp._currentLocationPoint.lng + Math.random() * 0.005, rp._currentLocationPoint.lat + Math.random() * 0.001);

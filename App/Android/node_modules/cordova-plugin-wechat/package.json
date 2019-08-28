@@ -1,28 +1,28 @@
 {
-  "_from": "cordova-plugin-wechat@2.1.0",
-  "_id": "cordova-plugin-wechat@2.1.0",
+  "_from": "cordova-plugin-wechat@^2.1.0",
+  "_id": "cordova-plugin-wechat@2.9.0",
   "_inBundle": false,
-  "_integrity": "sha512-CzBAqWHtWuxnIHilFR/7VyDqHZup7AIThkNVIIbWhR2FgdFn9UPg4PBIFKzM3zdpAqRGfKX0kGGnn+z//QPPeg==",
+  "_integrity": "sha512-Hsbhd+AD27K/beVafs6xs/aGw4z1mQzP9f7kSJdUzJ5LzG/uAl42Y8DBU+w8atPkxkEjGpXo38j60IIg+Cy6/Q==",
   "_location": "/cordova-plugin-wechat",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-plugin-wechat@2.1.0",
+    "raw": "cordova-plugin-wechat@^2.1.0",
     "name": "cordova-plugin-wechat",
     "escapedName": "cordova-plugin-wechat",
-    "rawSpec": "2.1.0",
+    "rawSpec": "^2.1.0",
     "saveSpec": null,
-    "fetchSpec": "2.1.0"
+    "fetchSpec": "^2.1.0"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-wechat/-/cordova-plugin-wechat-2.1.0.tgz",
-  "_shasum": "37fd5f26d11d5df1f52a3aa3c231fb971eead3bb",
-  "_spec": "cordova-plugin-wechat@2.1.0",
-  "_where": "D:\\Net Projects\\cordova projects\\com.sharedcontacts.app",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-wechat/-/cordova-plugin-wechat-2.9.0.tgz",
+  "_shasum": "883a7b1a3103be47e3556b7ce12d010b2545dbc3",
+  "_spec": "cordova-plugin-wechat@^2.1.0",
+  "_where": "D:\\Net Projects\\DreamSource\\App\\Android2019\\huijiwanjia",
   "author": {
     "name": "xu.li",
     "email": "AthenaLightenedMyPath@gmail.com"
@@ -37,6 +37,9 @@
       "ios",
       "android"
     ]
+  },
+  "dependencies": {
+    "shelljs": "^0.5.3"
   },
   "deprecated": false,
   "description": "A cordova plugin, a JS version of Wechat SDK",
@@ -68,5 +71,5 @@
     "type": "git",
     "url": "git+https://github.com/xu-li/cordova-plugin-wechat.git"
   },
-  "version": "2.1.0"
+  "version": "2.9.0"
 }
