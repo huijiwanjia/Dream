@@ -55,16 +55,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-wechat": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-wechat@^2.9.0"
-    },
-    "is_top_level": true,
-    "variables": {
-      "WECHATAPPID": "wxcf1c3c250e5e4d91"
-    }
-  },
   "cordova-plugin-actionsheet": {
     "source": {
       "type": "registry",
@@ -81,6 +71,26 @@
     "is_top_level": true,
     "variables": {
       "APP_ID": "2019070465742601"
+    }
+  },
+  "cordova-plugin-adam-wechat": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-adam-wechat@^3.0.6"
+    },
+    "is_top_level": true,
+    "variables": {
+      "WECHATAPPID": "wxcf1c3c250e5e4d91"
+    }
+  },
+  "cordova-plugin-wechat": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-wechat@2.8.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "WECHATAPPID": "wxcf1c3c250e5e4d91"
     }
   }
 }

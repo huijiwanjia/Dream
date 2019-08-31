@@ -10,7 +10,7 @@
     "author": "Apache Cordova Team",
     "license": "Apache-2.0",
     "dependencies": {
-        "cordova-android": "^6.4.0",
+        "cordova-android": "^8.0.0",
         "cordova-plugin-actionsheet": "^2.3.3",
         "cordova-plugin-alipay-v2": "0.0.4",
         "cordova-plugin-battery-status": "^2.0.3",
@@ -18,7 +18,7 @@
         "cordova-plugin-splashscreen": "^5.0.3",
         "cordova-plugin-statusbar": "^2.4.3",
         "cordova-plugin-vibration": "^3.1.1",
-        "cordova-plugin-wechat": "^2.9.0",
+        "cordova-plugin-wechat": "^2.8.0",
         "cordova-plugin-whitelist": "^1.3.4",
         "cordova-plugin-x-toast": "^2.7.2",
         "semver": "^6.3.0"
@@ -32,12 +32,12 @@
             "cordova-plugin-vibration": {},
             "cordova-plugin-spinner": {},
             "cordova-plugin-x-toast": {},
-            "cordova-plugin-wechat": {
-                "WECHATAPPID": "wxcf1c3c250e5e4d91"
-            },
             "cordova-plugin-actionsheet": {},
             "cordova-plugin-alipay-v2": {
                 "APP_ID": "2019070465742601"
+            },
+            "cordova-plugin-wechat": {
+                "WECHATAPPID": "wxcf1c3c250e5e4d91"
             }
         },
         "platforms": [

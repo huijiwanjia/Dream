@@ -48,7 +48,7 @@
   <plugin name="cordova-plugin-spinner" source="npm" spec="~1.1.0" />
   <plugin name="cordova-plugin-x-toast" spec="~2.7.2" />
   <plugin name="cordova-plugin-disable-ios11-statusbar" />
-  <plugin name="cordova-plugin-wechat" source="npm" spec="~2.8.0">
+  <plugin name="cordova-plugin-wechat" source="npm" spec="~2.9.0">
     <param name="WECHATAPPID" value="wxcf1c3c250e5e4d91" />
   </plugin>
   <plugin name="cordova-plugin-actionsheet" spec="~2.3.3" />

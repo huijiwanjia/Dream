@@ -8,7 +8,7 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
@@ -53,11 +53,7 @@
     <plugin name="cordova-plugin-spinner" source="npm" spec="^1.1.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.7.2" />
     <plugin name="cordova-plugin-actionsheet" spec="^2.3.3" />
-    <plugin name="cordova-plugin-alipay-v2">
-        <variable name="APP_ID" value="2019070465742601" />
-    </plugin>
-    <engine name="android" spec="^6.4.0" />
-    <plugin name="cordova-plugin-wechat" spec="^2.9.0">
+    <plugin name="cordova-plugin-wechat" spec="^2.8.0">
         <variable name="WECHATAPPID" value="wxcf1c3c250e5e4d91" />
     </plugin>
 </widget>
