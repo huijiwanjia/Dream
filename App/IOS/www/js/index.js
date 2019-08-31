@@ -739,7 +739,7 @@ var app = {
                 });
 
             })
-            .controller('ContactsController', function ($scope, sc, ls, $state, $http) {
+            .controller('WithdrawApplyController', function ($scope, sc, ls, $state, $http) {
                 curPage = "message";
                 sc.ValidateLogin();
                 $http({
