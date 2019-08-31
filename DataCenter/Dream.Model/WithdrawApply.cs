@@ -15,7 +15,6 @@ namespace Dream.Model
         public double Amount { get; set; }
         public DateTime ApplyTime { get; set; }
         public int UserId { get; set; }
-
         public WithdrawStatus Status { get; set; }
     }
 }

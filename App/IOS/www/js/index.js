@@ -75,6 +75,21 @@ var app = {
                         }
 
                     })
+                    .state('withdrawApply', {
+                        url: "/withdrawApply",
+                        cache: true,
+                        views: {
+                            'content': {
+                                templateUrl: 'views/WithdrawApply.html',
+                                controller: 'WithdrawApplyController'
+                            },
+                            'footer': {
+                                templateUrl: 'views/footer.html',
+                                controller: 'FooterController'
+                            }
+                        }
+
+                    })
                     .state('login', {
                         url: "/login",
                         views: {
@@ -714,6 +729,22 @@ var app = {
                 $http({
                     method: "GET",
                     url: DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId,                   
+                    timeout: 30000,
+                }).success(function (d, textStatu, xhr) {
+                    $scope.userOrders = d;
+                    console.log(d);
+                }).error(function (error, textStatu, xhr) {
+                    DeviceEvent.SpinnerHide();
+                    DeviceEvent.Toast("网络异常");
+                });
+
+            })
+            .controller('WithdrawApplyController', function ($scope, sc, ls, $state, $http) {
+                curPage = "message";
+                sc.ValidateLogin();
+                $http({
+                    method: "GET",
+                    url: DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId,
                     timeout: 30000,
                 }).success(function (d, textStatu, xhr) {
                     $scope.userOrders = d;

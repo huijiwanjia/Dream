@@ -1,5 +1,42 @@
 # Change Log
 
+## 2.8.0 - 2019-04-26
+### Added
+- cordova 9.0 support
+- cordova 7.0 support renew
+- add share image permission request on android
+- add share file path support
+
+## 2.7.0 - 2019-03-02
+### Added
+- add share to wechat mini program
+- add App opens WeChat mini program
+### Fixed
+- removed libstd c++ from xcode10
+- fix android cordova version 7.0.0 install bug
+- fix ios payment appid param
+
+## 2.6.0 - 2019-01-05
+### Fixed
+- Fixed cordova android 7.0 install script bug
+
+## 2.5.0 - 2018-12-26
+### Fixed
+- Android preferences code problem
+
+## 2.4.0 - 2018-07-27
+### Added
+- Android compress thumb 
+
+## 2.3.0 - 2018-04-27
+### Removed
+- Share with mini-program (See #427, #428)
+
+## 2.2.0 - 2018-04-26
+### Added
+- Share with mini-program (pull request #417 by xingducai)
+- Add sub merchant support (pull request #401 by wxp-mjs)
+
 ## 2.1.0 - 2017-11-16
 ### Added
 - iOS OpenSDK1.8.0

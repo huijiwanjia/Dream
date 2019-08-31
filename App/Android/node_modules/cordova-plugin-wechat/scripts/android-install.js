@@ -1,9 +1,14 @@
 #!/usr/bin/env node
 
 module.exports = function (context) {
-    var path        = context.requireCordovaModule('path'),
-        fs          = context.requireCordovaModule('fs'),
-        shell       = context.requireCordovaModule('shelljs'),
+    var path        = require('path'),
+        fs          = require('fs'),
+        shell       = require('shelljs'),
+        semver      = require('semver'),
+    // var path        = context.requireCordovaModule('path'),
+    //     fs          = context.requireCordovaModule('fs'),
+    //     shell       = context.requireCordovaModule('shelljs'),
+    //     semver      = context.requireCordovaModule('semver'),
         projectRoot = context.opts.projectRoot,
         plugins     = context.opts.plugins || [];
 
@@ -40,7 +45,27 @@ module.exports = function (context) {
     }
 
     var targetDir  = path.join(projectRoot, "platforms", "android", "src", packageName.replace(/\./g, path.sep), "wxapi");
-        targetFiles = ["EntryActivity.java", "WXEntryActivity.java", "WXPayEntryActivity.java"];
+
+ 	if (!fs.existsSync(targetDir)) {
+		targetDir  = path.join(projectRoot, "platforms", "android", "app", "src", "main", "java", packageName.replace(/\./g, path.sep), "wxapi");
+	} 
+
+    // var engines =  config.getEngines();
+
+    // engines.forEach(function(item,index) {
+    //     if(item.name == 'android') {
+    //         var sepc = item.spec.replace('~','').replace('^','');
+    //         console.log(sepc);
+    //         if (semver.gte(sepc,'7.0.0')) {
+    //             console.info("Android platform Version above 7.0.0");
+    //             targetDir  = path.join(projectRoot, "platforms", "android", "app", "src", "main", "java", packageName.replace(/\./g, path.sep), "wxapi");
+    //         }
+    //     }
+    // }); 
+
+    console.log(targetDir);
+
+    var targetFiles = ["EntryActivity.java", "WXEntryActivity.java", "WXPayEntryActivity.java"];
 
     if (['after_plugin_add', 'after_plugin_install'].indexOf(context.hook) === -1) {
         // remove it?

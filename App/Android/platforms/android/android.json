@@ -21,38 +21,6 @@
               "count": 1
             },
             {
-              "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Accelerometer\"><param name=\"android-package\" value=\"org.apache.cordova.devicemotion.AccelListener\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
-              "count": 1
-            },
-            {
               "xml": "<feature name=\"SpinnerPlugin\"><param name=\"android-package\" value=\"net.justin_credible.cordova.SpinnerPlugin\" /></feature>",
               "count": 1
             },
@@ -69,7 +37,7 @@
               "count": 1
             },
             {
-              "xml": "<preference name=\"WECHATAPPID\" value=\"wx4722ea6aded42ab7\" />",
+              "xml": "<preference name=\"WECHATAPPID\" value=\"wxcf1c3c250e5e4d91\" />",
               "count": 1
             },
             {
@@ -92,7 +60,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 3
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
@@ -104,19 +72,7 @@
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-              "count": 3
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
-              "count": 1
+              "count": 2
             }
           ],
           "/manifest/application": [
@@ -129,17 +85,17 @@
               "count": 1
             },
             {
-              "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:name=\".wxapi.WXEntryActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wx4722ea6aded42ab7\" /></intent-filter></activity>",
+              "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:launchMode=\"singleTask\" android:name=\".wxapi.WXEntryActivity\" android:taskAffinity=\"com.huijiwanjia.app\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wxcf1c3c250e5e4d91\" /></intent-filter></activity>",
               "count": 1
             },
             {
-              "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:launchMode=\"singleTop\" android:name=\".wxapi.WXPayEntryActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wx4722ea6aded42ab7\" /></intent-filter></activity>",
+              "xml": "<activity android:exported=\"true\" android:label=\"@string/launcher_name\" android:launchMode=\"singleTop\" android:name=\".wxapi.WXPayEntryActivity\"><intent-filter><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><data android:scheme=\"wxcf1c3c250e5e4d91\" /></intent-filter></activity>",
               "count": 1
             }
           ],
-          "application": [
+          "/manifest": [
             {
-              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
+              "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
               "count": 1
             }
           ]
@@ -149,60 +105,36 @@
   },
   "installed_plugins": {
     "cordova-plugin-actionsheet": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-alipay-v2": {
-      "APP_ID": "2016091100489072",
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "APP_ID": "2019070465742601",
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-battery-status": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-device-motion": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-disable-ios11-statusbar": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
-    },
-    "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-spinner": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-wechat": {
-      "WECHATAPPID": "wx4722ea6aded42ab7",
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "WECHATAPPID": "wxcf1c3c250e5e4d91",
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     },
     "cordova-plugin-x-toast": {
-      "PACKAGE_NAME": "com.sharedcontacts.app"
+      "PACKAGE_NAME": "com.huijiwanjia.app"
     }
   },
   "dependent_plugins": {},
@@ -229,134 +161,6 @@
       "pluginId": "cordova-plugin-battery-status",
       "clobbers": [
         "navigator.battery"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.Camera",
-      "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "Camera"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.CameraPopoverOptions",
-      "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "CameraPopoverOptions"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.camera",
-      "file": "plugins/cordova-plugin-camera/www/Camera.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "navigator.camera"
-      ]
-    },
-    {
-      "id": "cordova-plugin-camera.CameraPopoverHandle",
-      "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
-      "pluginId": "cordova-plugin-camera",
-      "clobbers": [
-        "CameraPopoverHandle"
-      ]
-    },
-    {
-      "id": "cordova-plugin-device.device",
-      "file": "plugins/cordova-plugin-device/www/device.js",
-      "pluginId": "cordova-plugin-device",
-      "clobbers": [
-        "device"
-      ]
-    },
-    {
-      "id": "cordova-plugin-device-motion.Acceleration",
-      "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
-      "pluginId": "cordova-plugin-device-motion",
-      "clobbers": [
-        "Acceleration"
-      ]
-    },
-    {
-      "id": "cordova-plugin-device-motion.accelerometer",
-      "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
-      "pluginId": "cordova-plugin-device-motion",
-      "clobbers": [
-        "navigator.accelerometer"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification",
-      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-dialogs.notification_android",
-      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
-      "pluginId": "cordova-plugin-dialogs",
-      "merges": [
-        "navigator.notification"
-      ]
-    },
-    {
-      "id": "cordova-plugin-geolocation.geolocation",
-      "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
-      "pluginId": "cordova-plugin-geolocation",
-      "clobbers": [
-        "navigator.geolocation"
-      ]
-    },
-    {
-      "id": "cordova-plugin-geolocation.PositionError",
-      "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
-      "pluginId": "cordova-plugin-geolocation",
-      "runs": true
-    },
-    {
-      "id": "cordova-plugin-globalization.GlobalizationError",
-      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "window.GlobalizationError"
-      ]
-    },
-    {
-      "id": "cordova-plugin-globalization.globalization",
-      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
-      "pluginId": "cordova-plugin-globalization",
-      "clobbers": [
-        "navigator.globalization"
-      ]
-    },
-    {
-      "id": "cordova-plugin-inappbrowser.inappbrowser",
-      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-      "pluginId": "cordova-plugin-inappbrowser",
-      "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
       ]
     },
     {
@@ -398,31 +202,18 @@
       "clobbers": [
         "window.plugins.toast"
       ]
-    },
-    {
-      "id": "cordova-plugin-x-toast.tests",
-      "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-      "pluginId": "cordova-plugin-x-toast"
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-actionsheet": "2.3.3",
     "cordova-plugin-alipay-v2": "0.0.3",
-    "cordova-plugin-battery-status": "2.0.1",
-    "cordova-plugin-camera": "4.0.2",
-    "cordova-plugin-device": "2.0.1",
-    "cordova-plugin-device-motion": "1.2.5",
-    "cordova-plugin-dialogs": "2.0.1",
-    "cordova-plugin-disable-ios11-statusbar": "1.0.0",
-    "cordova-plugin-geolocation": "4.0.1",
-    "cordova-plugin-globalization": "1.0.9",
-    "cordova-plugin-inappbrowser": "2.0.2",
-    "cordova-plugin-network-information": "2.0.1",
+    "cordova-plugin-battery-status": "2.0.3",
     "cordova-plugin-spinner": "1.1.0",
-    "cordova-plugin-splashscreen": "5.0.2",
-    "cordova-plugin-statusbar": "2.4.1",
-    "cordova-plugin-wechat": "2.1.0",
-    "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-x-toast": "2.6.0"
+    "cordova-plugin-splashscreen": "5.0.3",
+    "cordova-plugin-statusbar": "2.4.3",
+    "cordova-plugin-vibration": "3.1.1",
+    "cordova-plugin-wechat": "2.8.0",
+    "cordova-plugin-whitelist": "1.3.4",
+    "cordova-plugin-x-toast": "2.7.2"
   }
 }

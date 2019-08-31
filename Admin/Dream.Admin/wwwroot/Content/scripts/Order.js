@@ -107,19 +107,20 @@
                             "render": function (data, type, full) {
                                 var state = "当前未结算";
                                 var color = "muted";
-                                var html = "";
+                                var i_fa = "undo";
                                 switch (data) {
                                     case 2:
                                         state = "设成已返利";
                                         color = "danger";
-                                        html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-check'></i>" + state + "</span>";
+                                        i_fa = "check";
                                         break;
                                     case 4:
                                         state = "设成未返利";
                                         color = "success";
-                                        html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-undo'></i>" + state + "</span>";
+                                        i_fa = "undo";
                                         break;
                                 }
+                                var html = "<span data-statu='" + data + "' class='btn btn-xs btn-" + color + " btn-change'><i class='ace-icon fa fa-"+i_fa+"'></i>" + state + "</span>";
                                 var ret = "<div class='hidden-sm hidden-xs btn-group'>" + html + "</div>";
                                 return ret;
                             }
