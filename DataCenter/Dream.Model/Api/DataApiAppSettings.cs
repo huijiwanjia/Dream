@@ -15,5 +15,8 @@ namespace Dream.Model.Api
         public string AlipayPrivateKey { get; set; }
         public string AlipayPublicKey { get; set; }
         public string AlipayNotifyUrl { get; set; }
+        public double OrderBackRate { get; set; }
+        public double OrderProfitUserBackRate { get; set; }
+        
     }
 }

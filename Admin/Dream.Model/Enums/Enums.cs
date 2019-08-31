@@ -22,4 +22,10 @@ namespace Dream.Model.Enums
         Normal,
         Disabled
     }
+    public enum UserType
+    {
+        Sepecial,
+        TeamMember,
+        Commom
+    }
 }

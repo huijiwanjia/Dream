@@ -9,14 +9,14 @@
             <h3 class="title">
                 收入明细
             </h3>
-            <div class="black-btn" ng-click="back()"></div>
+            <div class="black-btn needsclick" ng-click="back()"></div>
         </div>
         <div class="all-item">
             <div class="item-box clearfix" ng-repeat="profit in profits">
                 <div class="txt-box">
-                    <p class="name" ng-show="profit.Type == 0" ng-hide="profit.Type != 0">订单返利-{{profit.Remark}}</p>
-                    <p class="name" ng-show="profit.Type == 1" ng-hide="profit.Type != 1">市区代理-{{profit.Remark}}</p>
-                    <p class="name" ng-show="profit.Type == 2" ng-hide="profit.Type != 2">全国代理-{{profit.Remark}}</p>
+                    <p class="name" ng-show="profit.Type == 0" ng-hide="profit.Type != 0">订单返利-{{profit.Remark|limitTo:5}}</p>
+                    <p class="name" ng-show="profit.Type == 1" ng-hide="profit.Type != 1">团队收益-{{profit.Remark|limitTo:5}}</p>
+                    <p class="name" ng-show="profit.Type == 2" ng-hide="profit.Type != 2">全国代理-{{profit.Remark|limitTo:5}}</p>
                     <p class="name" ng-show="profit.Type == 3" ng-hide="profit.Type != 3">{{profit.Remark}}</p>
                     <p class="time">{{profit.CreateTime|date:'yyyy-MM-dd'}}</p>
                     <span class="monery">+{{profit.Amount}}元</span>

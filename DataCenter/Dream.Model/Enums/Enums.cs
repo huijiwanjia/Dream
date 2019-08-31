@@ -39,7 +39,8 @@ namespace Dream.Model.Enums
     }
     public enum ProfitType
     {
-       OrderBack
+       OrderBack,
+       ChildBack
     }
     public enum ProfitStatus
     {
@@ -51,5 +52,11 @@ namespace Dream.Model.Enums
     {
         NotCompleted,
         Completed
+    }
+    public enum UserType
+    {
+        Sepecial,
+        TeamMember,
+        Commom
     }
 }

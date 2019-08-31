@@ -63,6 +63,31 @@ namespace Dream.DataAccess.Service
             }
         }
 
+        public async Task<TeamInfo> GetTeamByIdAsync(int userId)
+        {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var teamMember = await conn.QueryAsync<UserInfo>(Procedure.GetTeamByUserId, new { userId }, null, null, CommandType.StoredProcedure);
+                var team = new TeamInfo();
+                team.TeamMember = teamMember;
+                team.TotalCount = await conn.QueryFirstAsync<int>(Procedure.GetTeamTotalCountByUserId, new { userId }, null, null, CommandType.StoredProcedure);
+                team.DirectlyCount = teamMember?.Count();
+
+                return team;
+            }
+        }
+
+        public async Task<UserInfoViewModel> GetViewModelByUserIdAsync(int userId) {
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var userViewModel = await conn.QueryFirstOrDefaultAsync<UserInfoViewModel>(Procedure.GetUserViewModelByUserId, new { userId }, null, null, CommandType.StoredProcedure);
+
+                return userViewModel;
+            }
+        }
+
         public async Task<UserInfo> UpdateUserAsync(UserInfo userInfo)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())

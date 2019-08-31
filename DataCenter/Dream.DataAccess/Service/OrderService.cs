@@ -11,6 +11,7 @@ using Dream.Model;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using Dream.Model.Enums;
+using Dream.Util;
 
 namespace Dream.DataAccess.Service
 {
@@ -147,16 +148,42 @@ namespace Dream.DataAccess.Service
         private async Task<int> CheckAndAddOrderProfit(OrderInfo orderInfo, IDbConnection conn, IDbTransaction transaction = null)
         {
             var profit = new Profit();
-            if (orderInfo.State == OrderState.已结算 && !orderInfo.ProfitId.HasValue && orderInfo.ProfitId != 0)
+            if (orderInfo.State == OrderState.已结算 && (!orderInfo.ProfitId.HasValue || orderInfo.ProfitId == 0))
             {
                 profit.CreateTime = DateTime.Now;
                 profit.Status = ProfitStatus.Active;
                 profit.Type = ProfitType.OrderBack;
                 profit.UserId = orderInfo.UserId;
-                profit.Amount = orderInfo.BackPrice;
+                profit.FromOrder = orderInfo.Code;
+                profit.FromUser = orderInfo.UserId;
+                profit.Remark = $"来自订单[{orderInfo.ItemName}]";
+                profit.Amount = orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate;
                 profit.ProfitId = await conn.InsertAsync<Profit>(profit, transaction);
+
+                //增加合伙人收益
+                var profitUserId =await GetProfitUser((int)orderInfo.UserId, conn, transaction);
+                if (profitUserId != 0)
+                {
+                    var pProfit = new Profit();
+                    pProfit.CreateTime = DateTime.Now;
+                    pProfit.Status = ProfitStatus.Active;
+                    pProfit.Type = ProfitType.ChildBack;
+                    pProfit.UserId = profitUserId;
+                    pProfit.FromOrder = orderInfo.Code;
+                    profit.Remark = $"来自用户[{profitUserId}]的订单[{orderInfo.ItemName}]";
+                    pProfit.FromUser = orderInfo.UserId;
+                    pProfit.Amount = orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderProfitUserBackRate;
+                    await conn.InsertAsync<Profit>(pProfit, transaction);
+                }
+
             }
             return profit.ProfitId == 0 ? orderInfo.ProfitId ?? 0 : profit.ProfitId;
+        }
+
+        private async Task<int> GetProfitUser(int orderUserId, IDbConnection conn, IDbTransaction transaction = null)
+        {
+            var profitUserId = await conn.QueryFirstOrDefaultAsync<int>(Procedure.GetProfitUser,new { userId= orderUserId }, transaction,null, CommandType.StoredProcedure);
+            return profitUserId;
         }
 
         #endregion

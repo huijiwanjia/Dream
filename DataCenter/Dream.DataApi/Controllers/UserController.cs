@@ -45,8 +45,24 @@ namespace Dream.DataApi.Controllers
         {
             try
             {
-                var user = await _userService.QueryByUserIdAsync(userId);
-                return Ok(user);
+                var userViewModel = await _userService.GetViewModelByUserIdAsync(userId);
+                return Ok(userViewModel);
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"UserController::GetAsync: {ex.Message}");
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("GetTeamById")]
+        public async Task<IActionResult> GetTeamByIdAsync(int userId)
+        {
+            try
+            {
+                var team = await _userService.GetTeamByIdAsync(userId);
+                return Ok(team);
             }
             catch (Exception ex)
             {

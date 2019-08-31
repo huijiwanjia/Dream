@@ -39,8 +39,8 @@ namespace Dream.DataAccess.IService
                 var recoment = await _recommentService.QueryAsync(user.UnionId);
                 user.PId = recoment?.PId;
                 user.AccountStatus = 0;
-                user.AgencyType = AgencyType.NotAgency;
                 user.CreateTime = DateTime.Now;
+                user.Type = UserType.Commom;
                 user.UserId = await conn.InsertAsync<UserInfo>(user);
                 return user;
             }
