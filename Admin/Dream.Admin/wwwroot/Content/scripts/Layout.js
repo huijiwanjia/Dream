@@ -8,7 +8,7 @@
         msgHtml += "<br />";
         msgHtml += "联系地址：<span class='red lighter'>" + centerInfo.address + "</span>";
         msgHtml += "<br />";
-        msgHtml += "所属权：<span class='red lighter'>" + centerInfo.companyName + "&copy; 2016-2017</span>";
+        msgHtml += "所属权：<span class='red lighter'>" + centerInfo.companyName + "&copy; 2016-2029</span>";
 
         bootbox.dialog({
             title: "<i class='fa fa-leaf'></i>&nbsp&nbsp&nbsp&nbsp惠及万家后台管理平台",
