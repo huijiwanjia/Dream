@@ -620,15 +620,26 @@ var app = {
                     $('.tab-conter .item-box').eq($(this).index()).addClass('active').siblings().removeClass('active');
                 })
             })
-            .controller('ProfitsController', function ($scope, $state, sc, ls) {
+            .controller('ProfitsController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('my');
                 };
                 $scope.profits = {};
-                $.get(DreamConfig.profitUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (data) {
-                    $scope.profits = data;
-                });
+                $http({
+                    method: "GET",
+                    url: DreamConfig.profitUrl.concat("?userId=" + ls.getObject("userInfo").UserId),
+                    contentType: "application/json",
+                    timeout: 30000
+                })
+                    .success(function (profits, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        $scope.profits = profits;
+                    })
+                    .error(function (error, textStatu, xhr) {
+                        DeviceEvent.SpinnerHide();
+                        DeviceEvent.Toast("网络异常");
+                    });
             })
             .controller('QrcodeController', function ($scope, $state, sc, ls) {
                 sc.ValidateLogin();
