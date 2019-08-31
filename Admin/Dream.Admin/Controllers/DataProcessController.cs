@@ -50,12 +50,12 @@ namespace Dream.Admin.Controllers
                     }
                     DataTable dtBackData = ExcelHelper.Import(filePath);
                     var orders = OrderInfo.FromDataTable(dtBackData);
-                    orders.ForEach(async order =>
+                    foreach(var order in orders)
                     {
                         var orderJson = JsonConvert.SerializeObject(order);
                         var orderBytes = Encoding.UTF8.GetBytes(orderJson);
                         await RequestUtil.DoRequestWithBytesPostDataAsync(_processApiUrl, "post", "application/json", 60 * 1000, 60 * 1000 * 3, orderBytes);
-                    });
+                    };
                 }
                 return Ok();
             }

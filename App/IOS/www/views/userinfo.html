@@ -9,7 +9,7 @@
             <h3 class="title">
                 个人信息
             </h3>
-            <div class="black-btn" ng-click="back()"></div>
+            <div class="black-btn needsclick" ng-click="back()"></div>
         </div>
         <div class="input-box mt30">
             <span class="title">头像</span>
@@ -29,36 +29,32 @@
         <!--<div class="input-box">
             <span class="title">个性签名</span>
             <span class="txt-box"></span>
-        </div>-->
-        <!--<div class="input-box">
+        </div>
+        <div class="input-box">
             <span class="title">我的二维码</span>
             <span class="erwei-box">
                 <img src="images/eriwei.png">
             </span>
         </div>-->
-        <div class="input-box right mt30" ng-click="updateAlipay()">
+        <div class="input-box right mt30 needsclick" ng-click="updateAlipay()">
             <span class="title">支付宝账号</span>
             <span class="txt-box">{{userInfo.AliPay}}</span>
         </div>
 
-        <div class="input-box right" ng-click="updateAlipayName()">
+        <div class="input-box right needsclick" ng-click="updateAlipayName()">
             <span class="title">支付宝姓名</span>
             <span class="txt-box">{{userInfo.AliPayName}}</span>
         </div>
         
 
         <!--<div class="input-box">
-            <span class="title">常驻地区</span>
-            <span class="txt-box">设置后有红包提醒</span>
-        </div>
-        <div class="input-box">
             <span class="title">手机号</span>
             <span class="txt-box">未绑定</span>
-        </div>
-        <div class="input-box mt30">
+        </div>-->
+        <div class="input-box right mt30 needsclick">
             <span class="title">分享APP</span>
             <span class="txt-box"></span>
-        </div>-->
+        </div>
 
     </div>
 </div>

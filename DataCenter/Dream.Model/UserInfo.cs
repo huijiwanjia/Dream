@@ -24,10 +24,7 @@ namespace Dream.Model
 
         public int? PId { get; set; }
 
-        public AgencyType? AgencyType { get; set; }
-
-        public DateTime? AgencyBeginTime { get; set; }
-
         public AccountStatus? AccountStatus { get; set; }
+        public UserType Type { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace Dream.Model
         public ProfitStatus Status { get; set; }
 
         public int? UserId { get; set; }
+        public int? FromUser { get; set; }
+        public string FromOrder { get; set; }
 
     }
 }
