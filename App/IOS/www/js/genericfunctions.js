@@ -21,6 +21,7 @@ function Post($http, url, paramData, callback) {
         data: paramData,
         timeout: 30000
     }).success(function (data, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
         if (isFunction(callback)) callback(data);
     }).error(function (error, textStatu, xhr) {
         DeviceEvent.SpinnerHide();

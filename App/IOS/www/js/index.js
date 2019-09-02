@@ -292,13 +292,11 @@ var app = {
                                 //get access_token
                                 var authUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code";
                                 Get($http, authUrl, function (data) {
-                                    var rerturnData = JSON.parse(data);
                                     //get userinfo
-                                    Get($http, "https://api.weixin.qq.com/sns/userinfo?access_token=" + rerturnData.access_token + "&openid=" + rerturnData.openid, function (userInfo) {
-                                        var user_info = JSON.parse(userInfo);
-                                        var user = { openId: user_info.openid, avatarUrl: user_info.headimgurl, unionId: rerturnData.unionid, name: user_info.nickname, sex: user_info.sex };
+                                    Get($http, "https://api.weixin.qq.com/sns/userinfo?access_token=" + data.access_token + "&openid=" + data.openid, function (userInfo) {
                                         //check user
-                                        Post($http, DreamConfig.accountUrl, { openId: user.openId, avatarUrl: user.avatarUrl, name: user.name, sex: user.sex, unionid: user.unionId }, function (authedUser) {
+                                        Post($http, DreamConfig.accountUrl, { openId: userInfo.openId, avatarUrl: userInfo.headimgurl, name: userInfo.nickname, sex: userInfo.sex, unionid: data.unionId }, function (authedUser) {
+                                            alert(authedUser);
                                             ls.setObject('userInfo', authedUser);
                                             ls.set('loginTime', new Date());
                                             $state.go('home');

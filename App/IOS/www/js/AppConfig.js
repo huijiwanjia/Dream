@@ -17,12 +17,12 @@ var DreamConfig = {
     appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
     clickLog: DreamServer.concat("dream/clicklog/"),
     userOrders: DreamServer.concat("dream/order")
-}
+};
 var agencyType = {
     NotAgency: 0,
-    City: 1, 
-    Country: 2,
-}
+    City: 1,
+    Country: 2
+};
 
 
 
