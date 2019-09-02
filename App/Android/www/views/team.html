@@ -18,7 +18,11 @@
             </div>
         </div>
         <div class="all-item">
-            <div class="item-box" ng-click="goUserpage(user.UserId)" ng-repeat="user in teamInfo| filter:query">
+            <div class="item-box">
+                <p>推广数：{{teamInfo.DirectlyCount}}</p>
+                <p>总人数：{{teamInfo.TotalCount}}</p>
+            </div>
+            <div class="item-box needsclick" ng-click="goUserpage(user.UserId)" ng-repeat="user in teamInfo.TeamMember| filter:query">
                 <div class="img-box"><img src="{{user.AvatarUrl}}"></div>
                 <p>{{user.Name}}</p>
             </div>

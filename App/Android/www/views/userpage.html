@@ -16,34 +16,24 @@
                 <img src="{{userInfo.AvatarUrl}}">
             </div>
             <p class="name">{{userInfo.Name}}</p>
-            <span class="type" ng-show="userInfo.AgencyType == 1" ng-hide="userInfo.AgencyType != 1">市区代理</span>
-            <span class="type" ng-show="userInfo.AgencyType == 2" ng-hide="userInfo.AgencyType != 2">全国代理</span>
-            <span class="type" ng-show="userInfo.AgencyType == 0" ng-hide="userInfo.AgencyType != 0">非代理用户</span>
-        </div>
-        <div class="info-box clearfix">
-            <div class="item-box">
-                <p class="nub">{{userInfo.SendAmount}}</p>
-                <p class="describe">发布总金额</p>
-            </div>
-            <div class="item-box">
-                <p class="nub">{{userInfo.RecieveAmount}}</p>
-                <p class="describe">抢到总金额</p>
-            </div>
+            <span class="type" ng-show="userInfo.Type == 1" ng-hide="userInfo.Type != 1">合伙人</span>
+            <span class="type" ng-show="userInfo.Type == 2" ng-hide="userInfo.Type != 2">普通用户</span>
+            <span class="type" ng-show="userInfo.Type == 0" ng-hide="userInfo.Type != 0">特殊用户</span>
         </div>
         <div class="income-box">
             <p class="title"><span>收入概况</span></p>
             <div class="all-item clearfix">
                 <div class="item-box">
-                    <p>{{userInfo.TodayProfit}}</p>
-                    <span>今日</span>
-                </div>
-                <div class="item-box">
-                    <p>{{userInfo.MonthProfit}}</p>
-                    <span class="bgf5b63d">本月</span>
-                </div>
-                <div class="item-box">
                     <p>{{userInfo.TotalProfit}}</p>
-                    <span class="bga8d08e">累计</span>
+                    <span>总收益</span>
+                </div>
+                <div class="item-box">
+                    <p>{{userInfo.TeamProfit}}</p>
+                    <span class="bgf5b63d">团队总收益</span>
+                </div>
+                <div class="item-box">
+                    <p>{{userInfo.OrderProfit}}</p>
+                    <span class="bga8d08e">订单总收益</span>
                 </div>
             </div>
         </div>

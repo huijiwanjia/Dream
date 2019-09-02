@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.huijiwanjia.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>惠及万家</name>
+  <name>共享返利</name>
   <description>
     work for yourself。
   </description>
@@ -57,28 +57,6 @@
     <param name="APP_ID" value="2019070465742601" />
   </plugin>
   
-
-  <platform name="android">
-    <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
-    <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
-    <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
-    <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
-    <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-    <splash qualifier="land-ldpi" src="www/res/screen/android/drawable-land-ldpi.png" />
-    <splash qualifier="land-mdpi" src="www/res/screen/android/drawable-land-mdpi.png" />
-    <splash qualifier="land-hdpi" src="www/res/screen/android/drawable-land-hdpi.png" />
-    <splash qualifier="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi.png" />
-    <splash qualifier="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi.png" />
-    <splash qualifier="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi.png" />
-    <splash qualifier="port-ldpi" src="www/res/screen/android/drawable-port-ldpi.png" />
-    <splash qualifier="port-mdpi" src="www/res/screen/android/drawable-port-mdpi.png" />
-    <splash qualifier="port-hdpi" src="www/res/screen/android/drawable-port-hdpi.png" />
-    <splash qualifier="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi.png" />
-    <splash qualifier="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi.png" />
-    <splash qualifier="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi.png" />
-
-  </platform>
   <platform name="ios">
     <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
     <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
@@ -113,16 +91,16 @@
   </platform>
   
   <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-    <string>惠及万家需要您的同意,才能访问相机</string>
+    <string>共享返利需要您的同意,才能访问相机</string>
   </edit-config>
   <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
-    <string>惠及万家需要您的同意,才能访问相册</string>
+    <string>共享返利需要您的同意,才能访问相册</string>
   </edit-config>
   <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-    <string>惠及万家需要您的同意,才能获得您当前位置</string>
+    <string>共享返利需要您的同意,才能获得您当前位置</string>
   </edit-config>
   <edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
-    <string>惠及万家需要您的同意,才能写入相册</string>
+    <string>共享返利需要您的同意,才能写入相册</string>
   </edit-config>
   
   <access origin="*" />

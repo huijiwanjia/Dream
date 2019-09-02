@@ -4,6 +4,7 @@ var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbk.huijiwanjia.com/";
 
 var DreamConfig = {
+    isDebug: false,
     accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days
     attachmentUrl: DreamServer.concat("dream/attachment?url="),
@@ -19,7 +20,7 @@ var DreamConfig = {
 }
 var agencyType = {
     NotAgency: 0,
-    City: 1,
+    City: 1, 
     Country: 2,
 }
 
