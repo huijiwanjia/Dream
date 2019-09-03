@@ -3,8 +3,9 @@
     $http({
         method: "GET",
         url: url,
-        timeout: 30000
+        timeout: 15000
     }).success(function (data, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
         if (isFunction(callback)) callback(data);
     }).error(function (error, textStatu, xhr) {
         DeviceEvent.SpinnerHide();
@@ -19,7 +20,7 @@ function Post($http, url, paramData, callback) {
         url: url,
         contentType: "application/json",
         data: paramData,
-        timeout: 30000
+        timeout: 15000
     }).success(function (data, textStatu, xhr) {
         DeviceEvent.SpinnerHide();
         if (isFunction(callback)) callback(data);

@@ -295,8 +295,7 @@ var app = {
                                     //get userinfo
                                     Get($http, "https://api.weixin.qq.com/sns/userinfo?access_token=" + data.access_token + "&openid=" + data.openid, function (userInfo) {
                                         //check user
-                                        Post($http, DreamConfig.accountUrl, { openId: userInfo.openId, avatarUrl: userInfo.headimgurl, name: userInfo.nickname, sex: userInfo.sex, unionid: data.unionId }, function (authedUser) {
-                                            alert(authedUser);
+                                        Post($http, DreamConfig.accountUrl, { openId: userInfo.openid, avatarUrl: userInfo.headimgurl, name: userInfo.nickname, sex: userInfo.sex, unionid: data.unionid }, function (authedUser) {
                                             ls.setObject('userInfo', authedUser);
                                             ls.set('loginTime', new Date());
                                             $state.go('home');
