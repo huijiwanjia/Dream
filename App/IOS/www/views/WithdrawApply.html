@@ -16,7 +16,7 @@
                     <p class="name" ng-if="apply.Status==0">状态：已处理</p>
                     <p class="name" ng-if="apply.Status==1">状态：未处理</p>
                     <p class="time">{{apply.ApplyTime}}</p>
-                    <span class="monery">金额：+{{apply.Amount}} 元</span>
+                    <span class="monery">金额：+{{apply.Amount| number:2}} 元</span>
                 </div>
             </div>
         </div>
