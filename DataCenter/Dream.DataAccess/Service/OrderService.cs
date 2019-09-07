@@ -92,8 +92,8 @@ namespace Dream.DataAccess.Service
                             var clickLog = await _clickLogService.QueryAsync(order.ClickTime, order.ItemId);
                             order.UserId = clickLog?.UserId;
                             order.Type = OrderType.Import;
-                            order.Url = clickLog.Url;
-                            order.ImgUrl = clickLog.ImgUrl;
+                            order.Url = clickLog?.Url;
+                            order.ImgUrl = clickLog?.ImgUrl;
                             order.CreateTime = DateTime.Now;
                             order.IsShared = false;
                             order.ProfitId = await CheckAndAddOrderProfit(order, conn, transaction);
