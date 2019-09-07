@@ -36,7 +36,7 @@ namespace Dream.DataAccess.Service
                     if (profit.Type == ProfitType.ShareBack)
                     {
                         //更新订单分享信息
-                        await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, status = true }, transaction, null, CommandType.StoredProcedure);
+                        await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, profitStatus= profit.Status, status = true }, transaction, null, CommandType.StoredProcedure);
                     }
                     transaction.Commit();
                 }
