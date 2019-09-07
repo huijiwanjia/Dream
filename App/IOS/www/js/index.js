@@ -628,7 +628,7 @@ var app = {
                 Get($http, DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId, function (userOrders) {
                     $scope.userOrders = userOrders;
                 });
-                $scope.share = function (title,img,url,price,state,orderId) {
+                $scope.share = function (title, img, url, price, state, code) {
                     Wechat.share({
                         message: {
                             title: title,
@@ -646,11 +646,11 @@ var app = {
                     }, function () {
                         var status = 1;
                         if (state == 2) status = 0;
-                        Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: orderId,Remark:"来自订单分享收益"}, function (data) {
+                        Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: code,Remark:"来自订单分享收益"}, function (data) {
                             DeviceEvent.Toast("分享成功,订单完成之后您将多获得20%额外奖励");
                         });
                     }, function (reason) {
-                        DeviceEvent.Toast("分享失败");
+                        DeviceEvent.Toast("分享失败," + reason);
                     });
                 };
             })

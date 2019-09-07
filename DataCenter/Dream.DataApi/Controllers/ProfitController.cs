@@ -58,7 +58,7 @@ namespace Dream.DataApi.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task<IActionResult> AddProfits(Profit profit)
+        public async Task<IActionResult> AddProfits([FromBody]Profit profit)
         {
             try
             {
