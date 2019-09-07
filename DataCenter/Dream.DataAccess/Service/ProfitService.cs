@@ -52,7 +52,7 @@ namespace Dream.DataAccess.Service
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, type = ProfitType.OrderBack, status = -1 }, null, null, CommandType.StoredProcedure);
+                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = -1 }, null, null, CommandType.StoredProcedure);
                 return profits;
             }
         }
@@ -128,7 +128,7 @@ namespace Dream.DataAccess.Service
                 var transaction = conn.BeginTransaction();
                 try
                 {
-                    var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, type = ProfitType.OrderBack, status = (int)ProfitStatus.Active }, transaction, null, CommandType.StoredProcedure);
+                    var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = (int)ProfitStatus.Active }, transaction, null, CommandType.StoredProcedure);
                     double remainAmount = profits.Select(p => p.Amount).Sum();
 
                     var withdraw = new Withdraw()
