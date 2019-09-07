@@ -52,7 +52,7 @@ namespace Dream.DataAccess.Service
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = -1 }, null, null, CommandType.StoredProcedure);
+                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = (int)ProfitStatus.Active }, null, null, CommandType.StoredProcedure);
                 return profits;
             }
         }
