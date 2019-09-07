@@ -17,9 +17,11 @@ namespace Dream.DataAccess.Service
     public class ProfitService : IProfitService
     {
         private ILog _log;
-        public ProfitService(ILog l)
+        private IOrderService _orderService;
+        public ProfitService(ILog l, IOrderService o)
         {
             _log = l;
+            _orderService = o;
         }
 
         public async Task AddProfits(Profit profit)
@@ -32,12 +34,16 @@ namespace Dream.DataAccess.Service
                 var transaction = conn.BeginTransaction();
                 try
                 {
-                    await conn.InsertAsync<Profit>(profit, transaction);
                     if (profit.Type == ProfitType.ShareBack)
                     {
+                        //检查订单是否已经分享过了
+                        var order = await _orderService.GetOrderByCode(profit.FromOrder);
+                        if (order.IsShared) return;
+                        await conn.QueryAsync<OrderInfo>(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder }, transaction, null, CommandType.StoredProcedure);
                         //更新订单分享信息
                         await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, profitStatus= profit.Status, status = true }, transaction, null, CommandType.StoredProcedure);
                     }
+                    await conn.InsertAsync<Profit>(profit, transaction);
                     transaction.Commit();
                 }
                 catch(Exception ex) {
