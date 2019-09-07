@@ -178,7 +178,7 @@ namespace Dream.DataAccess.Service
                     pProfit.Amount = orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderProfitUserBackRate;
                     await conn.InsertAsync<Profit>(pProfit, transaction);
                 }
-                //更新分享收益状态为有效
+                //如果有分享，更新分享收益状态为有效
                 var profitFromShared = await conn.ExecuteAsync(Procedure.UpdateProfitFromSharedByOrderId, new { code = orderInfo.Code }, transaction, null, CommandType.StoredProcedure);
             }
             return profit.ProfitId == 0 ? orderInfo.ProfitId ?? 0 : profit.ProfitId;
