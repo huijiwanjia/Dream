@@ -411,6 +411,27 @@ var app = {
                 $scope.updateAlipayName = function () {
                     $state.go('update', { obj: { title: "设置支付宝姓名", type: "alipayName", value: $scope.userInfo.AliPayName } });
                 };
+                $scope.share = function () {
+                    Wechat.share({
+                        message: {
+                            title: "点我立刻享受淘宝购物高额报销",
+                            description: "点我立刻享受淘宝购物高额报销.",
+                            thumb: "www/images/icon-76@2x.png",
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: "点我立刻享受淘宝购物高额报销",
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        DeviceEvent.Toast("分享成功");
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
+                };
             })
             .controller('TeamController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -573,8 +594,8 @@ var app = {
                         console.log($scope.QueryResult);
                     });
                 };
-                $scope.ClickLog = function (itemId) {
-                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId }, function (data) {
+                $scope.ClickLog = function (itemId,url,imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
             })
@@ -607,6 +628,31 @@ var app = {
                 Get($http, DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId, function (userOrders) {
                     $scope.userOrders = userOrders;
                 });
+                $scope.share = function (title,img,url,price,state,orderId) {
+                    Wechat.share({
+                        message: {
+                            title: title,
+                            description: title,
+                            thumb: img,
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: title,
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: url
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        var status = 1;
+                        if (state == 2) status = 0;
+                        Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: orderId,Remark:"来自订单分享收益"}, function (data) {
+                            DeviceEvent.Toast("分享成功,订单完成之后您将多获得20%额外奖励");
+                        });
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
+                };
             })
             .controller('WithdrawApplyController', function ($scope, sc, ls, $state, $http) {
                 curPage = "withdrawApply";

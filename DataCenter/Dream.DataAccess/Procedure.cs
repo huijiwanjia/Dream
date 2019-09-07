@@ -25,5 +25,7 @@ namespace Dream.DataAccess
         public static string GetWithdrawByUserId => "GetWithdrawByUserId";
         public static string GetProfitUser => "GetProfitUser";
         public static string GetUserViewModelByUserId => "GetUserViewModelByUserId";
+        public static string UpdateOrderShareStatus => "UpdateOrderShareStatus";
+        public static string UpdateProfitFromSharedByOrderId => "UpdateProfitFromSharedByOrderId";
     }
 }

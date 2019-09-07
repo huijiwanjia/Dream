@@ -19,7 +19,8 @@
                     <p class="name" ng-if="order.State==2">订单状态：已结算</p>
                     <p class="name" ng-if="order.State==3">订单状态：已失效</p>
                     <p class="time">{{order.Code}}</p>
-                    <span class="monery">预计返利：+{{order.BackPrice}} 元</span>
+                    <input ng-if="!order.isShared" type="button" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.url,order.State,order.Id)" value="点击分享（分享可再得20%）" />
+                    <input ng-if="order.isShared" type="button" value="您已经分享过该订单，试试其他订单" />
                 </div>
             </div>
         </div>

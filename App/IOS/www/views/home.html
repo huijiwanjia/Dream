@@ -33,7 +33,7 @@
                     <div>销售量：{{item.tk_total_sales}}</div>
                     <div>商品ID：{{item.item_id}}</div>
                     <img src="{{item.pict_url}}" /><br />
-                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id)">购买</a>
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}',item.pict_url)">购买</a>
                 </li>
             </ul>
         </div>

@@ -22,6 +22,31 @@ namespace Dream.DataAccess.Service
             _log = l;
         }
 
+        public async Task AddProfits(Profit profit)
+        {
+            profit.CreateTime = DateTime.Now;
+
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var transaction = conn.BeginTransaction();
+                try
+                {
+                    await conn.InsertAsync<Profit>(profit, transaction);
+                    if (profit.Type == ProfitType.ShareBack)
+                    {
+                        //更新订单分享信息
+                        await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, status = true }, transaction, null, CommandType.StoredProcedure);
+                    }
+                    transaction.Commit();
+                }
+                catch(Exception ex) {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
         public async Task<IEnumerable<Profit>> GetUserProfits(int userId)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
@@ -124,7 +149,6 @@ namespace Dream.DataAccess.Service
                 }
             }
         }
-        #region MyRegion
         #region private
         private string GenerateSqlWhere(JqTableParams param)
         {
@@ -143,7 +167,6 @@ namespace Dream.DataAccess.Service
             strWhere += string.Format(" and ApplyTime > '{0}' and ApplyTime < '{1}'", startTime, endTime);
             return strWhere;
         }
-        #endregion
         #endregion
     }
 }

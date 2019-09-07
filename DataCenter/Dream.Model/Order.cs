@@ -83,5 +83,17 @@ namespace Dream.Model
         /// 对应收益的ID
         /// </summary>
         public int? ProfitId { get; set; }
+        /// <summary>
+        /// 是否已经分享过了
+        /// </summary>
+        public bool IsShared { get; set; }
+        /// <summary>
+        /// 订单淘宝地址
+        /// </summary>
+        public string Url{ get; set; }
+        /// <summary>
+        /// 订单图片
+        /// </summary>
+        public string ImgUrl { get; set; }
     }
 }

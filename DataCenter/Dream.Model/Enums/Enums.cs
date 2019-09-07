@@ -40,7 +40,8 @@ namespace Dream.Model.Enums
     public enum ProfitType
     {
        OrderBack,
-       ChildBack
+       ChildBack,
+       ShareBack
     }
     public enum ProfitStatus
     {

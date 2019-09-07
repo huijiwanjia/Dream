@@ -92,7 +92,10 @@ namespace Dream.DataAccess.Service
                             var clickLog = await _clickLogService.QueryAsync(order.ClickTime, order.ItemId);
                             order.UserId = clickLog?.UserId;
                             order.Type = OrderType.Import;
+                            order.Url = clickLog.Url;
+                            order.ImgUrl = clickLog.ImgUrl;
                             order.CreateTime = DateTime.Now;
+                            order.IsShared = false;
                             order.ProfitId = await CheckAndAddOrderProfit(order, conn, transaction);
                             await conn.InsertAsync<OrderInfo>(order, transaction);
                         }
@@ -175,7 +178,8 @@ namespace Dream.DataAccess.Service
                     pProfit.Amount = orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderProfitUserBackRate;
                     await conn.InsertAsync<Profit>(pProfit, transaction);
                 }
-
+                //更新分享收益状态为有效
+                var profitFromShared = await conn.ExecuteAsync(Procedure.UpdateProfitFromSharedByOrderId, new { code = orderInfo.Code }, transaction, null, CommandType.StoredProcedure);
             }
             return profit.ProfitId == 0 ? orderInfo.ProfitId ?? 0 : profit.ProfitId;
         }
