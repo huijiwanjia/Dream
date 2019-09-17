@@ -62,7 +62,7 @@ var app = {
                     })
                     .state('home', {
                         url: "/home",
-                        cache: true,
+                     //   cache: true,
                         views: {
                             'content': {
                                 templateUrl: 'views/home.html',
@@ -75,13 +75,13 @@ var app = {
                         }
 
                     })
-                    .state('withdrawApply', {
-                        url: "/withdrawApply",
-                        cache: true,
+                    .state('rebate', {
+                        url: "/rebate",
+                       // cache: true,
                         views: {
                             'content': {
-                                templateUrl: 'views/WithdrawApply.html',
-                                controller: 'WithdrawApplyController'
+                                templateUrl: 'views/rebate.html',
+                                controller: 'RebateController'
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -191,13 +191,13 @@ var app = {
                             obj: { header: null, title: null, details: null, amount: null }
                         }
                     })
-                    .state('order', {
-                        url: "/order",
+                    .state('recommend', {
+                        url: "/recommend",
                         cache: true,
                         views: {
                             'content': {
-                                templateUrl: 'views/order.html',
-                                controller: 'OrderController'
+                                templateUrl: 'views/recommend.html',
+                                controller: 'RecommendController'
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -329,16 +329,14 @@ var app = {
             })
             .controller('GuideController', function ($scope, ls, $state) {
                 var swiper = new Swiper('.swiper-container', {
-                    pagination: '.swiper-pagination',
-                    paginationClickable: true,
-                    loop: false,
-                    onSlideChangeEnd: function (swiper) {
-                        if (3 === swiper.activeIndex) {
-                            ls.set('guideIsChecked', true);
-                            $state.go('login');
-                        }
-                    }
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
                 });
+                $scope.goLogin=function(){
+                    ls.set('guideIsChecked', true);
+                    $state.go('login');
+                }
             })
 
             .controller('UserpageController', function ($scope, $http, $state, sc, $stateParams) {
@@ -600,18 +598,19 @@ var app = {
                 };
             })
             .controller('FooterController', function ($scope, $state, ls) {
+                $(".item-box").removeClass("active");
                 switch (curPage) {
                     case "home":
-                        $(".item-box.map").addClass("active");
+                        $(".item-box.home").addClass("active");
                         break;
-                    case "withdrawApply":
-                        $(".item-box.message").addClass("active");
+                    case "rebate":
+                        $(".item-box.rebate").addClass("active");
                         break;
                     case "my":
                         $(".item-box.my").addClass("active");
                         break;
-                    case "order":
-                        $(".item-box.contacts").addClass("active");
+                    case "recommend":
+                        $(".item-box.recommend").addClass("active");
                         break;
                 }
             })
@@ -622,8 +621,15 @@ var app = {
                     sc.Login();
                 };
             })
+            .controller('RebateController', function ($scope, sc, ls, $state, $http) {
+                curPage = "rebate";
+                sc.ValidateLogin();
+            })
+            .controller('RecommendController', function ($scope, sc, ls, $state, $http) {
+                curPage = "recommend";
+                sc.ValidateLogin();
+            })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
-                curPage = "order";
                 sc.ValidateLogin();
                 Get($http, DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId, function (userOrders) {
                     $scope.userOrders = userOrders;
