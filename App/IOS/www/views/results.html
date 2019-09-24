@@ -98,7 +98,8 @@
                         </div>
                         <div class="txt_4 clearfix">
                             <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.0001)| number:2}}</span>
-                            <em>{{item.coupon_amount}}元劵</em>
+                            <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
+                            <em ng-if="item.coupon_amount==0">无优惠劵</em>
                         </div>
                         <div class="txt_5">
                             {{item.shop_title}}
@@ -108,7 +109,7 @@
             </div>
         </div>
         <div class="more-info">
-            <img src="images/img_22.gif">加载更多....
+            <img src="images/img_22.gif">加载中....
         </div>
     </div>
 </div>
