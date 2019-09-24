@@ -138,6 +138,9 @@ var app = {
                                 templateUrl: 'views/results.html',
                                 controller: 'ResultsController'
                             }
+                        },
+                        params: {
+                            itemName: null,                           
                         }
                     })
                     .state('search', {
@@ -372,7 +375,7 @@ var app = {
                 $scope.goLogin=function(){
                     ls.set('guideIsChecked', true);
                     $state.go('login');
-                }
+                };
             })
 
             .controller('UserpageController', function ($scope, $http, $state, sc, $stateParams) {
@@ -479,21 +482,39 @@ var app = {
                     $scope.teamInfo = team;
                 });
             })
-            .controller('ResultsController', function ($scope, $http, $state, sc, ls) {
+            .controller('ResultsController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('home');
                 };
-               
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                $scope.QueryText = $stateParams.itemName;
+                $scope.Query = function () {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20 }, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_material_optional_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.QueryResult = data;
+                        console.log($scope.QueryResult);
+                    });
+                };
+                $scope.Query();
             })
             .controller('SearchController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('home');
                 };
+                $scope.itemName = "";
                 $scope.ToResult = function () {
-                    $state.go('results');
-                }
+                    $state.go('results', { itemName: $scope.itemName });
+                };
               
             })
             .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
@@ -673,26 +694,9 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
-              
-                $scope.QueryText = "";
-                $scope.Query = function () {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 5 }, function (data) {
-                        data = JSON.parse(data);
-                        var ret = data.tbk_dg_material_optional_response.result_list.map_data;
-                        for (i = 0; i < ret.length; i++) {
-                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
-                        }
-                        $scope.QueryResult = data;
-                        console.log($scope.QueryResult);
-                    });
-                };
+                        
                 $scope.ToSearch = function () {
                     $state.go("search");
-                };
-                $scope.ClickLog = function (itemId,url,imgUrl) {
-                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                    });
                 };
 
             })
@@ -769,13 +773,18 @@ var app = {
                     $scope.withdrawApply = withdrawApply;
                 });
             })
-            .controller('MyController', function ($scope, $state, sc, ls) {
+            .controller('MyController', function ($scope, $state, sc, ls,$http) {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
                 $scope.goUserpage = function () {
                     $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" });
                 };
+
+                Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
+                    $scope.userInfo = userInfo;
+                });
+
                 $scope.goWithdraw = function () {
                     if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null) {
                         DeviceEvent.Confirm("您还未填写支付宝账号或姓名",
