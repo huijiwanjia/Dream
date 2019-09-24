@@ -1,4 +1,36 @@
-﻿function isFunction(functionToCheck) {
+﻿function Get($http, url, callback) {
+    DeviceEvent.SpinnerShow();
+    $http({
+        method: "GET",
+        url: url,
+        timeout: 15000
+    }).success(function (data, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
+        if (isFunction(callback)) callback(data);
+    }).error(function (error, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
+        DeviceEvent.Toast("网络异常");
+    });
+}
+
+function Post($http, url, paramData, callback) {
+    DeviceEvent.SpinnerShow();
+    $http({
+        method: "POST",
+        url: url,
+        contentType: "application/json",
+        data: paramData,
+        timeout: 15000
+    }).success(function (data, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
+        if (isFunction(callback)) callback(data);
+    }).error(function (error, textStatu, xhr) {
+        DeviceEvent.SpinnerHide();
+        DeviceEvent.Toast("网络异常");
+    });
+}
+
+function isFunction(functionToCheck) {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 }

@@ -1,0 +1,88 @@
+﻿<style type="text/css">
+
+    html {
+        background: #fff;
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+</style>
+<div class="search_page-wrap">
+    <div class="top-header">
+        <div class="search-box">
+            <div class="left-icon" ng-click="back()"><img src="images/icon_53.png"></div>
+            <div class="input-box">
+                <input type="search" ng-model="itemName" name="" placeholder="粘贴标题    搜索优惠">
+                <i><img src="images/icon_54.png"></i>
+            </div>
+            <div class="link-icon" ng-click="ToResult()">
+                <span class="search-btn">搜索</span>
+            </div>
+        </div>
+    </div>
+    <div class="session_1">
+        <div class="tab-box">
+            <span class="active">花生推荐</span>
+            <span>全网搜索</span>
+        </div>
+        <div class="img-box">
+            <img src="images/img_22.jpg">
+        </div>
+    </div>
+    <div class="session_2">
+        <div class="tab-list">
+            <div class="tab-item active">
+                <div class="hot-box">
+                    <h3>热门搜索</h3>
+                    <div class="tab-box">
+                        <span>一次性洗脸巾￥33.9</span>
+                        <span>山羊奶滋润身体露</span>
+                        <span>网红海盐饼干</span>
+                        <span>青蛙王子</span>
+                        <span>欧克斯毛钱解决</span>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <div class="top-box">
+                        <h3>历史搜索</h3>
+                        <span>清除</span>
+                    </div>
+                    <div class="tab-box">
+                        <span>衣服</span>
+                        <span>男鞋</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-item">
+                <div class="hot-box">
+                    <h3>热门搜索</h3>
+                    <div class="tab-box">
+                        <span>山羊奶滋润身体露</span>
+                        <span>网红杯子</span>
+                        <span>网红海盐饼干</span>
+                        <span>青蛙王子</span>
+                        <span>欧克斯毛钱解决</span>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <div class="top-box">
+                        <h3>历史搜索</h3>
+                        <span>清除</span>
+                    </div>
+                    <div class="tab-box">
+                        <span>篮球</span>
+                        <span>男鞋</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.session_1 .tab-box span').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.session_2 .tab-item').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    });
+</script>

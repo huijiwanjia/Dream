@@ -14,5 +14,7 @@ namespace Dream.Model
         public DateTime ClickTime { get; set; }
         public int UserId { get; set; }
         public string ItemId { get; set; }
+        public string Url { get; set; }
+        public string ImgUrl { get; set; }
     }
 }

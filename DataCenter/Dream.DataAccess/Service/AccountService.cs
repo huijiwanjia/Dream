@@ -12,6 +12,7 @@ using System.Linq;
 using Dream.Model.Admin;
 using Dapper.Contrib.Extensions;
 using Dream.Model.Enums;
+using Dream.Util;
 
 namespace Dream.DataAccess.IService
 {
@@ -37,10 +38,17 @@ namespace Dream.DataAccess.IService
             {
                 conn.Open();
                 var recoment = await _recommentService.QueryAsync(user.UnionId);
+                if (recoment != null)
+                {
+                    //检查推荐人是否达到合伙人资格
+                    var team = await _userService.GetTeamByIdAsync(recoment.PId);
+                    if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToTeamMember == team.TeamMember?.Count() + 1)
+                        user.Type = UserType.TeamMember;
+                    else user.Type = UserType.Commom;
+                }
                 user.PId = recoment?.PId;
                 user.AccountStatus = 0;
                 user.CreateTime = DateTime.Now;
-                user.Type = UserType.Commom;
                 user.UserId = await conn.InsertAsync<UserInfo>(user);
                 return user;
             }

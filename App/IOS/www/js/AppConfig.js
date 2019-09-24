@@ -4,6 +4,8 @@ var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbk.huijiwanjia.com/";
 
 var DreamConfig = {
+    isDebug: true,
+    shareBackRate:0.2,
     accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days
     attachmentUrl: DreamServer.concat("dream/attachment?url="),
@@ -16,12 +18,12 @@ var DreamConfig = {
     appSecret: "d4b03bcf09622fc6ea9cad4fdb34ad06",
     clickLog: DreamServer.concat("dream/clicklog/"),
     userOrders: DreamServer.concat("dream/order")
-}
+};
 var agencyType = {
     NotAgency: 0,
     City: 1,
-    Country: 2,
-}
+    Country: 2
+};
 
 
 

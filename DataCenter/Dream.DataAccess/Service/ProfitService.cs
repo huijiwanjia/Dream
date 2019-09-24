@@ -17,9 +17,40 @@ namespace Dream.DataAccess.Service
     public class ProfitService : IProfitService
     {
         private ILog _log;
-        public ProfitService(ILog l)
+        private IOrderService _orderService;
+        public ProfitService(ILog l, IOrderService o)
         {
             _log = l;
+            _orderService = o;
+        }
+
+        public async Task AddProfits(Profit profit)
+        {
+            profit.CreateTime = DateTime.Now;
+
+            using (IDbConnection conn = DBConnection.CreateConnection())
+            {
+                conn.Open();
+                var transaction = conn.BeginTransaction();
+                try
+                {
+                    if (profit.Type == ProfitType.ShareBack)
+                    {
+                        //检查订单是否已经分享过了
+                        var order = await _orderService.GetOrderByCode(profit.FromOrder);
+                        if (order.IsShared) return;
+                        await conn.QueryAsync<OrderInfo>(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder }, transaction, null, CommandType.StoredProcedure);
+                        //更新订单分享信息
+                        await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, profitStatus= profit.Status, status = true }, transaction, null, CommandType.StoredProcedure);
+                    }
+                    await conn.InsertAsync<Profit>(profit, transaction);
+                    transaction.Commit();
+                }
+                catch(Exception ex) {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
         }
 
         public async Task<IEnumerable<Profit>> GetUserProfits(int userId)
@@ -27,7 +58,7 @@ namespace Dream.DataAccess.Service
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
                 conn.Open();
-                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, type = ProfitType.OrderBack, status = -1 }, null, null, CommandType.StoredProcedure);
+                var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = -1 }, null, null, CommandType.StoredProcedure);
                 return profits;
             }
         }
@@ -103,7 +134,7 @@ namespace Dream.DataAccess.Service
                 var transaction = conn.BeginTransaction();
                 try
                 {
-                    var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, type = ProfitType.OrderBack, status = (int)ProfitStatus.Active }, transaction, null, CommandType.StoredProcedure);
+                    var profits = await conn.QueryAsync<Profit>(Procedure.GetUserProfits, new { userId, status = (int)ProfitStatus.Active }, transaction, null, CommandType.StoredProcedure);
                     double remainAmount = profits.Select(p => p.Amount).Sum();
 
                     var withdraw = new Withdraw()
@@ -124,7 +155,6 @@ namespace Dream.DataAccess.Service
                 }
             }
         }
-        #region MyRegion
         #region private
         private string GenerateSqlWhere(JqTableParams param)
         {
@@ -143,7 +173,6 @@ namespace Dream.DataAccess.Service
             strWhere += string.Format(" and ApplyTime > '{0}' and ApplyTime < '{1}'", startTime, endTime);
             return strWhere;
         }
-        #endregion
         #endregion
     }
 }

@@ -57,28 +57,6 @@
     <param name="APP_ID" value="2019070465742601" />
   </plugin>
   
-
-  <platform name="android">
-    <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
-    <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
-    <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
-    <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
-    <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-    <splash qualifier="land-ldpi" src="www/res/screen/android/drawable-land-ldpi.png" />
-    <splash qualifier="land-mdpi" src="www/res/screen/android/drawable-land-mdpi.png" />
-    <splash qualifier="land-hdpi" src="www/res/screen/android/drawable-land-hdpi.png" />
-    <splash qualifier="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi.png" />
-    <splash qualifier="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi.png" />
-    <splash qualifier="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi.png" />
-    <splash qualifier="port-ldpi" src="www/res/screen/android/drawable-port-ldpi.png" />
-    <splash qualifier="port-mdpi" src="www/res/screen/android/drawable-port-mdpi.png" />
-    <splash qualifier="port-hdpi" src="www/res/screen/android/drawable-port-hdpi.png" />
-    <splash qualifier="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi.png" />
-    <splash qualifier="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi.png" />
-    <splash qualifier="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi.png" />
-
-  </platform>
   <platform name="ios">
     <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
     <icon height="114" platform="ios" src="www/res/icon/ios/icon@2x.png" width="114" />
@@ -108,7 +86,17 @@
     <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
     <splash height="2436" platform="ios" src="www/res/screen/ios/Default-Portrait~iphoneX.png" width="1125" />-->
 
-    <splash src="www/res/screen/ios/Default@2x~universal~anyany.png" />
+    <!--<splash src="www/res/screen/ios/Default@2x~universal~anyany.png" />-->
+
+    <splash src="www/res/screen/ios/Default@2x~iphone~anyany.png" />
+    <splash src="www/res/screen/ios/Default@2x~iphone~comany.png" />
+    <splash src="www/res/screen/ios/Default@2x~iphone~comcom.png" />
+    <splash src="www/res/screen/ios/Default@3x~iphone~anyany.png" />
+    <splash src="www/res/screen/ios/Default@3x~iphone~anycom.png" />
+    <splash src="www/res/screen/ios/Default@3x~iphone~comany.png" />
+    <splash src="www/res/screen/ios/Default@2x~ipad~anyany.png" />
+    <splash src="www/res/screen/ios/Default@2x~ipad~comany.png" /> 
+    
     <engine name="ios" spec="latest" />
   </platform>
   

@@ -1,17 +1,70 @@
-﻿<div class="guide-box">
-    <!-- Swiper -->
+﻿<style type="text/css">
+
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        html {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+            html:before {
+                display: none;
+            }
+
+            html:after {
+                display: none;
+            }
+    }
+
+    @media only screen and (device-width: 414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) {
+        html {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+            html:before {
+                display: none;
+            }
+
+            html:after {
+                display: none;
+            }
+    }
+
+    @media only screen and (device-width: 414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) {
+        html {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+            html:before {
+                display: none;
+            }
+
+            html:after {
+                display: none;
+            }
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+</style>
+<div class="guide-wrap">
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="images/banner_1.jpg">
+                <div class="img-box" style="background-image: url(images/img_1.jpg)">
+                </div>
+
             </div>
             <div class="swiper-slide">
-                <img src="images/banner_2.jpg">
+                <div class="img-box" style="background-image: url(images/img_2.jpg)">
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/banner_3.jpg">
-            </div>
-            <div class="swiper-slide">
+                <div class="img-box" style="background-image: url(images/img_3.jpg)">
+                </div>
+                <a href="" ng-click="goLogin()" class="enter-box"></a>
             </div>
         </div>
         <!-- Add Pagination -->

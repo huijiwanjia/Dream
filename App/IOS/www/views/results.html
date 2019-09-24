@@ -1,0 +1,187 @@
+﻿<!--<div class="bgefeff4">
+    <div class="red-wrap">
+        <div class="public-header">
+            <h3 class="title">
+                首页
+            </h3>
+        </div>
+        <div class="pulic-search-box">
+            <div class="input-box">
+                <input type="text"  ng-model="QueryText" name="" />
+                <i ng-click="Query()"><img src="images/search.png"></i>
+            </div>
+        </div>
+        <div>
+            搜索结果：
+            <ul>
+
+                <li ng-repeat="item in QueryResult.tbk_dg_material_optional_response.result_list.map_data">
+                    <div>标题：{{item.title}}</div>
+                    <div>店铺：{{item.shop_title}}</div>
+                    <div>预计返利：{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.0001)| number:2}}</div>
+                    <div>售价：{{item.reserve_price}}</div>
+                    <div>折扣价：{{item.zk_final_price}}</div>
+                    <div>优惠券：{{item.coupon_amount}}元</div>
+                    <div>券后价：{{(item.zk_final_price - item.coupon_amount)| number:2}}</div>
+                    <div>销售量：{{item.tk_total_sales}}</div>
+                    <div>商品ID：{{item.item_id}}</div>
+                    <img src="{{item.pict_url}}" /><br />
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">购买</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+<style type="text/css">
+
+    body {
+        padding-bottom: 0;
+    }
+</style>
+<div class="search-wrap">
+    <div class="top-header">
+        <div class="search-box">
+            <div class="left-icon" ng-click="back()"><img src="images/icon_53.png"></div>
+            <div class="input-box">
+                <input type="search" name="" ng-model="QueryText" placeholder="粘贴标题    搜索优惠">
+                <i><img src="images/icon_54.png"></i>
+            </div>
+            <div class="link-icon" ng-click="Query()">
+                <span class="search-btn">搜索</span>
+            </div>
+        </div>
+        <div class="select-box">
+            <ul>
+                <li>
+                    <a href="javascript:;">综合</a>
+                </li>
+                <li class="on">
+                    <a href="javascript:;">卷后价</a>
+                </li>
+                <li class="on">
+                    <a href="javascript:;">销量</a>
+                </li>
+            </ul>
+            <div class="synthesize-box">
+                <dl>
+                    <dd>综合排序</dd>
+                    <dd>优惠卷面值由高到低</dd>
+                    <dd>优惠卷面值由低到高</dd>
+                    <dd>预估收益由高到低</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="coupon-box">
+            <img src="images/icon_55.png">仅显示优惠卷商品
+            <label class='switch'>
+                <input type='checkbox'>
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="session_1">
+    </div>
+    <div class="session_2">
+        <div class="list-box">
+            <div class="item-box" ng-repeat="item in QueryResult.tbk_dg_material_optional_response.result_list.map_data">
+                <div class="left-box">
+                    <div class="img-box" style="background-image: url({{item.pict_url}})"></div>
+                </div>
+                <div class="txt-box">
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">
+                        <h3><em>淘宝</em>{{item.title}}</h3>
+                        <div class="txt_2">
+                            <span>￥{{item.zk_final_price}}</span><em>淘宝价￥{{item.reserve_price}}</em>
+                        </div>
+                        <div class="txt_3">
+                            已售{{item.tk_total_sales}}
+                        </div>
+                        <div class="txt_4 clearfix">
+                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.0001)| number:2}}</span>
+                            <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
+                            <em ng-if="item.coupon_amount==0">无优惠劵</em>
+                        </div>
+                        <div class="txt_5">
+                            {{item.shop_title}}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="more-info">
+            <img src="images/img_22.gif">加载中....
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.select-box li').click(function () {
+        $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
+        $('.synthesize-box').removeClass('active');
+        if ($(this).hasClass('on')) {
+            if ($(this).hasClass('up')) {
+                $(this).removeClass('up').addClass('down');
+            } else {
+                $(this).addClass('up').removeClass('down');
+            }
+        }
+        if ($(this).index() == 0) {
+            $('.synthesize-box').addClass('active');
+        }
+    })
+
+    $('.synthesize-box dd').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.synthesize-box').removeClass('active');
+    });
+
+    /*底部加载*/
+    list_loading = false;
+    $(document).on('scroll', function () {
+        //if (!list_loading) {
+        //    if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+        //        load_more_msg();
+        //    }
+
+        //}
+    })
+
+    function load_more_msg() {
+        list_loading = true;
+        /*测试*/
+        setTimeout(function () {
+            test();
+        }, 1000)
+    }
+    var item_html = `
+           <div class="item-box">
+                    <div class="left-box">
+                        <div class="img-box" style="background-image: url(images/img_11.jpg)"></div>
+                    </div>
+                    <div class="txt-box">
+                        <a href="">
+                            <h3><em>淘宝</em>宁夏枸杞500g宁夏枸杞500g宁夏枸杞500g</h3>
+                            <div class="txt_2">
+                                <span>￥33.9</span><em>淘宝价￥33.9</em>
+                            </div>
+                            <div class="txt_3">
+                                已售95
+                            </div>
+                            <div class="txt_4 clearfix">
+                                <span>预估收益￥5.79</span>
+                                <em>100元劵</em>
+                            </div>
+                            <div class="txt_5">
+                                千足行 鞋
+                            </div>
+                        </a>
+                    </div>
+                </div>
+`
+
+    function test() {
+        for (var i = 8 - 1; i >= 0; i--) {
+            $('.session_2 .list-box').append(item_html);
+        }
+        list_loading = false;
+    }</script>

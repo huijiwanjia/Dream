@@ -36,32 +36,23 @@
     * Create your own at http://cspisawesome.com
     -->
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />-->
-    <link rel="stylesheet" type="text/css" href="css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link href="css/lightbox.css" rel="stylesheet" />
-
-    <title>Shared Contacts</title>
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <script type="text/javascript" src="js/UiLib/flexible.js"></script>
+    <title></title>
 </head>
 <body ng-app="ngRouteScApp">
     <div class="fade" ui-view="other"></div>
     <div ui-view="content"></div>
     <div class="fade" ui-view="footer"></div>
-
     <script type="text/javascript" src="cordova.js"></script>
-    <!--map-->
-    <!--<script src="http://api.map.baidu.com/api?v=3.0&ak=iRgb4mnUr0w1bwoU4kTIWyzCKHYdpXEZ"></script>-->
-    <!--<script src="js/BMapLib_AreaRestriction.js"></script>-->
     <!--ui optimization-->
     <script src="js/uioptimization/fastclick.js"></script>
 
-    <!--signalR lib-->
-    <script src="js/signalRLib/jquery-1.12.2.min.js"></script>
-    <!--<script src="js/signalRLib/jquery.signalR-2.2.2.js"></script>-->
     <!--ui lib-->
-    <script src="js/UiLib/flexible.js"></script>
-    <script src="js/UiLib/swiper.js"></script>
-    <script src="js/UiLib/lightbox.js"></script>
-
+    <script type="text/javascript" src="js/UiLib/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/UiLib/swiper.min.js"></script>
     <!--angular js-->
     <script src="js/angular/angular.js"></script>
     <script src="js/angular-ui/angular-ui-router.js"></script>
@@ -74,14 +65,8 @@
     <!--device events-->
     <script src="js/DeviceEvent.js"></script>
 
-    <!--<script src="js/ImHubConnection.js"></script>
-    <script src="js/ImClient.js"></script>-->
-    <!--red packets-->
-    <script src="js/RedPackets.js"></script>
-    <script src="js/KeyValuePair.js"></script>
-
     <!--wechat qrcode-->
-    <script src="js/jquery.qrcode.min.js"></script>
+    <script src="js/UiLib/jquery.qrcode.min.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>

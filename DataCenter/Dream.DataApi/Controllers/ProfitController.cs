@@ -55,6 +55,23 @@ namespace Dream.DataApi.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("Add")]
+        public async Task<IActionResult> AddProfits([FromBody]Profit profit)
+        {
+            try
+            {
+                await _profitService.AddProfits(profit);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"ProfitController::AddProfits: 添加用户受益失败：{ex.ToString()}");
+                return BadRequest();
+            }
+        }
+
         [HttpGet]
         [Route("GetWithdrawApply")]
         public async Task<IActionResult> GetWithdrawApply(JqTableParams param)
