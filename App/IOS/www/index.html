@@ -36,14 +36,11 @@
     * Create your own at http://cspisawesome.com
     -->
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" />-->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
     <script type="text/javascript" src="js/UiLib/flexible.js"></script>
     <title></title>
-    <style>
-        body {
-            padding-top: constant(safe-area-inset-top); /* iOS 11.0 */
-            padding-top: env(safe-area-inset-top); /* iOS 11.2 */
-        }
-    </style>
 </head>
 <body ng-app="ngRouteScApp">
     <div class="fade" ui-view="other"></div>
@@ -56,8 +53,6 @@
     <!--ui lib-->
     <script type="text/javascript" src="js/UiLib/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="js/UiLib/swiper.min.js"></script>
-    <script type="text/javascript" src="js/UiLib/mui.js"></script>
-
     <!--angular js-->
     <script src="js/angular/angular.js"></script>
     <script src="js/angular-ui/angular-ui-router.js"></script>

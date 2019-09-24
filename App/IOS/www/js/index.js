@@ -62,7 +62,7 @@ var app = {
                     })
                     .state('home', {
                         url: "/home",
-                     //   cache: true,
+                        cache: true,
                         views: {
                             'content': {
                                 templateUrl: 'views/home.html',
@@ -77,7 +77,7 @@ var app = {
                     })
                     .state('rebate', {
                         url: "/rebate",
-                       // cache: true,
+                        cache: true,
                         views: {
                             'content': {
                                 templateUrl: 'views/rebate.html',
@@ -119,6 +119,42 @@ var app = {
                             'other': {
                                 templateUrl: 'views/userinfo.html',
                                 controller: 'UserinfoController'
+                            }
+                        }
+                    })
+                    .state('order', {
+                        url: "/order",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/order.html',
+                                controller: 'OrderController'
+                            }
+                        }
+                    })
+                    .state('results', {
+                        url: "/results",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/results.html',
+                                controller: 'ResultsController'
+                            }
+                        }
+                    })
+                    .state('search', {
+                        url: "/search",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/search.html',
+                                controller: 'SearchController'
+                            }
+                        }
+                    })
+                    .state('setting', {
+                        url: "/setting",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/setting.html',
+                                controller: 'SettingController'
                             }
                         }
                     })
@@ -351,7 +387,7 @@ var app = {
             .controller('UpdateController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
-                    $state.go('userinfo');
+                    $state.go('setting');
                 };
                 var enableSubmit = false;
                 $scope.updateInfo = $stateParams.obj;
@@ -442,6 +478,23 @@ var app = {
                 Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
                     $scope.teamInfo = team;
                 });
+            })
+            .controller('ResultsController', function ($scope, $http, $state, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('home');
+                };
+               
+            })
+            .controller('SearchController', function ($scope, $http, $state, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('home');
+                };
+                $scope.ToResult = function () {
+                    $state.go('results');
+                }
+              
             })
             .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -546,6 +599,47 @@ var app = {
                     $scope.profits = profits;
                 });
             })
+            .controller('SettingController', function ($scope, $state, $http, sc, ls) {
+                sc.ValidateLogin();
+                $scope.logOut = function () {
+                    sc.logOut();
+                };
+                $scope.back = function () {
+                    $state.go('my');
+                };
+
+                $scope.userInfo = ls.getObject("userInfo");
+                $scope.updateName = function () {
+                    $state.go('update', { obj: { title: "设置你的昵称", type: "name", value: $scope.userInfo.Name } });
+                };
+                $scope.updateAlipay = function () {
+                    $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
+                };
+                $scope.updateAlipayName = function () {
+                    $state.go('update', { obj: { title: "设置支付宝姓名", type: "alipayName", value: $scope.userInfo.AliPayName } });
+                };
+                $scope.share = function () {
+                    Wechat.share({
+                        message: {
+                            title: "点我立刻享受淘宝购物高额报销",
+                            description: "点我立刻享受淘宝购物高额报销.",
+                            thumb: "www/images/icon-76@2x.png",
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: "点我立刻享受淘宝购物高额报销",
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        DeviceEvent.Toast("分享成功");
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
+                };
+            })
             .controller('QrcodeController', function ($scope, $state, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
@@ -579,6 +673,7 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
+              
                 $scope.QueryText = "";
                 $scope.Query = function () {
                     Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 5 }, function (data) {
@@ -592,10 +687,14 @@ var app = {
                         console.log($scope.QueryResult);
                     });
                 };
+                $scope.ToSearch = function () {
+                    $state.go("search");
+                };
                 $scope.ClickLog = function (itemId,url,imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
+
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 $(".item-box").removeClass("active");
@@ -631,6 +730,9 @@ var app = {
             })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
                 sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('my');
+                };
                 Get($http, DreamConfig.userOrders + "/?userId=" + ls.getObject("userInfo").UserId, function (userOrders) {
                     $scope.userOrders = userOrders;
                 });
@@ -687,9 +789,21 @@ var app = {
                         $state.go('withdraw');
                     }
                 };
-                $scope.logOut = function () {
-                    sc.logOut();
+                $scope.toOrderPage = function () {
+                    $state.go('order');
                 };
+                $scope.toSettingPage = function () {
+                    $state.go('setting');
+                };
+                $scope.toTeamPage = function () {
+                    $state.go('team');
+                };
+                $scope.toProfitPage = function () {
+                    $state.go('order');
+                }; 
+                $scope.toQrCodePage = function () {
+                    $state.go('qrcode');
+                };                                        
             });
     }
 };

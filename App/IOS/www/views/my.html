@@ -50,15 +50,32 @@
     </div>
 </div>
 -->
-<link rel="stylesheet" type="text/css" href="css/mui.css">
-<link rel="stylesheet" type="text/css" href="css/common.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+
+<style type="text/css">
+
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+        html:before {
+            background: #f44c4f;
+        }
+    }
+
+    @media only screen and (device-width: 414px) and (device-height:896px) and (-webkit-device-pixel-ratio:3) {
+        html:before {
+            background: #f44c4f;
+        }
+    }
+
+    @media only screen and (device-width: 414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2) {
+        html:before {
+            background: #f44c4f;
+        }
+    }
+</style>
 
 <div class="my-wrap">
     <div class="session_1">
         <div class="set">
-            <a href="set.html"><img src="images/icon_34.png"></a>
+            <a ng-click="toSettingPage()"><img src="images/icon_34.png"></a>
         </div>
         <div class="user-box">
             <div class="user-img" style="background-image: url(images/img_17.jpg)"></div>
@@ -128,25 +145,25 @@
         <div class="centent-box">
             <div class="list-box clearfix">
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="toProfitPage()">
                         <img src="images/icon_38.png">
                         <p>收益</p>
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="toOrderPage()">
                         <img src="images/icon_39.png">
                         <p>订单</p>
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="toTeamPage()">
                         <img src="images/icon_40.png">
                         <p>粉丝</p>
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="toQrCodePage()">
                         <img src="images/icon_41.png">
                         <p>邀请</p>
                     </a>
@@ -236,4 +253,5 @@
             delay: 3500,
             disableOnInteraction: false,
         }
-    });</script>
+    });
+</script>
