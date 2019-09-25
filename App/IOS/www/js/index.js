@@ -823,7 +823,7 @@ var app = {
                 });
 
                 $scope.withdraw = function () {
-                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone) {
+                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone===null) {
                         DeviceEvent.Confirm("您的支付宝信息尚未完善",
                             function (buttonIndex) {
                                 if (buttonIndex === 1) {

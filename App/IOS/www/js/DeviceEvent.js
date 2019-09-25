@@ -37,7 +37,7 @@
             }
         },
         SpinnerShow: function () {
-            if (!DreamConfig.isDebug)SpinnerPlugin.activityStart("请稍后...", { dimBackground: true });
+            if (!DreamConfig.isDebug)SpinnerPlugin.activityStart("请稍后...", { dimBackground: false });
         },
         SpinnerHide: function () {
             if (!DreamConfig.isDebug)SpinnerPlugin.activityStop();
