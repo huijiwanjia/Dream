@@ -96,10 +96,11 @@ namespace Dream.DataAccess.Service
                 var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userInfo.UserId }, null, null, CommandType.StoredProcedure);
                 if (userInfo.Sex != null) user.Sex = userInfo.Sex;
                 if (userInfo.PId != null) user.PId = userInfo.PId;
-                if (userInfo.AliPayName != null) user.AliPayName = userInfo.AliPayName;
+                if (!string.IsNullOrWhiteSpace(userInfo.AliPayName)) user.AliPayName = userInfo.AliPayName;
                 if (userInfo.AccountStatus != null) user.AccountStatus = userInfo.AccountStatus;
                 if (!string.IsNullOrWhiteSpace(userInfo.AliPay)) user.AliPay = userInfo.AliPay;
                 if (!string.IsNullOrWhiteSpace(userInfo.Name)) user.Name = userInfo.Name;
+                if (!string.IsNullOrWhiteSpace(userInfo.Phone)) user.Phone = userInfo.Phone;
 
                 await conn.UpdateAsync(user);
                 return user;

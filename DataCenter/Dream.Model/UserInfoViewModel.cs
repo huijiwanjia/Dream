@@ -14,6 +14,7 @@ namespace Dream.Model
         public string Name { get; set; }
         public string AliPay { get; set; }
         public string AliPayName { get; set; }
+        public string Phone { get; set; }
 
         public DateTime CreateTime { get; set; }
 
