@@ -143,6 +143,20 @@ var app = {
                             itemName: null,                           
                         }
                     })
+                    .state('bindAlipay', {
+                        url: "/bindAlipay",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/bindAlipay.html',
+                                controller: 'BindAlipayController'
+                            }
+                        },
+                        params: {
+                            alipay: null,
+                            alipayName: null,
+                            phone: null
+                        }
+                    })
                     .state('search', {
                         url: "/search",
                         views: {
@@ -349,7 +363,7 @@ var app = {
                         });
                     }
                     else {
-                        var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 1, UserId: 3 };
+                        var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", Phone:'17623852229',AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 1, UserId: 3 };
                         ls.setObject('userInfo', userInfo);
                         ls.set('loginTime', new Date());
                         $state.go('home');
@@ -516,6 +530,24 @@ var app = {
                     $state.go('results', { itemName: $scope.itemName });
                 };
               
+            })
+            .controller('BindAlipayController', function ($scope, $http, $state, sc, ls, $stateParams) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('my');
+                };
+                $scope.alipay = $stateParams.alipay;
+                $scope.alipayName = $stateParams.alipayName;
+                $scope.phone = $stateParams.phone;
+
+                $scope.submit = function () {
+                    userInfo = { UserId: ls.getObject("userInfo").UserId, Alipay: $scope.alipay, AliPayName: $scope.alipayName, Phone: $scope.phone };
+                    Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
+                        ls.setObject("userInfo", user);
+                        DeviceEvent.Toast("信息以完善，请重新提现");
+                        $state.go('my');
+                    });
+                }
             })
             .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -777,27 +809,39 @@ var app = {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
-                $scope.goUserpage = function () {
-                    $state.go('userpage', { userId: $scope.userInfo.UserId, returnUrl: "my" });
-                };
-
+ 
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
                 });
 
-                $scope.goWithdraw = function () {
-                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null) {
-                        DeviceEvent.Confirm("您还未填写支付宝账号或姓名",
+                $scope.updateAlipay = function () {
+                    $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
+                };
+                $scope.remainAmout = 0;
+                Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
+                    $scope.remainAmout = totalAmount;
+                });
+
+                $scope.withdraw = function () {
+                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone) {
+                        DeviceEvent.Confirm("您的支付宝信息尚未完善",
                             function (buttonIndex) {
                                 if (buttonIndex === 1) {
-                                    $state.go('userinfo');
+                                    $state.go('bindAlipay', { alipay: $scope.userInfo.AliPay, alipayName: $scope.userInfo.AliPayName, phone: $scope.userInfo.Phone});
                                 }
-                            }, "请完善个人资料", ['去填写', '取消']);
+                            }, "请绑定支付宝", ['去完善', '取消']);
+                    }
+                    else if ($scope.remainAmout < 1) {
+                        DeviceEvent.Toast("余额必须大于1元才能提现");
                     }
                     else {
-                        $state.go('withdraw');
+                        Post($http, DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId), null, function (data) {
+                            DeviceEvent.Toast("提现成功，二个工作日内到账。");
+                            $scope.remainAmout = 0;
+                        });
                     }
                 };
+
                 $scope.toOrderPage = function () {
                     $state.go('order');
                 };
