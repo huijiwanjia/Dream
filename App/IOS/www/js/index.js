@@ -757,7 +757,7 @@ var app = {
                         scene: Wechat.Scene.TIMELINE   // share to Timeline
                     }, function () {
                         var status = 1;
-                        if (state == 2) status = 0;
+                        if (state === 2) status = 0;
                         Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: code,Remark:"来自订单分享收益"}, function (data) {
                             DeviceEvent.Toast("分享成功,订单完成之后您将多获得20%额外奖励");
                         });

@@ -1,33 +1,4 @@
-﻿<!--<style>
-    .ng-scope {
-        background: #efeff4;
-    }
-</style>
-<div class="bgefeff4">
-    <div class="mingxi-wrap">
-        <div class="public-header">
-            <h3 class="title">
-                订单
-            </h3>
-        </div>
-        <div class="all-item">
-            <div class="item-box clearfix" ng-repeat="order in userOrders">
-                <div class="txt-box">
-                    <p class="name">{{order.ItemName|limitTo:10}}</p>
-                    <p class="name" ng-if="order.State==0">订单状态：已付款</p>
-                    <p class="name" ng-if="order.State==1">订单状态：已收货</p>
-                    <p class="name" ng-if="order.State==2">订单状态：已结算</p>
-                    <p class="name" ng-if="order.State==3">订单状态：已失效</p>
-                    <p class="time">{{order.Code}}</p>
-                    <input ng-if="!order.IsShared" type="button" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)" value="点击分享（分享可再得20%）" />
-                    <input ng-if="order.IsShared" type="button" value="您已经分享过该订单，试试其他订单" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-<style type="text/css">
+﻿<style type="text/css">
 
     body {
         padding-bottom: 0;
@@ -51,152 +22,102 @@
         <div class="list-tab">
             <div class="item-tab active">
                 <div class="info-box">
-                    <p><i><img src="images/icon_33.png"></i>订单问题和相关常见问题，请点击此处查看</p>
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
                 </div>
                 <div class="list-box">
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
+                    <div class="item-box clearfix" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享再奖励20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
                             <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-box">
-                    <img src="images/img_22.gif">加载更多...
+                    <img src="images/img_22.gif">正在加载...
                 </div>
             </div>
             <div class="item-tab">
                 <div class="info-box">
-                    <p><i><img src="images/icon_33.png"></i>订单问题和相关常见问题，请点击此处查看</p>
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
                 </div>
                 <div class="list-box">
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
+                    <div class="item-box clearfix" ng-if="order.State==0" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享再奖励20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
                             <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
-                        </div>
-                        <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
-                            <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-box">
-                    <img src="images/img_22.gif">加载更多...
+                    <img src="images/img_22.gif">正在加载...
                 </div>
             </div>
             <div class="item-tab">
                 <div class="info-box">
-                    <p><i><img src="images/icon_33.png"></i>订单问题和相关常见问题，请点击此处查看</p>
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
                 </div>
                 <div class="list-box">
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
+                    <div class="item-box clearfix" ng-if="order.State==2" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享再奖励20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
                             <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-box">
-                    <img src="images/img_22.gif">加载更多...
+                    <img src="images/img_22.gif">正在加载...
                 </div>
             </div>
             <div class="item-tab">
                 <div class="info-box">
-                    <p><i><img src="images/icon_33.png"></i>订单问题和相关常见问题，请点击此处查看</p>
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
                 </div>
                 <div class="list-box">
-                    <div class="item-box clearfix">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)">
+                    <div class="item-box clearfix" ng-if="order.State==3" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
-                            <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享再奖励20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
                             <div class="txt_1">
-                                <span>预估收益：￥2.3</span>消费金额：￥33.9
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="more-box">
-                    <img src="images/img_22.gif">加载更多...
+                    <img src="images/img_22.gif">正在加载...
                 </div>
             </div>
         </div>
@@ -214,14 +135,14 @@
         _index = $(this).index();
     });
     $(document).on('scroll', function () {
-        if (!list_loading) {
-            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
-                if ($(document).height() - $(window).height() > 0) {
-                    $('.list-tab .item-tab').eq(_index).find('.more-box').show();
-                    load_more_msg();
-                }
-            }
-        }
+        //if (!list_loading) {
+        //    if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+        //        if ($(document).height() - $(window).height() > 0) {
+        //            $('.list-tab .item-tab').eq(_index).find('.more-box').show();
+        //            load_more_msg();
+        //        }
+        //    }
+        //}
     });
     function load_more_msg() {
         list_loading = true;
