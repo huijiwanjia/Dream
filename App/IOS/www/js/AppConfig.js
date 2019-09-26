@@ -4,7 +4,7 @@ var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbk.huijiwanjia.com/";
 
 var DreamConfig = {
-    isDebug: false,
+    isDebug: true,
     shareBackRate:0.2,
     accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days

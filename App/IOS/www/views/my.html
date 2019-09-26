@@ -1,57 +1,4 @@
-﻿<!--
-<style>
-    .ng-scope {
-        background: #efeff4;
-    }
-    .footer-box {
-        background: #f7f7f7;
-    }
-</style>
-<div class="bgefeff4">
-    <div class="my-wrap">
-        <div class="public-header">
-            <h3 class="title">
-                我的
-            </h3>
-        </div>
-        <div class="user-box mt30 clearfix" ui-sref="userinfo">
-            <div class="img-box">
-               <img src="{{userInfo.AvatarUrl}}">
-            </div>
-            <div class="txt-box">
-                <p class="name">{{userInfo.Name}}</p>
-                <p class="code">惠及万家ID：{{userInfo.UserId}}</p>
-            </div>
-            <div class="erwei">
-                <img src="images/eriwei.png">
-            </div>
-        </div>
-        <div class="input-box" ng-click="goUserpage()">
-            <span class="title"><img src="images/icon_20.png">个人中心</span>
-        </div>
-        <div class="input-box mt30" ui-sref="team">
-            <span class="title needsclick"><img src="images/icon_21.png">团队列表</span>
-        </div>
-        <div class="input-box" ng-click="goWithdraw()">
-            <span class="title"><img src="images/icon_22.png">提现</span>
-        </div>
-        <div class="input-box" ui-sref="profits">
-            <span class="title"><img src="images/icon_23.png">收入明细</span>
-        </div>
-        <div class="input-box" ui-sref="qrcode">
-            <span class="title"><img src="images/icon_24.png">推广二维码</span>
-        </div>
-        <div class="input-box" ui-sref="agency">
-            <span class="title"><img src="images/icon_25.png">成为合伙人</span>
-        </div>
-        <div class="input-box mt30" ng-click="logOut()">
-            <span class="title"><img src="images/icon_26.png">退出</span>
-        </div>
-    </div>
-</div>
--->
-
-<style type="text/css">
+﻿<style type="text/css">
 
     @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
         html:before {
@@ -84,17 +31,26 @@
                     <span>{{userInfo.Name}}</span><i><img src="images/icon_35.png"></i>
                 </div>
                 <div class="txt_2">
-                    <span>邀请码：{{userInfo.UserId}}</span><em>复制</em>
+                    <span>邀请码：{{userInfo.UserId}}</span><em>复制</em><em ng-if="!userInfo.PId">填写推荐码</em>
                 </div>
             </div>
         </div>
         <div class="txt_3">
             <div class="nub-box">
-                <span>粉丝<em>2</em></span>
-                <span>成长值<em>2/5</em></span>
+                <span>粉丝<em>{{teamInfo.DirectlyCount}}</em></span>
+                <span ng-if="teamInfo.DirectlyCount<=5">成长值<em>{{teamInfo.DirectlyCount}}/5</em></span>
+                <span ng-if="teamInfo.DirectlyCount<=10&&teamInfo.DirectlyCount>5">成长值<em>{{teamInfo.DirectlyCount}}/10</em></span>
+                <span ng-if="teamInfo.DirectlyCount<=100&&teamInfo.DirectlyCount>10">成长值<em>{{teamInfo.DirectlyCount}}/100</em></span>
+                <span ng-if="teamInfo.DirectlyCount<=1000&&teamInfo.DirectlyCount>100">成长值<em>{{teamInfo.DirectlyCount}}/1000</em></span>
             </div>
-            <div class="msg-box">
-                您还差3位就可以升级成超级会员
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount<=5">
+                您还差{{5-teamInfo.DirectlyCount}}位就可以升级成超级会员
+            </div>
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount<=10&&teamInfo.DirectlyCount>5">
+                您还差{{10-teamInfo.DirectlyCount}}位就可以升级成合伙人
+            </div>
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount>10">
+                您已是合伙人，请继续努力
             </div>
         </div>
         <div class="monery-box">
@@ -237,8 +193,8 @@
     <div class="session_6">
         <div class="centent-box">
             <div class="top-box">
-                <span>我的成长值</span><em>2</em>
-                <a href="">提升成长值 <img src="images/icon_49.jpg"></a>
+                <span>我的成长值</span><em>{{teamInfo.DirectlyCount}}</em>
+                <a ng-click="share()">分享APP，提升成长值 <img src="images/icon_49.jpg"></a>
             </div>
             <div class="img-box">
                 <img src="images/img_20.jpg">

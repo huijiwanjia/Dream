@@ -26,13 +26,13 @@
     }
 </style>
 <div class="nickname-wrap">
-    <div class="top-header">昵称 <a ng-click="back()"><img src="images/icon_32.png"></a></div>
+    <div class="top-header">{{updateInfo.title}} <a ng-click="back()"><img src="images/icon_32.png"></a></div>
     <div class="session_1">
         <div class="input-box">
-            <input type="text" name="" placeholder="输入新昵称">
+            <input type="text" name="" ng-model="updateInfo.value"/>
         </div>
-        <div class="sub-box">
-            <span>确认</span>
+        <div class="sub-box" ng-click="save()">
+            <span>更新</span>
         </div>
     </div>
 </div>
