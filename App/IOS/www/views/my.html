@@ -54,18 +54,18 @@
             </div>
         </div>
         <div class="monery-box">
-            余额<em>￥ {{remainAmout}}</em>
+            余额<em>￥ {{remainAmout| number:2}}</em>
             <span class="btn" ng-click="withdraw()">立即提现</span>
         </div>
     </div>
     <div class="session_2">
         <div class="centent-box clearfix">
             <div class="item-box">
-                <span><em>￥</em>{{userInfo.OrderProfit}}</span>
+                <span><em>￥</em>{{userInfo.OrderProfit| number:2}}</span>
                 <p>订单收益</p>
             </div>
             <div class="item-box">
-                <span><em>￥</em>{{userInfo.TeamProfit}}</span>
+                <span><em>￥</em>{{userInfo.TeamProfit| number:2}}</span>
                 <p>粉丝收益</p>
             </div>
         </div>
