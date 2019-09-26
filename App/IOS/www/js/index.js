@@ -113,15 +113,6 @@ var app = {
                             returnUrl: null
                         }
                     })
-                    .state('userinfo', {
-                        url: "/userinfo",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/userinfo.html',
-                                controller: 'UserinfoController'
-                            }
-                        }
-                    })
                     .state('order', {
                         url: "/order",
                         views: {
@@ -406,81 +397,26 @@ var app = {
                 $scope.back = function () {
                     $state.go('setting');
                 };
-                var enableSubmit = false;
                 $scope.updateInfo = $stateParams.obj;
                 $scope.save = function () {
-                    if (enableSubmit) {
-                        var userInfo = {};
-                        switch ($scope.updateInfo.type) {
-                            case "name":
-                                userInfo = { UserId: ls.getObject("userInfo").UserId, Name: $scope.updateInfo.value };
-                                break;
-                            case "alipay":
-                                userInfo = { UserId: ls.getObject("userInfo").UserId, AliPay: $scope.updateInfo.value };
-                                break;
-                            case "alipayName":
-                                userInfo = { UserId: ls.getObject("userInfo").UserId, AliPayName: $scope.updateInfo.value };
-                                break;
-                        }
-                        Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
-                            ls.setObject("userInfo", user);
-                            $state.go('userinfo');
-                        });
+                    var userInfo = {};
+                    switch ($scope.updateInfo.type) {
+                        case "name":
+                            userInfo = { UserId: ls.getObject("userInfo").UserId, Name: $scope.updateInfo.value };
+                            break;
+                        case "alipay":
+                            userInfo = { UserId: ls.getObject("userInfo").UserId, AliPay: $scope.updateInfo.value };
+                            break;
+                        case "alipayName":
+                            userInfo = { UserId: ls.getObject("userInfo").UserId, AliPayName: $scope.updateInfo.value };
+                            break;
+                        case "phone":
+                            userInfo = { UserId: ls.getObject("userInfo").UserId, Phone: $scope.updateInfo.value };
+                            break;
                     }
-                };
-
-                $('.input-box input').bind('input propertychange', function () {
-                    if ($(this).val().length > 0 && $.trim($('.input-box input').val()) !== "") {
-                        $('.input-box i').show();
-                        $('.yes-btn').css('opacity', '1');
-                        enableSubmit = true;
-                    } else {
-                        $('.input-box i').hide();
-                        $('.yes-btn').css('opacity', '0.8');
-                        enableSubmit = false;
-                    }
-                });
-                $('.input-box i').click(function () {
-                    $('.input-box input').val('');
-                    $('.input-box i').hide();
-                    $('.yes-btn').css('opacity', '0.8');
-                    enableSubmit = false;
-                });
-            })
-            .controller('UserinfoController', function ($scope, $state, ls, sc) {
-                sc.ValidateLogin();
-                $scope.back = function () {
-                    $state.go('my');
-                };
-                $scope.userInfo = ls.getObject("userInfo");
-                $scope.updateName = function () {
-                    $state.go('update', { obj: { title: "设置你的昵称", type: "name", value: $scope.userInfo.Name } });
-                };
-                $scope.updateAlipay = function () {
-                    $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
-                };
-                $scope.updateAlipayName = function () {
-                    $state.go('update', { obj: { title: "设置支付宝姓名", type: "alipayName", value: $scope.userInfo.AliPayName } });
-                };
-                $scope.share = function () {
-                    Wechat.share({
-                        message: {
-                            title: "点我立刻享受淘宝购物高额报销",
-                            description: "点我立刻享受淘宝购物高额报销.",
-                            thumb: "www/images/icon-76@2x.png",
-                            mediaTagName: "HJWJ-TAG-001",
-                            messageExt: "点我立刻享受淘宝购物高额报销",
-                            messageAction: "<action>dotalist</action>",
-                            media: {
-                                type: Wechat.Type.WEBPAGE,
-                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
-                            }
-                        },
-                        scene: Wechat.Scene.TIMELINE   // share to Timeline
-                    }, function () {
-                        DeviceEvent.Toast("分享成功");
-                    }, function (reason) {
-                        DeviceEvent.Toast("分享失败");
+                    Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
+                        ls.setObject("userInfo", user);
+                        $state.go('setting');
                     });
                 };
             })
@@ -506,8 +442,33 @@ var app = {
                     });
                 };
                 $scope.QueryText = $stateParams.itemName;
-                $scope.Query = function () {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20 }, function (data) {
+                $scope.QueryResult = null;
+                $('.select-box li').click(function () {
+                    $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
+                    $('.synthesize-box').removeClass('active');
+                    if ($(this).hasClass('on')) {
+                        if ($(this).hasClass('up')) {
+                            switch ($(this).data("type")) {
+                                case "coupon":
+                                    $scope.Query("coupon_amount_des");
+                                    break;
+                            }
+                            $(this).removeClass('up').addClass('down');
+                        } else {
+                            switch ($(this).data("type")) {
+                                case "coupon":
+                                    $scope.Query("coupon_amount_asc");
+                                    break;
+                            }
+                            $(this).addClass('up').removeClass('down');
+                        }
+                    }
+                    if ($(this).index() === 0) {
+                        $('.synthesize-box').addClass('active');
+                    }
+                });
+                $scope.Query = function (sort) {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20, platform:2, sort: sort }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
@@ -518,7 +479,7 @@ var app = {
                         console.log($scope.QueryResult);
                     });
                 };
-                $scope.Query();
+                $scope.Query("");
             })
             .controller('SearchController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -547,7 +508,7 @@ var app = {
                         DeviceEvent.Toast("信息以完善，请重新提现");
                         $state.go('my');
                     });
-                }
+                };
             })
             .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -671,14 +632,17 @@ var app = {
                 $scope.updateAlipayName = function () {
                     $state.go('update', { obj: { title: "设置支付宝姓名", type: "alipayName", value: $scope.userInfo.AliPayName } });
                 };
+                $scope.updatePhone = function () {
+                    $state.go('update', { obj: { title: "设置手机号码", type: "phone", value: $scope.userInfo.Phone } });
+                };
                 $scope.share = function () {
                     Wechat.share({
                         message: {
-                            title: "点我立刻享受淘宝购物高额报销",
-                            description: "点我立刻享受淘宝购物高额报销.",
+                            title: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            description: "点击下载惠及万家APP，立刻享受淘宝购物高额报销.",
                             thumb: "www/images/icon-76@2x.png",
                             mediaTagName: "HJWJ-TAG-001",
-                            messageExt: "点我立刻享受淘宝购物高额报销",
+                            messageExt: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
                             messageAction: "<action>dotalist</action>",
                             media: {
                                 type: Wechat.Type.WEBPAGE,
@@ -775,15 +739,16 @@ var app = {
                 $scope.share = function (title, img, url, price, state, code) {
                     Wechat.share({
                         message: {
-                            title: title,
-                            description: title,
-                            thumb: img,
+                            title: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
+                            description: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
+                            thumb: "www/images/icon-76@2x.png",
                             mediaTagName: "HJWJ-TAG-001",
-                            messageExt: title,
+                            messageExt: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
                             messageAction: "<action>dotalist</action>",
                             media: {
                                 type: Wechat.Type.WEBPAGE,
-                                webpageUrl: url
+                               // webpageUrl: url
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
                             }
                         },
                         scene: Wechat.Scene.TIMELINE   // share to Timeline
@@ -809,11 +774,15 @@ var app = {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
- 
+                $scope.CopyYQM = function () {
+                    CopyTextToClipboard(ls.getObject("userInfo").UserId);
+                }
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
                 });
-
+                Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
+                    $scope.teamInfo = team;
+                });
                 $scope.updateAlipay = function () {
                     $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
                 };
@@ -821,9 +790,29 @@ var app = {
                 Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
                     $scope.remainAmout = totalAmount;
                 });
+                $scope.AddParent = function () {
+                    DeviceEvent.Prompt("", function (results) {
+                        if (results.buttonIndex == 1) {
+                            // value:results.input1
+                            if (!results.input1) {
+                                DeviceEvent.Toast("邀请码不能为空!");
+                                return;
+                            }
+                            var userInfo = { UserId: ls.getObject("userInfo").UserId, PId: results.input1};
+                            Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
+                                if (!user) DeviceEvent.Toast("邀请码不存在!");
+                                else {
+                                    $scope.userInfo.PId = user.PId;
+                                    ls.setObject("userInfo", $scope.userInfo);
+                                    DeviceEvent.Toast("邀请码填写成功!");
+                                }
+                            });
+                        }
+                    }, "请输入邀请码", ['提交', '取消'], "");
+                };
 
                 $scope.withdraw = function () {
-                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone) {
+                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone===null) {
                         DeviceEvent.Confirm("您的支付宝信息尚未完善",
                             function (buttonIndex) {
                                 if (buttonIndex === 1) {
@@ -840,6 +829,28 @@ var app = {
                             $scope.remainAmout = 0;
                         });
                     }
+                };
+
+                $scope.share = function () {
+                    Wechat.share({
+                        message: {
+                            title: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            description: "下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            thumb: "www/images/icon-76@2x.png",
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        DeviceEvent.Toast("分享成功");
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
                 };
 
                 $scope.toOrderPage = function () {

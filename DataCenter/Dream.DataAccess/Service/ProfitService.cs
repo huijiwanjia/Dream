@@ -39,7 +39,6 @@ namespace Dream.DataAccess.Service
                         //检查订单是否已经分享过了
                         var order = await _orderService.GetOrderByCode(profit.FromOrder);
                         if (order.IsShared) return;
-                        await conn.QueryAsync<OrderInfo>(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder }, transaction, null, CommandType.StoredProcedure);
                         //更新订单分享信息
                         await conn.ExecuteAsync(Procedure.UpdateOrderShareStatus, new { code = profit.FromOrder, profitStatus= profit.Status, status = true }, transaction, null, CommandType.StoredProcedure);
                     }

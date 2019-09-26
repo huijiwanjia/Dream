@@ -95,7 +95,13 @@ namespace Dream.DataAccess.Service
                 conn.Open();
                 var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userInfo.UserId }, null, null, CommandType.StoredProcedure);
                 if (userInfo.Sex != null) user.Sex = userInfo.Sex;
-                if (userInfo.PId != null) user.PId = userInfo.PId;
+                if (userInfo.PId != null)
+                {
+                    var pUser = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userId= userInfo.PId }, null, null, CommandType.StoredProcedure);
+                    //此处有一个BUG待修：没有过滤邀请码是自己下级的情况
+                    if (pUser != null&& user.UserId != userInfo.PId) user.PId = userInfo.PId;
+                    else return null;
+                }
                 if (!string.IsNullOrWhiteSpace(userInfo.AliPayName)) user.AliPayName = userInfo.AliPayName;
                 if (userInfo.AccountStatus != null) user.AccountStatus = userInfo.AccountStatus;
                 if (!string.IsNullOrWhiteSpace(userInfo.AliPay)) user.AliPay = userInfo.AliPay;

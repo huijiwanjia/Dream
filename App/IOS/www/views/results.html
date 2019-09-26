@@ -55,11 +55,11 @@
                 <li>
                     <a href="javascript:;">综合</a>
                 </li>
-                <li class="on">
-                    <a href="javascript:;">卷后价</a>
+                <li class="on" data-type="coupon">
+                    <a>卷后价</a>
                 </li>
-                <li class="on">
-                    <a href="javascript:;">销量</a>
+                <li class="on" data-type="sales">
+                    <a>销量</a>
                 </li>
             </ul>
             <div class="synthesize-box">
@@ -108,80 +108,67 @@
                 </div>
             </div>
         </div>
-        <div class="more-info">
+        <!--<div class="more-info">
             <img src="images/img_22.gif">加载中....
-        </div>
+        </div>-->
     </div>
 </div>
 
 <script type="text/javascript">
-    $('.select-box li').click(function () {
-        $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
-        $('.synthesize-box').removeClass('active');
-        if ($(this).hasClass('on')) {
-            if ($(this).hasClass('up')) {
-                $(this).removeClass('up').addClass('down');
-            } else {
-                $(this).addClass('up').removeClass('down');
-            }
-        }
-        if ($(this).index() == 0) {
-            $('.synthesize-box').addClass('active');
-        }
-    })
-
+   
     $('.synthesize-box dd').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
         $('.synthesize-box').removeClass('active');
     });
 
     /*底部加载*/
-    list_loading = false;
-    $(document).on('scroll', function () {
-        //if (!list_loading) {
-        //    if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
-        //        load_more_msg();
-        //    }
+    //list_loading = false;
+    //$(document).on('scroll', function () {
+    //    if (!list_loading) {
+    //        if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+    //            load_more_msg();
+    //        }
 
-        //}
-    })
+    //    }
+    //})
 
-    function load_more_msg() {
-        list_loading = true;
-        /*测试*/
-        setTimeout(function () {
-            test();
-        }, 1000)
-    }
-    var item_html = `
-           <div class="item-box">
-                    <div class="left-box">
-                        <div class="img-box" style="background-image: url(images/img_11.jpg)"></div>
-                    </div>
-                    <div class="txt-box">
-                        <a href="">
-                            <h3><em>淘宝</em>宁夏枸杞500g宁夏枸杞500g宁夏枸杞500g</h3>
-                            <div class="txt_2">
-                                <span>￥33.9</span><em>淘宝价￥33.9</em>
-                            </div>
-                            <div class="txt_3">
-                                已售95
-                            </div>
-                            <div class="txt_4 clearfix">
-                                <span>预估收益￥5.79</span>
-                                <em>100元劵</em>
-                            </div>
-                            <div class="txt_5">
-                                千足行 鞋
-                            </div>
-                        </a>
-                    </div>
-                </div>
-`
+//    function load_more_msg() {
+//        list_loading = true;
+//        /*测试*/
+//        setTimeout(function () {
+//            test();
+//        }, 1000)
+//    }
+//    var item_html = `
+//           <div class="item-box">
+//                    <div class="left-box">
+//                        <div class="img-box" style="background-image: url(images/img_11.jpg)"></div>
+//                    </div>
+//                    <div class="txt-box">
+//                        <a href="">
+//                            <h3><em>淘宝</em>宁夏枸杞500g宁夏枸杞500g宁夏枸杞500g</h3>
+//                            <div class="txt_2">
+//                                <span>￥33.9</span><em>淘宝价￥33.9</em>
+//                            </div>
+//                            <div class="txt_3">
+//                                已售95
+//                            </div>
+//                            <div class="txt_4 clearfix">
+//                                <span>预估收益￥5.79</span>
+//                                <em>100元劵</em>
+//                            </div>
+//                            <div class="txt_5">
+//                                千足行 鞋
+//                            </div>
+//                        </a>
+//                    </div>
+//                </div>
+//`
 
-    function test() {
-        for (var i = 8 - 1; i >= 0; i--) {
-            $('.session_2 .list-box').append(item_html);
-        }
-        list_loading = false;
-    }</script>
+//    function test() {
+//        for (var i = 8 - 1; i >= 0; i--) {
+//            $('.session_2 .list-box').append(item_html);
+//        }
+//        list_loading = false;
+//    }
+</script>
