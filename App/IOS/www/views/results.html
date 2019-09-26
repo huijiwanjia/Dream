@@ -55,11 +55,11 @@
                 <li>
                     <a href="javascript:;">综合</a>
                 </li>
-                <li class="on">
-                    <a href="javascript:;">卷后价</a>
+                <li class="on" data-type="coupon">
+                    <a>卷后价</a>
                 </li>
-                <li class="on">
-                    <a href="javascript:;">销量</a>
+                <li class="on" data-type="sales">
+                    <a>销量</a>
                 </li>
             </ul>
             <div class="synthesize-box">
@@ -115,21 +115,7 @@
 </div>
 
 <script type="text/javascript">
-    $('.select-box li').click(function () {
-        $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
-        $('.synthesize-box').removeClass('active');
-        if ($(this).hasClass('on')) {
-            if ($(this).hasClass('up')) {
-                $(this).removeClass('up').addClass('down');
-            } else {
-                $(this).addClass('up').removeClass('down');
-            }
-        }
-        if ($(this).index() == 0) {
-            $('.synthesize-box').addClass('active');
-        }
-    })
-
+   
     $('.synthesize-box dd').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
         $('.synthesize-box').removeClass('active');

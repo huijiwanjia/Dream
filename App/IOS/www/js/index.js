@@ -443,9 +443,32 @@ var app = {
                 };
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = null;
-                $scope.Query = function () {
-                    console.log("excuted");
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20 }, function (data) {
+                $('.select-box li').click(function () {
+                    $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
+                    $('.synthesize-box').removeClass('active');
+                    if ($(this).hasClass('on')) {
+                        if ($(this).hasClass('up')) {
+                            switch ($(this).data("type")) {
+                                case "coupon":
+                                    $scope.Query("coupon_amount_des");
+                                    break;
+                            }
+                            $(this).removeClass('up').addClass('down');
+                        } else {
+                            switch ($(this).data("type")) {
+                                case "coupon":
+                                    $scope.Query("coupon_amount_asc");
+                                    break;
+                            }
+                            $(this).addClass('up').removeClass('down');
+                        }
+                    }
+                    if ($(this).index() === 0) {
+                        $('.synthesize-box').addClass('active');
+                    }
+                });
+                $scope.Query = function (sort) {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20, platform:2, sort: sort }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
@@ -456,7 +479,7 @@ var app = {
                         console.log($scope.QueryResult);
                     });
                 };
-                $scope.Query();
+                $scope.Query("");
             })
             .controller('SearchController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
