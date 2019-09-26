@@ -739,11 +739,11 @@ var app = {
                 $scope.share = function (title, img, url, price, state, code) {
                     Wechat.share({
                         message: {
-                            title: "我通过惠及万家购买"+title+"获得了高额返利，点击下载APP",
-                            description: "我通过惠及万家购买" + title + "获得了高额返利，点击下载APP",
+                            title: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
+                            description: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
                             thumb: "www/images/icon-76@2x.png",
                             mediaTagName: "HJWJ-TAG-001",
-                            messageExt: "我通过惠及万家购买" + title + "获得了高额返利，点击下载APP",
+                            messageExt: "我通过这个APP购买淘宝商品获得了高额返利，点击下载APP",
                             messageAction: "<action>dotalist</action>",
                             media: {
                                 type: Wechat.Type.WEBPAGE,
@@ -774,7 +774,9 @@ var app = {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
- 
+                $scope.CopyYQM = function () {
+                    CopyTextToClipboard(ls.getObject("userInfo").UserId);
+                }
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
                 });
@@ -788,6 +790,26 @@ var app = {
                 Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
                     $scope.remainAmout = totalAmount;
                 });
+                $scope.AddParent = function () {
+                    DeviceEvent.Prompt("", function (results) {
+                        if (results.buttonIndex == 1) {
+                            // value:results.input1
+                            if (!results.input1) {
+                                DeviceEvent.Toast("邀请码不能为空!");
+                                return;
+                            }
+                            var userInfo = { UserId: ls.getObject("userInfo").UserId, PId: results.input1};
+                            Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
+                                if (!user) DeviceEvent.Toast("邀请码不存在!");
+                                else {
+                                    $scope.userInfo.PId = user.PId;
+                                    ls.setObject("userInfo", $scope.userInfo);
+                                    DeviceEvent.Toast("邀请码填写成功!");
+                                }
+                            });
+                        }
+                    }, "请输入邀请码", ['提交', '取消'], "");
+                };
 
                 $scope.withdraw = function () {
                     if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone===null) {

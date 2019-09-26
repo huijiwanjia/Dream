@@ -2,6 +2,7 @@
 //var DreamServer = "http://localhost:55605/";
 var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbk.huijiwanjia.com/";
+//var TBKServer = "http://localhost:63224/";
 
 var DreamConfig = {
     isDebug: false,
