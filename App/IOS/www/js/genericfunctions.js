@@ -31,32 +31,24 @@ function Post($http, url, paramData, callback) {
 }
 
 function CopyTextToClipboard(text) {
-    var textArea = document.createElement("textarea")
-
-    textArea.style.position = 'fixed'
-    textArea.style.top = 0
-    textArea.style.left = 0
-    textArea.style.width = '2em'
-    textArea.style.height = '2em'
-    textArea.style.padding = 0
-    textArea.style.border = 'none'
-    textArea.style.outline = 'none'
-    textArea.style.boxShadow = 'none'
-    textArea.style.background = 'transparent'
-    textArea.value = text
-
-    document.body.appendChild(textArea)
-
-    textArea.select()
-
-    try {
-        var msg = document.execCommand('copy') ? '成功' : '失败'
-        DeviceEvent.Toast('复制' + msg);
-    } catch (err) {
-        DeviceEvent.Toast('不能使用这种方法复制内容');
+   function selectElementText(element) {
+    if (document.selection) {
+      var range = document.body.createTextRange();
+      range.moveToElementText(element);
+      range.select();
+    } else if (window.getSelection) {
+      var range = document.createRange();
+      range.selectNode(element);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
     }
-
-    document.body.removeChild(textArea)
+  }
+  var element = document.createElement('DIV');
+  element.textContent = text;
+  document.body.appendChild(element);
+  selectElementText(element);
+  document.execCommand('copy');
+  element.remove();
 }
 
 function isFunction(functionToCheck) {
