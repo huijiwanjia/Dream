@@ -24,8 +24,8 @@ namespace Dream.Model.Enums
     }
     public enum UserType
     {
+        Commom,
         Sepecial,
         TeamMember,
-        Commom
     }
 }

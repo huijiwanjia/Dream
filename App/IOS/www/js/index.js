@@ -175,15 +175,6 @@ var app = {
                             }
                         }
                     })
-                    .state('withdraw', {
-                        url: "/withdraw",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/withdraw.html',
-                                controller: 'WithdrawController'
-                            }
-                        }
-                    })
                     .state('agency', {
                         url: "/agency",
                         views: {
@@ -220,6 +211,15 @@ var app = {
                             'other': {
                                 templateUrl: 'views/profits.html',
                                 controller: 'ProfitsController'
+                            }
+                        }
+                    })
+                    .state('withdraw', {
+                        url: "/withdraw",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/withdraw.html',
+                                controller: 'WithdrawController'
                             }
                         }
                     })
@@ -430,9 +430,10 @@ var app = {
                 };
                 Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
                     $scope.teamInfo = team;
+                    console.log(team);
                 });
             })
-            .controller('ResultsController', function ($scope, $http, $state, sc, ls, $stateParams) {
+            .controller('ResultsController', function ($scope, $filter, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
                     $state.go('home');
@@ -441,45 +442,35 @@ var app = {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
+
                 $scope.QueryText = $stateParams.itemName;
-                $scope.QueryResult = null;
-                //$('.select-box li').click(function () {
-                //    $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
-                //    $('.synthesize-box').removeClass('active');
-                //    if ($(this).hasClass('on')) {
-                //        if ($(this).hasClass('up')) {
-                //            switch ($(this).data("type")) {
-                //                case "coupon":
-                //                    $scope.Query("coupon_amount_des");
-                //                    break;
-                //            }
-                //            $(this).removeClass('up').addClass('down');
-                //        } else {
-                //            switch ($(this).data("type")) {
-                //                case "coupon":
-                //                    $scope.Query("coupon_amount_asc");
-                //                    break;
-                //            }
-                //            $(this).addClass('up').removeClass('down');
-                //        }
-                //    }
-                //    if ($(this).index() === 0) {
-                //        $('.synthesize-box').addClass('active');
-                //    }
-                //});
-                $scope.Query = function (sort) {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20, platform:2, sort: sort }, function (data) {
+                $scope.QueryResult = {};
+                $scope.Query = function () {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 100, platform:2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (ret[i].zk_final_price == null) ret[i].zk_final_price = 0;
+                            else ret[i].zk_final_price = parseFloat(ret[i].zk_final_price);
+                            if (ret[i].tk_total_sales == null) ret[i].tk_total_sales = 0;
+                            else ret[i].tk_total_sales = parseInt(ret[i].tk_total_sales);
+                            if (ret[i].commission_rate == null) ret[i].commission_rate = 0;
+                            else ret[i].commission_rate = parseFloat(ret[i].commission_rate);
+
                             if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
-                        $scope.QueryResult = data;
+                        $scope.QueryResult = data.tbk_dg_material_optional_response.result_list.map_data;
                         console.log($scope.QueryResult);
                     });
                 };
-                $scope.Query("");
+                var orderBy = $filter('orderBy');
+                $scope.OrderBy = function (predicate, reverse) {
+                    $scope.QueryResult = orderBy($scope.QueryResult, predicate, reverse);
+                };
+                $scope.Query();
             })
             .controller('SearchController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -509,54 +500,6 @@ var app = {
                         $state.go('my');
                     });
                 };
-            })
-            .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
-                sc.ValidateLogin();
-                var enableSubmit = false;
-                $scope.userInfo = ls.getObject("userInfo");
-                $scope.back = function () {
-                    $state.go('my');
-                };
-                $scope.updateAlipay = function () {
-                    $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
-                };
-                $scope.withdrawInfo = { totalAmount: null, withdrawAmount: null };
-                Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
-                    $scope.withdrawInfo = { totalAmount: totalAmount, withdrawAmount: totalAmount };
-                    if (totalAmount >= 0.1) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                });
-                $scope.submit = function () {
-                    if (enableSubmit) {
-                        Post($http, DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId), null, function (data) {
-                            $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
-                        });
-                    }
-                };
-
-                $scope.withdrawAll = function () {
-                    $scope.withdrawInfo.withdrawAmount = $scope.withdrawInfo.totalAmount;
-                    if ($scope.withdrawInfo.withdrawAmount !== null && $scope.withdrawInfo.withdrawAmount >= 0) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                };
-
-                validateAmount($('.pay-box input'));
-
-                $('.pay-box input').bind('keyup', function () {
-                    if ($(this).val() <= $scope.withdrawInfo.totalAmount && $(this).val() > 0) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                    else {
-                        $(this).val("");
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
             })
             .controller('AgencyController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
@@ -611,6 +554,16 @@ var app = {
                 $scope.profits = {};
                 Get($http, DreamConfig.profitUrl.concat("?userId=" + ls.getObject("userInfo").UserId), function (profits) {
                     $scope.profits = profits;
+                });
+            })
+            .controller('WithdrawController', function ($scope, $state, $http, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('my');
+                };
+                $scope.withdrawApply = {};
+                Get($http, DreamConfig.profitUrl + "QueryWithdraw?userId=" + ls.getObject("userInfo").UserId, function (withdrawApply) {
+                    $scope.withdrawApply = withdrawApply;
                 });
             })
             .controller('SettingController', function ($scope, $state, $http, sc, ls) {
@@ -763,13 +716,6 @@ var app = {
                     });
                 };
             })
-            .controller('WithdrawApplyController', function ($scope, sc, ls, $state, $http) {
-                curPage = "withdrawApply";
-                sc.ValidateLogin();
-                Get($http, DreamConfig.profitUrl + "QueryWithdraw?userId=" + ls.getObject("userInfo").UserId, function (withdrawApply) {
-                    $scope.withdrawApply = withdrawApply;
-                });
-            })
             .controller('MyController', function ($scope, $state, sc, ls,$http) {
                 curPage = "my";
                 sc.ValidateLogin();
@@ -863,7 +809,7 @@ var app = {
                     $state.go('team');
                 };
                 $scope.toProfitPage = function () {
-                    $state.go('order');
+                    $state.go('profits');
                 }; 
                 $scope.toQrCodePage = function () {
                     $state.go('qrcode');

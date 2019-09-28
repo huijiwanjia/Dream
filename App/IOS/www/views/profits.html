@@ -1,27 +1,116 @@
-﻿<style>
-    .ng-scope {
-        background: #efeff4;
+﻿<style type="text/css">
+
+    body {
+        padding-bottom: 0;
     }
 </style>
-<body class="bgefeff4">
-    <div class="mingxi-wrap">
-        <div class="public-header">
-            <h3 class="title">
-                收入明细
-            </h3>
-            <div class="black-btn" ng-click="back()"></div>
+<div class="indent-wrap">
+    <div class="top-header">
+        <div class="header">
+            收益 <a ng-click="back()"><img src="images/icon_32.png"></a>
         </div>
-        <div class="all-item">
-            <div class="item-box clearfix" ng-repeat="profit in profits">
-                <div class="txt-box">
-                    <p class="name" ng-show="profit.Type == 0" ng-hide="profit.Type != 0">订单返利-{{profit.Remark|limitTo:5}}</p>
-                    <p class="name" ng-show="profit.Type == 1" ng-hide="profit.Type != 1">团队收益-{{profit.Remark|limitTo:5}}</p>
-                    <p class="name" ng-show="profit.Type == 2" ng-hide="profit.Type != 2">分享奖励-{{profit.Remark|limitTo:5}}</p>
-                    <p class="name" ng-show="profit.Type == 3" ng-hide="profit.Type != 3">{{profit.Remark}}</p>
-                    <p class="time">{{profit.CreateTime|date:'yyyy-MM-dd'}}</p>
-                    <span class="monery">+{{profit.Amount}}元</span>
-                </div>
+        <div class="session_1">
+            <div class="tab-box">
+                <span class="active">全部</span>
+                <span>订单返利</span>
+                <span>团队收益</span>
+                <span>分享奖励</span>
             </div>
         </div>
     </div>
-</body>
+    <div class="session_2">
+        <div class="list-tab">
+            <div class="item-tab active">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，订单完成之后才能获得收益</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-repeat="profit in profits">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{profit.CreateTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>金额：￥{{profit.Amount|number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+            <img src="images/img_22.gif">正在加载...
+        </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，订单完成之后才能获得收益</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="profit.Type==0" ng-repeat="profit in profits">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{profit.CreateTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>金额：￥{{profit.Amount|number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+            <img src="images/img_22.gif">正在加载...
+        </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，订单完成之后才能获得收益</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="profit.Type==1" ng-repeat="profit in profits">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{profit.CreateTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>金额：￥{{profit.Amount|number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+            <img src="images/img_22.gif">正在加载...
+        </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，订单完成之后才能获得收益</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="profit.Type==2" ng-repeat="profit in profits">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{profit.CreateTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>金额：￥{{profit.Amount|number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+            <img src="images/img_22.gif">正在加载...
+        </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 点击点是第几个按钮 可以根据它的下标来指定
+    var _index = 0;
+    $('.tab-box span').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.session_2 .list-tab .item-tab').eq($(this).index()).addClass('active').siblings().removeClass('active');
+        _index = $(this).index();
+    });
+</script>
+

@@ -10,6 +10,7 @@ using Dream.DataAccess.IService;
 using Dream.Model;
 using System.Linq;
 using Dapper.Contrib.Extensions;
+using Dream.Model.Enums;
 
 namespace Dream.DataAccess.Service
 {
@@ -95,6 +96,7 @@ namespace Dream.DataAccess.Service
                 conn.Open();
                 var user = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userInfo.UserId }, null, null, CommandType.StoredProcedure);
                 if (userInfo.Sex != null) user.Sex = userInfo.Sex;
+                if (userInfo.Type != UserType.Commom) user.Type = userInfo.Type;
                 if (userInfo.PId != null)
                 {
                     var pUser = await conn.QueryFirstOrDefaultAsync<UserInfo>(Procedure.GetUserByUserId, new { userId= userInfo.PId }, null, null, CommandType.StoredProcedure);

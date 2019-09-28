@@ -40,12 +40,20 @@ namespace Dream.DataAccess.IService
                 var recoment = await _recommentService.QueryAsync(user.UnionId);
                 if (recoment != null)
                 {
-                    //检查推荐人是否达到合伙人资格
                     var team = await _userService.GetTeamByIdAsync(recoment.PId);
+                    UserType pType = UserType.Commom;
+                     //检查推荐人是否达到合伙人资格
                     if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToTeamMember == team.TeamMember?.Count() + 1)
-                        user.Type = UserType.TeamMember;
-                    else user.Type = UserType.Commom;
+                        pType = UserType.TeamMember;
+                    //检查推荐人是否达到超级用户资格
+                    else if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToSepcial == team.TeamMember?.Count() + 1)
+                        pType = UserType.Sepecial;
+                   await _userService.UpdateUserAsync(new UserInfo() {
+                        UserId= recoment.PId,
+                        Type= pType
+                    });
                 }
+                user.Type = UserType.Commom;
                 user.PId = recoment?.PId;
                 user.AccountStatus = 0;
                 user.CreateTime = DateTime.Now;

@@ -18,6 +18,7 @@ namespace Dream.Model.Api
         public double OrderBackRate { get; set; }
         public double OrderProfitUserBackRate { get; set; }
         public int RecommentNumberToTeamMember { get; set; }
+        public int RecommentNumberToSepcial { get; set; }
 
     }
 }
