@@ -1,5 +1,7 @@
 ﻿<div class="recommend-wrap">
-    <div class="top-header">推荐</div>
+    <div class="top-header" ng-click="back()">
+        {{pageTitle}}
+    </div>
     <div class="session_1">
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -29,14 +31,14 @@
         </div>
     </div>
     <div class="session_2">
-        <div class="top-title">好券直播</div>
+        <div class="top-title">优选高额返利</div>
         <div class="list-box">
             <div class="item-box" ng-repeat="item in itemList">
                 <div class="left-box">
                     <div class="img-box" style="background-image: url({{item.pict_url}})"></div>
                     <!--<div class="info-box">
-                <span>抢免单</span>1.33万观看
-            </div>-->
+                        <span>抢免单</span>1.33万观看
+                    </div>-->
                 </div>
                 <div class="txt-box">
                     <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">

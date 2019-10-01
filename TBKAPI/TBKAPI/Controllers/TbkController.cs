@@ -87,7 +87,7 @@ namespace TBKAPI.Controllers
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("FavoritesItemGet")]
+        [Route("api/OptimusGet")]
         public IHttpActionResult OptimusGet(TbkDgOptimusMaterialRequest req)
         {
             ITopClient client = new DefaultTopClient(_tbkApiUrl, _appkey, _secret, _format);

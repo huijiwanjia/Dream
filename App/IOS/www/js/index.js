@@ -131,7 +131,20 @@ var app = {
                             }
                         },
                         params: {
-                            itemName: null,                           
+                            itemName: null,   
+                        }
+                    })
+                    .state('category', {
+                        url: "/category",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/category.html',
+                                controller: 'CategoryController'
+                            }
+                        },
+                        params: {
+                            type: null,
+                            pageTitle:null
                         }
                     })
                     .state('bindAlipay', {
@@ -462,7 +475,7 @@ var app = {
                             if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
-                        $scope.QueryResult = data.tbk_dg_material_optional_response.result_list.map_data;
+                        $scope.QueryResult = ret;
                         console.log($scope.QueryResult);
                     });
                 };
@@ -643,10 +656,60 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
-                        
+
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
                 $scope.ToSearch = function () {
                     $state.go("search");
                 };
+
+                $scope.ToCategory = function (type, pageTitle) {
+                    $state.go('category', { type: type, pageTitle: pageTitle });
+                };
+
+                $scope.goodItemList = {}; //好货优选
+                var gParams = { PageSize: 5, MaterialId: 3786 };//品牌券  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, gParams, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.goodItemList = ret;
+                });
+
+                $scope.hotSalesItemList = {}; //热销榜单
+                var hParams = { PageSize: 30, MaterialId: 4094 };//特惠  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.hotSalesItemList = ret;
+                });
+
+                $scope.recommentItemList = {}; //为你推荐
+                var rParams = { PageSize: 100, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.recommentItemList = ret;
+                });
 
             })
             .controller('FooterController', function ($scope, $state, ls) {
@@ -673,13 +736,73 @@ var app = {
                     sc.Login();
                 };
             })
+            .controller('CategoryController', function ($scope, sc, ls, $state, $http, $stateParams) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('home');
+                };
+                $scope.itemList = {};
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                $scope.pageTitle = $stateParams.pageTitle;
+                var params = { PageSize: 100, MaterialId: $stateParams.type };  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                });
+            })
             .controller('RebateController', function ($scope, sc, ls, $state, $http) {
                 curPage = "rebate";
                 sc.ValidateLogin();
+                $scope.itemList = {};
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                var params = { PageSize: 100, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                    console.log(ret);
+                });
             })
             .controller('RecommendController', function ($scope, sc, ls, $state, $http) {
                 curPage = "recommend";
                 sc.ValidateLogin();
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                $scope.itemList = {};
+                var params = { PageSize: 100, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                    console.log(ret);
+                });
             })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
                 sc.ValidateLogin();
