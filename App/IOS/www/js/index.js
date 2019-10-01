@@ -459,7 +459,7 @@ var app = {
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = {};
                 $scope.Query = function () {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 100, platform:2 }, function (data) {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform:2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
@@ -698,7 +698,7 @@ var app = {
                 });
 
                 $scope.recommentItemList = {}; //为你推荐
-                var rParams = { PageSize: 100, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var rParams = { PageSize: 40, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -747,7 +747,7 @@ var app = {
                     });
                 };
                 $scope.pageTitle = $stateParams.pageTitle;
-                var params = { PageSize: 100, MaterialId: $stateParams.type };  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var params = { PageSize: 40, MaterialId: $stateParams.type };  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -768,7 +768,7 @@ var app = {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
-                var params = { PageSize: 100, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var params = { PageSize: 40, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -790,7 +790,7 @@ var app = {
                     });
                 };
                 $scope.itemList = {};
-                var params = { PageSize: 100, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var params = { PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -801,7 +801,6 @@ var app = {
                         else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                     }
                     $scope.itemList = ret;
-                    console.log(ret);
                 });
             })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
