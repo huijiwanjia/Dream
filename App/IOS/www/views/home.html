@@ -1,5 +1,6 @@
 ﻿
 <div class="index-wrap">
+    <input type="hidden" id="bindData" ng-click="bindData()"/>
     <div class="session_1">
         <div class="left-icon"><img src="images/icon_4.png"></div>
         <div class="input-box">
@@ -344,6 +345,7 @@
 </div>
 
 <script type="text/javascript">
+    setTimeout(function(){$("#bindData").click();},1000);
     var swiper = new Swiper('.session_2 .swiper-container', {
         pagination: {
             el: '.swiper-pagination'
@@ -370,6 +372,7 @@
         slidesPerView: 3.3,
         spaceBetween: 12,
     });
+
     /*底部加载*/
 //    list_loading = false;
 //    $(document).on('scroll', function () {

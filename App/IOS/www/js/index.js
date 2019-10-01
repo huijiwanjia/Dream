@@ -268,7 +268,7 @@ var app = {
                         views: {
                             'content': {
                                 templateUrl: 'views/my.html',
-                                controller: 'MyController',
+                                controller: 'MyController'
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -388,7 +388,7 @@ var app = {
                 var swiper = new Swiper('.swiper-container', {
                     pagination: {
                         el: '.swiper-pagination',
-                    },
+                    }
                 });
                 $scope.goLogin=function(){
                     ls.set('guideIsChecked', true);
@@ -656,7 +656,6 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
-
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
@@ -669,48 +668,54 @@ var app = {
                     $state.go('category', { type: type, pageTitle: pageTitle });
                 };
 
-                $scope.goodItemList = {}; //好货优选
+               // $scope.goodItemList = ls.getObject("goodItemList"); //好货优选
                 var gParams = { PageSize: 5, MaterialId: 3786 };//品牌券  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
-                Post($http, DreamConfig.tbkOptimusGet, gParams, function (data) {
-                    data = JSON.parse(data);
-                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
-                    for (i = 0; i < ret.length; i++) {
-                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
-                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
-                    }
-                    $scope.goodItemList = ret;
-                });
 
-                $scope.hotSalesItemList = {}; //热销榜单
-                var hParams = { PageSize: 30, MaterialId: 4094 };//特惠  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
-                Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
-                    data = JSON.parse(data);
-                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
-                    for (i = 0; i < ret.length; i++) {
-                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
-                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
-                    }
-                    $scope.hotSalesItemList = ret;
-                });
+               // $scope.hotSalesItemList = ls.getObject("hotSalesItemList"); //热销榜单
+                var hParams = { PageSize: 10, MaterialId: 4094 };//特惠  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
 
-                $scope.recommentItemList = {}; //为你推荐
+               // $scope.recommentItemList = ls.getObject("recommentItemList"); //为你推荐
                 var rParams = { PageSize: 40, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
-                Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
-                    data = JSON.parse(data);
-                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
-                    for (i = 0; i < ret.length; i++) {
-                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
-                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
-                    }
-                    $scope.recommentItemList = ret;
-                });
 
+                $scope.bindData = function () {
+                    Post($http, DreamConfig.tbkOptimusGet, gParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.goodItemList = ret;
+                        ls.setObject("goodItemList", ret);
+                    });
+
+                    Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.recommentItemList = ret;
+                        ls.setObject("recommentItemList", ret);
+                    });
+                    Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.hotSalesItemList = ret;
+                        ls.setObject("hotSalesItemList", ret);
+                    });
+                };
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 $(".item-box").removeClass("active");
