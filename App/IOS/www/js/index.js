@@ -364,38 +364,40 @@ var app = {
                 };
                 this.Login = function () {
                     //get from tencent
-                    if (!DreamConfig.isDebug) {
-                        Wechat.isInstalled(function (installed) {
-                            var scope = "snsapi_userinfo",
-                                state = "_" + (+new Date());
-                            Wechat.auth(scope, state, function (response) {
-                                // you may use response.code to get the access token.
-                                //get access_token
-                                var authUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code";
-                                Get($http, authUrl, function (data) {
-                                    //get userinfo
-                                    Get($http, "https://api.weixin.qq.com/sns/userinfo?access_token=" + data.access_token + "&openid=" + data.openid, function (userInfo) {
-                                        //check user
-                                        Post($http, DreamConfig.accountUrl, { openId: userInfo.openid, avatarUrl: userInfo.headimgurl, name: userInfo.nickname, sex: userInfo.sex, unionid: data.unionid }, function (authedUser) {
-                                            ls.setObject('userInfo', authedUser);
-                                            ls.set('loginTime', new Date());
-                                            $state.go('home');
+                    Get($http, DreamConfig.isCheck, function (ischeck) {
+                        if (ischeck != 1 && !DreamConfig.isDebug) {
+                            Wechat.isInstalled(function (installed) {
+                                var scope = "snsapi_userinfo",
+                                    state = "_" + (+new Date());
+                                Wechat.auth(scope, state, function (response) {
+                                    // you may use response.code to get the access token.
+                                    //get access_token
+                                    var authUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + DreamConfig.appId + "&secret=" + DreamConfig.appSecret + "&code=" + response.code + "&grant_type=authorization_code";
+                                    Get($http, authUrl, function (data) {
+                                        //get userinfo
+                                        Get($http, "https://api.weixin.qq.com/sns/userinfo?access_token=" + data.access_token + "&openid=" + data.openid, function (userInfo) {
+                                            //check user
+                                            Post($http, DreamConfig.accountUrl, { openId: userInfo.openid, avatarUrl: userInfo.headimgurl, name: userInfo.nickname, sex: userInfo.sex, unionid: data.unionid }, function (authedUser) {
+                                                ls.setObject('userInfo', authedUser);
+                                                ls.set('loginTime', new Date());
+                                                $state.go('home');
+                                            });
                                         });
                                     });
+                                }, function (reason) {
+                                    DeviceEvent.Toast("Failed: " + reason);
                                 });
                             }, function (reason) {
                                 DeviceEvent.Toast("Failed: " + reason);
                             });
-                        }, function (reason) {
-                            DeviceEvent.Toast("Failed: " + reason);
-                        });
-                    }
-                    else {
-                        var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", Phone:'17623852229',AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 1, UserId: 3 };
-                        ls.setObject('userInfo', userInfo);
-                        ls.set('loginTime', new Date());
-                        $state.go('home');
-                    }
+                        }
+                        else {
+                            var userInfo = { OpenId: "opaKA1SkGI3-qLqMSPW_Nlpz4byY", Phone: '17623852229', AvatarUrl: "http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqKNWm1GAstFo4C5Zmwmwtl1nH8GNqTMGGJUMIIsR06bHULD6b1kGDaGEsdBiardvErKWwnw4ibibb6A/132", UnionId: "oMicm5ntgIaYSRsxMGg4KUgEQr5E", Name: "蜡笔小新", Sex: 1, UserId: 3 };
+                            ls.setObject('userInfo', userInfo);
+                            ls.set('loginTime', new Date());
+                            $state.go('home');
+                        }
+                    })
                 };
                 this.logOut = function () {
                     DeviceEvent.Confirm("退出之后需要重新登陆",
@@ -688,7 +690,6 @@ var app = {
                 sc.ValidateLogin();
                 //检查是否有新版本
                 Get($http, DreamConfig.versionUrl, function (version) {
-                    console.log(version);
                     if (version > DreamConfig.version) {
                         DeviceEvent.Confirm("发现新版本：v" + version,
                             function (buttonIndex) {
@@ -696,7 +697,7 @@ var app = {
                                     installerUrl = "https://itunes.apple.com/hk/app/%E6%99%BA%E6%83%A0%E8%B4%AD/id1239309296?mt=8";
                                     cordova.InAppBrowser.open(installerUrl, '_system', 'location=false,closebuttoncaption=退出');
                                 }
-                            }, "", ['立即更新'])
+                            }, "", ['立即更新','暂不更新'])
                     }
                 });
 
