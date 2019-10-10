@@ -1,45 +1,95 @@
-﻿<style>
-    .ng-scope {
-        background: #efeff4;
+﻿<style type="text/css">
+
+    body {
+        padding-bottom: 0;
     }
 </style>
-<div class="bgefeff4">
-    <div class="deposit-wrap">
-        <div class="public-header">
-            <h3 class="title">
-                提现
-            </h3>
-            <div class="black-btn" ng-click="back()"></div>
+<div class="indent-wrap">
+    <div class="top-header">
+        <div ng-click="back()" class="header">
+            提现记录 <a><img src="images/icon_32.png"></a>
         </div>
-        <div class="type-box clearfix">
-            <div class="img-box">
-                <img src="images/icon_27.png">
+        <div class="session_1">
+            <div class="tab-box">
+                <span class="active">全部</span>
+                <span>已处理提现</span>
+                 <span>待处理提现</span>
             </div>
-            <div class="txt-box" ng-click="updateAlipay()">
-                <p class="title">支付宝</p>
-                <p class="code">{{userInfo.AliPay}}（{{userInfo.AliPayName}}）</p>
-            </div>
-        </div>
-        <div class="pay-box clearfix">
-            <p class="title">提现金额</p>
-            <input type="number" name="" readonly ng-model="withdrawInfo.withdrawAmount" placeholder="¥0.00">
-            <div class="info-box">
-                <span class="balance">可提现金额 {{withdrawInfo.totalAmount}}元</span>
-                <span class="all" ng-click="withdrawAll()">全部提现</span>
-            </div>
-        </div>
-        <div class="btn-box">
-            <span class="btn" ng-click="submit()">两天内到帐，确认提现</span>
-        </div>
-        <div class="other-box">
-            <p>提现说明</p>
-            <p>1、余额大于10元才能提现</p>
-            <p>2、若提现失败，将会退回原账户</p>
-            <p>3、若遇法定节假日、公假日，到帐日期顺延</p>
-            <p>4、系统默认将钱打入支付宝账户</p>
         </div>
     </div>
-    <script type="text/javascript">
-
-    </script>
+    <div class="session_2">
+        <div class="list-tab">
+            <div class="item-tab active">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，提现申请处理时间为1-2天</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-repeat="apply in withdrawApply">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{apply.ApplyTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>提现金额：￥{{apply.Amount| number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，提现申请处理时间为1-2天</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="apply.Status==0" ng-repeat="apply in withdrawApply">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{apply.ApplyTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>提现金额：￥{{apply.Amount| number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，提现申请处理时间为1-2天</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="apply.Status==1" ng-repeat="apply in withdrawApply">
+                        <div class="txt-box">
+                            <p>
+                                时间 <em>{{apply.ApplyTime|date:'yyyy-MM-dd'}}</em>
+                            </p>
+                            <div class="txt_1">
+                                <span>提现金额：￥{{apply.Amount| number:2}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+        </div>
+    </div>
 </div>
+
+<script type="text/javascript">
+    // 点击点是第几个按钮 可以根据它的下标来指定
+    var _index = 0;
+    $('.tab-box span').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.session_2 .list-tab .item-tab').eq($(this).index()).addClass('active').siblings().removeClass('active');
+        _index = $(this).index();
+    });
+</script>
+

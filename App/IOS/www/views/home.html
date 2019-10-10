@@ -1,9 +1,10 @@
 ﻿
 <div class="index-wrap">
+    <input type="hidden" id="bindData" ng-click="bindData()"/>
     <div class="session_1">
         <div class="left-icon"><img src="images/icon_4.png"></div>
         <div class="input-box">
-            <input type="text" ng-click="ToSearch()" name="" placeholder="粘贴标题    搜索优惠">
+            <input type="text" ng-click="ToSearch()" name="" placeholder="粘贴标题  搜索优惠">
             <i><img src="images/icon_5.png"></i>
         </div>
         <div class="link-icon"><img src="images/icon_6.png"></div>
@@ -39,39 +40,39 @@
     <div class="session_3">
         <div class="list-box clearfix">
             <div class="item-box">
-                <a href="guide.html">
+                <a ng-click="ToCategory(13367,'女装')">
                     <div class="icon-box">
                         <img src="images/icon_7.png">
                     </div>
-                    <p>9.9包邮</p>
+                    <p>女装</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(13370,'鞋包配饰')">
                     <div class="icon-box">
                         <img src="images/icon_8.png">
                     </div>
-                    <p>淘抢购</p>
+                    <p>鞋包配饰</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(3789,'母婴')">
                     <div class="icon-box">
                         <img src="images/icon_9.png">
                     </div>
-                    <p>礼物</p>
+                    <p>母婴</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(4094,'特惠')">
                     <div class="icon-box">
                         <img src="images/icon_10.png">
                     </div>
-                    <p>聚划算</p>
+                    <p>特惠</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(13366,'高佣精选')">
                     <div class="icon-box">
                         <img src="images/icon_11.png">
                     </div>
@@ -79,43 +80,43 @@
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(4093,'潮流范')">
                     <div class="icon-box">
                         <img src="images/icon_12.png">
                     </div>
-                    <p>天猫超市</p>
+                    <p>潮流范</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(13373,'内衣')">
                     <div class="icon-box">
                         <img src="images/icon_13.png">
                     </div>
-                    <p>天猫国际</p>
+                    <p>内衣</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(13368,'家居家装')">
                     <div class="icon-box">
                         <img src="images/icon_14.png">
                     </div>
-                    <p>每日爆款</p>
+                    <p>家居家装</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(13376,'运动户外')">
                     <div class="icon-box">
                         <img src="images/icon_15.png">
                     </div>
-                    <p>书籍</p>
+                    <p>运动户外</p>
                 </a>
             </div>
             <div class="item-box">
-                <a href="">
+                <a ng-click="ToCategory(3793,'数码家电')">
                     <div class="icon-box">
                         <img src="images/icon_16.png">
                     </div>
-                    <p>电脑</p>
+                    <p>数码家电</p>
                 </a>
             </div>
         </div>
@@ -128,13 +129,16 @@
             <div class="swiper-container swiper-no-swiping">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <p>泰迪熊纸尿裤前1000名，第二件半价！</p>
+                        <p>可通过邀请好友,增加成长值,享受更多福利！</p>
                     </div>
                     <div class="swiper-slide">
-                        <p>小风扇USB小型便携式学生宿舍寝室床上电风扇静音迷你电扇手持可充电台式桌</p>
+                        <p>你知道吗?分享APP到朋友圈可以获得奖励!</p>
                     </div>
                     <div class="swiper-slide">
-                        <p>艾简社 可折叠藤席凉席无毛刺枕套学生御藤席子1.5米1.8m床</p>
+                        <p>购买商品之后,订单一般会延迟半天显示!</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <p>成为惠及万家合伙人,可永久获得分红权益!</p>
                     </div>
                 </div>
             </div>
@@ -168,18 +172,18 @@
         </div>
     </div>
     <div class="session_6">
-        <div class="title-box">
+        <div class="title-box" ng-click="ToCategory(4092,'爆款好货')">
             <img src="images/icon_19.png">
         </div>
         <div class="centent-box">
             <div class="top-box">
                 <div class="row clearfix">
                     <div class="col-md-6">
-                        <div class="img-box">
+                        <div class="img-box" ng-click="ToCategory(4094,'聚划算会场')">
                             <a href=""><img src="images/icon_20.png"></a>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" ng-click="ToCategory(3786,'天猫会场')">
                         <div class="img-box">
                             <a href=""><img src="images/icon_21.png"></a>
                         </div>
@@ -189,17 +193,17 @@
             <div class="small-box">
                 <div class="row clearfix">
                     <div class="col-md-4">
-                        <div class="img-box">
+                        <div class="img-box" ng-click="ToCategory(4093,'尖货排行榜')">
                             <a href=""><img src="images/icon_22.png"></a>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="img-box">
+                        <div class="img-box" ng-click="ToCategory(9660,'大额优惠券')">
                             <a href=""><img src="images/icon_23.png"></a>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="img-box">
+                        <div class="img-box" ng-click="ToCategory(4094,'热销榜')">
                             <a href=""><img src="images/icon_24.png"></a>
                         </div>
                     </div>
@@ -210,7 +214,7 @@
     <div class="session_7 clearfix">
         <div class="row">
             <div class="col-md-6">
-                <div class="item-box">
+                <div class="item-box" ng-click="ToCategory(3786,'品牌闪购')">
                     <div class="title-box">
                         <h3>品牌闪购 <span>聚大牌 ></span></h3>
                         <p>三只松鼠立减80元</p>
@@ -226,7 +230,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="item-box">
+                <div class="item-box" ng-click="ToCategory(13366,'限时抢购')">
                     <div class="title-box">
                         <h3>
                             限时抢购 <div class="time">
@@ -250,74 +254,27 @@
     <div class="session_8">
         <div class="top-title"><img src="images/icon_25.png">好货优选</div>
         <div class="list-box">
-            <div class="item-box">
+            <div class="item-box" ng-repeat="item in goodItemList">
                 <div class="left-box">
-                    <div class="img-box" style="background-image: url(images/img_11.jpg)"></div>
-                    <div class="info-box">
-                        <span>抢免单</span>1.33万观看
-                    </div>
+                    <div class="img-box" style="background-image: url({{'https:'+item.pict_url}})"></div>
+                    <!--<div class="info-box">
+                <span>抢免单</span>1.33万观看
+            </div>-->
                 </div>
                 <div class="txt-box">
-                    <a href="">
-                        <h3>【特级】宁夏枸杞500g</h3>
-                        <p class="txt_1">【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</p>
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">
+                        <h3>{{item.title|limitTo:26}}</h3>
+                        <p class="txt_1">{{item.shop_title}}</p>
                         <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
+                            <span>￥{{(item.zk_final_price-item.coupon_amount)| number:2}}</span><em>￥{{item.zk_final_price}}</em>
                         </div>
                         <div class="txt_3">
-                            5433人已买
+                            {{item.volume}}人已买
                         </div>
                         <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="item-box">
-                <div class="left-box">
-                    <div class="img-box" style="background-image: url(images/img_12.jpg)"></div>
-                    <div class="info-box">
-                        <span>抢免单</span>1.33万观看
-                    </div>
-                </div>
-                <div class="txt-box">
-                    <a href="">
-                        <h3>【居家鞋】舒适保暖</h3>
-                        <p class="txt_1">【网络红款】 早买早实惠 厚底防滑保买早实惠 厚底防滑保暖暖大厂家特别直销专供，品质值得信赖！</p>
-                        <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
-                        </div>
-                        <div class="txt_3">
-                            5433人已买
-                        </div>
-                        <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="item-box">
-                <div class="left-box">
-                    <div class="img-box" style="background-image: url(images/img_11.jpg)"></div>
-                    <div class="info-box">
-                        <span>抢免单</span>1.33万观看
-                    </div>
-                </div>
-                <div class="txt-box">
-                    <a href="">
-                        <h3>【特级】宁夏枸杞500g</h3>
-                        <p class="txt_1">【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</p>
-                        <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
-                        </div>
-                        <div class="txt_3">
-                            5433人已买
-                        </div>
-                        <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
+                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)| number:2}}</span>
+                            <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
+                            <em ng-if="item.coupon_amount==0">无优惠劵</em>
                         </div>
                     </a>
                 </div>
@@ -329,69 +286,19 @@
         <div class="list-box clearfix">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" ng-repeat="item in hotSalesItemList">
                         <div class="item-box">
-                            <a href="">
-                                <div class="img-box" style="background-image: url(images/img_12.jpg);"></div>
+                            <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">
+                                <div class="img-box" style="background-image: url({{'https:'+item.pict_url}});"></div>
                                 <div class="txt-box">
-                                    <h3>百草味 坚果大百草味 坚果大百草味 坚果大</h3>
+                                    <h3>{{item.title|limitTo:26}}</h3>
                                     <div class="txt_1">
-                                        <span>20元劵</span>
+                                        <span ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</span>
+                                        <span ng-if="item.coupon_amount==0">无优惠劵</span>
                                     </div>
                                     <div class="txt_2">
-                                        <span>￥128</span>
-                                        <em>￥258</em>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item-box">
-                            <a href="">
-                                <div class="img-box" style="background-image: url(images/img_15.png);"></div>
-                                <div class="txt-box">
-                                    <h3>百草味 坚果大百草味 坚果大百草味 坚果大</h3>
-                                    <div class="txt_1">
-                                        <span>20元劵</span>
-                                    </div>
-                                    <div class="txt_2">
-                                        <span>￥128</span>
-                                        <em>￥258</em>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item-box">
-                            <a href="">
-                                <div class="img-box" style="background-image: url(images/img_14.png);"></div>
-                                <div class="txt-box">
-                                    <h3>百草味 坚果大百草味 坚果大百草味 坚果大</h3>
-                                    <div class="txt_1">
-                                        <span>20元劵</span>
-                                    </div>
-                                    <div class="txt_2">
-                                        <span>￥128</span>
-                                        <em>￥258</em>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="item-box">
-                            <a href="">
-                                <div class="img-box" style="background-image: url(images/img_13.png);"></div>
-                                <div class="txt-box">
-                                    <h3>百草味 坚果大百草味 坚果大百草味 坚果大</h3>
-                                    <div class="txt_1">
-                                        <span>20元劵</span>
-                                    </div>
-                                    <div class="txt_2">
-                                        <span>￥128</span>
-                                        <em>￥258</em>
+                                        <span>￥{{(item.zk_final_price-item.coupon_amount)| number:2}}</span>
+                                        <em>￥{{item.zk_final_price}}</em>
                                     </div>
                                 </div>
                             </a>
@@ -406,50 +313,39 @@
             <span></span>为你推荐<span></span>
         </div>
         <div class="list-box clearfix">
-            <div class="item-box">
-                <a href="">
-                    <div class="img-box" style="background-image: url(images/img_16.png)"></div>
-                    <div class="txt-box">
-                        <h3>【特级】宁夏枸杞500g宁夏枸杞500g</h3>
+            <div class="item-box" ng-repeat="item in recommentItemList">
+                <div class="left-box">
+                    <div class="img-box" style="background-image: url({{'https:'+item.pict_url}})"></div>
+                    <!--<div class="info-box">
+                      <span>抢免单</span>1.33万观看
+                  </div>-->
+                </div>
+                <div class="txt-box">
+                    <a href="https://t.asczwa.com/taobao?backurl={{item.coupon_share_url}}" ng-click="ClickLog(item.item_id,'https://t.asczwa.com/taobao?backurl='+item.coupon_share_url,item.pict_url)">
+                        <h3>{{item.title}}</h3>
                         <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
+                            <span>￥{{(item.zk_final_price-item.coupon_amount)| number:2}}</span><em>￥{{item.zk_final_price}}</em>
                         </div>
                         <div class="txt_3">
-                            5433人已买
+                            {{item.volume}}人已买
                         </div>
                         <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
+                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)| number:2}}</span>
+                            <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
+                            <em ng-if="item.coupon_amount==0">无优惠劵</em>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="item-box">
-                <a href="">
-                    <div class="img-box" style="background-image: url(images/img_16.png)"></div>
-                    <div class="txt-box">
-                        <h3>【特级】宁夏枸杞500gg宁夏枸杞500gg宁夏枸杞500g</h3>
-                        <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
-                        </div>
-                        <div class="txt_3">
-                            5433人已买
-                        </div>
-                        <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="more-info">
+        <!--<div class="more-info">
             <img src="images/img_22.gif">正在加载....
-        </div>
+        </div>-->
     </div>
 </div>
 
 <script type="text/javascript">
+    setTimeout(function(){$("#bindData").click();},1000);
     var swiper = new Swiper('.session_2 .swiper-container', {
         pagination: {
             el: '.swiper-pagination'
@@ -476,49 +372,50 @@
         slidesPerView: 3.3,
         spaceBetween: 12,
     });
+
     /*底部加载*/
-    list_loading = false;
-    $(document).on('scroll', function () {
-        if (!list_loading) {
-            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
-                load_more_msg();
-            }
+//    list_loading = false;
+//    $(document).on('scroll', function () {
+//        if (!list_loading) {
+//            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+//                load_more_msg();
+//            }
 
-        }
-    })
+//        }
+//    })
 
-    function load_more_msg() {
-        list_loading = true;
-        /*测试*/
-        setTimeout(function () {
-            test();
-        }, 1000)
-    }
-    var item_html = `
-            <div class="item-box">
-                <a href="">
-                    <div class="img-box"  style="background-image: url(images/img_16.png)"></div>
-                    <div class="txt-box">
-                        <h3>【特级】宁夏枸杞500gg宁夏枸杞500gg宁夏枸杞500g</h3>
-                        <div class="txt_2">
-                            <span>￥33.9</span><em>￥98</em>
-                        </div>
-                        <div class="txt_3">
-                            5433人已买
-                        </div>
-                        <div class="txt_4 clearfix">
-                            <span>预估收益￥5.79</span>
-                            <em>100元劵</em>
-                        </div>
-                    </div>
-                </a>
-            </div>
-`
+//    function load_more_msg() {
+//        list_loading = true;
+//        /*测试*/
+//        setTimeout(function () {
+//            test();
+//        }, 1000)
+//    }
+//    var item_html = `
+//            <div class="item-box">
+//                <a href="">
+//                    <div class="img-box"  style="background-image: url(images/img_16.png)"></div>
+//                    <div class="txt-box">
+//                        <h3>【特级】宁夏枸杞500gg宁夏枸杞500gg宁夏枸杞500g</h3>
+//                        <div class="txt_2">
+//                            <span>￥33.9</span><em>￥98</em>
+//                        </div>
+//                        <div class="txt_3">
+//                            5433人已买
+//                        </div>
+//                        <div class="txt_4 clearfix">
+//                            <span>预估收益￥5.79</span>
+//                            <em>100元劵</em>
+//                        </div>
+//                    </div>
+//                </a>
+//            </div>
+//`
 
-    function test() {
-        for (var i = 8 - 1; i >= 0; i--) {
-            $('.session_10 .list-box').append(item_html);
-        }
-        list_loading = false;
-    }
+//    function test() {
+//        for (var i = 8 - 1; i >= 0; i--) {
+//            $('.session_10 .list-box').append(item_html);
+//        }
+//        list_loading = false;
+//    }
 </script>

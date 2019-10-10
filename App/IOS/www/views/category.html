@@ -1,5 +1,8 @@
 ﻿<div class="recommend-wrap">
-    <div class="top-header">巨返利 <a href="">返利规则</a></div>
+    <div  ng-click="back()" class="top-header">
+        <a class="back_btn"><img src="images/icon_32.png"></a>
+     <!--{{pageTitle}}-->
+    </div>
     <div class="session_1">
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -29,7 +32,7 @@
         </div>
     </div>
     <div class="session_2">
-        <div class="top-title">优选高额返利</div>
+        <div class="top-title">{{pageTitle}}</div>
         <div class="list-box">
             <div class="item-box" ng-repeat="item in itemList">
                 <div class="left-box">

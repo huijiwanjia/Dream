@@ -131,7 +131,20 @@ var app = {
                             }
                         },
                         params: {
-                            itemName: null,                           
+                            itemName: null,   
+                        }
+                    })
+                    .state('category', {
+                        url: "/category",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/category.html',
+                                controller: 'CategoryController'
+                            }
+                        },
+                        params: {
+                            type: null,
+                            pageTitle:null
                         }
                     })
                     .state('bindAlipay', {
@@ -157,6 +170,30 @@ var app = {
                             }
                         }
                     })
+                    .state('rule', {
+                        url: "/rule",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/rule.html',
+                                controller: 'RuleController'
+                            }
+                        }
+                    })
+                    .state('joinUs', {
+                        url: "/joinUs",
+                        cache: true,
+                        views: {
+                            'content': {
+                                templateUrl: 'views/joinUs.html',
+                                controller: 'JoinUsController'
+                            },
+                            'footer': {
+                                templateUrl: 'views/footer.html',
+                                controller: 'FooterController'
+                            }
+                        }
+
+                    })
                     .state('setting', {
                         url: "/setting",
                         views: {
@@ -172,15 +209,6 @@ var app = {
                             'other': {
                                 templateUrl: 'views/team.html',
                                 controller: 'TeamController'
-                            }
-                        }
-                    })
-                    .state('withdraw', {
-                        url: "/withdraw",
-                        views: {
-                            'other': {
-                                templateUrl: 'views/withdraw.html',
-                                controller: 'WithdrawController'
                             }
                         }
                     })
@@ -223,6 +251,15 @@ var app = {
                             }
                         }
                     })
+                    .state('withdraw', {
+                        url: "/withdraw",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/withdraw.html',
+                                controller: 'WithdrawController'
+                            }
+                        }
+                    })
                     .state('success', {
                         url: "/success",
                         views: {
@@ -255,7 +292,7 @@ var app = {
                         views: {
                             'content': {
                                 templateUrl: 'views/my.html',
-                                controller: 'MyController',
+                                controller: 'MyController'
                             },
                             'footer': {
                                 templateUrl: 'views/footer.html',
@@ -375,7 +412,7 @@ var app = {
                 var swiper = new Swiper('.swiper-container', {
                     pagination: {
                         el: '.swiper-pagination',
-                    },
+                    }
                 });
                 $scope.goLogin=function(){
                     ls.set('guideIsChecked', true);
@@ -430,56 +467,47 @@ var app = {
                 };
                 Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
                     $scope.teamInfo = team;
+                    console.log(team);
                 });
             })
-            .controller('ResultsController', function ($scope, $http, $state, sc, ls, $stateParams) {
+            .controller('ResultsController', function ($scope, $filter, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
-                    $state.go('home');
+                    $state.go('search');
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
+
                 $scope.QueryText = $stateParams.itemName;
-                $scope.QueryResult = null;
-                $('.select-box li').click(function () {
-                    $(this).addClass('active').siblings().removeClass('active').removeClass('up').removeClass('down');
-                    $('.synthesize-box').removeClass('active');
-                    if ($(this).hasClass('on')) {
-                        if ($(this).hasClass('up')) {
-                            switch ($(this).data("type")) {
-                                case "coupon":
-                                    $scope.Query("coupon_amount_des");
-                                    break;
-                            }
-                            $(this).removeClass('up').addClass('down');
-                        } else {
-                            switch ($(this).data("type")) {
-                                case "coupon":
-                                    $scope.Query("coupon_amount_asc");
-                                    break;
-                            }
-                            $(this).addClass('up').removeClass('down');
-                        }
-                    }
-                    if ($(this).index() === 0) {
-                        $('.synthesize-box').addClass('active');
-                    }
-                });
-                $scope.Query = function (sort) {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, pagesize: 20, platform:2, sort: sort }, function (data) {
+                $scope.QueryResult = {};
+                $scope.Query = function () {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform:2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (ret[i].zk_final_price == null) ret[i].zk_final_price = 0;
+                            else ret[i].zk_final_price = parseFloat(ret[i].zk_final_price);
+                            if (ret[i].tk_total_sales == null) ret[i].tk_total_sales = 0;
+                            else ret[i].tk_total_sales = parseInt(ret[i].tk_total_sales);
+                            if (ret[i].commission_rate == null) ret[i].commission_rate = 0;
+                            else ret[i].commission_rate = parseFloat(ret[i].commission_rate);
+
                             if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
-                        $scope.QueryResult = data;
+                        $scope.QueryResult = ret;
                         console.log($scope.QueryResult);
                     });
                 };
-                $scope.Query("");
+                var orderBy = $filter('orderBy');
+                $scope.OrderBy = function (predicate, reverse) {
+                    $scope.QueryResult = orderBy($scope.QueryResult, predicate, reverse);
+                };
+                $scope.Query();
             })
             .controller('SearchController', function ($scope, $http, $state, sc, ls) {
                 sc.ValidateLogin();
@@ -509,54 +537,6 @@ var app = {
                         $state.go('my');
                     });
                 };
-            })
-            .controller('WithdrawController', function ($scope, $http, $state, sc, ls) {
-                sc.ValidateLogin();
-                var enableSubmit = false;
-                $scope.userInfo = ls.getObject("userInfo");
-                $scope.back = function () {
-                    $state.go('my');
-                };
-                $scope.updateAlipay = function () {
-                    $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
-                };
-                $scope.withdrawInfo = { totalAmount: null, withdrawAmount: null };
-                Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
-                    $scope.withdrawInfo = { totalAmount: totalAmount, withdrawAmount: totalAmount };
-                    if (totalAmount >= 0.1) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                });
-                $scope.submit = function () {
-                    if (enableSubmit) {
-                        Post($http, DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId), null, function (data) {
-                            $state.go('success', { obj: { header: "提现成功", title: "提现申请已提交", details: "二个工作日内到账", amount: $scope.withdrawInfo.withdrawAmount } });
-                        });
-                    }
-                };
-
-                $scope.withdrawAll = function () {
-                    $scope.withdrawInfo.withdrawAmount = $scope.withdrawInfo.totalAmount;
-                    if ($scope.withdrawInfo.withdrawAmount !== null && $scope.withdrawInfo.withdrawAmount >= 0) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                };
-
-                validateAmount($('.pay-box input'));
-
-                $('.pay-box input').bind('keyup', function () {
-                    if ($(this).val() <= $scope.withdrawInfo.totalAmount && $(this).val() > 0) {
-                        enableSubmit = true;
-                        $(".btn").css("background", "#ff8569");
-                    }
-                    else {
-                        $(this).val("");
-                        enableSubmit = false;
-                        $(".btn").css("background", "#b3b3b3");
-                    }
-                });
             })
             .controller('AgencyController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
@@ -613,6 +593,26 @@ var app = {
                     $scope.profits = profits;
                 });
             })
+            .controller('RuleController', function ($scope, $state, $http, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go(curPage);
+                };
+            })
+            .controller('JoinUsController', function ($scope, $state, $http, sc, ls) {
+                curPage = "joinUs";
+                sc.ValidateLogin();
+            })
+            .controller('WithdrawController', function ($scope, $state, $http, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('my');
+                };
+                $scope.withdrawApply = {};
+                Get($http, DreamConfig.profitUrl + "QueryWithdraw?userId=" + ls.getObject("userInfo").UserId, function (withdrawApply) {
+                    $scope.withdrawApply = withdrawApply;
+                });
+            })
             .controller('SettingController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.logOut = function () {
@@ -662,15 +662,11 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
-                $scope.userAvatar = ls.getObject("userInfo").AvatarUrl;
-                //二维码生成
-                $("#qrCode").empty();
-                $("#qrCode").qrcode({
-                    render: "canvas",
-                    width: window.innerWidth - 150,
-                    height: window.innerHeight / 3,
-                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
-                });
+                var userId = ls.getObject("userInfo").UserId;
+                $scope.qrcodes = new Array();
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_1");
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_2");
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_3");
             })
             .controller('SuccessController', function ($scope, $state, sc, $stateParams) {
                 $scope.back = function () {
@@ -690,11 +686,81 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
-                        
+                //检查是否有新版本
+                Get($http, DreamConfig.versionUrl, function (version) {
+                    console.log(version);
+                    if (version > DreamConfig.version) {
+                        DeviceEvent.Confirm("发现新版本：v" + version,
+                            function (buttonIndex) {
+                                if (buttonIndex == 1) {
+                                    installerUrl = "https://itunes.apple.com/hk/app/%E6%99%BA%E6%83%A0%E8%B4%AD/id1239309296?mt=8";
+                                    cordova.InAppBrowser.open(installerUrl, '_system', 'location=false,closebuttoncaption=退出');
+                                }
+                            }, "", ['立即更新'])
+                    }
+                });
+
+
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
                 $scope.ToSearch = function () {
                     $state.go("search");
                 };
 
+                $scope.ToCategory = function (type, pageTitle) {
+                    $state.go('category', { type: type, pageTitle: pageTitle });
+                };
+
+               // $scope.goodItemList = ls.getObject("goodItemList"); //好货优选
+                var gParams = { PageSize: 5, MaterialId: 3786 };//品牌券  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+
+               // $scope.hotSalesItemList = ls.getObject("hotSalesItemList"); //热销榜单
+                var hParams = { PageSize: 10, MaterialId: 4094 };//特惠  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+
+               // $scope.recommentItemList = ls.getObject("recommentItemList"); //为你推荐
+                var rParams = { PageSize: 40, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+
+                $scope.bindData = function () {
+                    Post($http, DreamConfig.tbkOptimusGet, gParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.goodItemList = ret;
+                        ls.setObject("goodItemList", ret);
+                    });
+
+                    Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.recommentItemList = ret;
+                        ls.setObject("recommentItemList", ret);
+                    });
+                    Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        }
+                        $scope.hotSalesItemList = ret;
+                        ls.setObject("hotSalesItemList", ret);
+                    });
+                };
             })
             .controller('FooterController', function ($scope, $state, ls) {
                 $(".item-box").removeClass("active");
@@ -720,13 +786,72 @@ var app = {
                     sc.Login();
                 };
             })
+            .controller('CategoryController', function ($scope, sc, ls, $state, $http, $stateParams) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go('home');
+                };
+                $scope.itemList = {};
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                $scope.pageTitle = $stateParams.pageTitle;
+                var params = { PageSize: 40, MaterialId: $stateParams.type };  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                });
+            })
             .controller('RebateController', function ($scope, sc, ls, $state, $http) {
                 curPage = "rebate";
                 sc.ValidateLogin();
+                $scope.itemList = {};
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                var params = { PageSize: 40, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                    console.log(ret);
+                });
             })
             .controller('RecommendController', function ($scope, sc, ls, $state, $http) {
                 curPage = "recommend";
                 sc.ValidateLogin();
+                $scope.ClickLog = function (itemId, url, imgUrl) {
+                    Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                    });
+                };
+                $scope.itemList = {};
+                var params = { PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                    data = JSON.parse(data);
+                    var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                    for (i = 0; i < ret.length; i++) {
+                        if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                        else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                    }
+                    $scope.itemList = ret;
+                });
             })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
                 sc.ValidateLogin();
@@ -762,13 +887,6 @@ var app = {
                         DeviceEvent.Toast("分享失败," + reason);
                     });
                 };
-            })
-            .controller('WithdrawApplyController', function ($scope, sc, ls, $state, $http) {
-                curPage = "withdrawApply";
-                sc.ValidateLogin();
-                Get($http, DreamConfig.profitUrl + "QueryWithdraw?userId=" + ls.getObject("userInfo").UserId, function (withdrawApply) {
-                    $scope.withdrawApply = withdrawApply;
-                });
             })
             .controller('MyController', function ($scope, $state, sc, ls,$http) {
                 curPage = "my";
@@ -863,7 +981,7 @@ var app = {
                     $state.go('team');
                 };
                 $scope.toProfitPage = function () {
-                    $state.go('order');
+                    $state.go('profits');
                 }; 
                 $scope.toQrCodePage = function () {
                     $state.go('qrcode');

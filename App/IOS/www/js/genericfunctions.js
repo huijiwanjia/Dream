@@ -28,7 +28,7 @@ function Post($http, url, paramData, callback) {
         DeviceEvent.SpinnerHide();
         DeviceEvent.Toast("网络异常");
     });
-}
+} 
 
 function CopyTextToClipboard(text) {
     var textArea = document.createElement("textarea")
