@@ -6,6 +6,7 @@ var TBKServer = "http://tbk.huijiwanjia.com/";
 
 var DreamConfig = {
     isDebug: true,
+    version: 1.0,
     shareBackRate:0.2,
     accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days
@@ -13,6 +14,7 @@ var DreamConfig = {
     packetRecordsUrl: DreamServer.concat("dream/api/packetrecord/"),
     userInfoUrl: DreamServer.concat("dream/user/"),
     profitUrl: DreamServer.concat("dream/profit/"),
+    versionUrl: DreamServer.concat("dream/version/"),
     tbkQuery: TBKServer.concat("api/tbk"), 
     tbkOptimusGet: TBKServer.concat("api/OptimusGet"),
     alipayUrl: DreamServer.concat("dream/alipay/"),

@@ -170,6 +170,30 @@ var app = {
                             }
                         }
                     })
+                    .state('rule', {
+                        url: "/rule",
+                        views: {
+                            'other': {
+                                templateUrl: 'views/rule.html',
+                                controller: 'RuleController'
+                            }
+                        }
+                    })
+                    .state('joinUs', {
+                        url: "/joinUs",
+                        cache: true,
+                        views: {
+                            'content': {
+                                templateUrl: 'views/joinUs.html',
+                                controller: 'JoinUsController'
+                            },
+                            'footer': {
+                                templateUrl: 'views/footer.html',
+                                controller: 'FooterController'
+                            }
+                        }
+
+                    })
                     .state('setting', {
                         url: "/setting",
                         views: {
@@ -449,7 +473,7 @@ var app = {
             .controller('ResultsController', function ($scope, $filter, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
                 $scope.back = function () {
-                    $state.go('home');
+                    $state.go('search');
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
@@ -569,6 +593,16 @@ var app = {
                     $scope.profits = profits;
                 });
             })
+            .controller('RuleController', function ($scope, $state, $http, sc, ls) {
+                sc.ValidateLogin();
+                $scope.back = function () {
+                    $state.go(curPage);
+                };
+            })
+            .controller('JoinUsController', function ($scope, $state, $http, sc, ls) {
+                curPage = "joinUs";
+                sc.ValidateLogin();
+            })
             .controller('WithdrawController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
                 $scope.back = function () {
@@ -652,6 +686,21 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
+                //检查是否有新版本
+                Get($http, DreamConfig.versionUrl, function (version) {
+                    console.log(version);
+                    if (version > DreamConfig.version) {
+                        DeviceEvent.Confirm("发现新版本：v" + version,
+                            function (buttonIndex) {
+                                if (buttonIndex == 1) {
+                                    installerUrl = "https://itunes.apple.com/hk/app/%E6%99%BA%E6%83%A0%E8%B4%AD/id1239309296?mt=8";
+                                    cordova.InAppBrowser.open(installerUrl, '_system', 'location=false,closebuttoncaption=退出');
+                                }
+                            }, "", ['立即更新'])
+                    }
+                });
+
+
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });

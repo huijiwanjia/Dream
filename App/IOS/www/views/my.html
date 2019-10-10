@@ -55,6 +55,7 @@
         </div>
         <div class="monery-box">
             余额<em>￥ {{remainAmout| number:2}}</em>
+            <p ui-sref="withdraw" class="txt_1">点击查看历史提现记录 ></p>
             <span class="btn" ng-click="withdraw()">立即提现</span>
         </div>
     </div>
@@ -94,6 +95,7 @@
                         </a>
                     </div>
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
@@ -132,7 +134,7 @@
             <div class="title">我的工具</div>
             <div class="list-box clearfix">
                 <div class="item-box">
-                    <a href="">
+                    <a ui-sref="rule">
                         <div class="icon-box">
                             <img src="images/icon_42.jpg">
                         </div>
@@ -148,7 +150,7 @@
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ui-sref="rule">
                         <div class="icon-box">
                             <img src="images/icon_44.jpg">
                         </div>
@@ -184,7 +186,7 @@
                         <div class="icon-box">
                             <img src="images/icon_48.jpg">
                         </div>
-                        <p>关于我们</p>
+                        <p>商务合作</p>
                     </a>
                 </div>
             </div>
