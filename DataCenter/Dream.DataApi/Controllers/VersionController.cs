@@ -18,5 +18,12 @@ namespace Dream.DataApi.Controllers
         {
             return "1.1";
         }
+
+        [HttpGet]
+        [Route("IsCheck")]
+        public int  IsCheck()
+        {
+            return 1;
+        }
     }
 }
