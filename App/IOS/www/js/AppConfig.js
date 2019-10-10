@@ -5,7 +5,7 @@ var TBKServer = "http://tbk.huijiwanjia.com/";
 //var TBKServer = "http://localhost:63224/";
 
 var DreamConfig = {
-    isDebug: false,
+    isDebug: true,
     shareBackRate:0.2,
     accountUrl: DreamServer.concat("dream/auth/"),
     tokenExpireTime: 7,//days

@@ -628,15 +628,11 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
-                $scope.userAvatar = ls.getObject("userInfo").AvatarUrl;
-                //二维码生成
-                $("#qrCode").empty();
-                $("#qrCode").qrcode({
-                    render: "canvas",
-                    width: window.innerWidth - 150,
-                    height: window.innerHeight / 3,
-                    text: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
-                });
+                var userId = ls.getObject("userInfo").UserId;
+                $scope.qrcodes = new Array();
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_1");
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_2");
+                $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_3");
             })
             .controller('SuccessController', function ($scope, $state, sc, $stateParams) {
                 $scope.back = function () {
