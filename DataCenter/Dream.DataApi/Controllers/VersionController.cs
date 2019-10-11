@@ -23,7 +23,7 @@ namespace Dream.DataApi.Controllers
         [Route("IsCheck")]
         public int  IsCheck()
         {
-            return 1;
+            return 0;
         }
     }
 }
