@@ -30,24 +30,6 @@ function Post($http, url, paramData, callback, hideSpinner) {
     });
 } 
 
-function CopyTextToClipboard(text) {
-    var textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-
-    try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? '成功' : '失败';
-        DeviceEvent.Toast('复制' + msg);
-    } catch (err) {
-        DeviceEvent.Toast('不能使用这种方法复制内容');
-    }
-
-    document.body.removeChild(textArea);
-}
-
 function isFunction(functionToCheck) {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';

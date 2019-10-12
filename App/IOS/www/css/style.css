@@ -2159,6 +2159,9 @@ body {
   .fans-wrap .top-header {
     top: 44px;
   }
+  .fans-wrap .nub-bottom {
+    bottom: 34px;
+  }
 }
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
   .public-footer {
@@ -2181,6 +2184,9 @@ body {
   }
   .fans-wrap .top-header {
     top: 44px;
+  }
+  .fans-wrap .nub-bottom {
+    bottom: 34px;
   }
 }
 @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
@@ -2205,6 +2211,9 @@ body {
   .fans-wrap .top-header {
     top: 44px;
   }
+    .fans-wrap .nub-bottom {
+        bottom: 34px;
+    }
 }
 .join-wrap .session_1 {
   position: relative;

@@ -37,7 +37,7 @@
                     <span>{{userInfo.Name}}</span><i><img src="images/teamMember.png"></i>
                 </div>
                 <div class="txt_2">
-                    邀请码： <span id="yqm">{{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
+                    <span>邀请码： {{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
                 </div>
             </div>
         </div>

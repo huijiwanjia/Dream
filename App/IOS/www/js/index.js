@@ -683,6 +683,35 @@ var app = {
                 $scope.back = function () {
                     $state.go('my');
                 };
+                $scope.CopyYQM = function () {
+                    var yqm = ls.getObject("userInfo").UserId;
+                    cordova.plugins.clipboard.copy(yqm.toString(), function () {
+                        DeviceEvent.Toast("复制成功");
+                    }, function () {
+                        DeviceEvent.Toast("复制失败");
+                    });
+                }
+                $scope.share = function () {
+                    Wechat.share({
+                        message: {
+                            title: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            description: "下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            thumb: "www/images/icon-76@2x.png",
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        DeviceEvent.Toast("分享成功");
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
+                };
                 var userId = ls.getObject("userInfo").UserId;
                 $scope.qrcodes = new Array();
                 $scope.qrcodes.push(TBKServer + "qrcode/get?idAndIndex=" + userId + "_1");
@@ -713,10 +742,26 @@ var app = {
                         DeviceEvent.Confirm("发现新版本：v" + version,
                             function (buttonIndex) {
                                 if (buttonIndex == 1) {
-                                    installerUrl = "https://itunes.apple.com/hk/app/%E6%99%BA%E6%83%A0%E8%B4%AD/id1239309296?mt=8";
+                                    installerUrl = "https://apps.apple.com/cn/app/%E6%83%A0%E5%8F%8A%E4%B8%87%E5%AE%B6/id1483095536";
                                     cordova.InAppBrowser.open(installerUrl, '_system', 'location=false,closebuttoncaption=退出');
                                 }
                             }, "", ['立即更新', '暂不更新'])
+                    }
+                    else {
+                        cordova.plugins.clipboard.paste(function (text) {
+                            if (text.length > 20) {
+                                DeviceEvent.Confirm(text,
+                                    function (buttonIndex) {
+                                        if (buttonIndex == 1) {
+                                            $state.go('results', { itemName: text });
+                                            cordova.plugins.clipboard.clear();
+                                        }
+                                        else {
+                                            cordova.plugins.clipboard.clear();
+                                        }
+                                    }, "您是否搜索以下产品", ['搜索', '取消'])
+                            }
+                        });
                     }
                 }, true);
 
@@ -914,7 +959,12 @@ var app = {
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
                 $scope.CopyYQM = function () {
-                    CopyTextToClipboard(ls.getObject("userInfo").UserId);
+                    var yqm = ls.getObject("userInfo").UserId;
+                    cordova.plugins.clipboard.copy(yqm.toString(), function () {
+                        DeviceEvent.Toast("复制成功");
+                    }, function () {
+                        DeviceEvent.Toast("复制失败");
+                    });
                 }
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
