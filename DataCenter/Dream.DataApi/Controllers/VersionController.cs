@@ -16,7 +16,7 @@ namespace Dream.DataApi.Controllers
         [HttpGet]
         public string Index()
         {
-            return "1.1";
+            return "1.2";
         }
 
         [HttpGet]
