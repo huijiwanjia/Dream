@@ -27,20 +27,18 @@
             );
         },
         Toast: function (message) {
-            if (!DreamConfig.isDebug) {
-                window.plugins.toast.showWithOptions({
-                    message: message,
-                    duration: "short", // 2000 ms 
-                    position: "bottom"
-                    //addPixelsY: -40
-                });
-            }
+            window.plugins.toast.showWithOptions({
+                message: message,
+                duration: "short", // 2000 ms 
+                position: "bottom"
+                //addPixelsY: -40
+            });
         },
         SpinnerShow: function () {
-            if (!DreamConfig.isDebug)SpinnerPlugin.activityStart("请稍后...", { dimBackground: true });
+            SpinnerPlugin.activityStart("请稍后...", { dimBackground: true });
         },
         SpinnerHide: function () {
-            if (!DreamConfig.isDebug)SpinnerPlugin.activityStop();
+            SpinnerPlugin.activityStop();
         },
         OpenCamera: function (onSuccess, onFail) {
             navigator.camera.getPicture(onSuccess, onFail, {
