@@ -131,7 +131,7 @@ var app = {
                             }
                         },
                         params: {
-                            itemName: null,   
+                            itemName: null,
                         }
                     })
                     .state('category', {
@@ -144,7 +144,7 @@ var app = {
                         },
                         params: {
                             type: null,
-                            pageTitle:null
+                            pageTitle: null
                         }
                     })
                     .state('bindAlipay', {
@@ -307,19 +307,19 @@ var app = {
                 return {
                     enter: function (element, done) {
                         element.css({
-                            opacity: 0
+                            opacity: 1
                         });
                         element.animate({
                             opacity: 1
-                        }, 150, done);
+                        }, 0, done);
                     },
                     leave: function (element, done) {
                         element.css({
                             opacity: 1
                         });
                         element.animate({
-                            opacity: 0
-                        }, 150, done);
+                            opacity: 1
+                        }, 0, done);
                     }
                 };
             })
@@ -416,7 +416,7 @@ var app = {
                         el: '.swiper-pagination',
                     }
                 });
-                $scope.goLogin=function(){
+                $scope.goLogin = function () {
                     ls.set('guideIsChecked', true);
                     $state.go('login');
                 };
@@ -469,7 +469,6 @@ var app = {
                 };
                 Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
                     $scope.teamInfo = team;
-                    console.log(team);
                 });
             })
             .controller('ResultsController', function ($scope, $filter, $http, $state, sc, ls, $stateParams) {
@@ -485,7 +484,7 @@ var app = {
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = {};
                 $scope.Query = function () {
-                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform:2 }, function (data) {
+                    Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform: 2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
                         for (i = 0; i < ret.length; i++) {
@@ -502,7 +501,6 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.QueryResult = ret;
-                        console.log($scope.QueryResult);
                     });
                 };
                 var orderBy = $filter('orderBy');
@@ -520,7 +518,7 @@ var app = {
                 $scope.ToResult = function () {
                     $state.go('results', { itemName: $scope.itemName });
                 };
-              
+
             })
             .controller('BindAlipayController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
@@ -604,6 +602,27 @@ var app = {
             .controller('JoinUsController', function ($scope, $state, $http, sc, ls) {
                 curPage = "joinUs";
                 sc.ValidateLogin();
+                $scope.share = function () {
+                    Wechat.share({
+                        message: {
+                            title: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            description: "下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            thumb: "www/images/icon-76@2x.png",
+                            mediaTagName: "HJWJ-TAG-001",
+                            messageExt: "点击下载惠及万家APP，立刻享受淘宝购物高额报销",
+                            messageAction: "<action>dotalist</action>",
+                            media: {
+                                type: Wechat.Type.WEBPAGE,
+                                webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
+                            }
+                        },
+                        scene: Wechat.Scene.TIMELINE   // share to Timeline
+                    }, function () {
+                        DeviceEvent.Toast("分享成功");
+                    }, function (reason) {
+                        DeviceEvent.Toast("分享失败");
+                    });
+                };
             })
             .controller('WithdrawController', function ($scope, $state, $http, sc, ls) {
                 sc.ValidateLogin();
@@ -697,14 +716,16 @@ var app = {
                                     installerUrl = "https://itunes.apple.com/hk/app/%E6%99%BA%E6%83%A0%E8%B4%AD/id1239309296?mt=8";
                                     cordova.InAppBrowser.open(installerUrl, '_system', 'location=false,closebuttoncaption=退出');
                                 }
-                            }, "", ['立即更新','暂不更新'])
+                            }, "", ['立即更新', '暂不更新'])
                     }
-                });
+                }, true);
 
-
+                $scope.showContacts = function () {
+                    DeviceEvent.Alert("微信：Young0380", null, "官方联系方式", "确认");
+                };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                    });
+                    }, true);
                 };
                 $scope.ToSearch = function () {
                     $state.go("search");
@@ -714,13 +735,13 @@ var app = {
                     $state.go('category', { type: type, pageTitle: pageTitle });
                 };
 
-               // $scope.goodItemList = ls.getObject("goodItemList"); //好货优选
+                // $scope.goodItemList = ls.getObject("goodItemList"); //好货优选
                 var gParams = { PageSize: 5, MaterialId: 3786 };//品牌券  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
 
-               // $scope.hotSalesItemList = ls.getObject("hotSalesItemList"); //热销榜单
+                // $scope.hotSalesItemList = ls.getObject("hotSalesItemList"); //热销榜单
                 var hParams = { PageSize: 10, MaterialId: 4094 };//特惠  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
 
-               // $scope.recommentItemList = ls.getObject("recommentItemList"); //为你推荐
+                // $scope.recommentItemList = ls.getObject("recommentItemList"); //为你推荐
                 var rParams = { PageSize: 40, MaterialId: 4092 };//有好货  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
 
                 $scope.bindData = function () {
@@ -734,8 +755,8 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.goodItemList = ret;
-                      //  ls.setObject("goodItemList", ret);
-                    });
+                        //  ls.setObject("goodItemList", ret);
+                    },true);
 
                     Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
                         data = JSON.parse(data);
@@ -747,8 +768,8 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.recommentItemList = ret;
-                      //  ls.setObject("recommentItemList", ret);
-                    });
+                        //  ls.setObject("recommentItemList", ret);
+                    },true);
                     Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -759,8 +780,8 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.hotSalesItemList = ret;
-                      //  ls.setObject("hotSalesItemList", ret);
-                    });
+                        //  ls.setObject("hotSalesItemList", ret);
+                    },true);
                 };
             })
             .controller('FooterController', function ($scope, $state, ls) {
@@ -798,7 +819,7 @@ var app = {
                     });
                 };
                 $scope.pageTitle = $stateParams.pageTitle;
-                var params = { PageSize: 40, MaterialId: $stateParams.type };  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var params = { PageSize: 40, MaterialId: $stateParams.type }; 参考类型地址: https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -830,7 +851,6 @@ var app = {
                         else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                     }
                     $scope.itemList = ret;
-                    console.log(ret);
                 });
             })
             .controller('RecommendController', function ($scope, sc, ls, $state, $http) {
@@ -873,7 +893,7 @@ var app = {
                             messageAction: "<action>dotalist</action>",
                             media: {
                                 type: Wechat.Type.WEBPAGE,
-                               // webpageUrl: url
+                                // webpageUrl: url
                                 webpageUrl: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxda337f3186c93879&redirect_uri=http://admin.huijiwanjia.com/WechatAuth/AuthCallback&response_type=code&scope=snsapi_userinfo&state=" + ls.getObject("userInfo").UserId + "&connect_redirect=1#wechat_redirect"
                             }
                         },
@@ -881,7 +901,7 @@ var app = {
                     }, function () {
                         var status = 1;
                         if (state === 2) status = 0;
-                        Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: code,Remark:"来自订单分享收益"}, function (data) {
+                        Post($http, DreamConfig.profitUrl + "add", { userid: ls.getObject("userInfo").UserId, Amount: price * DreamConfig.shareBackRate, Type: 2, Status: status, FromOrder: code, Remark: "来自订单分享收益" }, function (data) {
                             DeviceEvent.Toast("分享成功,订单完成之后您将多获得20%额外奖励");
                         });
                     }, function (reason) {
@@ -889,7 +909,7 @@ var app = {
                     });
                 };
             })
-            .controller('MyController', function ($scope, $state, sc, ls,$http) {
+            .controller('MyController', function ($scope, $state, sc, ls, $http) {
                 curPage = "my";
                 sc.ValidateLogin();
                 $scope.userInfo = ls.getObject("userInfo");
@@ -898,17 +918,17 @@ var app = {
                 }
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
-                });
+                },true);
                 Get($http, DreamConfig.userInfoUrl.concat("GetTeamById?userId=" + ls.getObject("userInfo").UserId), function (team) {
                     $scope.teamInfo = team;
-                });
+                }, true);
                 $scope.updateAlipay = function () {
                     $state.go('update', { obj: { title: "设置支付宝账号", type: "alipay", value: $scope.userInfo.AliPay } });
                 };
                 $scope.remainAmout = 0;
                 Get($http, DreamConfig.profitUrl.concat("GetRemainAmount?userId=" + $scope.userInfo.UserId), function (totalAmount) {
                     $scope.remainAmout = totalAmount;
-                });
+                }, true);
                 $scope.AddParent = function () {
                     DeviceEvent.Prompt("", function (results) {
                         if (results.buttonIndex == 1) {
@@ -917,7 +937,7 @@ var app = {
                                 DeviceEvent.Toast("邀请码不能为空!");
                                 return;
                             }
-                            var userInfo = { UserId: ls.getObject("userInfo").UserId, PId: results.input1};
+                            var userInfo = { UserId: ls.getObject("userInfo").UserId, PId: results.input1 };
                             Post($http, DreamConfig.userInfoUrl, userInfo, function (user) {
                                 if (!user) DeviceEvent.Toast("邀请码不存在!");
                                 else {
@@ -925,17 +945,17 @@ var app = {
                                     ls.setObject("userInfo", $scope.userInfo);
                                     DeviceEvent.Toast("邀请码填写成功!");
                                 }
-                            });
+                            }, true);
                         }
                     }, "请输入邀请码", ['提交', '取消'], "");
                 };
 
                 $scope.withdraw = function () {
-                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone===null) {
+                    if ($scope.userInfo.AliPay === null || $scope.userInfo.AliPayName === null || $scope.userInfo.Phone === null) {
                         DeviceEvent.Confirm("您的支付宝信息尚未完善",
                             function (buttonIndex) {
                                 if (buttonIndex === 1) {
-                                    $state.go('bindAlipay', { alipay: $scope.userInfo.AliPay, alipayName: $scope.userInfo.AliPayName, phone: $scope.userInfo.Phone});
+                                    $state.go('bindAlipay', { alipay: $scope.userInfo.AliPay, alipayName: $scope.userInfo.AliPayName, phone: $scope.userInfo.Phone });
                                 }
                             }, "请绑定支付宝", ['去完善', '取消']);
                     }
@@ -946,8 +966,11 @@ var app = {
                         Post($http, DreamConfig.profitUrl.concat("WithdrawApply/?userId=" + $scope.userInfo.UserId), null, function (data) {
                             DeviceEvent.Toast("提现成功，二个工作日内到账。");
                             $scope.remainAmout = 0;
-                        });
+                        }, true);
                     }
+                };
+                $scope.showContacts = function () {
+                    DeviceEvent.Alert("微信：Young0380", null, "官方联系方式", "确认");
                 };
 
                 $scope.share = function () {
@@ -983,10 +1006,10 @@ var app = {
                 };
                 $scope.toProfitPage = function () {
                     $state.go('profits');
-                }; 
+                };
                 $scope.toQrCodePage = function () {
                     $state.go('qrcode');
-                };                                        
+                };
             });
     }
 };

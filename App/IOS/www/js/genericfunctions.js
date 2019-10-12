@@ -1,20 +1,20 @@
-﻿function Get($http, url, callback) {
-    DeviceEvent.SpinnerShow();
+﻿function Get($http, url, callback,hideSpinner) {
+    if (!hideSpinner)DeviceEvent.SpinnerShow();
     $http({
         method: "GET",
         url: url,
         timeout: 15000
     }).success(function (data, textStatu, xhr) {
-        DeviceEvent.SpinnerHide();
+        if (!hideSpinner)DeviceEvent.SpinnerHide();
         if (isFunction(callback)) callback(data);
     }).error(function (error, textStatu, xhr) {
-        DeviceEvent.SpinnerHide();
+        if (!hideSpinner)DeviceEvent.SpinnerHide();
         DeviceEvent.Toast("网络异常");
     });
 }
 
-function Post($http, url, paramData, callback) {
-    DeviceEvent.SpinnerShow();
+function Post($http, url, paramData, callback, hideSpinner) {
+    if (!hideSpinner) DeviceEvent.SpinnerShow();
     $http({
         method: "POST",
         url: url,
@@ -22,41 +22,30 @@ function Post($http, url, paramData, callback) {
         data: paramData,
         timeout: 15000
     }).success(function (data, textStatu, xhr) {
-        DeviceEvent.SpinnerHide();
+        if (!hideSpinner) DeviceEvent.SpinnerHide();
         if (isFunction(callback)) callback(data);
     }).error(function (error, textStatu, xhr) {
-        DeviceEvent.SpinnerHide();
+        if (!hideSpinner) DeviceEvent.SpinnerHide();
         DeviceEvent.Toast("网络异常");
     });
 } 
 
 function CopyTextToClipboard(text) {
-    var textArea = document.createElement("textarea")
-
-    textArea.style.position = 'fixed'
-    textArea.style.top = 0
-    textArea.style.left = 0
-    textArea.style.width = '2em'
-    textArea.style.height = '2em'
-    textArea.style.padding = 0
-    textArea.style.border = 'none'
-    textArea.style.outline = 'none'
-    textArea.style.boxShadow = 'none'
-    textArea.style.background = 'transparent'
-    textArea.value = text
-
-    document.body.appendChild(textArea)
-
-    textArea.select()
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
 
     try {
-        var msg = document.execCommand('copy') ? '成功' : '失败'
+        var successful = document.execCommand('copy');
+        var msg = successful ? '成功' : '失败';
         DeviceEvent.Toast('复制' + msg);
     } catch (err) {
         DeviceEvent.Toast('不能使用这种方法复制内容');
     }
 
-    document.body.removeChild(textArea)
+    document.body.removeChild(textArea);
 }
 
 function isFunction(functionToCheck) {

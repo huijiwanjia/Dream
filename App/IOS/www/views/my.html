@@ -37,7 +37,7 @@
                     <span>{{userInfo.Name}}</span><i><img src="images/teamMember.png"></i>
                 </div>
                 <div class="txt_2">
-                    <span>邀请码：{{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
+                    邀请码： <span id="yqm">{{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
                 </div>
             </div>
         </div>
@@ -101,7 +101,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
@@ -164,7 +163,7 @@
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="showContacts()">
                         <div class="icon-box">
                             <img src="images/icon_45.jpg">
                         </div>
@@ -188,7 +187,7 @@
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="showContacts()">
                         <div class="icon-box">
                             <img src="images/icon_48.jpg">
                         </div>
@@ -213,9 +212,6 @@
 
 <script type="text/javascript">
     var swiper = new Swiper('.session_3 .swiper-container', {
-        pagination: {
-            el: '.swiper-pagination'
-        },
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,

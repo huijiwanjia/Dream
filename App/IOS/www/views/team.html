@@ -27,7 +27,12 @@
                         <div class="img-box" style="background-image: url({{user.AvatarUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>{{user.Name}} <img src="images/icon_52.png"></h3>
+                            <h3>
+                                {{user.Name}}
+                                <img ng-if="user.Type == 0" src="images/common.png">
+                                <img ng-if="user.Type == 1" src="images/sepcial.png">
+                                <img ng-if="user.Type == 2" src="images/teamMember.png">
+                            </h3>
                             <p>
                                 <span ng-if="user.Phone">{{user.Phone}}</span>
                                 <span>{{user.CreateTime|date:'yyyy-MM-dd'}}</span>
@@ -45,7 +50,12 @@
                         <div class="img-box" style="background-image: url({{user.AvatarUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>{{user.Name}} <img src="images/icon_52.png"></h3>
+                            <h3>
+                                {{user.Name}}                                 
+                                <img ng-if="user.Type == 0" src="images/common.png">
+                                <img ng-if="user.Type == 1" src="images/sepcial.png">
+                                <img ng-if="user.Type == 2" src="images/teamMember.png">
+                            </h3>
                             <p>
                                 <span ng-if="user.Phone">{{user.Phone}}</span>
                                 <span>{{user.CreateTime|date:'yyyy-MM-dd'}}</span>
@@ -63,7 +73,12 @@
                         <div class="img-box" style="background-image: url({{user.AvatarUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>{{user.Name}} <img src="images/icon_52.png"></h3>
+                            <h3>
+                                {{user.Name}}                                
+                                <img ng-if="user.Type == 0" src="images/common.png">
+                                <img ng-if="user.Type == 1" src="images/sepcial.png">
+                                <img ng-if="user.Type == 2" src="images/teamMember.png">
+                            </h3>
                             <p>
                                 <span ng-if="user.Phone">{{user.Phone}}</span>
                                 <span>{{user.CreateTime|date:'yyyy-MM-dd'}}</span>
@@ -81,7 +96,12 @@
                         <div class="img-box" style="background-image: url({{user.AvatarUrl}})">
                         </div>
                         <div class="txt-box">
-                            <h3>{{user.Name}} <img src="images/icon_52.png"></h3>
+                            <h3>
+                                {{user.Name}}                                 
+                                <img ng-if="user.Type == 0" src="images/common.png">
+                                <img ng-if="user.Type == 1" src="images/sepcial.png">
+                                <img ng-if="user.Type == 2" src="images/teamMember.png">
+                            </h3>
                             <p>
                                 <span ng-if="user.Phone">{{user.Phone}}</span>
                                 <span>{{user.CreateTime|date:'yyyy-MM-dd'}}</span>

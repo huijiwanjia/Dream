@@ -35,10 +35,10 @@
             });
         },
         SpinnerShow: function () {
-          //  SpinnerPlugin.activityStart("请稍后...", { dimBackground: false });
+            SpinnerPlugin.activityStart("请稍后...", { dimBackground: false });
         },
         SpinnerHide: function () {
-          //  SpinnerPlugin.activityStop();
+            SpinnerPlugin.activityStop();
         },
         OpenCamera: function (onSuccess, onFail) {
             navigator.camera.getPicture(onSuccess, onFail, {

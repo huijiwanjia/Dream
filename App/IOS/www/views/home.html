@@ -3,11 +3,11 @@
     <input type="hidden" id="bindData" ng-click="bindData()"/>
     <div class="session_1">
         <div class="left-icon"><img src="images/icon_4.png"></div>
-        <div class="input-box">
-            <input type="text" ng-click="ToSearch()" name="" placeholder="粘贴标题  搜索优惠">
+        <div class="input-box" ui-sref="search">
+            <input type="text" ng-click="ToSearch()" placeholder="在这粘贴宝贝标题">
             <i><img src="images/icon_5.png"></i>
         </div>
-        <div class="link-icon"><img src="images/icon_6.png"></div>
+        <div class="link-icon" ng-click="showContacts()"><img src="images/icon_6.png"></div>
     </div>
     <div class="session_2">
         <div class="swiper-container">
