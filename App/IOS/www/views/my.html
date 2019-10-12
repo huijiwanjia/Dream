@@ -27,11 +27,17 @@
         <div class="user-box">
             <div class="user-img" style="background-image: url({{userInfo.AvatarUrl}})"></div>
             <div class="info-box">
-                <div class="txt_1">
-                    <span>{{userInfo.Name}}</span><i><img src="images/icon_35.png"></i>
+                <div class="txt_1" ng-if="userInfo.Type == 0">
+                    <span>{{userInfo.Name}}</span><i><img src="images/common.png"></i>
+                </div>
+                <div class="txt_1" ng-if="userInfo.Type == 1">
+                    <span>{{userInfo.Name}}</span><i><img src="images/sepcial.png"></i>
+                </div>
+                <div class="txt_1" ng-if="userInfo.Type == 2">
+                    <span>{{userInfo.Name}}</span><i><img src="images/teamMember.png"></i>
                 </div>
                 <div class="txt_2">
-                    <span>邀请码：{{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
+                    <span>邀请码： {{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>
                 </div>
             </div>
         </div>
@@ -95,7 +101,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
@@ -158,7 +163,7 @@
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="showContacts()">
                         <div class="icon-box">
                             <img src="images/icon_45.jpg">
                         </div>
@@ -182,7 +187,7 @@
                     </a>
                 </div>
                 <div class="item-box">
-                    <a href="">
+                    <a ng-click="showContacts()">
                         <div class="icon-box">
                             <img src="images/icon_48.jpg">
                         </div>
@@ -207,9 +212,6 @@
 
 <script type="text/javascript">
     var swiper = new Swiper('.session_3 .swiper-container', {
-        pagination: {
-            el: '.swiper-pagination'
-        },
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,

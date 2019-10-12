@@ -1434,7 +1434,7 @@ body {
   background-position: 50%;
   bottom: 0;
   padding-left: 0.8rem;
-  padding-top: 0.16rem;
+  padding-top: 0.24rem;
   box-sizing: border-box;
   color: #ffe5b2;
   font-size: 15px;
@@ -2211,8 +2211,138 @@ body {
   .fans-wrap .top-header {
     top: 44px;
   }
-  .fans-wrap .nub-bottom {
-    bottom: 34px;
-  }
+    .fans-wrap .nub-bottom {
+        bottom: 34px;
+    }
+}
+.join-wrap .session_1 {
+  position: relative;
+  min-height: 100vh;
+  background: #f54b4c;
+}
+.join-wrap .session_1 .bg {
+  width: 100%;
+}
+.join-wrap .session_1 .apply {
+  position: absolute;
+  top: 15.333333rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.join-wrap .session_1 .apply img {
+  height: 0.973333rem;
+}
+.rule-wrap .top-header {
+  background: #fff;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  z-index: 999;
+  border-bottom: 1px solid #ebebeb;
+}
+.rule-wrap .top-header a {
+  position: absolute;
+  left: 0.4rem;
+}
+.rule-wrap .top-header a img {
+  height: 0.36rem;
+}
+.rule-wrap .session_1 {
+  margin-top: 0.266667rem;
+}
+.rule-wrap .session_1 .tab-box {
+  font-size: 0;
+  border-radius: 0.666667rem;
+  overflow: hidden;
+  border: 1px solid #e25a5c;
+  width: 6.4rem;
+  margin: 0 auto;
+  margin-bottom: 0.4rem;
+}
+.rule-wrap .session_1 .tab-box span {
+  display: inline-block;
+  width: 50%;
+  height: 0.96rem;
+  line-height: 0.96rem;
+  font-size: 0.373333rem;
+  text-align: center;
+  color: #e25a5c;
+}
+.rule-wrap .session_1 .tab-box span.active {
+  background: #e25a5c;
+  color: #fff;
+}
+.rule-wrap .session_1 .tab-item {
+  display: none;
+}
+.rule-wrap .session_1 .tab-item.active {
+  display: block;
+}
+.rule-wrap .session_1 .item-box {
+  padding-left: 1.066667rem;
+  margin-bottom: 0.533333rem;
+}
+.rule-wrap .session_1 .item-box .txt-box {
+  margin-bottom: 0.266667rem;
+}
+.rule-wrap .session_1 .item-box .txt-box h3 {
+  font-size: 0.4rem;
+  color: #292626;
+  margin-bottom: 0.066667rem;
+}
+.rule-wrap .session_1 .item-box .txt-box p {
+  font-size: 0.373333rem;
+  color: #292626;
+}
+.rule-wrap .session_1 .item-box .txt-box p span {
+  color: #e25a5c;
+}
+.rule-wrap .session_1 .item-box .img-box {
+  padding-left: 0.666667rem;
+}
+.rule-wrap .session_1 .item-box:nth-child(1) .img-box img {
+  width: 5.96rem;
+}
+.rule-wrap .session_1 .item-box:nth-child(2) .img-box img {
+  width: 5.986667rem;
+}
+.rule-wrap .session_1 .item-box:nth-child(3) .img-box img {
+  width: 5.693333rem;
+}
+.rule-wrap .session_1 .item-box:nth-child(4) .img-box img {
+  width: 5.906667rem;
+}
+.rule-wrap .session_1 .tab-item_2 {
+  padding-left: 1.066667rem;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box {
+  border-left: 2px dashed #cecdcd;
+  padding-top: 0.4rem;
+  padding-right: 0.666667rem;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box dl {
+  position: relative;
+  padding-left: 1.0rem;
+  margin-bottom: 0.6rem;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box dt {
+  margin-bottom: 0.133333rem;
+  font-size: 0.4rem;
+  color: #292626;
+  font-weight: 700;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box dt i {
+  position: absolute;
+  left: -0.36rem;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box dt img {
+  height: 0.693333rem;
+}
+.rule-wrap .session_1 .tab-item_2 .all-box dd {
+  font-size: 0.373333rem;
+  color: #292626;
 }
 /*# sourceMappingURL=style.css.map */
