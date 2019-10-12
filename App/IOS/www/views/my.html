@@ -27,8 +27,14 @@
         <div class="user-box">
             <div class="user-img" style="background-image: url({{userInfo.AvatarUrl}})"></div>
             <div class="info-box">
-                <div class="txt_1">
-                    <span>{{userInfo.Name}}</span><i><img src="images/icon_35.png"></i>
+                <div class="txt_1" ng-if="userInfo.Type == 0">
+                    <span>{{userInfo.Name}}</span><i><img src="images/common.png"></i>
+                </div>
+                <div class="txt_1" ng-if="userInfo.Type == 1">
+                    <span>{{userInfo.Name}}</span><i><img src="images/sepcial.png"></i>
+                </div>
+                <div class="txt_1" ng-if="userInfo.Type == 2">
+                    <span>{{userInfo.Name}}</span><i><img src="images/teamMember.png"></i>
                 </div>
                 <div class="txt_2">
                     <span>邀请码：{{userInfo.UserId}}</span><em ng-click="CopyYQM()">复制</em><em ng-if="!userInfo.PId" ng-click="AddParent()">填写邀请码</em>

@@ -15,7 +15,7 @@ namespace Dream.DataAccess.IService
         Task<UserInfo> QueryAsync(string unionId);
         Task<UserInfo> QueryByUserIdAsync(int userId);
         Task<UserInfoViewModel> GetViewModelByUserIdAsync(int userId);
-        Task<TeamInfo> GetTeamByIdAsync(int userId); 
+        Task<TeamInfo> GetTeamByIdAsync(int userId, bool needTotal = true); 
         Task<UserInfo> UpdateUserAsync(UserInfo userInfo);
     }
 }

@@ -11,6 +11,7 @@ using Dream.Model;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using Dream.Model.Enums;
+using Dream.Util;
 
 namespace Dream.DataAccess.Service
 {
@@ -64,7 +65,7 @@ namespace Dream.DataAccess.Service
             }
         }
 
-        public async Task<TeamInfo> GetTeamByIdAsync(int userId)
+        public async Task<TeamInfo> GetTeamByIdAsync(int userId, bool needTotal = true)
         {
             using (IDbConnection conn = DBConnection.CreateConnection())
             {
@@ -72,7 +73,7 @@ namespace Dream.DataAccess.Service
                 var teamMember = await conn.QueryAsync<UserInfo>(Procedure.GetTeamByUserId, new { userId }, null, null, CommandType.StoredProcedure);
                 var team = new TeamInfo();
                 team.TeamMember = teamMember;
-                team.TotalCount = await conn.QueryFirstAsync<int>(Procedure.GetTeamTotalCountByUserId, new { userId }, null, null, CommandType.StoredProcedure);
+                team.TotalCount = needTotal ? await conn.QueryFirstAsync<int>(Procedure.GetTeamTotalCountByUserId, new { userId }, null, null, CommandType.StoredProcedure) : 0;
                 team.DirectlyCount = teamMember?.Count();
 
                 return team;
@@ -103,6 +104,14 @@ namespace Dream.DataAccess.Service
                     //此处有一个BUG待修：没有过滤邀请码是自己下级的情况
                     if (pUser != null&& user.UserId != userInfo.PId) user.PId = userInfo.PId;
                     else return null;
+                    var team = await GetTeamByIdAsync((int)userInfo.PId, false);
+                    //检查推荐人是否达到合伙人资格
+                    if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToTeamMember == team.TeamMember?.Count() + 1)
+                        pUser.Type = UserType.TeamMember;
+                    //检查推荐人是否达到超级用户资格
+                    else if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToSepcial == team.TeamMember?.Count() + 1)
+                        pUser.Type = UserType.Sepecial;
+                    await conn.UpdateAsync(pUser);
                 }
                 if (!string.IsNullOrWhiteSpace(userInfo.AliPayName)) user.AliPayName = userInfo.AliPayName;
                 if (userInfo.AccountStatus != null) user.AccountStatus = userInfo.AccountStatus;

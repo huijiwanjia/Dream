@@ -40,7 +40,7 @@ namespace Dream.DataAccess.IService
                 var recoment = await _recommentService.QueryAsync(user.UnionId);
                 if (recoment != null)
                 {
-                    var team = await _userService.GetTeamByIdAsync(recoment.PId);
+                    var team = await _userService.GetTeamByIdAsync(recoment.PId, false);
                     UserType pType = UserType.Commom;
                      //检查推荐人是否达到合伙人资格
                     if (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").RecommentNumberToTeamMember == team.TeamMember?.Count() + 1)
