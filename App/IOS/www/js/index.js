@@ -364,8 +364,8 @@ var app = {
                 };
                 this.Login = function () {
                     //get from tencent
-                    Get($http, DreamConfig.isCheck, function (ischeck) {
-                        if (ischeck != 1 && !DreamConfig.isDebug) {
+                    Get($http, DreamConfig.versionUrl, function (version) {
+                        if (version >= DreamConfig.version) {
                             Wechat.isInstalled(function (installed) {
                                 var scope = "snsapi_userinfo",
                                     state = "_" + (+new Date());
@@ -397,7 +397,7 @@ var app = {
                             ls.set('loginTime', new Date());
                             $state.go('home');
                         }
-                    })
+                    });
                 };
                 this.logOut = function () {
                     DeviceEvent.Confirm("退出之后需要重新登陆",
@@ -734,7 +734,7 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.goodItemList = ret;
-                        ls.setObject("goodItemList", ret);
+                      //  ls.setObject("goodItemList", ret);
                     });
 
                     Post($http, DreamConfig.tbkOptimusGet, rParams, function (data) {
@@ -747,7 +747,7 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.recommentItemList = ret;
-                        ls.setObject("recommentItemList", ret);
+                      //  ls.setObject("recommentItemList", ret);
                     });
                     Post($http, DreamConfig.tbkOptimusGet, hParams, function (data) {
                         data = JSON.parse(data);
@@ -759,7 +759,7 @@ var app = {
                             else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
                         }
                         $scope.hotSalesItemList = ret;
-                        ls.setObject("hotSalesItemList", ret);
+                      //  ls.setObject("hotSalesItemList", ret);
                     });
                 };
             })
