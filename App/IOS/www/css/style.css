@@ -96,6 +96,7 @@ body {
 }
 .index-wrap .session_3 .item-box p {
   color: #454545;
+  font-size: 0.346667rem;
 }
 .index-wrap .session_4 {
   padding-left: 0.4rem;
@@ -654,15 +655,18 @@ body {
   border-radius: 0.133333rem;
   opacity: 1;
 }
-.login-wrap .session_1 {
-  position: relative;
-  padding-top: 1.333333rem;
+.login-wrap .centent-box{
+  position: absolute;
+  top: 20%;
+
 }
 .login-wrap .session_1 .logo {
   text-align: center;
+  margin-bottom: 2.0rem;
 }
 .login-wrap .session_1 .logo img {
-  width: 9.84rem;
+  width:100%;
+
 }
 .login-wrap .session_1 .close-btn {
   position: absolute;
@@ -675,9 +679,6 @@ body {
 .login-wrap .session_1 .txt-box {
   text-align: center;
   margin-top: 0.266667rem;
-}
-.login-wrap .session_1 .txt-box img {
-  height: 1.333333rem;
 }
 .login-wrap .session_2 {
   padding-left: 0.533333rem;
@@ -693,7 +694,8 @@ body {
   background: #fa635c;
   color: #fff;
   font-size: 0.453333rem;
-  width: 100%;
+  width: 6.533333rem;
+  margin:0 auto;
   border-radius: 0.6rem;
   box-shadow: 0px 0.08rem 0.08rem rgba(250, 99, 92, 0.5);
 }
