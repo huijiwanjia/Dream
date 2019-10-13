@@ -4,28 +4,29 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="img-box">
+                    <div class="img-box" ng-click="ToCategory(3767,'精选女装')">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_3.jpg">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" ng-click="ToCategory(4094,'热销爆款')">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_2.jpg">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+
+                <div class="swiper-slide" ng-click="ToCategory(4093,'潮流大牌')">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_1.jpg">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
+            <!--<div class="swiper-pagination"></div>-->
         </div>
     </div>
     <div class="session_2">
@@ -65,9 +66,9 @@
 
 <script type="text/javascript">
     var swiper = new Swiper('.session_1 .swiper-container', {
-        pagination: {
-            el: '.swiper-pagination'
-        },
+        //pagination: {
+        //    el: '.swiper-pagination'
+        //},
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,

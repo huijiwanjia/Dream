@@ -1,4 +1,5 @@
 ﻿var curPage = "";
+var interval = null;//计时器
 //var DreamServer = "http://localhost:55605/";
 var DreamServer = "http://api.huijiwanjia.com/";
 var TBKServer = "http://tbk.huijiwanjia.com/";

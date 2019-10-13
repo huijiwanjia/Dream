@@ -736,6 +736,41 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
+
+                function start() {//启动计时器函数
+                    if (interval != null) {//判断计时器是否为空
+                        clearInterval(interval);
+                        interval = null;
+                    }
+                    interval = setInterval(overs, 1000);//启动计时器，调用overs函数，
+                }
+
+                function overs() {
+                    cordova.plugins.clipboard.paste(function (text) {
+                        if (text.length > 20) {
+                            stop();
+                            DeviceEvent.Confirm(text,
+                                function (buttonIndex) {
+                                    if (buttonIndex == 1) {
+                                        $state.go('results', { itemName: text });
+                                        cordova.plugins.clipboard.clear();
+                                        start();
+                                    }
+                                    else {
+                                        cordova.plugins.clipboard.clear();
+                                        start();
+                                    }
+                                }, "您是否搜索以下产品", ['搜索', '取消'])
+                        }
+                    });
+                }
+
+                function stop() {
+
+                    clearInterval(interval);
+                    interval = null;
+                }
+
                 //检查是否有新版本
                 Get($http, DreamConfig.versionUrl, function (version) {
                     if (version > DreamConfig.version) {
@@ -748,22 +783,11 @@ var app = {
                             }, "", ['立即更新', '暂不更新'])
                     }
                     else {
-                        cordova.plugins.clipboard.paste(function (text) {
-                            if (text.length > 20) {
-                                DeviceEvent.Confirm(text,
-                                    function (buttonIndex) {
-                                        if (buttonIndex == 1) {
-                                            $state.go('results', { itemName: text });
-                                            cordova.plugins.clipboard.clear();
-                                        }
-                                        else {
-                                            cordova.plugins.clipboard.clear();
-                                        }
-                                    }, "您是否搜索以下产品", ['搜索', '取消'])
-                            }
-                        });
+                        start();
                     }
                 }, true);
+
+
 
                 $scope.showContacts = function () {
                     DeviceEvent.Alert("微信：Young0380", null, "官方联系方式", "确认");
