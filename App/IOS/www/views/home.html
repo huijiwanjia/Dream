@@ -13,28 +13,29 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="img-box">
+                    <div class="img-box" ng-click="ToCategory(13367,'精选女装')">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_3.jpg">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide"  ng-click="ToCategory(4094,'热销爆款')">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_2.jpg">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+
+                <div class="swiper-slide" ng-click="ToCategory(4093,'潮流大牌')">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/img_6.jpg">
+                            <img src="images/img_6_1.jpg">
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
+            <!--<div class="swiper-pagination"></div>-->
         </div>
     </div>
     <div class="session_3">
@@ -147,24 +148,38 @@
     <div class="session_5">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide" ng-click="ToCategory(4092,'冰点秒杀')">
                     <div class="img-box">
                         <a href="">
                             <img src="images/icon_18.png">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <div class="swiper-slide" ng-click="ToCategory(4094,'聚划算会场')">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/icon_18.png">
+                            <img src="images/icon_36.png">
                         </a>
                     </div>
                 </div>
-                <div class="swiper-slide">
+                <!--<div class="swiper-slide">
                     <div class="img-box">
                         <a href="">
-                            <img src="images/icon_18.png">
+                            <img src="images/icon_18_1.png">
+                        </a>
+                    </div>
+                </div>-->
+                <div class="swiper-slide" ng-click="ToCategory(9653,'美妆个护')">
+                    <div class="img-box">
+                        <a href="">
+                            <img src="images/icon_18_2.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-slide" ng-click="ToCategory(13371,'专业护理')">
+                    <div class="img-box">
+                        <a href="">
+                            <img src="images/icon_18_3.png">
                         </a>
                     </div>
                 </div>
@@ -272,7 +287,7 @@
                             {{item.volume}}人已买
                         </div>
                         <div class="txt_4 clearfix">
-                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)| number:2}}</span>
+                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)*0.7| number:2}}</span>
                             <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
                             <em ng-if="item.coupon_amount==0">无优惠劵</em>
                         </div>
@@ -330,7 +345,7 @@
                             {{item.volume}}人已买
                         </div>
                         <div class="txt_4 clearfix">
-                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)| number:2}}</span>
+                            <span>预估收益￥{{((item.zk_final_price - item.coupon_amount)*item.commission_rate*0.01)*0.7| number:2}}</span>
                             <em ng-if="item.coupon_amount!=0">{{item.coupon_amount}}元劵</em>
                             <em ng-if="item.coupon_amount==0">无优惠劵</em>
                         </div>
@@ -349,9 +364,9 @@
         $("#bindData").click();
     }, 1000);
     var swiper = new Swiper('.session_2 .swiper-container', {
-        pagination: {
-            el: '.swiper-pagination'
-        },
+        //pagination: {
+        //    el: '.swiper-pagination'
+        //},
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,

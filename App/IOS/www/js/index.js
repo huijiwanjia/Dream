@@ -480,10 +480,10 @@ var app = {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
-
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = {};
                 $scope.Query = function () {
+                    addHistory($scope.QueryText);
                     Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform: 2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
@@ -518,7 +518,20 @@ var app = {
                 $scope.ToResult = function () {
                     $state.go('results', { itemName: $scope.itemName });
                 };
+                $scope.LinkToResult = function (itemName) {
+                    $state.go('results', { itemName: itemName });
+                };
+                $scope.history = new Array();
+                for (var i = DreamConfig.historyLen; i >= 1; i--) {
+                    if (!!ls.get("history_" + i) && ls.get("history_" + i)!='null') $scope.history.push(ls.get("history_" + i));
+                }
 
+                $scope.clearHistory = function () {
+                    for (var i = 1; i <= DreamConfig.historyLen; i++) {
+                        ls.set("history_" + i,"");
+                    }
+                    $scope.history = null;
+                }
             })
             .controller('BindAlipayController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
@@ -736,6 +749,41 @@ var app = {
             .controller('HomeController', function ($scope, $state, $http, sc, $rootScope, ls) {
                 curPage = "home";
                 sc.ValidateLogin();
+
+                function start() {//启动计时器函数
+                    if (interval != null) {//判断计时器是否为空
+                        clearInterval(interval);
+                        interval = null;
+                    }
+                    interval = setInterval(overs, 1000);//启动计时器，调用overs函数，
+                }
+
+                function overs() {
+                    cordova.plugins.clipboard.paste(function (text) {
+                        if (text.length > 20) {
+                            stop();
+                            DeviceEvent.Confirm(text,
+                                function (buttonIndex) {
+                                    if (buttonIndex == 1) {
+                                        $state.go('results', { itemName: text });
+                                        cordova.plugins.clipboard.clear();
+                                        start();
+                                    }
+                                    else {
+                                        cordova.plugins.clipboard.clear();
+                                        start();
+                                    }
+                                }, "您是否搜索以下产品", ['搜索', '取消'])
+                        }
+                    });
+                }
+
+                function stop() {
+
+                    clearInterval(interval);
+                    interval = null;
+                }
+
                 //检查是否有新版本
                 Get($http, DreamConfig.versionUrl, function (version) {
                     if (version > DreamConfig.version) {
@@ -748,22 +796,11 @@ var app = {
                             }, "", ['立即更新', '暂不更新'])
                     }
                     else {
-                        cordova.plugins.clipboard.paste(function (text) {
-                            if (text.length > 20) {
-                                DeviceEvent.Confirm(text,
-                                    function (buttonIndex) {
-                                        if (buttonIndex == 1) {
-                                            $state.go('results', { itemName: text });
-                                            cordova.plugins.clipboard.clear();
-                                        }
-                                        else {
-                                            cordova.plugins.clipboard.clear();
-                                        }
-                                    }, "您是否搜索以下产品", ['搜索', '取消'])
-                            }
-                        });
+                        start();
                     }
                 }, true);
+
+
 
                 $scope.showContacts = function () {
                     DeviceEvent.Alert("微信：Young0380", null, "官方联系方式", "确认");

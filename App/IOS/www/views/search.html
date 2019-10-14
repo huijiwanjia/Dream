@@ -36,21 +36,20 @@
                 <div class="hot-box">
                     <h3>热门搜索</h3>
                     <div class="tab-box">
-                        <span>一次性洗脸巾￥33.9</span>
-                        <span>山羊奶滋润身体露</span>
-                        <span>网红海盐饼干</span>
-                        <span>青蛙王子</span>
-                        <span>欧克斯毛钱解决</span>
+                        <span ng-click="LinkToResult('一次性洗脸巾')">一次性洗脸巾￥33.9</span>
+                        <span ng-click="LinkToResult('山羊奶滋润身体露')">山羊奶滋润身体露</span>
+                        <span ng-click="LinkToResult('网红海盐饼干')">网红海盐饼干</span>
+                        <span ng-click="LinkToResult('青蛙王子')">青蛙王子</span>
+                        <span ng-click="LinkToResult('欧克斯毛钱解决')">欧克斯毛钱解决</span>
                     </div>
                 </div>
                 <div class="search-box">
                     <div class="top-box">
                         <h3>历史搜索</h3>
-                        <span>清除</span>
+                        <span ng-click="clearHistory()">清除</span>
                     </div>
                     <div class="tab-box">
-                        <span>衣服</span>
-                        <span>男鞋</span>
+                        <span ng-click="LinkToResult(h)" ng-repeat="h in history">{{h|limitTo:25}}</span>
                     </div>
                 </div>
             </div>
@@ -58,21 +57,20 @@
                 <div class="hot-box">
                     <h3>热门搜索</h3>
                     <div class="tab-box">
-                        <span>山羊奶滋润身体露</span>
-                        <span>网红杯子</span>
-                        <span>网红海盐饼干</span>
-                        <span>青蛙王子</span>
-                        <span>欧克斯毛钱解决</span>
+                        <span ng-click="LinkToResult('山羊奶滋润身体露')">山羊奶滋润身体露</span>
+                        <span ng-click="LinkToResult('网红杯子')">网红杯子</span>
+                        <span ng-click="LinkToResult('网红海盐饼干')">网红海盐饼干</span>
+                        <span ng-click="LinkToResult('青蛙王子')">青蛙王子</span>
+                        <span ng-click="LinkToResult('欧克斯毛钱解决')">欧克斯毛钱解决</span>
                     </div>
                 </div>
                 <div class="search-box">
                     <div class="top-box">
                         <h3>历史搜索</h3>
-                        <span>清除</span>
+                        <span ng-click="clearHistory()">清除</span>
                     </div>
                     <div class="tab-box">
-                        <span>篮球</span>
-                        <span>男鞋</span>
+                        <span ng-click="LinkToResult(h)" ng-repeat="h in history">{{h|limitTo:30}}</span>
                     </div>
                 </div>
             </div>
