@@ -49,8 +49,7 @@
                         <span>清除</span>
                     </div>
                     <div class="tab-box">
-                        <span>衣服</span>
-                        <span>男鞋</span>
+                        <span ng-repeat="h in history">{{h|limitTo:10}}</span>
                     </div>
                 </div>
             </div>

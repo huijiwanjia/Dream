@@ -117,7 +117,27 @@ function getJsonItem(arr, n, v) {
     for (var i = 0; i < arr.length; i++)
         if (arr[i][n] == v)
             return arr[i];
-}  
+}
+
+function addHistory(dataToSave) {
+    var len = 5;
+    for (var i = 1; i <= len; i++) {
+        if (localStorage.getItem('history_' + i) == dataToSave) break;
+        if (localStorage.getItem('history_' + i) == '') {      
+            localStorage.setItem('history_' + i, dataToSave);
+            break;
+        }
+        if (i == len) {
+            for (var j = 1; j <= len-1; j++) {
+                for (var m = 2; m <= len; m++) {
+                    var val = localStorage.getItem('history_' + m);
+                    localStorage.setItem('history_' + j, val);
+                }              
+            }
+            localStorage.setItem('history_' + i, dataToSave);
+        }
+    }
+}
 
 function getNowFormatDate() {
     var date = new Date();

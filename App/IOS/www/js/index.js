@@ -480,10 +480,10 @@ var app = {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
                     });
                 };
-
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = {};
                 $scope.Query = function () {
+                    addHistory($scope.QueryText);
                     Post($http, DreamConfig.tbkQuery, { q: $scope.QueryText, PageSize: 40, platform: 2 }, function (data) {
                         data = JSON.parse(data);
                         var ret = data.tbk_dg_material_optional_response.result_list.map_data;
@@ -518,7 +518,11 @@ var app = {
                 $scope.ToResult = function () {
                     $state.go('results', { itemName: $scope.itemName });
                 };
-
+                $scope.history = new Array();
+                for (var i = 5; i >= 1; i--) {
+                    console.log(ls.get("history_" + i));
+                    if (!!ls.get("history_" + i) && ls.get("history_" + i)!='null') $scope.history.push(ls.get("history_" + i));
+                }
             })
             .controller('BindAlipayController', function ($scope, $http, $state, sc, ls, $stateParams) {
                 sc.ValidateLogin();
