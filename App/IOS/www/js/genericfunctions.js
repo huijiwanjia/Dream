@@ -120,19 +120,16 @@ function getJsonItem(arr, n, v) {
 }
 
 function addHistory(dataToSave) {
-    var len = 5;
-    for (var i = 1; i <= len; i++) {
+    for (var i = 1; i <= DreamConfig.historyLen; i++) {
         if (localStorage.getItem('history_' + i) == dataToSave) break;
-        if (localStorage.getItem('history_' + i) == '') {      
+        if (!localStorage.getItem('history_' + i)) {
             localStorage.setItem('history_' + i, dataToSave);
             break;
         }
-        if (i == len) {
-            for (var j = 1; j <= len-1; j++) {
-                for (var m = 2; m <= len; m++) {
-                    var val = localStorage.getItem('history_' + m);
-                    localStorage.setItem('history_' + j, val);
-                }              
+        if (i == DreamConfig.historyLen) {
+            for (var j = 1; j <= DreamConfig.historyLen - 1; j++) {
+                var val = localStorage.getItem('history_' + (j + 1));
+                localStorage.setItem('history_' + j, val);
             }
             localStorage.setItem('history_' + i, dataToSave);
         }

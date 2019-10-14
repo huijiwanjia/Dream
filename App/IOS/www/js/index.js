@@ -518,10 +518,19 @@ var app = {
                 $scope.ToResult = function () {
                     $state.go('results', { itemName: $scope.itemName });
                 };
+                $scope.LinkToResult = function (itemName) {
+                    $state.go('results', { itemName: itemName });
+                };
                 $scope.history = new Array();
-                for (var i = 5; i >= 1; i--) {
-                    console.log(ls.get("history_" + i));
+                for (var i = DreamConfig.historyLen; i >= 1; i--) {
                     if (!!ls.get("history_" + i) && ls.get("history_" + i)!='null') $scope.history.push(ls.get("history_" + i));
+                }
+
+                $scope.clearHistory = function () {
+                    for (var i = 1; i <= DreamConfig.historyLen; i++) {
+                        ls.set("history_" + i,"");
+                    }
+                    $scope.history = null;
                 }
             })
             .controller('BindAlipayController', function ($scope, $http, $state, sc, ls, $stateParams) {
