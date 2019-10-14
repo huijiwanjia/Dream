@@ -656,8 +656,7 @@ body {
   opacity: 1;
 }
 .login-wrap .centent-box{
-  position: absolute;
-  top: 20%;
+  padding-top: 32%;
 
 }
 .login-wrap .session_1 .logo {
