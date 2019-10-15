@@ -1,0 +1,53 @@
+﻿<div class="set-wrap">
+    <div ng-click="back()" class="top-header">设置 <a><img src="images/icon_32.png"></a></div>
+    <div class="session_1">
+        <div class="img-box" style="background-image: url('{{userInfo.AvatarUrl}}')"></div>
+        <!--<p>点击修改图像</p>-->
+    </div>
+    <div class="session_2">
+        <div class="input-box">
+            <label>昵称</label>
+            <a ng-click="updateName()">
+                <span>{{userInfo.Name}} <i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box">
+            <label>性别</label>
+            <a>
+                <span class="txt-box" ng-if="userInfo.Sex == 1">男<i><img src="images/icon_51.png"></i></span>
+                <span class="txt-box" ng-if="userInfo.Sex == 2">女<i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box mb20">
+            <label>注册时间</label>
+            <span>{{userInfo.CreateTime|date:'yyyy-MM-dd'}}</span>
+        </div>
+        <div class="input-box">
+            <label>支付宝姓名</label>
+            <a ng-click="updateAlipayName()">
+                <span>{{userInfo.AliPayName}} <i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box">
+            <label>支付宝账号</label>
+            <a ng-click="updateAlipay()">
+                <span>{{userInfo.AliPay}} <i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box mb20">
+            <label>手机号</label>
+            <a ng-click="updatePhone()">
+                <span>{{userInfo.Phone}} <i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box" ng-click="share()">
+            <label>APP分享</label>
+            <a>
+                <span><i><img src="images/icon_51.png"></i></span>
+            </a>
+        </div>
+        <div class="input-box quit-box" ng-click="logOut()">
+            退出登陆
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿<style type="text/css">
+
+    body {
+        padding-bottom: 0;
+    }
+</style>
+<div class="pay-wrap">
+    <div ng-click="back()" class="top-header">绑定支付宝 <a><img src="images/icon_32.png"></a></div>
+    <div class="session_1">
+        <div class="input-box">
+            <label>支付宝姓名</label>
+            <input type="text" name="" ng-model="alipayName" placeholder="请输入支付宝认证的真实姓名">
+        </div>
+        <div class="input-box">
+            <label>支付宝账号</label>
+            <input type="text" name="" ng-model="alipay" placeholder="请输入支付宝账号">
+        </div>
+        <div class="input-box">
+            <label>手机号</label>
+            <input type="text" name="" ng-model="phone" placeholder="请输入手机号">
+        </div>
+        <div class="sub-box" ng-click="submit()">
+            <span>提交</span>
+        </div>
+        <p class="info"><a href="">体现和支付宝有问题？点击这里为你解答</a></p>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿<style type="text/css">
+
+    html {
+        background: #fff;
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+</style>
+<div class="search_page-wrap">
+    <div class="top-header">
+        <div class="search-box">
+            <div class="left-icon" ui-sref="home" ng-click="back()"><img src="images/icon_53.png"></div>
+            <div class="input-box needsclick">
+                <input type="text" ng-model="itemName" placeholder="在这粘贴宝贝标题">
+                <i><img src="images/icon_54.png"></i>
+            </div>
+            <div class="link-icon" ng-click="ToResult()">
+                <span class="search-btn">搜索</span>
+            </div>
+        </div>
+    </div>
+    <div class="session_1">
+        <div class="tab-box">
+            <span class="active">全网搜索</span>
+            <span>天猫搜索</span>
+        </div>
+        <div class="img-box">
+            <img src="images/img_22.jpg">
+        </div>
+    </div>
+    <div class="session_2">
+        <div class="tab-list">
+            <div class="tab-item active">
+                <div class="hot-box">
+                    <h3>热门搜索</h3>
+                    <div class="tab-box">
+                        <span ng-click="LinkToResult('一次性洗脸巾')">一次性洗脸巾￥33.9</span>
+                        <span ng-click="LinkToResult('山羊奶滋润身体露')">山羊奶滋润身体露</span>
+                        <span ng-click="LinkToResult('网红海盐饼干')">网红海盐饼干</span>
+                        <span ng-click="LinkToResult('青蛙王子')">青蛙王子</span>
+                        <span ng-click="LinkToResult('欧克斯毛钱解决')">欧克斯毛钱解决</span>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <div class="top-box">
+                        <h3>历史搜索</h3>
+                        <span ng-click="clearHistory()">清除</span>
+                    </div>
+                    <div class="tab-box">
+                        <span ng-click="LinkToResult(h)" ng-repeat="h in history">{{h|limitTo:25}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-item">
+                <div class="hot-box">
+                    <h3>热门搜索</h3>
+                    <div class="tab-box">
+                        <span ng-click="LinkToResult('山羊奶滋润身体露')">山羊奶滋润身体露</span>
+                        <span ng-click="LinkToResult('网红杯子')">网红杯子</span>
+                        <span ng-click="LinkToResult('网红海盐饼干')">网红海盐饼干</span>
+                        <span ng-click="LinkToResult('青蛙王子')">青蛙王子</span>
+                        <span ng-click="LinkToResult('欧克斯毛钱解决')">欧克斯毛钱解决</span>
+                    </div>
+                </div>
+                <div class="search-box">
+                    <div class="top-box">
+                        <h3>历史搜索</h3>
+                        <span ng-click="clearHistory()">清除</span>
+                    </div>
+                    <div class="tab-box">
+                        <span ng-click="LinkToResult(h)" ng-repeat="h in history">{{h|limitTo:30}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.session_1 .tab-box span').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.session_2 .tab-item').eq($(this).index()).addClass('active').siblings().removeClass('active');
+    });
+</script>

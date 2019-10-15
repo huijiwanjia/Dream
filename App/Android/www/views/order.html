@@ -1,27 +1,174 @@
-﻿<style>
-    .ng-scope {
-        background: #efeff4;
+﻿<style type="text/css">
+
+    body {
+        padding-bottom: 0;
     }
 </style>
-<div class="bgefeff4">
-    <div class="mingxi-wrap">
-        <div class="public-header">
-            <h3 class="title">
-                订单
-            </h3>
+<div class="indent-wrap">
+    <div class="top-header">
+        <div ng-click="back()" class="header">
+            订单 <a><img src="images/icon_32.png"></a>
         </div>
-        <div class="all-item">
-            <div class="item-box clearfix" ng-repeat="order in userOrders">
-                <div class="txt-box">
-                    <p class="name">{{order.ItemName|limitTo:10}}</p>
-                    <p class="name" ng-if="order.State==0">订单状态：已付款</p>
-                    <p class="name" ng-if="order.State==1">订单状态：已收货</p>
-                    <p class="name" ng-if="order.State==2">订单状态：已结算</p>
-                    <p class="name" ng-if="order.State==3">订单状态：已失效</p>
-                    <p class="time">{{order.Code}}</p>
-                    <span class="monery">预计返利：+{{order.BackPrice}} 元</span>
+        <div class="session_1">
+            <div class="tab-box">
+                <span class="active">全部</span>
+                <span>已付款</span>
+                <span>已结算</span>
+                <span>已失效</span>
+            </div>
+        </div>
+    </div>
+    <div class="session_2">
+        <div class="list-tab">
+            <div class="item-tab active">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
                 </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
+                        </div>
+                        <div class="txt-box">
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享+20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
+                            <div class="txt_1">
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="order.State==0" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
+                        </div>
+                        <div class="txt-box">
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享+20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
+                            <div class="txt_1">
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="order.State==2" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
+                        </div>
+                        <div class="txt-box">
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享+20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
+                            <div class="txt_1">
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
+            </div>
+            <div class="item-tab">
+                <div class="info-box">
+                    <p><i><img src="images/icon_33.png"></i>亲，刚购买的订单可能会延迟半天显示</p>
+                </div>
+                <div class="list-box">
+                    <div class="item-box clearfix" ng-if="order.State==3" ng-repeat="order in userOrders">
+                        <div class="img-box" style="background-image: url({{order.ImgUrl}})">
+                        </div>
+                        <div class="txt-box">
+                            <h3>{{order.ItemName|limitTo:30}}</h3>
+                            <p>
+                                订单号 <em>{{order.Code}}</em>
+                                <i ng-if="!order.IsShared" ng-click="share(order.ItemName,'www/images/icon-76@2x.png',order.Url,order.BackPrice,order.State,order.Code)">分享+20%</i>
+                                <i ng-if="order.IsShared">已分享</i>
+                            </p>
+                            <div class="txt_1">
+                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="more-box">
+                    <img src="images/img_22.gif">正在加载...
+                </div>-->
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    /*底部加载*/
+    list_loading = false;
+    // 点击点是第几个按钮 可以根据它的下标来指定
+    var _index = 0;
+    $('.tab-box span').click(function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        $('.session_2 .list-tab .item-tab').eq($(this).index()).addClass('active').siblings().removeClass('active');
+        _index = $(this).index();
+    });
+//    $(document).on('scroll', function () {
+//        if (!list_loading) {
+//            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+//                if ($(document).height() - $(window).height() > 0) {
+//                    $('.list-tab .item-tab').eq(_index).find('.more-box').show();
+//                    load_more_msg();
+//                }
+//            }
+//        }
+//    });
+//    function load_more_msg() {
+//        list_loading = true;
+//        /*测试*/
+//        setTimeout(function () {
+//            test();
+//        }, 1000)
+//    }
+//    var item_html = `
+//            <div class="item-box clearfix">
+//                            <div class="img-box" style="background-image: url(images/img_11.jpg)">
+//                            </div>
+//                            <div class="txt-box">
+//                                <h3>【满2件立减5元】 下单满2件立省5元！正宗宁夏枸杞 买枸杞认准杞利元...</h3>
+//                                <p>订单号 <em>6185578946654645</em> <i>复制</i></p>
+//                                <div class="txt_1">
+//                                    <span>预估收益：￥2.3</span>消费金额：￥33.9
+//                                </div>
+//                            </div>
+//                        </div>
+//`
+
+//    function test() {
+//        for (var i = 8 - 1; i >= 0; i--) {
+//            $('.item-tab.active .list-box').append(item_html);
+//        }
+//        list_loading = false;
+//    }
+</script>
