@@ -30,7 +30,7 @@ var app = {
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         // disable back button in andriod
-        //document.addEventListener("backbutton", this.BackButtonCallback, false);
+        document.addEventListener("backbutton", this.BackButtonCallback, false);
     },
     // deviceready Event Handler
     //
@@ -41,8 +41,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
-        StatusBar.styleDefault();
-        StatusBar.overlaysWebView(true);
         //init fast click
         FastClick.attach(document.body);
     },
@@ -478,6 +476,10 @@ var app = {
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        var sApp = startApp.set({
+                            "action": "ACTION_VIEW",
+                            "uri": "taobao:" + url
+                        }).start();
                     });
                 };
                 $scope.QueryText = $stateParams.itemName;
@@ -497,8 +499,8 @@ var app = {
                             if (ret[i].commission_rate == null) ret[i].commission_rate = 0;
                             else ret[i].commission_rate = parseFloat(ret[i].commission_rate);
 
-                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = ret[i].coupon_share_url;
+                            else ret[i].coupon_share_url = ret[i].url;
                         }
                         $scope.QueryResult = ret;
                     });
@@ -807,6 +809,10 @@ var app = {
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        var sApp = startApp.set({
+                            "action": "ACTION_VIEW",
+                            "uri": "taobao:"+url
+                        }).start();
                     }, true);
                 };
                 $scope.ToSearch = function () {
@@ -833,8 +839,8 @@ var app = {
                         for (i = 0; i < ret.length; i++) {
                             if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                             else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = (ret[i].url);
                         }
                         $scope.goodItemList = ret;
                         //  ls.setObject("goodItemList", ret);
@@ -846,8 +852,8 @@ var app = {
                         for (i = 0; i < ret.length; i++) {
                             if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                             else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = (ret[i].url);
                         }
                         $scope.recommentItemList = ret;
                         //  ls.setObject("recommentItemList", ret);
@@ -858,8 +864,8 @@ var app = {
                         for (i = 0; i < ret.length; i++) {
                             if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                             else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = (ret[i].url);
                         }
                         $scope.hotSalesItemList = ret;
                         //  ls.setObject("hotSalesItemList", ret);
@@ -898,6 +904,10 @@ var app = {
                 $scope.itemList = {};
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        var sApp = startApp.set({
+                            "action": "ACTION_VIEW",
+                            "uri": "taobao:" + url
+                        }).start();
                     });
                 };
                 $scope.pageTitle = $stateParams.pageTitle;
@@ -908,8 +918,8 @@ var app = {
                     for (i = 0; i < ret.length; i++) {
                         if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                         else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = (ret[i].url);
                     }
                     $scope.itemList = ret;
                 });
@@ -920,6 +930,10 @@ var app = {
                 $scope.itemList = {};
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        var sApp = startApp.set({
+                            "action": "ACTION_VIEW",
+                            "uri": "taobao:" + url
+                        }).start();
                     });
                 };
                 var params = { PageSize: 40, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
@@ -929,8 +943,8 @@ var app = {
                     for (i = 0; i < ret.length; i++) {
                         if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                         else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = (ret[i].url);
                     }
                     $scope.itemList = ret;
                 });
@@ -940,6 +954,10 @@ var app = {
                 sc.ValidateLogin();
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        var sApp = startApp.set({
+                            "action": "ACTION_VIEW",
+                            "uri": "taobao:" + url
+                        }).start();
                     });
                 };
                 $scope.itemList = {};
@@ -950,8 +968,8 @@ var app = {
                     for (i = 0; i < ret.length; i++) {
                         if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
                         else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
-                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
-                        else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);
+                        if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = (ret[i].coupon_share_url);
+                        else ret[i].coupon_share_url = (ret[i].url);
                     }
                     $scope.itemList = ret;
                 });

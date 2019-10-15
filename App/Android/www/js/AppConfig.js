@@ -15,7 +15,7 @@ var DreamConfig = {
     packetRecordsUrl: DreamServer.concat("dream/api/packetrecord/"),
     userInfoUrl: DreamServer.concat("dream/user/"),
     profitUrl: DreamServer.concat("dream/profit/"),
-    versionUrl: DreamServer.concat("dream/version/"),
+    versionUrl: DreamServer.concat("dream/version/android"),
     tbkQuery: TBKServer.concat("api/tbk"), 
     tbkOptimusGet: TBKServer.concat("api/OptimusGet"),
     alipayUrl: DreamServer.concat("dream/alipay/"),
