@@ -16,6 +16,13 @@ namespace Dream.DataApi.Controllers
         [HttpGet]
         public string Index()
         {
+            return "1.0";
+        }
+
+        [HttpGet]
+        [Route("Android")]
+        public string Android()
+        {
             return "1.1";
         }
 
