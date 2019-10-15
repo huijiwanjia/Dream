@@ -20,6 +20,13 @@ namespace Dream.DataApi.Controllers
         }
 
         [HttpGet]
+        [Route("Android")]
+        public string Android()
+        {
+            return "1.1";
+        }
+
+        [HttpGet]
         [Route("IsCheck")]
         public int  IsCheck()
         {

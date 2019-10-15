@@ -18,9 +18,11 @@ namespace Dream.DataAccess.Service
     public class OrderService : IOrderService
     {
         private IClickLogService _clickLogService;
-        public OrderService(IClickLogService c)
+        private IUserService _userService;
+        public OrderService(IClickLogService c, IUserService u)
         {
             _clickLogService = c;
+            _userService = u;
         }
 
         public async Task<JqTableData<OrderInfo>> QueryPaginationData(JqTableParams param)
@@ -153,6 +155,7 @@ namespace Dream.DataAccess.Service
             var profit = new Profit();
             if (orderInfo.State == OrderState.已结算 && (!orderInfo.ProfitId.HasValue || orderInfo.ProfitId == 0))
             {
+                var user = await _userService.QueryByUserIdAsync((int)orderInfo.UserId);
                 profit.CreateTime = DateTime.Now;
                 profit.Status = ProfitStatus.Active;
                 profit.Type = ProfitType.OrderBack;
@@ -160,7 +163,7 @@ namespace Dream.DataAccess.Service
                 profit.FromOrder = orderInfo.Code;
                 profit.FromUser = orderInfo.UserId;
                 profit.Remark = $"来自订单[{orderInfo.ItemName}]";
-                profit.Amount = orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate;
+                profit.Amount = user.Type == UserType.Commom ? orderInfo.BackPrice * ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate : orderInfo.BackPrice * (ConfigUtil.GetConfig<DataApiAppSettings>("AppSettings").OrderBackRate + 0.1);
                 profit.ProfitId = await conn.InsertAsync<Profit>(profit, transaction);
 
                 //增加合伙人收益

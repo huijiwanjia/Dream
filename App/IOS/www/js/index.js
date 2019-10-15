@@ -813,6 +813,10 @@ var app = {
                     $state.go("search");
                 };
 
+                $scope.showTip = function () {
+                    DeviceEvent.Toast("该功能正在火速准备中");
+                }
+
                 $scope.ToCategory = function (type, pageTitle) {
                     $state.go('category', { type: type, pageTitle: pageTitle });
                 };
@@ -1002,6 +1006,9 @@ var app = {
                     }, function () {
                         DeviceEvent.Toast("复制失败");
                     });
+                }
+                $scope.showTip = function () {
+                    DeviceEvent.Toast("该功能正在火速准备中");
                 }
                 Get($http, DreamConfig.userInfoUrl + "getbyid?userId=" + $scope.userInfo.UserId, function (userInfo) {
                     $scope.userInfo = userInfo;
