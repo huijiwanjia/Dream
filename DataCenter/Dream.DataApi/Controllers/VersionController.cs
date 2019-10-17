@@ -23,7 +23,7 @@ namespace Dream.DataApi.Controllers
         [Route("Android")]
         public string Android()
         {
-            return "1.2";
+            return "1.1";
         }
 
         [HttpGet]
