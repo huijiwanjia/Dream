@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.huijiwanjia.app" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.huijiwanjia.app" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
   <name>惠及万家</name>
   <description>
-    work for yourself。
+    操作最便捷，返利最高。
   </description>
   <author email="248243224@qq.com" href="">
     qin
@@ -38,7 +38,7 @@
   <plugin name="cordova-plugin-file-transfer" source="npm" spec="~1.5.0" />
   <plugin name="cordova-plugin-geolocation" source="npm" spec="~4.0.1" />
   <plugin name="cordova-plugin-globalization" source="npm" spec="~1.11.0" />
-  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~3.0.0" />
+  <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~3.1.0" />
   <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
   <plugin name="cordova-plugin-network-information" source="npm" spec="~2.0.2" />
   <plugin name="cordova-plugin-splashscreen" source="npm" spec="~5.0.3" />

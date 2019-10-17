@@ -478,6 +478,8 @@ var app = {
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        else location.href = url;
                     });
                 };
                 $scope.QueryText = $stateParams.itemName;
@@ -783,10 +785,10 @@ var app = {
                     clearInterval(interval);
                     interval = null;
                 }
-
                 //检查是否有新版本
                 Get($http, DreamConfig.versionUrl, function (version) {
-                    if (version > DreamConfig.version) {
+                    if (DreamConfig.version > version) ick = true;
+                    if (version > DreamConfig.version) {                   
                         DeviceEvent.Confirm("发现新版本：v" + version,
                             function (buttonIndex) {
                                 if (buttonIndex == 1) {
@@ -807,6 +809,8 @@ var app = {
                 };
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        else location.href = url;
                     }, true);
                 };
                 $scope.ToSearch = function () {
@@ -815,7 +819,7 @@ var app = {
 
                 $scope.showTip = function () {
                     DeviceEvent.Toast("该功能正在火速准备中");
-                }
+                };
 
                 $scope.ToCategory = function (type, pageTitle) {
                     $state.go('category', { type: type, pageTitle: pageTitle });
@@ -902,6 +906,8 @@ var app = {
                 $scope.itemList = {};
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        else location.href = url;
                     });
                 };
                 $scope.pageTitle = $stateParams.pageTitle;
@@ -924,6 +930,8 @@ var app = {
                 $scope.itemList = {};
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        else location.href = url;
                     });
                 };
                 var params = { PageSize: 40, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
@@ -944,6 +952,8 @@ var app = {
                 sc.ValidateLogin();
                 $scope.ClickLog = function (itemId, url, imgUrl) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
+                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        else location.href = url;
                     });
                 };
                 $scope.itemList = {};
