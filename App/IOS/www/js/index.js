@@ -476,11 +476,14 @@ var app = {
                 $scope.back = function () {
                     $state.go('search');
                 };
-                $scope.ClickLog = function (itemId, url, imgUrl) {
+                $scope.ClickLog = function (itemId, url, imgUrl, itemName) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        if (ick) {
+                            var aiUrl = "https://ai.m.taobao.com/search.html?q=" + itemName;
+                            cordova.InAppBrowser.open(aiUrl, '_blank', 'location=false,closebuttoncaption=退出,hidespinner=yes');
+                        }
                         else location.href = url;
-                    });
+                    }, true);
                 };
                 $scope.QueryText = $stateParams.itemName;
                 $scope.QueryResult = {};
@@ -807,9 +810,13 @@ var app = {
                 $scope.showContacts = function () {
                     DeviceEvent.Alert("微信：Young0380", null, "官方联系方式", "确认");
                 };
-                $scope.ClickLog = function (itemId, url, imgUrl) {
+                $scope.ClickLog = function (itemId, url, imgUrl,itemName) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        if (ick)
+                        {
+                            var aiUrl = "https://ai.m.taobao.com/search.html?q=" + itemName;
+                            cordova.InAppBrowser.open(aiUrl, '_blank', 'location=false,closebuttoncaption=退出,hidespinner=yes');
+                        }
                         else location.href = url;
                     }, true);
                 };
@@ -904,11 +911,14 @@ var app = {
                     $state.go('home');
                 };
                 $scope.itemList = {};
-                $scope.ClickLog = function (itemId, url, imgUrl) {
+                $scope.ClickLog = function (itemId, url, imgUrl, itemName) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        if (ick) {
+                            var aiUrl = "https://ai.m.taobao.com/search.html?q=" + itemName;
+                            cordova.InAppBrowser.open(aiUrl, '_blank', 'location=false,closebuttoncaption=退出,hidespinner=yes');
+                        }
                         else location.href = url;
-                    });
+                    }, true);
                 };
                 $scope.pageTitle = $stateParams.pageTitle;
                 var params = { PageSize: 40, MaterialId: $stateParams.type }; 参考类型地址: https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
@@ -928,11 +938,14 @@ var app = {
                 curPage = "rebate";
                 sc.ValidateLogin();
                 $scope.itemList = {};
-                $scope.ClickLog = function (itemId, url, imgUrl) {
+                $scope.ClickLog = function (itemId, url, imgUrl, itemName) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        if (ick) {
+                            var aiUrl = "https://ai.m.taobao.com/search.html?q=" + itemName;
+                            cordova.InAppBrowser.open(aiUrl, '_blank', 'location=false,closebuttoncaption=退出,hidespinner=yes');
+                        }
                         else location.href = url;
-                    });
+                    }, true);
                 };
                 var params = { PageSize: 40, MaterialId: 13366 };//高佣金  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
@@ -950,11 +963,14 @@ var app = {
             .controller('RecommendController', function ($scope, sc, ls, $state, $http) {
                 curPage = "recommend";
                 sc.ValidateLogin();
-                $scope.ClickLog = function (itemId, url, imgUrl) {
+                $scope.ClickLog = function (itemId, url, imgUrl, itemName) {
                     Post($http, DreamConfig.clickLog, { UserId: ls.getObject("userInfo").UserId, ItemId: itemId, Url: url, ImgUrl: imgUrl }, function (data) {
-                        if (ick) cordova.InAppBrowser.open(url, '_blank', 'location=false,closebuttoncaption=退出');
+                        if (ick) {
+                            var aiUrl = "https://ai.m.taobao.com/search.html?q=" + itemName;
+                            cordova.InAppBrowser.open(aiUrl, '_blank', 'location=false,closebuttoncaption=退出,hidespinner=yes');
+                        }
                         else location.href = url;
-                    });
+                    }, true);
                 };
                 $scope.itemList = {};
                 var params = { PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
