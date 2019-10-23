@@ -44,18 +44,18 @@
         <div class="txt_3">
             <div class="nub-box">
                 <span>粉丝<em>{{teamInfo.DirectlyCount}}</em></span>
-                <span ng-if="teamInfo.DirectlyCount<=5">成长值<em>{{teamInfo.DirectlyCount}}/5</em></span>
-                <span ng-if="teamInfo.DirectlyCount<=10&&teamInfo.DirectlyCount>5">成长值<em>{{teamInfo.DirectlyCount}}/10</em></span>
-                <span ng-if="teamInfo.DirectlyCount<=100&&teamInfo.DirectlyCount>10">成长值<em>{{teamInfo.DirectlyCount}}/100</em></span>
-                <span ng-if="teamInfo.DirectlyCount<=1000&&teamInfo.DirectlyCount>100">成长值<em>{{teamInfo.DirectlyCount}}/1000</em></span>
+                <span ng-if="teamInfo.DirectlyCount<5">成长值<em>{{teamInfo.DirectlyCount}}/5</em></span>
+                <span ng-if="teamInfo.DirectlyCount<10&&teamInfo.DirectlyCount>=5">成长值<em>{{teamInfo.DirectlyCount}}/10</em></span>
+                <span ng-if="teamInfo.DirectlyCount<100&&teamInfo.DirectlyCount>=10">成长值<em>{{teamInfo.DirectlyCount}}/100</em></span>
+                <span ng-if="teamInfo.DirectlyCount<1000&&teamInfo.DirectlyCount>=100">成长值<em>{{teamInfo.DirectlyCount}}/1000</em></span>
             </div>
-            <div class="msg-box" ng-if="teamInfo.DirectlyCount<=5">
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount<5">
                 您还差{{5-teamInfo.DirectlyCount}}位就可以升级成超级会员
             </div>
-            <div class="msg-box" ng-if="teamInfo.DirectlyCount<=10&&teamInfo.DirectlyCount>5">
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount<10&&teamInfo.DirectlyCount>=5">
                 您还差{{10-teamInfo.DirectlyCount}}位就可以升级成合伙人
             </div>
-            <div class="msg-box" ng-if="teamInfo.DirectlyCount>10">
+            <div class="msg-box" ng-if="teamInfo.DirectlyCount>=10">
                 您已是合伙人，请继续努力
             </div>
         </div>
