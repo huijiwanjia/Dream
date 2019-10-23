@@ -26,9 +26,9 @@ namespace Dream.DataApi.Controllers
             return "1.1";
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("IsCheck")]
-        public int  IsCheck()
+        public int IsCheck()
         {
             return 0;
         }
