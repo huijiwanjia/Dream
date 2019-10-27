@@ -36,7 +36,7 @@
                                 <i ng-if="order.IsShared">已分享</i>
                             </p>
                             <div class="txt_1">
-                                <span>预估收益：￥{{order.BackPrice}}</span>消费金额：￥{{order.PayPrice}}
+                                <span>预估收益：￥{{order.BackPrice*0.7| number:2}}</span>消费金额：￥{{order.PayPrice}}
                             </div>
                         </div>
                     </div>
