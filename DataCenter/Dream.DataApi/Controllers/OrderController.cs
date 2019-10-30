@@ -65,17 +65,17 @@ namespace Dream.DataApi.Controllers
         //[ApiAuthorize]
         public async Task<IActionResult> Post([FromBody]OrderInfo order)
         {
+            var orderInfo = JsonConvert.SerializeObject(order);
             try
             {
-                _log.Info($"[OrderController]订单核对，订单信息：{JsonConvert.SerializeObject(order)}");
+                _log.Info($"[OrderController]订单核对，订单信息：{orderInfo}");
                 await _orderService.UserOrderCheckAndMappingAsync(order);
-                return Ok("order check success");
             }
             catch (Exception ex)
             {
-                _log.Error($"[OrderController]订单核对失败，错误信息：{ex.ToString()}");
-                return BadRequest("order check failed");
+                _log.Error($"[OrderController]订单核对失败，订单信息：{orderInfo}，错误信息：{ex.ToString()}");
             }
+            return Ok("order check success");
         }
 
         [HttpGet]
