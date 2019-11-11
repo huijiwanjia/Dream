@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E8F4DC1-CDE7-4FF2-922D-EDB786986AFA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dream.Web</RootNamespace>
+    <AssemblyName>Dream.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\base.css" />
+    <Content Include="Content\boot_reg.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\forgot.css" />
+    <Content Include="Content\img\anquan1.jpg" />
+    <Content Include="Content\img\anquan2.jpg" />
+    <Content Include="Content\img\anquan3.jpg" />
+    <Content Include="Content\img\anzhuo.png" />
+    <Content Include="Content\img\app.png" />
+    <Content Include="Content\img\box-bj.png" />
+    <Content Include="Content\img\box1.jpg" />
+    <Content Include="Content\img\color1.png" />
+    <Content Include="Content\img\color10.png" />
+    <Content Include="Content\img\color11.png" />
+    <Content Include="Content\img\color12.png" />
+    <Content Include="Content\img\color14.png" />
+    <Content Include="Content\img\color15.png" />
+    <Content Include="Content\img\color2.png" />
+    <Content Include="Content\img\color3.png" />
+    <Content Include="Content\img\color4.png" />
+    <Content Include="Content\img\color5.png" />
+    <Content Include="Content\img\color6.png" />
+    <Content Include="Content\img\color8.png" />
+    <Content Include="Content\img\color9.png" />
+    <Content Include="Content\img\footer_1-bj.png" />
+    <Content Include="Content\img\footer_1_1.png" />
+    <Content Include="Content\img\footer_2-bj-2.jpg" />
+    <Content Include="Content\img\footer_2-bj.jpg" />
+    <Content Include="Content\img\footer_2_1.png" />
+    <Content Include="Content\img\footer_2_2.png" />
+    <Content Include="Content\img\footer_2_3.png" />
+    <Content Include="Content\img\gongzonghao.jpg" />
+    <Content Include="Content\img\list1.png" />
+    <Content Include="Content\img\list2.png" />
+    <Content Include="Content\img\list3.png" />
+    <Content Include="Content\img\login-bj.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\register-bj.png" />
+    <Content Include="Content\img\weibo.png" />
+    <Content Include="Content\img\weixin.png" />
+    <Content Include="Content\js\a.js" />
+    <Content Include="Content\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\mobile\css\style.css" />
+    <Content Include="Content\mobile\icon\demo.css" />
+    <Content Include="Content\mobile\icon\iconfont.css" />
+    <Content Include="Content\mobile\icon\iconfont.svg" />
+    <Content Include="Content\mobile\icon\triangle2.svg" />
+    <Content Include="Content\mobile\images\a.png" />
+    <Content Include="Content\mobile\images\bj.jpg" />
+    <Content Include="Content\mobile\images\bj1.jpg" />
+    <Content Include="Content\mobile\images\foot_01.png" />
+    <Content Include="Content\mobile\images\hot.png" />
+    <Content Include="Content\mobile\images\logo.png" />
+    <Content Include="Content\mobile\images\logo1.png" />
+    <Content Include="Content\mobile\images\logo2.png" />
+    <Content Include="Content\mobile\images\mian_01.png" />
+    <Content Include="Content\mobile\images\mian_02.png" />
+    <Content Include="Content\mobile\images\mian_03.png" />
+    <Content Include="Content\mobile\images\mian_04.png" />
+    <Content Include="Content\mobile\images\mian_05.png" />
+    <Content Include="Content\mobile\images\mian_06.png" />
+    <Content Include="Content\mobile\images\mian_07.png" />
+    <Content Include="Content\mobile\images\mian_08.png" />
+    <Content Include="Content\mobile\images\triangle.png" />
+    <Content Include="Content\mobile\images\triangle1.jpg" />
+    <Content Include="Content\mobile\js\a.js" />
+    <Content Include="Content\mobile\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\mobile\js\jquery.js" />
+    <Content Include="Content\mobile\newindex\css\media.css" />
+    <Content Include="Content\mobile\newindex\css\style.css" />
+    <Content Include="Content\mobile\newindex\images\bg.jpg" />
+    <Content Include="Content\mobile\newindex\images\bg2.jpg" />
+    <Content Include="Content\mobile\newindex\images\bookmark.png" />
+    <Content Include="Content\mobile\newindex\images\coordinate.png" />
+    <Content Include="Content\mobile\newindex\images\icon_img.png" />
+    <Content Include="Content\mobile\newindex\images\logout.png" />
+    <Content Include="Content\mobile\newindex\images\money.png" />
+    <Content Include="Content\mobile\newindex\images\nav_01.png" />
+    <Content Include="Content\mobile\newindex\images\nav_02.png" />
+    <Content Include="Content\mobile\newindex\images\pen.png" />
+    <Content Include="Content\mobile\newindex\images\photo.png" />
+    <Content Include="Content\mobile\newindex\images\refresh.png" />
+    <Content Include="Content\mobile\newindex\images\sign.png" />
+    <Content Include="Content\mobile\newindex\images\strat.png" />
+    <Content Include="Content\mobile\newindex\images\team.png" />
+    <Content Include="Content\mobile\newindex\images\topbox_bg.jpg" />
+    <Content Include="Content\mobile\newindex\images\topbox_bg.png" />
+    <Content Include="Content\mobile\newindex\images\user.jpg" />
+    <Content Include="Content\mobile\newindex\images\user1.jpg" />
+    <Content Include="Content\mobile\newindex\images\user2.jpg" />
+    <Content Include="Content\mobile\newindex\images\user3.jpg" />
+    <Content Include="Content\mobile\newindex\images\user4.jpg" />
+    <Content Include="Content\mobile\newindex\images\userid.png" />
+    <Content Include="Content\mobile\newindex\images\weixin.png" />
+    <Content Include="Content\mobile\newindex\js\jquery-1.10.1.min.js" />
+    <Content Include="Content\mobile\newindex\js\jquery.js" />
+    <Content Include="Content\mobile\newindex\js\style.js" />
+    <Content Include="Content\mobile\newindex\js\swiper.min.js" />
+    <Content Include="Content\realUserTag.css" />
+    <Content Include="Content\RegisterForQrcode\css\ionic.min.css" />
+    <Content Include="Content\RegisterForQrcode\css\main.css" />
+    <Content Include="Content\RegisterForQrcode\img\back.png" />
+    <Content Include="Content\RegisterForQrcode\img\banner1.jpg" />
+    <Content Include="Content\RegisterForQrcode\img\close.png" />
+    <Content Include="Content\RegisterForQrcode\img\email.png" />
+    <Content Include="Content\RegisterForQrcode\img\icon_password.png" />
+    <Content Include="Content\RegisterForQrcode\img\icon_user.png" />
+    <Content Include="Content\RegisterForQrcode\img\jade.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_1.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_2.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_3.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_4.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_5.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_6.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_7.png" />
+    <Content Include="Content\RegisterForQrcode\img\nav_8.png" />
+    <Content Include="Content\RegisterForQrcode\img\nub.png" />
+    <Content Include="Content\RegisterForQrcode\img\on-off.png" />
+    <Content Include="Content\RegisterForQrcode\img\package.png" />
+    <Content Include="Content\RegisterForQrcode\img\phone.png" />
+    <Content Include="Content\RegisterForQrcode\img\search.png" />
+    <Content Include="Content\RegisterForQrcode\img\sub.png" />
+    <Content Include="Content\RegisterForQrcode\img\user.jpg" />
+    <Content Include="Content\RegisterForQrcode\img\user1.jpg" />
+    <Content Include="Content\RegisterForQrcode\img\xin.png" />
+    <Content Include="Content\RegisterForQrcode\js\flexible.js" />
+    <Content Include="Content\RegisterForQrcode\js\jquery-1.12.2.min.js" />
+    <Content Include="Content\topBar_default.css" />
+    <Content Include="Content\ui.css" />
+    <Content Include="Content\valid.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\mobile\icon\iconfont.eot" />
+    <Content Include="Content\mobile\icon\iconfont.ttf" />
+    <Content Include="Content\mobile\icon\iconfont.woff" />
+    <Content Include="Content\mobile\newindex\css\style.css.map" />
+    <Content Include="Content\mobile\newindex\css\style.scss" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\MobileIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54319</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54319/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

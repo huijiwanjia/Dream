@@ -80,7 +80,7 @@ namespace Dream.DataAccess.Service
                     IDbTransaction transaction = conn.BeginTransaction();
                     try
                     {
-                        var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByCode, new { order.Code }, transaction, null, CommandType.StoredProcedure);
+                        var orderInfo = await conn.QueryFirstOrDefaultAsync<OrderInfo>(Procedure.GetOrderByCodeAndItemId, new { code = order.Code, itemId = order.ItemId }, transaction, null, CommandType.StoredProcedure);
 
                         if (orderInfo != null)
                         {

@@ -14,6 +14,7 @@ namespace Dream.DataAccess
         public static string GetRecommentByUnionId => "GetRecommentByUnionId";
         public static string GetClickLogByItemIdAndClickTime => "GetClickLogByItemIdAndClickTime";
         public static string GetOrderByCode => "GetOrderByCode";
+        public static string GetOrderByCodeAndItemId => "GetOrderByCodeAndItemId";
         public static string GetUserOrders => "GetUserOrders";
         public static string UpdateOrderStatus => "UpdateOrderStatus";
         public static string GetSpQuery => "sp_query";
