@@ -1,0 +1,130 @@
+ 
+
+/**
+ * Created by Jiang share fone on 14-4-17.
+ */
+html,body{ min-height: 600px;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;font-family: "Î¢ÈíÑÅºÚ";}
+body{ font-size:12px;}
+table{border-collapse:collapse;border-spacing:0}
+#header,body{z-index:1;}
+fieldset,img{border:0;vertical-align:top; width: 70%;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}
+ol,ul{list-style:none}
+i{ font-style:normal;}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+q:before,q:after{content:''}
+abbr,acronym{border:0;font-variant:normal}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}
+a{ text-decoration:none;}
+.clearfix:after {content: "."; display: block;height: 0;clear: both; visibility: hidden;}
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+.select1 { background:url(../images/triangle1.jpg) no-repeat;}
+.left-col{float: left;width: 760px; margin-right: 20px;}
+.right-col{float: right; width: 228px;}
+
+.ft-L{float: left;}
+.ft-r{float: right;}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+@font-face {font-family: 'iconfont';
+    src: url('../icon/iconfont.eot'); /* IE9*/
+    src: url('../icon/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../icon/iconfont.woff') format('woff'), /* chrome¡¢firefox */
+    url('../icon/iconfont.ttf') format('truetype'), /* chrome¡¢firefox¡¢opera¡¢Safari, Android, iOS 4.2+*/
+    url('../icon/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+	}
+
+header{height:3.7em; background:#f2f2f2; border-bottom:1px #E3E3E3 solid}
+.nav{ margin-right:10px; height:3.7em; }
+.nav ul li{ display:inline-block; height:3.7em; line-height:3.8em;}
+.nav ul li a{ color:#4a4a4a; margin:1em;}
+.nav ul li.select{ background:url(../images/triangle1.jpg) no-repeat;}
+.nav ul li.select a{ color:#fff;}
+
+
+.logo{ padding-top:4em; min-width:320px; max-width:960px;  margin:0 auto; text-align:center; background: url(../images/a.png); padding-bottom: 31px;}
+.logo img{ width:60%;}
+
+#search { margin: 0 6px; border:3px solid #f56505; overflow:hidden; width: auto;}
+.search_1 { float: left; line-height: 45px; padding: 0 0.3em; font-size: 28px; background-color: #f56505; color: #fff; height:45px; font-weight: bold; width: 10%;}
+.search_2 { width: 84%; overflow:hidden; float: right;}
+.search_2_1 { float: right; position: relative; width: 100%;}
+#input1 { height: 3.75em; border: 0; float: left; display: block; font-size:12px; line-height: 3.75em; width: 100%;}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #b3b3b3;
+    font-size : 12px;
+    padding-left : 10px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #b3b3b3;
+    font-size : 12px;
+    padding-left : 10px;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #b3b3b3;
+    font-size : 12px;
+    padding-left : 10px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #b3b3b3;
+    font-size : 12px;
+    padding-left : 10px;
+}
+.buttom1 { background-color: #f56505; color: #fff; border:0 solid #3385ff; height: 2.5em; line-height: 2.5em; font-size: 18px; cursor:pointer; font-weight: bold; position: absolute; right: -4px;}
+.box { width: 946px; margin: 0 auto; border: 1px solid #a9a9a9; border-radius: 9px; position: absolute; background: rgba(255,255,255,0.8); left: 50%; margin-left: -475px; top: 156px; display: none;}
+.box:before { content: ""; background: url(../img/box1.jpg) no-repeat; width: 44px; height: 24px; position: absolute; top: -23px; left: 216px;}
+.box ul { margin: 14px 49px; overflow:hidden;}
+.box ul li { float: left;}
+.box li a { font-size: 14px; text-align: center; display: block; line-height: 30px; width: 164px;}
+.box li span { color: #cf3300;}
+.index-form{ margin: 0 10px;  height: 4em;  background: #fff;  border-bottom-color: #bcbcbc;}
+.con-wrap{ position:relative; display: -webkit-box;}
+.se-logo{ display:inline-block; width:4em; height:4em; background:#F60;margin: 0px; height: 4em;line-height:4em; text-align:center; resize: none;overflow: hidden;}
+.se-logo i{ font-size:3.2em; color:#FFF;}
+.se-input{ display:inline-block;}
+.se-bn{ position: absolute; top: 0px; right: 0px; width: 8em; height: 4em; background: #38f; color: #fff; white-space: nowrap; line-height:4em; letter-spacing: -1px; font-size: 16px; outline:none; border:none; box-sizing: inherit;}
+.top{ vertical-align:bottom; height:4em; position: relative; margin: 13px 6px;}
+.top img{ display:inline-block; padding-top:2em; width:20%;}
+.top b{ font-weight:100; padding-top:2.1em; display:inline-block;}
+.top a { display: block; position: absolute; right: 0; top: 18px; color:#fff; background-color: #80C51D; border-radius: 3px; line-height: 28px; padding: 0 5px; font-weight: bold; letter-spacing: -1px;}
+.main{ width:90%; margin:0 auto; margin-bottom:2em; }
+.main ul{ margin-top:2em; margin-left:0.4em;}
+.main ul li{ width:25%; text-align:center;  height:8em; display:inline-block; margin-left:-0.4em; padding-top:10px;}
+.main ul li a p{ padding-top:10px;}
+.Backstage{ border-top:#eee solid 1px; overflow:hidden; margin-bottom:1em;}
+.Backstage ul{}
+.Backstage ul li{ float:right;  width: calc(40% - 0.4em); background:#d63194; height:4.8em; text-align:center; overflow:hidden;}
+.Backstage ul li i{ margin-right:0.4em; font-size:2em;  padding-top:1.7em;} 
+.Backstage ul li a{ padding-top:1.2em; display:block; font-size:1.2em; width:100%; height:100%; color:#FFF; line-height:100%;}
+.Backstage ul li.frist{ float:left; background:#33475f; height:120px; width:60%; font-size:1.6em;}
+.Backstage ul li.frist a i{  padding-top:1.7em; font-size:2em;}
+.Backstage ul li.frist a { padding-top:1.7em;}
+.Backstage ul li.last{ background:#27184a; margin-top:0.4em;}
+
+
+footer{ background:#353841; width: 100%;}
+footer ul { overflow: hidden; width: 94%; margin: 0 auto 1.5em; padding-top: 2em;}
+footer ul li { float: left; margin: 0 2px; width: 32%;}
+footer li a { color: #b0b0b0; display: block; background-color: #3e414a; border: 1px solid #35343a; height: 3em; line-height: 3em; text-align: center;}
+.foot_logo{ height:inherit; text-align: center;}
+.foot_logo h2{ margin-left:-0.6em; margin-top:-0.1em; font-size:1.4em; padding-left:1.6em; padding-top:0.4em; background:url(../images/triangle.png) no-repeat; color:#FFF; margin-bottom:0.6em;}
+.foot_logo p{ color:#58595e; line-height: 1.5em; margin:0;}

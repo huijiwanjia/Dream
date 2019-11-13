@@ -1,0 +1,1324 @@
+﻿body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color: #333;
+    background: #fff;
+    overflow-y: scroll;
+}
+
+body, button, input, select, textarea, pre {
+    font-size: 12px;
+    font-family: Arial, "宋体";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+
+small {
+    font-size: 12px;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: underline;
+    color: #00c;
+}
+
+    a:hover {
+        color: #00c;
+    }
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+legend {
+    color: #000;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+button, input, select, textarea {
+    font-size: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+textarea {
+    resize: vertical;
+}
+
+*:focus {
+    outline: 0;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+.inlineBlock {
+    display: inline-block;
+    zoom: 1;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.error {
+    color: #F00;
+    font-size: 12px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.grid-1, .grid-2, .grid-3, .grid-4, .grid-50, .grid-60, .grid-70, .grid-80, .grid-90, .grid-10, .grid-11, .grid-12, .grid-13, .grid-14, .grid-15, .grid-16, .grid-17, .grid-18, .grid-19, .grid-20, .grid-21, .grid-22, .grid-23, .grid-24, .grid-25, .grid-26, .grid-27, .grid-28, .grid-29, .grid-30, .grid-31, .grid-32, .grid-33, .grid-34, .grid-35, .grid-36, .grid-37, .grid-38, .grid-39, .grid-40, .grid-41, .grid-42, .grid-43, .grid-44, .grid-45, .grid-46, .grid-47, .grid-48, .grid-49, .grid-50, .grid-51, .grid-52, .grid-53, .grid-54, .grid-55, .grid-56, .grid-57, .grid-58, .grid-59, .grid-60, .grid-61, .grid-62, .grid-63, .grid-64, .grid-65, .grid-66, .grid-67, .grid-68, .grid-69, .grid-70, .grid-71, .grid-72, .grid-73, .grid-74, .grid-75, .grid-76, .grid-77, .grid-78, .grid-79, .grid-80, .grid-81, .grid-82, .grid-83, .grid-84, .grid-85, .grid-86, .grid-87, .grid-88, .grid-89, .grid-90, .grid-91, .grid-92, .grid-93, .grid-94, .grid-95, .grid-96, .grid-97, .grid-98, .grid-99 {
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.grid-1 {
+    width: 10px;
+}
+
+.grid-2 {
+    width: 20px;
+}
+
+.grid-3 {
+    width: 30px;
+}
+
+.grid-4 {
+    width: 40px;
+}
+
+.grid-5 {
+    width: 50px;
+}
+
+.grid-6 {
+    width: 60px;
+}
+
+.grid-7 {
+    width: 70px;
+}
+
+.grid-8 {
+    width: 80px;
+}
+
+.grid-9 {
+    width: 90px;
+}
+
+.grid-10 {
+    width: 100px;
+}
+
+.grid-11 {
+    width: 110px;
+}
+
+.grid-12 {
+    width: 120px;
+}
+
+.grid-13 {
+    width: 130px;
+}
+
+.grid-14 {
+    width: 140px;
+}
+
+.grid-15 {
+    width: 150px;
+}
+
+.grid-16 {
+    width: 160px;
+}
+
+.grid-17 {
+    width: 170px;
+}
+
+.grid-18 {
+    width: 180px;
+}
+
+.grid-19 {
+    width: 190px;
+}
+
+.grid-20 {
+    width: 200px;
+}
+
+.grid-21 {
+    width: 210px;
+}
+
+.grid-22 {
+    width: 220px;
+}
+
+.grid-23 {
+    width: 230px;
+}
+
+.grid-24 {
+    width: 240px;
+}
+
+.grid-25 {
+    width: 250px;
+}
+
+.grid-26 {
+    width: 260px;
+}
+
+.grid-27 {
+    width: 270px;
+}
+
+.grid-28 {
+    width: 280px;
+}
+
+.grid-29 {
+    width: 290px;
+}
+
+.grid-30 {
+    width: 300px;
+}
+
+.grid-31 {
+    width: 310px;
+}
+
+.grid-32 {
+    width: 320px;
+}
+
+.grid-33 {
+    width: 330px;
+}
+
+.grid-34 {
+    width: 340px;
+}
+
+.grid-35 {
+    width: 350px;
+}
+
+.grid-36 {
+    width: 360px;
+}
+
+.grid-37 {
+    width: 370px;
+}
+
+.grid-38 {
+    width: 380px;
+}
+
+.grid-39 {
+    width: 390px;
+}
+
+.grid-40 {
+    width: 400px;
+}
+
+.grid-41 {
+    width: 410px;
+}
+
+.grid-42 {
+    width: 420px;
+}
+
+.grid-43 {
+    width: 430px;
+}
+
+.grid-44 {
+    width: 440px;
+}
+
+.grid-45 {
+    width: 450px;
+}
+
+.grid-46 {
+    width: 460px;
+}
+
+.grid-47 {
+    width: 470px;
+}
+
+.grid-48 {
+    width: 480px;
+}
+
+.grid-49 {
+    width: 490px;
+}
+
+.grid-50 {
+    width: 500px;
+}
+
+.grid-51 {
+    width: 510px;
+}
+
+.grid-52 {
+    width: 520px;
+}
+
+.grid-53 {
+    width: 530px;
+}
+
+.grid-54 {
+    width: 540px;
+}
+
+.grid-55 {
+    width: 550px;
+}
+
+.grid-56 {
+    width: 560px;
+}
+
+.grid-57 {
+    width: 570px;
+}
+
+.grid-58 {
+    width: 580px;
+}
+
+.grid-59 {
+    width: 590px;
+}
+
+.grid-60 {
+    width: 600px;
+}
+
+.grid-61 {
+    width: 610px;
+}
+
+.grid-62 {
+    width: 620px;
+}
+
+.grid-63 {
+    width: 630px;
+}
+
+.grid-64 {
+    width: 640px;
+}
+
+.grid-65 {
+    width: 650px;
+}
+
+.grid-66 {
+    width: 660px;
+}
+
+.grid-67 {
+    width: 670px;
+}
+
+.grid-68 {
+    width: 680px;
+}
+
+.grid-69 {
+    width: 690px;
+}
+
+.grid-70 {
+    width: 700px;
+}
+
+.grid-71 {
+    width: 710px;
+}
+
+.grid-72 {
+    width: 720px;
+}
+
+.grid-73 {
+    width: 730px;
+}
+
+.grid-74 {
+    width: 740px;
+}
+
+.grid-75 {
+    width: 750px;
+}
+
+.grid-76 {
+    width: 760px;
+}
+
+.grid-77 {
+    width: 770px;
+}
+
+.grid-78 {
+    width: 780px;
+}
+
+.grid-79 {
+    width: 790px;
+}
+
+.grid-80 {
+    width: 800px;
+}
+
+.grid-81 {
+    width: 810px;
+}
+
+.grid-82 {
+    width: 820px;
+}
+
+.grid-83 {
+    width: 830px;
+}
+
+.grid-84 {
+    width: 840px;
+}
+
+.grid-85 {
+    width: 850px;
+}
+
+.grid-86 {
+    width: 860px;
+}
+
+.grid-87 {
+    width: 870px;
+}
+
+.grid-88 {
+    width: 880px;
+}
+
+.grid-89 {
+    width: 890px;
+}
+
+.grid-90 {
+    width: 900px;
+}
+
+.grid-91 {
+    width: 910px;
+}
+
+.grid-92 {
+    width: 920px;
+}
+
+.grid-93 {
+    width: 930px;
+}
+
+.grid-94 {
+    width: 940px;
+}
+
+.grid-95 {
+    width: 950px;
+}
+
+.grid-96 {
+    width: 960px;
+}
+
+.grid-97 {
+    width: 970px;
+}
+
+.grid-98 {
+    width: 980px;
+}
+
+.grid-99 {
+    width: 990px;
+}
+
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+.clearfix:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden;
+}
+
+.wordwrap {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+pre.wordwrap {
+    white-space: pre-wrap;
+}
+
+html, body {
+    height: 100%;
+    background: #fff;
+    color: #666;
+    font-family: Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;
+}
+
+#wrapper {
+    background: #fff;
+    height: auto;
+    min-height: 100%;
+    _height: 100%;
+    width: 920px;
+    margin: 0 auto;
+}
+
+#head {
+    padding-top: 40px;
+}
+
+.mod-header img {
+    display: none;
+}
+
+.mod-header a {
+    display: block;
+    width: 186px;
+    height: 75px;
+    background-image: url('../Images/logo_pass_aed18747.png');
+    background-image: -webkit-image-set(url('../Images/logo_pass_aed18747.png') 1x,url('../Images/logo_pass_2x_7a827cff.png') 2x);
+    background-image: -moz-image-set(url('../Images/logo_pass_aed18747.png') 1x,url('../Images/logo_pass_2x_7a827cff.png') 2x);
+    background-image: -o-image-set(url('../Images/logo_pass_aed18747.png') 1x,url('../Images/logo_pass_2x_7a827cff.png') 2x);
+    background-image: -ms-image-set(url('../Images/logo_pass_aed18747.png') 1x,url('../Images/logo_pass_2x_7a827cff.png') 2x);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.mod-header h1 {
+    text-align:center;
+    font-size:40px;
+    color:#f56505;
+}
+.mod-header p{
+    line-height:40px;
+    font-size:18px;
+    text-align:center;
+}
+
+
+#foot {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin: 0;
+    height: 40px;
+    width: 120px;
+    margin-left: -60px;
+    line-height: 40px;
+}
+
+.tang-pass-login .pass-success-verifyCode, .bd-acc-list li a, .pass-phoenix-list .pass-qrcode-btn, .pass-phoenix-list .pass-normal-btn, .pass-phoenix-list .pass-sms-btn, .pass-phoenix-list .pass-normal-btn, .pass-label-userName, .pass-label-password, .pass-label-smsPhone, .pass-label-verifyCode, .pass-label-smsVerifyCode, .pass-form-item .pass-clearbtn {
+    background-image: url('../Images/icon_5654f5ca.png');
+    background-image: -webkit-image-set(url('../Images/icon_5654f5ca.png') 1x,url('../Images/icon_2x_b0032821.png') 2x);
+    background-image: -moz-image-set(url('../Images/icon_5654f5ca.png') 1x,url('../Images/icon_2x_b0032821.png') 2x);
+    background-image: -o-image-set(url('../Images/icon_5654f5ca.png') 1x,url('../Images/icon_2x_b0032821.png') 2x);
+    background-image: -ms-image-set(url('../Images/icon_5654f5ca.png') 1x,url('../Images/icon_2x_b0032821.png') 2x);
+    background-repeat: no-repeat;
+}
+
+.login-form {
+    width: 320px;
+}
+
+    .login-form h3 {
+        font-size: 16px;
+        position: relative;
+        z-index: 250;
+        color: #333;
+    }
+
+.login-wrapper {
+    position: relative;
+}
+
+input[type="submit"] {
+    -webkit-appearance: none;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -ms-box-sizing: content-box;
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+input:-ms-input-placeholder {
+    color: #ccc;
+}
+
+input:-moz-placeholder {
+    color: #ccc;
+}
+
+.tang-pass-login {
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: #f56505;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: #f56505;
+    }
+
+.pass-form-item {
+    position: relative;
+    clear: both;
+    z-index: 18;
+    margin-bottom: 20px;
+}
+
+.pass-form-normal {
+    padding-bottom: 10px;
+}
+
+.pass-generalErrorWrapper {
+    height: auto;
+    _height: 30px;
+    min-height: 30px;
+    color: #fc4343;
+}
+
+.pass-generalError {
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+    padding-top: 8px;
+}
+
+.pass-label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    padding-bottom: 10px;
+    display: none;
+}
+
+.pass-label-userName, .pass-label-password, .pass-label-smsPhone, .pass-label-verifyCode, .pass-label-smsVerifyCode {
+    display: block;
+    position: absolute;
+    top: 9px;
+    *top: 10px;
+    left: 8px;
+    width: 0;
+    height: 20px;
+    overflow: hidden;
+    padding: 0 0 0 18px;
+    z-index: 20;
+}
+
+.pass-label-userName {
+    background-position: 0 -52px;
+}
+
+.pass-label-password {
+    background-position: -21px -52px;
+}
+
+.pass-label-verifyCode, .pass-label-smsVerifyCode {
+    background-position: -42px -52px;
+}
+
+.pass-label-smsPhone {
+    background-position: -63px -52px;
+}
+
+.pass-form-item-userName label.pass-text-label-focus {
+    background-position: 0 -73px;
+}
+
+.pass-form-item-password label.pass-text-label-focus {
+    background-position: -21px -73px;
+}
+
+.pass-form-item-smsPhone label.pass-text-label-focus {
+    background-position: -63px -73px;
+}
+
+.pass-form-item-smsVerifyCode label.pass-text-label-focus, .pass-form-item-verifyCode label.pass-text-label-focus {
+    background-position: -42px -73px;
+}
+
+.pass-form-item.pass-form-item-userName {
+    z-index: 21;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+input::-ms-reveal {
+    display: none;
+}
+
+.pass-form-item .pass-text-input {
+    position: relative;
+    z-index: 17;
+    display: block;
+    padding: 12px 10px 12px 38px;
+    margin: 0;
+    height: 14px;
+    line-height: 14px;
+    width: 158px;
+    border: 1px solid #dedede;
+    font-size: 14px;
+    color: #666;
+    transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s;
+}
+
+.pass-form-item .pass-text-input-focus {
+    border-color: #488ee7;
+}
+
+.pass-form-item .pass-text-input-error {
+    border-color: #fc4343;
+}
+
+.pass-form-item input.pass-text-input-userName, .pass-form-item input.pass-text-input-password, .pass-form-item input.pass-text-input-smsPhone {
+    width: 270px;
+}
+
+.pass-form-item .pass-text-input-verifyCode {
+    width: 110px;
+}
+
+.pass-form-item .pass-text-input-smsVerifyCode {
+    width: 160px;
+}
+
+.pass-verifyCodeImgParent {
+    position: absolute;
+    width: 98px;
+    height: 38px;
+    left: 170px;
+    top: 0;
+    border: 1px solid #ccc;
+}
+
+    .pass-verifyCodeImgParent img {
+        width: 98px;
+        height: 38px;
+    }
+
+.pass-change-verifyCode {
+    position: absolute;
+    right: 0;
+    height: 14px;
+    line-height: 14px;
+    top: 13px;
+    color: #666;
+}
+
+    .pass-change-verifyCode:hover {
+        color: #666;
+    }
+
+.pass-suggestion-list {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    z-index: 21;
+    top: 40px;
+    left: 0;
+    border: 1px solid #dedede;
+    background: #fff;
+    width: 318px;
+    box-shadow: 1px 1px 3px #ccc;
+    -moz-box-shadow: 1px 1px 3px #ccc;
+    -webkit-box-shadow: 1px 1px 3px #ccc;
+}
+
+    .pass-suggestion-list li.pass-item-suggsetion {
+        position: relative;
+        line-height: 14px;
+        padding: 12px 0 12px 38px;
+        font-size: 14px;
+        cursor: pointer;
+        font-family: '宋体';
+        color: #666;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+        .pass-suggestion-list li.pass-item-suggsetion a {
+            position: absolute;
+            display: none;
+            top: 13px;
+            right: 4px;
+            height: 14px;
+            width: 14px;
+            transition: all ease-out .3s;
+            -moz-transition: all ease-out .3s;
+            -o-transition: all ease-out .3s;
+            -webkit-transition: all ease-out .3s;
+            background: url('/static/passpc-account/img/login/icon_5654f5ca.png') no-repeat -1px -115px;
+        }
+
+    .pass-suggestion-list li.pass-item-suggsetion_hover a {
+        display: block;
+    }
+
+    .pass-suggestion-list li.pass-item-suggsetion a:hover {
+        transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+    }
+
+    .pass-suggestion-list .pass-item-suggsetion_hover {
+        background-color: #f5f5f5;
+    }
+
+.pass-form-item-memberPass {
+    margin-top: -6px;
+}
+
+.tang-pass-login .pass-form-item-memberPass input {
+    vertical-align: middle;
+}
+
+.tang-pass-login .pass-form-item-memberPass label {
+    color: #666;
+    margin-left: 5px;
+}
+
+.pass-form-item .pass-clearbtn {
+    position: absolute;
+    z-index: 20;
+    right: 8px;
+    top: 12px;
+    width: 16px;
+    height: 16px;
+    background-position: 0 -95px;
+    cursor: pointer;
+    transition: all ease-out .3s;
+    -moz-transition: all ease-out .3s;
+    -o-transition: all ease-out .3s;
+    -webkit-transition: all ease-out .3s;
+}
+
+.pass-form-item span.pass-clearbtn-verifyCode {
+    right: inherit;
+    left: 75px;
+    z-index: 1999;
+}
+
+.pass-form-item span.pass-clearbtn-smsVerifyCode {
+    right: inherit;
+    left: 186px;
+}
+
+.login-form .pass-form-item .pass-clearbtn:hover {
+    transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    background-position: 0 -95px;
+}
+
+.tang-pass-login .pass-form-item .pass-placeholder {
+    position: absolute;
+    overflow: hidden;
+    z-index: 23;
+    display: block;
+    left: 38px;
+    height: 16px;
+    top: 12px;
+    *top: 14px;
+    line-height: 16px;
+    width: 270px;
+    font-size: 14px;
+    color: #ccc;
+    cursor: text;
+}
+
+.tang-pass-login .pass-form-item .pass-placeholder-verifyCode {
+    width: 110px;
+}
+
+.tang-pass-login .pass-form-item .pass-placeholder-smsVerifyCode {
+    width: 160px;
+}
+
+.tang-pass-login .pass-success-verifyCode {
+    display: none;
+    height: 10px;
+    width: 10px;
+    background-position: -3px -136px;
+    position: absolute;
+    left: 142px;
+    top: 15px;
+    z-index: 24;
+}
+
+.pass-form-item-submit {
+    position: relative;
+    margin-bottom: 0;
+}
+
+    .pass-form-item-submit input {
+        width: 100%;
+        height: 40px;
+        background: #f56505;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        letter-spacing: 2px;
+    }
+
+        .pass-form-item-submit input:hover {
+            background: #f56505;
+        }
+
+        .pass-form-item-submit input:focus {
+            background: #3075dc;
+        }
+
+.pass-reglink {
+    position: absolute;
+    right: 0;
+    top: -35px;
+    /*border-left: 1px solid #2e82ff;*/
+    padding-left: 8px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+}
+
+.pass-fgtpwd {
+    position: absolute;
+    right: 66px;
+    top: -35px;
+    width: 60px;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    height: 14px;
+    line-height: 14px;
+}
+
+.pass-phoenix-title {
+    padding-top: 40px;
+    margin-bottom: 15px;
+}
+
+.pass-phoenix-eq8 {
+    padding-top: 39px;
+    margin-bottom: 16px;
+}
+
+.pass-phoenix-gt8 {
+    padding-top: 41px;
+    margin-bottom: 14px;
+}
+
+.bd-acc-list, .pass-phoenix-btn, .bd-acc-list li {
+    float: left;
+}
+
+    .bd-acc-list li a, .pass-phoenix-list .pass-qrcode-btn, .pass-phoenix-list .pass-normal-btn, .pass-phoenix-list .pass-sms-btn, .pass-phoenix-list .pass-normal-btn {
+        float: left;
+        margin-right: 20px;
+        cursor: pointer;
+        width: 24px;
+        text-indent: -9999px;
+        height: 24px;
+        overflow: hidden;
+        transition: all ease-out .3s;
+        -moz-transition: all ease-out .3s;
+        -o-transition: all ease-out .3s;
+        -webkit-transition: all ease-out .3s;
+    }
+
+.pass-phoenix-list .pass-normal-btn {
+    background-position: -100px 0;
+}
+
+    .pass-phoenix-list .pass-normal-btn:hover {
+        background-position: -100px -24px;
+    }
+
+.pass-phoenix-list .pass-sms-btn {
+    background-position: -125px 0;
+}
+
+    .pass-phoenix-list .pass-sms-btn:hover {
+        background-position: -125px -24px;
+    }
+
+.pass-phoenix-list .pass-qrcode-btn {
+    background-position: -150px 0;
+}
+
+    .pass-phoenix-list .pass-qrcode-btn:hover {
+        background-position: -150px -24px;
+    }
+
+.bd-acc-tsina .phoenix-btn-item {
+    background-position: -25px 0;
+}
+
+    .bd-acc-tsina .phoenix-btn-item:hover {
+        background-position: -25px -24px;
+    }
+
+.bd-acc-renren .phoenix-btn-item {
+    background-position: -50px 0;
+}
+
+    .bd-acc-renren .phoenix-btn-item:hover {
+        background-position: -50px -24px;
+    }
+
+.bd-acc-qzone .phoenix-btn-item {
+    background-position: 0 0;
+}
+
+    .bd-acc-qzone .phoenix-btn-item:hover {
+        background-position: 0 -24px;
+    }
+
+.bd-acc-tqq .phoenix-btn-item {
+    background-position: -75px 0;
+}
+
+    .bd-acc-tqq .phoenix-btn-item:hover {
+        background-position: -75px -26px;
+    }
+
+.bd-acc-weixin .phoenix-btn-item {
+    background-position: -175px 0;
+}
+
+    .bd-acc-weixin .phoenix-btn-item:hover {
+        background-position: -175px -24px;
+    }
+
+.tang-pass-sms-title, .tang-pass-sms-tip, .tang-pass-qrcode-title {
+    display: none;
+}
+
+.pass-sms-link-back, .pass-qrcode-link-back {
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+.pass-item-timer, .pass-item-time-timing {
+    display: block;
+    padding: 0;
+    height: 38px;
+    width: 98px;
+    font-size: 12px;
+    color: #999;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    border: none;
+    border: 1px solid #ccc;
+    top: 0;
+    right: 0;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+
+    .pass-item-timer:hover {
+        background: #eee;
+    }
+
+.pass-item-time-timing {
+    cursor: default;
+    background: #ddd;
+}
+
+.tang-pass-qrcode {
+    width: 200px;
+}
+
+.tang-pass-qrcode-content {
+    padding-top: 30px;
+}
+
+.tang-pass-qrcode-imgWrapper {
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 115px;
+    height: 115px;
+    margin-bottom: 15px;
+}
+
+    .tang-pass-qrcode-imgWrapper img {
+        width: 115px;
+        height: 115px;
+    }
+
+.pass-qrcode-scanSuccess {
+    width: 145px;
+    height: 35px;
+    margin-bottom: 15px;
+    background: url('/static/passpc-account/img/login/ok_1fca3663.png') no-repeat 12px 20px;
+    padding-top: 95px;
+    color: #49b92f;
+    font-size: 22px;
+}
+
+.pass-qrcode-scanSuccessWrapper p, .tang-pass-qrcode-info {
+    color: #666;
+}
+
+.animation {
+    -webkit-animation: flipInX 1s .2s ease both;
+    -moz-animation: flipInX 1s .2s ease both;
+}
+
+@-webkit-keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotateX(90deg);
+        -moz-transform: perspective(400px) rotateX(90deg);
+        -o-transform: perspective(400px) rotateX(90deg);
+        -ms-transform: perspective(400px) rotateX(90deg);
+        transform: perspective(400px) rotateX(90deg);
+        opacity: 0;
+    }
+
+    40% {
+        -webkit-transform: perspective(400px) rotateX(-10deg);
+        -moz-transform: perspective(400px) rotateX(-10deg);
+        -o-transform: perspective(400px) rotateX(-10deg);
+        -ms-transform: perspective(400px) rotateX(-10deg);
+        transform: perspective(400px) rotateX(-10deg);
+    }
+
+    70% {
+        -webkit-transform: perspective(400px) rotateX(10deg);
+        -moz-transform: perspective(400px) rotateX(10deg);
+        -o-transform: perspective(400px) rotateX(10deg);
+        -ms-transform: perspective(400px) rotateX(10deg);
+        transform: perspective(400px) rotateX(10deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(400px) rotateX(0deg);
+        -moz-transform: perspective(400px) rotateX(0deg);
+        -o-transform: perspective(400px) rotateX(0deg);
+        -ms-transform: perspective(400px) rotateX(0deg);
+        transform: perspective(400px) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes flipInX {
+    0% {
+        -moz-transform: perspective(400px) rotateX(90deg);
+        -o-transform: perspective(400px) rotateX(90deg);
+        -webkit-transform: perspective(400px) rotateX(90deg);
+        -ms-transform: perspective(400px) rotateX(90deg);
+        transform: perspective(400px) rotateX(90deg);
+        opacity: 0;
+    }
+
+    40% {
+        -moz-transform: perspective(400px) rotateX(-10deg);
+        -o-transform: perspective(400px) rotateX(-10deg);
+        -webkit-transform: perspective(400px) rotateX(-10deg);
+        -ms-transform: perspective(400px) rotateX(-10deg);
+        transform: perspective(400px) rotateX(-10deg);
+    }
+
+    70% {
+        -moz-transform: perspective(400px) rotateX(10deg);
+        -o-transform: perspective(400px) rotateX(10deg);
+        -webkit-transform: perspective(400px) rotateX(10deg);
+        -ms-transform: perspective(400px) rotateX(10deg);
+        transform: perspective(400px) rotateX(10deg);
+    }
+
+    100% {
+        -moz-transform: perspective(400px) rotateX(0deg);
+        -o-transform: perspective(400px) rotateX(0deg);
+        -webkit-transform: perspective(400px) rotateX(0deg);
+        -ms-transform: perspective(400px) rotateX(0deg);
+        transform: perspective(400px) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+.tang-pass-login-choice {
+    margin-top: 24px;
+    height: 205px;
+}
+
+    .tang-pass-login-choice p {
+        margin: 0;
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: normal;
+    }
+
+.choiceuser-buttons .choiceuser-btn {
+    margin: 40px 0;
+}
+
+.choiceuser-buttons .pass-button {
+    height: 38px;
+    width: 118px;
+    margin-left: 40px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #666;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    font-weight: bold;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    transition: .3s;
+    -moz-transition: .3s;
+    -o-transition: .3s;
+    -webkit-transition: .3s;
+}
+
+    .choiceuser-buttons .pass-button:hover {
+        background-color: #eee;
+        border-color: #dadada;
+    }
+
+.choiceuser-buttons .pass-button-choiceuser-username {
+    background-color: #f7f7f7;
+    border-color: 1px solid #ddd;
+    color: #666;
+}
+
+.choiceuser-buttons .choiceuser-back {
+    text-align: right;
+}
+
+.tang-pass-sms-agreement {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #969696;
+}
+
+.choiceuser-buttons .pass-button {
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}

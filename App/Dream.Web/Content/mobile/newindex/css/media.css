@@ -1,0 +1,12 @@
+@media screen and (min-width:920px)
+{
+ body{ width: 820px; margin: 0 auto; } 
+}
+
+@media screen and (max-width:340px)
+{
+ body{ width: 320px; } 
+ .cearch .cearch-text input{width: 12em;}
+ .teamlist .teamlist-list{ padding-bottom: 10px; } 
+ .teamlist .teamlist-list dl{ padding:17px 0 0 76px}
+}
