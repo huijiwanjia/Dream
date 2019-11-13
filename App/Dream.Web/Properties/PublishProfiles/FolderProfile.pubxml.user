@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
-      <publishTime>11/08/2019 20:50:49</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>09/10/2013 16:29:20</publishTime>
@@ -19,13 +19,13 @@
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
-      <publishTime>11/08/2019 20:50:49</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="bin/Dream.Web.dll">
-      <publishTime>11/08/2019 22:21:29</publishTime>
+      <publishTime>11/13/2019 20:22:30</publishTime>
     </File>
     <File Include="bin/Dream.Web.pdb">
-      <publishTime>11/08/2019 22:21:29</publishTime>
+      <publishTime>11/13/2019 20:22:30</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>06/27/2017 12:59:34</publishTime>
@@ -187,415 +187,415 @@
       <publishTime>02/01/2018 12:21:00</publishTime>
     </File>
     <File Include="Content/base.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/boot_reg.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/css/style.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/forgot.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/anquan1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/anquan2.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/anquan3.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/anzhuo.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/app.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/box-bj.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/box1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color10.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color11.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color12.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color14.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color15.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color2.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color3.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color4.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color5.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color6.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color8.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/color9.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_1-bj.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_1_1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_2-bj-2.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_2-bj.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_2_1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_2_2.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/footer_2_3.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/gongzonghao.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/list1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/list2.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/list3.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/login-bj.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/logo.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/register-bj.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/weibo.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/img/weixin.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/js/a.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/js/jquery-1.11.3.min.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/login.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/css/style.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/demo.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/iconfont.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/iconfont.eot">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/iconfont.svg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/iconfont.ttf">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/iconfont.woff">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/icon/triangle2.svg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/a.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/bj.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/bj1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/foot_01.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/hot.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/logo.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/logo1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/logo2.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_01.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_02.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_03.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_04.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_05.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_06.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_07.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/mian_08.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/triangle.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/images/triangle1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/js/a.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/js/jquery-1.11.3.min.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/js/jquery.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/css/media.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/css/style.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/css/style.css.map">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/css/style.scss">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/bg.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/bg2.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/bookmark.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/coordinate.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/icon_img.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/logout.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/money.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/nav_01.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/nav_02.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/pen.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/photo.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/refresh.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/sign.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/strat.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/team.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/topbox_bg.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/topbox_bg.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/user.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/user1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/user2.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/user3.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/user4.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/userid.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/images/weixin.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/js/jquery-1.10.1.min.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/js/jquery.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/js/style.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/mobile/newindex/js/swiper.min.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/realUserTag.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/css/ionic.min.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/css/main.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/back.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/banner1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/close.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/email.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/icon_password.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/icon_user.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/jade.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_1.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_2.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_3.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_4.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_5.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_6.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_7.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nav_8.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/nub.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/on-off.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/package.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/phone.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/search.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/sub.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/user.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/user1.jpg">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/img/xin.png">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/js/flexible.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/RegisterForQrcode/js/jquery-1.12.2.min.js">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/topBar_default.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/ui.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Content/valid.css">
-      <publishTime>11/08/2019 20:57:21</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="favicon.ico">
-      <publishTime>11/08/2019 21:35:28</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>11/08/2019 20:50:43</publishTime>
@@ -613,7 +613,7 @@
       <publishTime>11/08/2019 20:50:43</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>11/08/2019 20:50:38</publishTime>
+      <publishTime>11/13/2019 19:57:32</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>11/08/2019 20:50:43</publishTime>
@@ -654,11 +654,14 @@
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>11/08/2019 20:50:46</publishTime>
     </File>
+    <File Include="Views/Home/AppDownload.cshtml">
+      <publishTime>11/13/2019 20:21:05</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/08/2019 22:20:54</publishTime>
+      <publishTime>11/13/2019 18:04:22</publishTime>
     </File>
     <File Include="Views/Home/MobileIndex.cshtml">
-      <publishTime>11/08/2019 22:20:54</publishTime>
+      <publishTime>11/13/2019 18:04:52</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>11/08/2019 20:50:38</publishTime>
@@ -673,7 +676,7 @@
       <publishTime>11/08/2019 20:59:58</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/08/2019 21:07:22</publishTime>
+      <publishTime>11/13/2019 20:22:30</publishTime>
     </File>
   </ItemGroup>
 </Project>

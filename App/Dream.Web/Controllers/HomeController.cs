@@ -25,6 +25,26 @@ namespace Dream.Web.Controllers
         {
             return View();
         }
+        public ActionResult AppDownload()
+        {
+            return View();
+        }
+
+        public ActionResult Download()
+        {
+            string fileLocation =@"C:/app/huijiwanjia.apk";
+            byte[] filedata = System.IO.File.ReadAllBytes(fileLocation);
+            string contentType = MimeMapping.GetMimeMapping(fileLocation);
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "huijiwanjia.apk",
+                Inline = true,
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return File(filedata, contentType);
+        }
+
         public bool IsMobileRequest()
         {
             string u = Request.ServerVariables["HTTP_USER_AGENT"];

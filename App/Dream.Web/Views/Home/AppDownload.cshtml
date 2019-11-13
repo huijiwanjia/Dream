@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>惠及万家APP下载</title>
+    <meta name="keywords" content="惠及万家官方网站,惠及万家，购物返，购物，惠及万家APP，返利网，某宝商品报销，商城">
+    <meta name="description" content="惠及万家，购物返，购物，惠及万家APP，返利网，某宝商品报销，商城!重庆惠及万家（科技）有限公司">
+    <script>
+
+
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            return "unknown";
+        }
+        var os = getMobileOperatingSystem();
+        if (os == 'iOS') {
+            console.log(os);
+            location.href = "https://apps.apple.com/cn/app/%E6%83%A0%E5%8F%8A%E4%B8%87%E5%AE%B6/id1483095536";
+        }
+        else location.href="/home/download"
+
+
+    </script>
+</head>
+<body>
+    <div>正在下载...</div>
+</body>
+</html>
