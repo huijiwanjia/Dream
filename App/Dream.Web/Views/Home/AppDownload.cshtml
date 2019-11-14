@@ -13,9 +13,18 @@
     <title>惠及万家APP下载</title>
     <meta name="keywords" content="惠及万家官方网站,惠及万家，购物返，购物，惠及万家APP，返利网，某宝商品报销，商城">
     <meta name="description" content="惠及万家，购物返，购物，惠及万家APP，返利网，某宝商品报销，商城!重庆惠及万家（科技）有限公司">
+</head>
+<body>
+    <div id="tip">正在下载...</div>
     <script>
-
-
+        function is_weixn() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
         function getMobileOperatingSystem() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -37,15 +46,15 @@
         }
         var os = getMobileOperatingSystem();
         if (os == 'iOS') {
-            console.log(os);
             location.href = "https://apps.apple.com/cn/app/%E6%83%A0%E5%8F%8A%E4%B8%87%E5%AE%B6/id1483095536";
         }
-        else location.href="/home/download"
-
-
+        else {
+            if (is_weixn()) {
+                document.getElementById("tip").innerText = "您正在微信客户端中打开下载页，请点击右上角选择在浏览器中打开"
+                alert("您正在微信客户端中打开下载页，请点击右上角选择在浏览器中打开");
+            }
+            else location.href = "/home/download";
+        }
     </script>
-</head>
-<body>
-    <div>正在下载...（微信客户端请点击右上角选择在浏览器中打开）</div>
 </body>
 </html>
