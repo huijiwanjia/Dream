@@ -34,15 +34,7 @@ namespace Dream.Web.Controllers
         {
             string fileLocation =@"C:/app/huijiwanjia.apk";
             byte[] filedata = System.IO.File.ReadAllBytes(fileLocation);
-            string contentType = MimeMapping.GetMimeMapping(fileLocation);
-
-            var cd = new System.Net.Mime.ContentDisposition
-            {
-                FileName = "huijiwanjia.apk",
-                Inline = true,
-            };
-            Response.AppendHeader("Content-Disposition", cd.ToString());
-            return File(filedata, contentType);
+            return File(filedata, "application/force-download", "huijiwanjia.apk");
         }
 
         public bool IsMobileRequest()
