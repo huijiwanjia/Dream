@@ -973,7 +973,7 @@ var app = {
                     }, true);
                 };
                 $scope.itemList = {};
-                var params = { PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                var params = {PageIndex:1, PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
                 Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
                     data = JSON.parse(data);
                     var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
@@ -985,6 +985,38 @@ var app = {
                     }
                     $scope.itemList = ret;
                 });
+
+                list_loading = false;
+                var pageIndex = 2;
+                $(document).on('scroll', function () {
+                    if (!list_loading) {
+                        if ($(document).scrollTop() >= $(document).height() - $(window).height() - 100) {
+                            load_more();
+                        }
+                    }
+                });
+
+                function load_more() {
+                    list_loading = true;
+                    appendHtml();
+                    pageIndex += 1;
+                }
+
+                function appendHtml() {
+                    var params = { PageIndex: pageIndex, PageSize: 40, MaterialId: 3756 };//好券直播  参考类型地址:https://tbk.bbs.taobao.com/detail.html?appId=45301&postId=8576096
+                    Post($http, DreamConfig.tbkOptimusGet, params, function (data) {
+                        data = JSON.parse(data);
+                        var ret = data.tbk_dg_optimus_material_response.result_list.map_data;
+                        for (i = 0; i < ret.length; i++) {
+                            if (ret[i].coupon_amount == null) ret[i].coupon_amount = 0;
+                            else ret[i].coupon_amount = parseInt(ret[i].coupon_amount);
+                            if (!!ret[i].coupon_share_url) ret[i].coupon_share_url = encodeURIComponent(ret[i].coupon_share_url);
+                            else ret[i].coupon_share_url = encodeURIComponent(ret[i].url);      
+                            $scope.itemList.push(ret[i]);
+                        }
+                        list_loading = false;
+                    });
+                }
             })
             .controller('OrderController', function ($scope, sc, ls, $state, $http) {
                 sc.ValidateLogin();
