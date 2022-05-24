@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AuthCallback</title>
+    <script src="/Content/assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var pid = parseInt('@ViewBag.State');
+        var token = '@ViewBag.Token';
+        var info = JSON.parse(token.replace(/\&quot;/g, "\""));
+        var unionid = info.unionid;
+        var data = { PId: pid, Unionid: unionid };
+        $.ajax({
+            method: "post",
+            url: 'http://api.huijiwanjia.com/dream/recomment',
+            contentType:"application/json",
+            data: JSON.stringify(data),
+            timeout: 30000,
+        }).success(function (d, textStatu, xhr) {
+            window.location.href = "http://huijiwanjia.com/home/appdownload";
+            }).error(function (error, textStatu, xhr) {
+                alert("网络异常");
+            });
+    </script>
+</head>
+<body>
+    <div>
+        正在跳转，请稍等...
+    </div>
+</body>
+</html>

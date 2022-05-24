@@ -1,0 +1,34 @@
+version: '3'
+services:
+  dream_adminV2_1:
+    image: 'dream-adminV2-pro'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8044:80"
+    volumes:
+      - /qin/SiteLogs/dream/adminV2/8044:/app/logs
+    logging:
+      options:
+        max-size: 50m 
+  dream_adminV2_2:
+    image: 'dream-adminV2-pro'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8045:80"
+    volumes:
+      - /qin/SiteLogs/dream/adminV2/8045:/app/logs
+    logging:
+      options:
+        max-size: 50m
