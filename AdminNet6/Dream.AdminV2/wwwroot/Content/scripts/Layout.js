@@ -54,7 +54,7 @@ var OrderState = {
 
 var config = {
     dataProcessUrl: "/DataProcess/import",
-    userUrl: "http://106.13.74.5:8021/dream/User",
+    userUrl: "http://api.huijiwanjia.com/dream/User",
     orderPaginationUrl: "http://api.huijiwanjia.com/dream/Order/pagination",
     orderChangeStatusUrl: "http://api.huijiwanjia.com/dream/Order/changestatus",
     withdrawUrl: "http://api.huijiwanjia.com/dream/Profit/GetWithdrawApply",
