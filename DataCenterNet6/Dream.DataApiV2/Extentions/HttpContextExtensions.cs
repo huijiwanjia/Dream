@@ -1,0 +1,21 @@
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Dream.Security;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Dream.DataApi.Extensions
+{  
+    public static class HttpContextExtensions
+    {
+        public static IApplicationBuilder UseStaticHttpContext(this IApplicationBuilder app)
+        {
+            var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
+            HttpUtityHelper.Configure(httpContextAccessor);
+            return app;
+        } 
+    }
+}

@@ -1,0 +1,382 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataApiV2\\Dream.DataApiV2.csproj": {}
+  },
+  "projects": {
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\Dream.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\Dream.DataAccess.csproj",
+        "projectName": "Dream.DataAccess",
+        "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\Dream.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Jin J Qin\\.nuget\\packages\\",
+        "outputPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jin J Qin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj"
+              },
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj"
+              },
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Alipay.AopSdk.Core": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "Dapper.Contrib": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataApiV2\\Dream.DataApiV2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataApiV2\\Dream.DataApiV2.csproj",
+        "projectName": "Dream.DataApiV2",
+        "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataApiV2\\Dream.DataApiV2.csproj",
+        "packagesPath": "C:\\Users\\Jin J Qin\\.nuget\\packages\\",
+        "outputPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataApiV2\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jin J Qin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\Dream.DataAccess.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.DataAccess\\Dream.DataAccess.csproj"
+              },
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj"
+              },
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj"
+              },
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj",
+        "projectName": "Dream.Logger",
+        "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\Dream.Logger.csproj",
+        "packagesPath": "C:\\Users\\Jin J Qin\\.nuget\\packages\\",
+        "outputPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Logger\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jin J Qin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "NLog": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj",
+        "projectName": "Dream.Model",
+        "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj",
+        "packagesPath": "C:\\Users\\Jin J Qin\\.nuget\\packages\\",
+        "outputPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jin J Qin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Dapper.Contrib": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj",
+        "projectName": "Dream.Util",
+        "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\Dream.Util.csproj",
+        "packagesPath": "C:\\Users\\Jin J Qin\\.nuget\\packages\\",
+        "outputPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Util\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jin J Qin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj": {
+                "projectPath": "C:\\Jin\\Dream\\DataCenterNet6\\Dream.Model\\Dream.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "ServiceStack.Redis.Core": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

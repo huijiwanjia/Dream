@@ -1,0 +1,50 @@
+version: '3'
+services:
+  dream_dataapiv2_1:
+    image: 'dream-datacenterv2-pro'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8021:80"
+    volumes:
+      - /qin/SiteLogs/dream/datacenterv2/8021:/app/logs
+    logging:
+      options:
+        max-size: 50m 
+  dream_dataapiv2_2:
+    image: 'dream-datacenterv2-pro'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8022:80"
+    volumes:
+      - /qin/SiteLogs/dream/datacenterv2/8022:/app/logs
+    logging:
+      options:
+        max-size: 50m
+  dream_dataapiv2_3:
+    image: 'dream-datacenterv2-pro'
+    build:
+      context: .
+      dockerfile: dockerfile   
+    restart: always
+    expose:
+      - "80"
+      - "443"  
+    ports:
+      - "8023:80"
+    volumes:
+      - /qin/SiteLogs/dream/datacenterv2/8023:/app/logs
+    logging:
+      options:
+        max-size: 50m
