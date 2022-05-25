@@ -10,9 +10,9 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8044:80"
+      - "8031:80"
     volumes:
-      - /qin/SiteLogs/dream/adminV2/8044:/app/logs
+      - /qin/SiteLogs/dream/adminV2/8031:/app/logs
     logging:
       options:
         max-size: 50m 
@@ -26,9 +26,9 @@ services:
       - "80"
       - "443"  
     ports:
-      - "8045:80"
+      - "8032:80"
     volumes:
-      - /qin/SiteLogs/dream/adminV2/8045:/app/logs
+      - /qin/SiteLogs/dream/adminV2/8032:/app/logs
     logging:
       options:
         max-size: 50m
