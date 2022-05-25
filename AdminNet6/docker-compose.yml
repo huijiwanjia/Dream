@@ -1,7 +1,7 @@
 version: '3'
 services:
   dream_adminV2_1:
-    image: 'dream-adminV2-pro'
+    image: 'dream-adminv2-pro'
     build:
       context: .
       dockerfile: dockerfile   
@@ -17,7 +17,7 @@ services:
       options:
         max-size: 50m 
   dream_adminV2_2:
-    image: 'dream-adminV2-pro'
+    image: 'dream-adminv2-pro'
     build:
       context: .
       dockerfile: dockerfile   
