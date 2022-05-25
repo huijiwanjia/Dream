@@ -10,7 +10,7 @@ using NLog.Web;
 using Dream.Admin.AppCode;
 using EnvironmentName = Microsoft.Extensions.Hosting.EnvironmentName;
 
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+var logger = NLog.LogManager.GetLogger("error");
 try
 {
 
